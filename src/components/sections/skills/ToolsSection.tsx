@@ -94,7 +94,8 @@ const MarqueeRow = ({ items, direction, speed }: { items: any[], direction: 'lef
     const doubledItems = [...items, ...items, ...items, ...items];
 
     return (
-        <div className="flex w-full overflow-hidden py-4">
+        // LTR geometry for the -50% loop; under RTL it left part of the row empty.
+        <div dir="ltr" className="flex w-full overflow-hidden py-4">
             <motion.div
                 className="flex gap-8 whitespace-nowrap"
                 style={{

@@ -64,7 +64,10 @@ export function InfiniteRibbon({
     });
 
     return (
+        // dir="ltr": the ribbon is a repeated run slid along x (LTR geometry); under
+        // the Arabic RTL page it anchored right and left a stretch of ribbon empty.
         <div
+            dir="ltr"
             className={cn("absolute left-1/2 top-1/2 opacity-90 w-[200vw] py-3 overflow-hidden whitespace-nowrap z-10", background, className)}
             style={{
                 transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
@@ -80,7 +83,7 @@ export function InfiniteRibbon({
                 style={isMobile ? {} : { x }}
             >
                 {Array.from({ length: 12 }).map((_, i) => (
-                    <span key={i} className="flex items-center pr-10">
+                    <span key={i} dir="auto" className="flex items-center pr-10">
                         {children} <span className="w-1.5 h-1.5 rounded-full bg-current opacity-50 ml-10" />
                     </span>
                 ))}

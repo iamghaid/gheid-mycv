@@ -41,9 +41,12 @@ const ScrollerItem = ({
     </div>
 );
 
+// Both rows are pinned to LTR: each loop is two copies slid by -50%, and under the
+// Arabic page's RTL direction the rows anchored to the right edge, leaving part of
+// the line empty as they moved.
 export const BrandScroller = () => {
     return (
-        <div className="relative flex overflow-hidden py-2 w-full px-8 md:px-16 lg:px-24 [mask-image:linear-gradient(to_right,_rgba(0,_0,_0,_0),rgba(0,_0,_0,_1)_10%,rgba(0,_0,_0,_1)_90%,rgba(0,_0,_0,_0))]">
+        <div dir="ltr" className="relative flex overflow-hidden py-2 w-full px-8 md:px-16 lg:px-24 [mask-image:linear-gradient(to_right,_rgba(0,_0,_0,_0),rgba(0,_0,_0,_1)_10%,rgba(0,_0,_0,_1)_90%,rgba(0,_0,_0,_0))]">
             <motion.div
                 animate={{
                     x: ["-50%", "0%"],
@@ -73,7 +76,7 @@ export const BrandScroller = () => {
 
 export const BrandScrollerReverse = () => {
     return (
-        <div className="relative flex overflow-hidden py-2 w-full px-8 md:px-16 lg:px-24 [mask-image:linear-gradient(to_right,_rgba(0,_0,_0,_0),rgba(0,_0,_0,_1)_10%,rgba(0,_0,_0,_1)_90%,rgba(0,_0,_0,_0))]">
+        <div dir="ltr" className="relative flex overflow-hidden py-2 w-full px-8 md:px-16 lg:px-24 [mask-image:linear-gradient(to_right,_rgba(0,_0,_0,_0),rgba(0,_0,_0,_1)_10%,rgba(0,_0,_0,_1)_90%,rgba(0,_0,_0,_0))]">
             <motion.div
                 animate={{
                     x: ["0%", "-50%"],

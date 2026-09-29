@@ -2,7 +2,7 @@
 
 import { useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Send, CheckCircle, AlertCircle, Loader2, Mail, ArrowUpRight, Sparkles, HelpCircle, MessageSquare, ExternalLink, Github, Linkedin, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { portfolioData } from '@/data/portfolio';
@@ -21,11 +21,14 @@ import { IdentityCard } from '@/components/contact/IdentityCard';
 import { DeferredMount } from '@/components/ui/DeferredMount';
 
 function SocialTicker({ items, direction = 'left', speed = 30, isLowPowerMode = false }: { items: any[], direction?: 'left' | 'right', speed?: number, isLowPowerMode?: boolean }) {
+    const pageDir = useLocale() === 'ar' ? 'rtl' : 'ltr';
     // 8x duplication ensures enough width to cover large screens twice over, allowing -50% translation without empty gaps on the right edge.
     const multipliedItems = [...items, ...items, ...items, ...items, ...items, ...items, ...items, ...items];
 
     return (
-        <div className="flex overflow-hidden relative w-full group/ticker py-4 select-none">
+        // The track is pinned to LTR (it slides by -50%, which assumes a left anchor);
+        // each card restores the page direction so Arabic cards keep their layout.
+        <div dir="ltr" className="flex overflow-hidden relative w-full group/ticker py-4 select-none">
             <motion.div
                 className="flex flex-nowrap hover:[animation-play-state:paused]"
                 initial={{ x: direction === 'left' ? 0 : '-50%' }}
@@ -38,7 +41,7 @@ function SocialTicker({ items, direction = 'left', speed = 30, isLowPowerMode = 
                 style={{ width: "max-content" }}
             >
                 {multipliedItems.map((item, idx) => (
-                    <div key={`${item.name}-${idx}`} className="pr-4">
+                    <div key={`${item.name}-${idx}`} dir={pageDir} className="pr-4">
                         <SocialCard item={item} />
                     </div>
                 ))}
