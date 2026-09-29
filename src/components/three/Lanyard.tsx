@@ -20,13 +20,14 @@ import { useTheme } from 'next-themes';
 import { usePerformance } from '@/hooks/usePerformance';
 import { portfolioData } from '@/data/portfolio';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
+import { useTranslations } from 'next-intl';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
 // Preload assets for faster startup
 useGLTF.preload('/lanyard/card.glb');
 useTexture.preload('/lanyard/lanyard.webp');
-useTexture.preload('/lanyard/desain-kartu.webp');
+useTexture.preload('/about/gheid.jpg');
 
 interface LanyardProps {
     position?: [number, number, number];
@@ -51,6 +52,7 @@ export function Lanyard({
     const isLowPowerMode = isLowPowerModeProp ?? isLowPowerModeHook;
     const { resolvedTheme } = useTheme();
     const isDark = resolvedTheme === 'dark';
+    const tCard = useTranslations('contact.card');
 
     useEffect(() => {
         setIsMobile(window.innerWidth < 768);
@@ -66,19 +68,19 @@ export function Lanyard({
                     <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-blue-500/10 to-purple-500/20 rounded-[3rem] blur-2xl opacity-50 group-hover:opacity-100 transition-opacity" />
                     <div className="relative w-64 aspect-[1.5/2.3] bg-[#0a0a12]/90 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col items-center justify-center text-center p-6">
                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-blue-500 to-purple-500" />
-                        <div className="relative w-32 h-32 mb-6 rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl">
+                        <div className="relative w-40 aspect-square mb-6 rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl">
                             <img
                                 src={portfolioData.personal.avatar}
-                                alt={portfolioData.personal.name}
-                                className="w-full h-full object-cover"
+                                alt={tCard('name')}
+                                className="w-full h-full object-cover object-center"
                             />
                         </div>
                         <div className="space-y-2">
-                            <h3 className="text-xl font-bold text-white tracking-tight">
-                                {portfolioData.personal.name}
+                            <h3 dir="rtl" className="text-xl font-bold text-white">
+                                {tCard('name')}
                             </h3>
-                            <p className="text-sm text-zinc-400 font-medium">
-                                {portfolioData.personal.title}
+                            <p dir="ltr" className="text-sm text-[#8FD3B6] font-semibold tracking-wide">
+                                {tCard('role')}
                             </p>
                         </div>
                         <div className="mt-8 pt-6 border-t border-white/5 w-full">
@@ -87,7 +89,7 @@ export function Lanyard({
                                     <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                                 </div>
                                 <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 flex items-center">
-                                    Archive Link Active
+                                    {tCard('label')}
                                 </span>
                             </div>
                         </div>
@@ -208,58 +210,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, isDark = false }:
 
     const { nodes, materials } = useGLTF('/lanyard/card.glb') as any;
     const texture = useTexture('/lanyard/lanyard.webp');
-    const customCardTexture = useTexture('/lanyard/desain-kartu.webp');
-
-    // The GLTF model requires flipY to be false for its UV mapping
-    customCardTexture.flipY = false;
-
-    /**
-     * Fit the card artwork to the card face without distorting it.
-     *
-     * The mesh's front face is 0.716 wide for every 1.0 tall, but the artwork is a
-     * 3750x4219 image — 0.889 wide for every 1.0 tall. Because the UVs stretch the
-     * whole image across the whole face, the artwork was being squeezed horizontally
-     * by about 19%: the portrait on the card was visibly narrowed and the lettering
-     * along with it.
-     *
-     * Sampling a centred sub-rectangle of the texture instead ("cover" behaviour)
-     * keeps the proportions true. The 19% that falls outside the crop is the plain
-     * background margin either side of the portrait frame, so nothing of the design
-     * is lost. The face aspect is read from the geometry rather than hardcoded, so
-     * this stays correct if the model is ever replaced.
-     */
-    const cardTexture = useMemo(() => {
-        const image = customCardTexture.image as { width: number; height: number } | undefined;
-        const geometry = nodes?.card?.geometry;
-        if (!image?.width || !image?.height || !geometry) return customCardTexture;
-
-        geometry.computeBoundingBox?.();
-        const box = geometry.boundingBox;
-        if (!box) return customCardTexture;
-
-        const faceAspect = (box.max.x - box.min.x) / (box.max.y - box.min.y);
-        const textureAspect = image.width / image.height;
-        if (!faceAspect || !textureAspect) return customCardTexture;
-
-        const fitted = customCardTexture.clone();
-        fitted.flipY = false;
-        fitted.wrapS = fitted.wrapT = THREE.ClampToEdgeWrapping;
-
-        if (textureAspect > faceAspect) {
-            // Artwork is relatively wider than the face — crop its sides.
-            const visible = faceAspect / textureAspect;
-            fitted.repeat.set(visible, 1);
-            fitted.offset.set((1 - visible) / 2, 0);
-        } else {
-            // Artwork is relatively taller than the face — crop top and bottom.
-            const visible = textureAspect / faceAspect;
-            fitted.repeat.set(1, visible);
-            fitted.offset.set(0, (1 - visible) / 2);
-        }
-
-        fitted.needsUpdate = true;
-        return fitted;
-    }, [customCardTexture, nodes]);
+    const portrait = useTexture('/about/gheid.jpg');
+    const tCard = useTranslations('contact.card');
+    const cardTexture = useCardTexture(portrait, tCard('name'), tCard('role'));
 
     // Use the original lanyard texture directly for light mode (black)
     // For dark mode, convert the black background to dark grey (#333333)
@@ -426,4 +379,143 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, isDark = false }:
             </mesh>
         </>
     );
+}
+
+/*
+ * Card artwork, drawn at runtime onto a texture atlas that matches the model's UVs.
+ *
+ * card.glb does not stretch one image over the whole card: its FRONT face samples
+ * only the left half of the texture (u 0–0.5) and the top 75.7% of it (v 0–0.757),
+ * and the BACK face samples the right half. The old artwork was a single portrait
+ * image, so the front showed just its left half — the photo looked cut down the
+ * middle. Drawing the atlas here puts a centred, square-cropped portrait with the
+ * name and role underneath exactly inside the front region, at the face's true
+ * 0.716 : 1 proportions, so nothing is stretched or cropped.
+ */
+const ATLAS_W = 2048;
+const ATLAS_H = 1890; // 0.5 * W / 0.757 / 0.716 ≈ 1890 keeps the face region undistorted
+const FACE_W = ATLAS_W / 2;
+const FACE_H = Math.round(ATLAS_H * 0.757);
+
+function roundedRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+}
+
+function drawCardArtwork(ctx: CanvasRenderingContext2D, portrait: THREE.Texture, name: string, role: string) {
+    const inter = getComputedStyle(document.body).getPropertyValue('--font-inter').trim() || 'sans-serif';
+    const accent = '#1E6B52';
+
+    // Base fill for the whole atlas (also covers the card edges).
+    ctx.fillStyle = '#111111';
+    ctx.fillRect(0, 0, ATLAS_W, ATLAS_H);
+
+    // ---- Front face ----
+    const bg = ctx.createLinearGradient(0, 0, 0, FACE_H);
+    bg.addColorStop(0, '#161616');
+    bg.addColorStop(1, '#0b0b0b');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, FACE_W, FACE_H);
+    ctx.fillStyle = accent;
+    ctx.fillRect(0, 0, FACE_W, 26);
+    ctx.fillRect(0, FACE_H - 26, FACE_W, 26);
+
+    // Square portrait, centred horizontally.
+    const side = 760;
+    const px = (FACE_W - side) / 2;
+    const py = 170;
+    ctx.save();
+    roundedRect(ctx, px, py, side, side, 44);
+    ctx.clip();
+    const img = portrait.image as CanvasImageSource & { width: number; height: number };
+    if (img?.width && img?.height) {
+        // "cover" crop to a square, biased slightly toward the top of the photo
+        const s = Math.min(img.width, img.height);
+        const sx = (img.width - s) / 2;
+        const sy = Math.max(0, (img.height - s) * 0.2);
+        ctx.drawImage(img, sx, sy, s, s, px, py, side, side);
+    } else {
+        ctx.fillStyle = '#222';
+        ctx.fillRect(px, py, side, side);
+    }
+    ctx.restore();
+    roundedRect(ctx, px, py, side, side, 44);
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = 'rgba(255,255,255,0.14)';
+    ctx.stroke();
+
+    // Name and role, centred under the portrait.
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'alphabetic';
+    ctx.direction = 'rtl';
+    ctx.fillStyle = '#F5F2EA';
+    ctx.font = `700 96px "thmanyah Sans", ${inter}, sans-serif`;
+    ctx.fillText(name, FACE_W / 2, py + side + 150);
+    ctx.direction = 'ltr';
+    ctx.fillStyle = '#8FD3B6';
+    ctx.font = `600 54px ${inter}, sans-serif`;
+    ctx.fillText(role, FACE_W / 2, py + side + 245);
+
+    // ---- Back face: text-free so it reads correctly from either side ----
+    ctx.fillStyle = '#101010';
+    ctx.fillRect(FACE_W, 0, FACE_W, FACE_H);
+    ctx.fillStyle = 'rgba(255,255,255,0.05)';
+    for (let y = 60; y < FACE_H; y += 48) {
+        for (let x = FACE_W + 40; x < ATLAS_W; x += 48) {
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+    ctx.fillStyle = accent;
+    ctx.fillRect(FACE_W, 0, FACE_W, 26);
+    ctx.fillRect(FACE_W, FACE_H - 26, FACE_W, 26);
+}
+
+function useCardTexture(portrait: THREE.Texture, name: string, role: string) {
+    const texture = useMemo(() => {
+        const canvas = document.createElement('canvas');
+        canvas.width = ATLAS_W;
+        canvas.height = ATLAS_H;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return null;
+        drawCardArtwork(ctx, portrait, name, role);
+
+        const tex = new THREE.CanvasTexture(canvas);
+        tex.flipY = false; // the GLTF UVs expect an un-flipped texture
+        tex.colorSpace = THREE.SRGBColorSpace;
+        tex.anisotropy = 16;
+        tex.needsUpdate = true;
+        return tex;
+    }, [portrait, name, role]);
+
+    // Canvas text only uses a web font once it has loaded. Redraw in place when it
+    // has, rather than through React state: a re-render of <Band> re-creates its
+    // rope joints and the physics would visibly reset.
+    useEffect(() => {
+        if (!texture) return;
+        let cancelled = false;
+        const inter = getComputedStyle(document.body).getPropertyValue('--font-inter').trim() || 'sans-serif';
+        Promise.all([
+            document.fonts.load(`700 96px "thmanyah Sans"`, name),
+            document.fonts.load(`600 54px ${inter}`, role),
+        ])
+            .catch(() => undefined)
+            .then(() => {
+                if (cancelled) return;
+                const ctx = (texture.image as HTMLCanvasElement).getContext('2d');
+                if (!ctx) return;
+                drawCardArtwork(ctx, portrait, name, role);
+                texture.needsUpdate = true;
+            });
+        return () => { cancelled = true; };
+    }, [texture, portrait, name, role]);
+
+    useEffect(() => () => texture?.dispose(), [texture]);
+    return texture;
 }

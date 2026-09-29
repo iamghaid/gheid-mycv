@@ -47,6 +47,18 @@ export function ArgentLoopInfiniteSlider() {
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 30, mass: 1 });
 
+  // Height of one entry in the card (the card scrolls its entries internally by
+  // exactly this much). Phones stack image over text, so they need a taller card.
+  const [compact, setCompact] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const update = () => setCompact(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  const STEP = compact ? 430 : 270;
+
   const projectArea = 0.85;
   const projectStep = projectArea / PROJECT_DATA.length; 
   const transWindow = 0.05; 
@@ -60,12 +72,12 @@ export function ArgentLoopInfiniteSlider() {
     const boundary = i * projectStep;
     scrollMap.push(boundary - transWindow / 2, boundary + transWindow / 2);
     yMap.push(`-${(i-1)*100}vh`, `-${i*100}vh`);
-    internalYMap.push(`-${(i-1)*250}px`, `-${i*250}px`);
+    internalYMap.push(`-${(i-1)*STEP}px`, `-${i*STEP}px`);
   });
 
   scrollMap.push(projectArea, 1);
   yMap.push(`-${(PROJECT_DATA.length-1)*100}vh`, `-${(PROJECT_DATA.length-1)*100}vh`);
-  internalYMap.push(`-${(PROJECT_DATA.length-1)*250}px`, `-${(PROJECT_DATA.length-1)*250}px`);
+  internalYMap.push(`-${(PROJECT_DATA.length-1)*STEP}px`, `-${(PROJECT_DATA.length-1)*STEP}px`);
 
   const currentY = useTransform(smoothProgress, scrollMap, yMap);
   const contentInternalY = useTransform(smoothProgress, scrollMap, internalYMap);
@@ -73,7 +85,7 @@ export function ArgentLoopInfiniteSlider() {
   const bgOpacity = useTransform(smoothProgress, [0, 0.05, projectArea, 1], [0, 1, 1, 0]);
   const mainUIOpacity = useTransform(smoothProgress, [0, 0.05, projectArea, 1], [0, 1, 1, 0]);
   const buttonOpacity = useTransform(smoothProgress, [projectArea, projectArea + 0.05], [0, 1]);
-  const finalContainerY = useTransform(smoothProgress, [projectArea, projectArea + 0.05], ["0px", "-250px"]);
+  const finalContainerY = useTransform(smoothProgress, [projectArea, projectArea + 0.05], ["0px", compact ? "-160px" : "-250px"]);
   const imageY = useTransform(smoothProgress, [0, 1], ["-12%", "12%"]);
 
   return (
@@ -116,79 +128,16 @@ export function ArgentLoopInfiniteSlider() {
             pointer-events: none;
         }
         .minimap-bar-outer {
-            width: 85vw;
-            height: 250px;
+            width: min(85vw, 1400px);
             background: white !important;
+            color: #0a0a0a;
+            border-radius: 1.25rem;
             box-shadow: 0 50px 120px -30px rgba(0,0,0,0.6);
-            display: flex;
-            align-items: center;
             overflow: hidden;
         }
-        .minimap-content-viewport {
-            position: relative;
-            width: 100%;
-            height: 100%;
+        @media (max-width: 767px) {
+            .minimap-bar-outer { width: calc(100vw - 32px); }
         }
-        .minimap-img-preview {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            transform: translateX(-50%);
-            width: 440px;
-            height: 100%;
-            overflow: hidden;
-            z-index: 10;
-        }
-        .minimap-img-item {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            padding: 0.8rem 0;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .minimap-img-item img {
-            display: block;
-            margin: 0;
-            will-change: transform;
-        }
-        .minimap-info-list {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-        }
-        .minimap-item-info {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 2.25rem 3.5%;
-            font-family: 'Inter', sans-serif;
-            color: black !important;
-            text-transform: uppercase;
-        }
-        .minimap-item-info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            width: 100%;
-        }
-        .minimap-item-info-row p {
-            margin: 0;
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            font-weight: 800;
-        }
-        .minimap-item-info-row:nth-child(2) p { color: #666; font-weight: 700; }
-        .minimap-item-info-row:nth-child(3) p { color: #999; font-weight: 500; font-size: 9.5px; text-transform: lowercase; }
-        
         /* DEFAULT (Light Mode) Base State */
         .custom-btn {
             background: black;
@@ -241,7 +190,7 @@ export function ArgentLoopInfiniteSlider() {
         .slide-overlay {
             position: absolute;
             bottom: 3rem;
-            left: 5%;
+            inset-inline-start: 5%;
             z-index: 110;
             display: flex;
             align-items: center;
@@ -255,7 +204,7 @@ export function ArgentLoopInfiniteSlider() {
         .slide-progress {
             position: absolute;
             top: 0;
-            left: 0;
+            inset-inline-start: 0;
             height: 100%;
             will-change: width;
         }
@@ -278,50 +227,53 @@ export function ArgentLoopInfiniteSlider() {
             style={{ y: finalContainerY, willChange: "transform" }}
             className="flex flex-col items-center"
           >
-            <motion.div style={{ opacity: mainUIOpacity }} className="minimap-bar-outer">
-              <div className="minimap-content-viewport">
-                <div className="minimap-img-preview">
-                  <motion.div style={{ y: contentInternalY }} className="w-full h-full relative">
-                    {PROJECT_DATA.map((data, i) => (
-                      <div key={i} className="minimap-img-item" style={{ top: `${i * 250}px` }}>
-                        <img src={data.image} alt={data.title} className="block w-full h-full object-cover" />
+            <motion.div
+              style={{ opacity: mainUIOpacity, height: STEP }}
+              className="minimap-bar-outer"
+            >
+              {/* The entries scroll inside the card; each is one STEP tall. */}
+              <motion.div style={{ y: contentInternalY }} className="relative w-full h-full">
+                {PROJECT_DATA.map((data, i) => {
+                  const num = (i + 1).toString().padStart(2, "0");
+                  return (
+                    <div
+                      key={data.slug}
+                      className="absolute inset-x-0 grid grid-rows-[190px_minmax(0,1fr)_auto] md:grid-rows-1 md:grid-cols-[minmax(0,1fr)_minmax(0,420px)_minmax(0,1fr)] gap-0 md:gap-8 md:px-8 lg:px-10"
+                      style={{ top: `${i * STEP}px`, height: STEP }}
+                    >
+                      {/* Screenshot — shown whole on a blurred fill so every project
+                          sits in the same frame whatever the screenshot's shape. */}
+                      <div className="relative md:order-2 overflow-hidden bg-neutral-100 md:my-4 md:rounded-xl">
+                        <img src={data.image} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover scale-110 blur-xl opacity-60" />
+                        <img src={data.image} alt={data.title} className="relative block h-full w-full object-contain p-3" />
                       </div>
-                    ))}
-                  </motion.div>
-                </div>
-                <div className="minimap-info-list">
-                  <motion.div style={{ y: contentInternalY }} className="w-full h-full relative">
-                    {PROJECT_DATA.map((data, i) => {
-                      const num = (i + 1).toString().padStart(2, "0");
-                      return (
-                        <div key={i} className="minimap-item-info" style={{ top: `${i * 250}px` }}>
-                          <div className="minimap-item-info-row">
-                            <p className="font-medium opacity-100">{num}</p>
-                            <h4 className="text-xl md:text-2xl font-medium tracking-tight uppercase text-right max-w-[45%] leading-tight">
-                              {data.title}
-                            </h4>
-                          </div>
-                          <div className="minimap-item-info-row">
-                            <p className="text-neutral-600 font-medium">{data.category}</p>
-                            <p className="font-medium tabular-nums text-neutral-600">{data.year}</p>
-                          </div>
-                          <div className="minimap-item-info-row">
-                            <p className="lowercase opacity-80 font-medium leading-relaxed max-w-[35%] text-[10px]">
-                              {data.description}
-                            </p>
-                            <Link 
-                                href={`/projects/${data.slug}`} 
-                                className="pointer-events-auto font-medium text-[10px] opacity-60 hover:opacity-100 hover:text-black transition-all duration-300 text-right group/link"
-                            >
-                              <span className="border-b border-black/10 group-hover/link:border-black pb-1">{tPage('viewMore')}</span>
-                            </Link>
-                          </div>
+
+                      {/* Number, category, description */}
+                      <div className="md:order-1 flex min-w-0 flex-col justify-start md:justify-between gap-2 px-5 pt-4 md:px-0 md:py-8">
+                        <div className="flex items-baseline justify-between gap-3 md:block">
+                          <p className="font-mono text-[11px] font-bold tracking-[0.2em] text-neutral-400">{num}</p>
+                          <h4 className="md:hidden text-xl font-semibold leading-tight tracking-tight text-end">{data.title}</h4>
                         </div>
-                      );
-                    })}
-                  </motion.div>
-                </div>
-              </div>
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-500">{data.category}</p>
+                        <p className="text-[13px] leading-relaxed text-neutral-600 line-clamp-3">{data.description}</p>
+                      </div>
+
+                      {/* Title, year, link */}
+                      <div className="md:order-3 flex min-w-0 items-center justify-between gap-3 px-5 pb-4 md:flex-col md:items-end md:px-0 md:py-8 text-end">
+                        <h4 className="hidden md:block text-2xl lg:text-3xl font-semibold leading-tight tracking-tight text-balance">{data.title}</h4>
+                        <p className="font-mono text-[11px] font-bold tabular-nums text-neutral-500">{data.year}</p>
+                        <Link
+                          href={`/projects/${data.slug}`}
+                          className="pointer-events-auto inline-flex items-center gap-1.5 text-[12px] font-semibold text-neutral-700 hover:text-black transition-colors"
+                        >
+                          <span className="border-b border-black/15 pb-0.5">{tPage('viewMore')}</span>
+                          <ArrowUpRight className="h-3.5 w-3.5 rtl:-scale-x-100" />
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </motion.div>
             </motion.div>
 
             <div className="h-[200px] w-full flex items-center justify-center pt-10">

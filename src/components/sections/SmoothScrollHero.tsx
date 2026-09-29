@@ -15,7 +15,10 @@ import { useTranslations } from 'next-intl';
 export const SmoothScrollHero = () => {
     const { isLowPowerMode } = usePerformance();
     return (
-        <div className="bg-background text-zinc-900 dark:text-zinc-50 relative z-0">
+        // overflow-x-clip: the parallax photos scale up to 1.2x on the way out and the
+        // outer columns spilled past the viewport edge, adding a horizontal scrollbar
+        // on laptop widths. `clip` (unlike `hidden`) keeps the sticky centre image working.
+        <div className="bg-background text-zinc-900 dark:text-zinc-50 relative z-0 overflow-x-clip">
             <Hero isLowPowerMode={isLowPowerMode} />
         </div>
     );
@@ -91,7 +94,7 @@ const CenterImage = ({ scrollY }: { scrollY: MotionValue<number> }) => {
                     borderRadius,
                     opacity,
                     backgroundImage:
-                        "url('/experience/Foto Utama.webp')",
+                        "url('/journey/arabopenuniversity1.webp')",
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
@@ -119,7 +122,7 @@ const CenterImage = ({ scrollY }: { scrollY: MotionValue<number> }) => {
                     {/* Ambient Glow */}
                     <div className="absolute inset-0 bg-primary/2 rounded-[clamp(2rem,6vw,4rem)] pointer-events-none" />
 
-                    <h1 className="text-[clamp(3.5rem,15vw,15rem)] font-black text-foreground dark:text-white tracking-[-0.06em] leading-[0.8] uppercase text-center mb-[clamp(24px,4vh,48px)] -ml-2">
+                    <h1 className="text-[clamp(3.5rem,15vw,15rem)] font-black text-foreground dark:text-white tracking-[-0.06em] leading-[0.85] uppercase text-center mb-[clamp(24px,4vh,48px)]">
                         {tPage('heroTitle')}
                     </h1>
 
@@ -136,7 +139,8 @@ const CenterImage = ({ scrollY }: { scrollY: MotionValue<number> }) => {
 
 const ParallaxImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
     return (
-        <div className="mx-auto max-w-7xl px-4 absolute inset-0 z-20 pointer-events-none grid grid-cols-12 gap-4 h-full items-end pb-[10vh]">
+        <div aria-hidden
+            className="mx-auto max-w-7xl px-4 absolute inset-0 z-20 pointer-events-none hidden sm:grid grid-cols-12 gap-4 h-full items-end pb-[10vh]">
             {/* 
                STRATEGY: 
                start={positive} -> Starts BELOW current view.
@@ -147,8 +151,8 @@ const ParallaxImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
             <div className="col-span-3 col-start-2">
                 <ParallaxImg
                     scrollY={scrollY}
-                    src="/experience/FotoSC1.webp"
-                    alt="Space launch"
+                    src="/gallery/aou-event-1.jpg"
+                    alt=""
                     start={800}
                     end={-1500}
                     className="w-full shadow-2xl rounded-2xl border border-white/10 aspect-[4/3] object-cover"
@@ -159,8 +163,8 @@ const ParallaxImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
             <div className="col-span-3 col-start-10 mb-32">
                 <ParallaxImg
                     scrollY={scrollY}
-                    src="/experience/FotoSC2.webp"
-                    alt="Space launch"
+                    src="/gallery/after-med-hackathon.jpg"
+                    alt=""
                     start={1000}
                     end={-1500}
                     className="w-full shadow-2xl rounded-2xl border border-white/10 aspect-square object-cover"
@@ -171,8 +175,8 @@ const ParallaxImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
             <div className="col-span-4 col-start-5 mb-10">
                 <ParallaxImg
                     scrollY={scrollY}
-                    src="/experience/FotoSC3.webp"
-                    alt="Satellite view"
+                    src="/gallery/mabda-ai-workshop.jpg"
+                    alt=""
                     start={900}
                     end={-1800}
                     className="w-full shadow-2xl rounded-2xl border border-white/10 aspect-video object-cover"
@@ -183,8 +187,8 @@ const ParallaxImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
             <div className="col-span-3 col-start-1 mb-64">
                 <ParallaxImg
                     scrollY={scrollY}
-                    src="/experience/FotoSC4.webp"
-                    alt="Space texture"
+                    src="/about/gheid-hero.jpg"
+                    alt=""
                     start={1200}
                     end={-2000}
                     className="w-full shadow-2xl rounded-2xl border border-white/10 aspect-[3/4] object-cover"
@@ -195,8 +199,8 @@ const ParallaxImages = ({ scrollY }: { scrollY: MotionValue<number> }) => {
             <div className="col-span-4 col-start-8 mb-40">
                 <ParallaxImg
                     scrollY={scrollY}
-                    src="/experience/FotoSC5.webp"
-                    alt="Orbiting satellite"
+                    src="/gallery/aou-event-2.jpg"
+                    alt=""
                     start={1100}
                     end={-2000}
                     className="w-full shadow-2xl rounded-2xl border border-white/10 aspect-video object-cover"

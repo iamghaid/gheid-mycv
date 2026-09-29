@@ -187,13 +187,21 @@ function PageSlide({ page, isActive, scrollProgress, index, totalPages }: { page
 
     return (
         <motion.div style={{ zIndex }} className="absolute inset-0 flex items-center justify-center pointer-events-none p-4 md:p-8 lg:p-12">
-            {/* Unified Card Container */}
-            <div className="relative w-full h-full max-w-[1600px] flex pointer-events-auto">
+            {/*
+              Unified Card Container. Below md the two halves stack (visual on top,
+              copy underneath) instead of sitting side by side: at phone widths a
+              half-width column left headings like "أنظمة ذكية" and "INTELLIGENT"
+              roughly 150px to live in, so they were clipped by the panel's overflow.
+            */}
+            <div className="relative w-full h-full max-w-[1600px] flex flex-col md:flex-row pointer-events-auto">
 
                 {/* LEFT HALF OF THE SPLIT CARD */}
                 <motion.div
                     style={{ y: leftY }}
-                    className="relative w-1/2 h-full bg-background dark:bg-black z-10 rounded-l-3xl overflow-hidden"
+                    className={cn(
+                        "relative w-full md:w-1/2 md:h-full bg-background dark:bg-black z-10 overflow-hidden rounded-t-3xl md:rounded-t-none md:rounded-s-3xl",
+                        leftHasVisual ? "h-[34%] shrink-0" : "flex-1 min-h-0"
+                    )}
                 >
                     <div className="w-full h-full relative overflow-hidden">
                         {page.leftComponent ? (
@@ -201,7 +209,7 @@ function PageSlide({ page, isActive, scrollProgress, index, totalPages }: { page
                         ) : page.leftBgImage ? (
                             <BlendedVisual src={page.leftBgImage} side="left" />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-start p-8 md:p-16 lg:p-24 relative group">
+                            <div className="w-full h-full flex items-start md:items-center justify-start px-5 pt-2 pb-6 sm:px-8 md:p-10 lg:p-14 xl:p-24 relative group overflow-y-auto md:overflow-visible [scrollbar-width:none]">
                                 <motion.div
                                     className={cn("absolute inset-0 z-0", page.leftContent?.hoverColor || "bg-primary/5")}
                                     initial={{ height: 0 }}
@@ -217,7 +225,10 @@ function PageSlide({ page, isActive, scrollProgress, index, totalPages }: { page
                 {/* RIGHT HALF OF THE SPLIT CARD */}
                 <motion.div
                     style={{ y: rightY }}
-                    className="relative w-1/2 h-full bg-background dark:bg-black z-10 rounded-r-3xl overflow-hidden"
+                    className={cn(
+                        "relative w-full md:w-1/2 md:h-full bg-background dark:bg-black z-10 overflow-hidden rounded-b-3xl md:rounded-b-none md:rounded-e-3xl",
+                        rightHasVisual ? "h-[34%] shrink-0 order-first md:order-none rounded-t-3xl rounded-b-none" : "flex-1 min-h-0"
+                    )}
                 >
                     <div className="w-full h-full relative overflow-hidden">
                         {page.rightComponent ? (
@@ -225,7 +236,7 @@ function PageSlide({ page, isActive, scrollProgress, index, totalPages }: { page
                         ) : page.rightBgImage ? (
                             <BlendedVisual src={page.rightBgImage} side="right" />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-start p-8 md:p-16 lg:p-24 relative group">
+                            <div className="w-full h-full flex items-start md:items-center justify-start px-5 pt-2 pb-6 sm:px-8 md:p-10 lg:p-14 xl:p-24 relative group overflow-y-auto md:overflow-visible [scrollbar-width:none]">
                                 <motion.div
                                     className={cn("absolute inset-0 z-0", page.rightContent?.hoverColor || "bg-primary/5")}
                                     initial={{ height: 0 }}
@@ -254,12 +265,12 @@ function BridgeSlide({ page, isActive, scrollProgress, index, totalPages }: { pa
         <motion.div
             style={{ opacity, zIndex: 30 }}
             className={cn(
-                "absolute inset-0 bg-background dark:bg-black flex flex-col items-center justify-center p-12 text-center",
+                "absolute inset-0 bg-background dark:bg-black flex flex-col items-center justify-center p-6 md:p-12 text-center",
                 isActive ? "pointer-events-auto" : "pointer-events-none"
             )}
         >
-            <motion.div style={{ y }} className="space-y-16 max-w-[1200px] w-full px-[5%]">
-                <h2 className="text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight text-foreground dark:text-white leading-[1.1] font-sans">
+            <motion.div style={{ y }} className="space-y-10 md:space-y-16 max-w-[1200px] w-full px-[5%]">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight text-foreground dark:text-white leading-[1.15] font-sans text-balance">
                     <HoverScrambleText text={page.heading} />
                 </h2>
                 <div className="flex flex-col items-center gap-6 opacity-30 pt-10">
@@ -293,7 +304,7 @@ function BlendedVisual({ src, component, side }: { src?: string, component?: Rea
                 <motion.div
                     className="absolute inset-0 flex items-center justify-center pointer-events-none"
                 >
-                    <div className="w-full h-full transform scale-[2.0]">
+                    <div className="w-full h-full transform scale-[1.25] md:scale-[1.6] lg:scale-[2.0]">
                         {component}
                     </div>
                 </motion.div>
@@ -326,23 +337,23 @@ function EditorialContent({ content, index }: { content: any, index: number }) {
     const t = useTranslations('expertiseScroll');
 
     return (
-        <div className="flex flex-col items-start text-start space-y-12 max-w-2xl w-full relative z-10">
-            <div className="space-y-6">
+        <div className="flex flex-col items-start text-start space-y-6 md:space-y-10 lg:space-y-12 [@media(max-height:820px)]:lg:space-y-6 max-w-2xl w-full min-w-0 relative z-10">
+            <div className="space-y-4 md:space-y-6">
                 <div className="flex items-center gap-6">
                     <span className="text-[11px] font-mono font-black tracking-[0.5em] text-primary uppercase opacity-60">
                         {t('featureLabel', { n: index + 1 })}
                     </span>
                     <div className="h-[1px] w-12 bg-primary/20" />
                 </div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter leading-tight text-foreground font-sans transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-x-6 rtl:hover:-translate-x-6 hover:text-foreground/50 pointer-events-auto cursor-default origin-left rtl:origin-right">
+                <h2 className="text-[clamp(1.9rem,7.5vw,2.5rem)] md:text-[clamp(2rem,4.2vw,4rem)] [@media(max-height:820px)]:md:text-[clamp(2rem,3.6vw,3.25rem)] font-bold uppercase tracking-tighter leading-[1.15] text-foreground font-sans transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-x-6 rtl:hover:-translate-x-6 hover:text-foreground/50 pointer-events-auto cursor-default origin-left rtl:origin-right">
                     {content.heading}
                 </h2>
-                <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-tight max-w-lg">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl [@media(max-height:820px)]:lg:text-lg text-muted-foreground font-medium leading-relaxed md:leading-snug max-w-lg">
                     {content.description}
                 </p>
             </div>
             {content.skills && (
-                <div className="flex flex-wrap gap-4 pt-6">
+                <div className="flex flex-wrap gap-2 md:gap-4 pt-2 md:pt-6 [@media(max-height:820px)]:md:gap-3 [@media(max-height:820px)]:md:pt-2">
                     {content.skills.map((skill: string, idx: number) => (
                         <MagneticTag key={skill} text={skill} index={idx} />
                     ))}
@@ -385,11 +396,11 @@ function MagneticTag({ text, index }: { text: string, index: number }) {
         <div
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative cursor-pointer p-2 -m-2 pointer-events-auto"
+            className="relative cursor-pointer p-1 -m-1 md:p-2 md:-m-2 pointer-events-auto"
         >
             <motion.div
                 style={{ x: springX, y: springY }}
-                className="group/badge relative overflow-hidden text-[10px] md:text-[11px] font-extrabold uppercase tracking-widest text-black dark:text-white border border-foreground/10 px-8 py-4 rounded-xl bg-foreground/[0.02] backdrop-blur-xl hover:border-transparent transition-colors duration-300"
+                className="group/badge relative overflow-hidden text-[10px] md:text-[11px] font-extrabold uppercase tracking-widest text-black dark:text-white border border-foreground/10 px-4 py-2.5 md:px-6 md:py-3 xl:px-8 xl:py-4 [@media(max-height:820px)]:xl:py-3 [@media(max-height:820px)]:xl:px-6 rounded-xl bg-foreground/[0.02] backdrop-blur-xl hover:border-transparent transition-colors duration-300"
             >
                 <div className={cn("absolute inset-0 translate-y-[101%] group-hover/badge:translate-y-0 transition-transform duration-300 ease-out z-0", color.main)} />
                 <span className={cn("relative z-10 transition-colors duration-300", color.textHover)}>{text}</span>

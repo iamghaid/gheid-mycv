@@ -407,7 +407,9 @@
             }
         ],
         "card": {
-            "label": "Contact Card"
+            "label": "Contact Card",
+            "name": "غيد عبد الكريم",
+            "role": "AI Engineer"
         }
     },
     "footer": {
@@ -622,6 +624,8 @@
         "filterView": "Filter View",
         "backToSelection": "Back to Selection",
         "noRecords": "No records found in this sector.",
+        "archiveIntro": "Navigate through the timeline of my career. Choose a lens to filter the experience database.",
+        "tapToExplore": "Tap to explore {category} records",
         "showLess": "Show Less",
         "buildingTheFuture": "Building the Future",
         "throughKnowledge": "Through Knowledge",

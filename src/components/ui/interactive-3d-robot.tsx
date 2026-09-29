@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, lazy } from 'react';
+import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
 interface InteractiveRobotSplineProps {
@@ -9,7 +10,12 @@ interface InteractiveRobotSplineProps {
 }
 
 export function InteractiveRobotSpline({ scene, className }: InteractiveRobotSplineProps) {
+  // The scene streams from Spline's CDN. If that request fails (network, an ad
+  // blocker, a CDN outage) the runtime throws, and without a boundary the error
+  // reached the route and replaced the whole Projects page with the error screen.
+  // The robot is decoration, so it simply drops out instead.
   return (
+    <ErrorBoundary fallback={null}>
     <Suspense
       fallback={
         <div className={`w-full h-full flex items-center justify-center bg-transparent text-foreground ${className}`}>
@@ -26,5 +32,6 @@ export function InteractiveRobotSpline({ scene, className }: InteractiveRobotSpl
         className={className} 
       />
     </Suspense>
+    </ErrorBoundary>
   );
 }

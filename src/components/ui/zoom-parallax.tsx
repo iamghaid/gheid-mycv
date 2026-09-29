@@ -35,23 +35,24 @@ interface ZoomParallaxProps {
  * sparse on a desktop.
  */
 
-/** Tile geometry as percentages of the stage; x/y are offsets from the stage centre. */
+/**
+ * Tile geometry as percentages of the stage; x/y are offsets from the stage centre.
+ * The slots are mirrored pairs (left/right tall, top/bottom wide, two small corners)
+ * so any number of photos fills the stage symmetrically instead of leaning to one
+ * side, and neighbouring tiles keep a consistent gap.
+ */
 const SLOTS = [
-	{ w: 25, h: 25, x: 0, y: 0, zoom: 4 },
-	{ w: 35, h: 30, x: 5, y: -30, zoom: 5 },
-	{ w: 20, h: 45, x: -25, y: -10, zoom: 6 },
-	{ w: 25, h: 25, x: 27.5, y: 0, zoom: 5 },
-	{ w: 20, h: 25, x: 5, y: 27.5, zoom: 6 },
-	{ w: 30, h: 25, x: -22.5, y: 27.5, zoom: 8 },
-	{ w: 15, h: 15, x: 25, y: 22.5, zoom: 9 },
+	{ w: 25, h: 25, x: 0, y: 0, zoom: 4 }, // centre
+	{ w: 20, h: 45, x: -25, y: -10, zoom: 6 }, // left, tall
+	{ w: 20, h: 45, x: 25, y: 10, zoom: 6 }, // right, tall (mirrors left)
+	{ w: 30, h: 22, x: 2, y: -30, zoom: 5 }, // top, wide
+	{ w: 30, h: 22, x: -2, y: 30, zoom: 5 }, // bottom, wide (mirrors top)
+	{ w: 15, h: 15, x: 27, y: -30, zoom: 8 }, // top-right corner
+	{ w: 15, h: 15, x: -27, y: 30, zoom: 8 }, // bottom-left corner
 ];
 
-/**
- * Which slots to fill first. Slot 0 is the centre (it carries the call to action);
- * the rest are ordered so that a short image list still reads as balanced — four
- * images land centre, left, right and bottom rather than clustering on one side.
- */
-const SLOT_ORDER = [0, 2, 3, 4, 1, 5, 6];
+/** Fill order: centre first, then mirrored pairs, so a short list stays balanced. */
+const SLOT_ORDER = [0, 1, 2, 3, 4, 5, 6];
 
 export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 	const container = useRef(null);
@@ -71,6 +72,9 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 		useTransform(scrollYProgress, [0, 1], [1, SLOTS[6].zoom]),
 	];
 
+	// Fade the call to action out as the centre photo takes over the screen.
+	const ctaOpacity = useTransform(scrollYProgress, [0, 0.55, 0.8], [1, 1, 0]);
+
 	const used = SLOT_ORDER.slice(0, Math.min(images.length, SLOTS.length));
 
 	return (
@@ -82,7 +86,7 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 				  `--zp-s` keeps the tiles generous on small screens.
 				*/}
 				<div
-					className="relative [--zp-a:0.8] [--zp-s:1.3] sm:[--zp-a:1.2] sm:[--zp-s:1.15] lg:[--zp-a:1.7778] lg:[--zp-s:1]"
+					className="relative [--zp-a:0.8] [--zp-s:1.18] sm:[--zp-a:1.2] sm:[--zp-s:1.1] lg:[--zp-a:1.7778] lg:[--zp-s:1]"
 					style={{
 						width: 'min(100vw, calc(100vh * var(--zp-a)))',
 						height: 'min(100vh, calc(100vw / var(--zp-a)))',
@@ -102,8 +106,10 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 									// arrangement scales as one piece.
 									width: `calc(${slot.w}% * var(--zp-s))`,
 									height: `calc(${slot.h}% * var(--zp-s))`,
-									left: `calc(${50 + slot.x}% - ${slot.w / 2}% * var(--zp-s))`,
-									top: `calc(${50 + slot.y}% - ${slot.h / 2}% * var(--zp-s))`,
+									// Offsets scale with the tiles, so the composition grows as one
+									// piece and the gaps between tiles never close up.
+									left: `calc(50% + (${slot.x}% - ${slot.w / 2}%) * var(--zp-s))`,
+									top: `calc(50% + (${slot.y}% - ${slot.h / 2}%) * var(--zp-s))`,
 									scale: zooms[slotIndex],
 									// The centre tile carries the call to action, so it has to sit
 									// above its neighbours — on small screens the tiles are scaled up
@@ -121,18 +127,27 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 										className="object-cover transition-transform duration-700 group-hover:scale-105"
 									/>
 									{isCentre && children && (
-										<>
-											<div className="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/60" />
-											<div className="absolute inset-0 flex items-center justify-center p-2">
-												{children}
-											</div>
-										</>
+										<div className="absolute inset-0 bg-black/35 transition-colors duration-500 group-hover:bg-black/50" />
 									)}
 								</div>
 							</motion.div>
 						);
 					})}
 				</div>
+
+				{/*
+				  Call to action, on its own layer above the tiles. It used to live
+				  inside the centre tile and was scaled with it (up to 4x), so by the
+				  end of the zoom the button covered most of the screen.
+				*/}
+				{children && (
+					<motion.div
+						style={{ opacity: ctaOpacity }}
+						className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center p-4"
+					>
+						<div className="pointer-events-auto">{children}</div>
+					</motion.div>
+				)}
 			</div>
 		</div>
 	);

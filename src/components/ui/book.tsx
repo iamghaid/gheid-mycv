@@ -4,26 +4,17 @@ import React from "react";
 import { useResponsive } from "@/components/ui/use-responsive";
 import clsx from "clsx";
 
+/**
+ * Cover emblem: two overlapping rings. It keeps the two-circle motif the covers
+ * always had, but as one centred mark with a consistent position on every book,
+ * instead of an illustration that sat centred on some covers and off to one side on
+ * others.
+ */
 const DefaultIllustration = (
-  <svg fill="none" height="56" viewBox="0 0 36 56" width="36" xmlns="http://www.w3.org/2000/svg">
-    <path
-      clipRule="evenodd"
-      d="M3.03113 28.0005C6.26017 23.1765 11.7592 20.0005 18 20.0005C24.2409 20.0005 29.7399 23.1765 32.9689 28.0005C29.7399 32.8244 24.2409 36.0005 18 36.0005C11.7592 36.0005 6.26017 32.8244 3.03113 28.0005Z"
-      fill="#0070F3"
-      fillRule="evenodd"
-    />
-    <path
-      clipRule="evenodd"
-      d="M32.9691 28.0012C34.8835 25.1411 36 21.7017 36 18.0015C36 8.06034 27.9411 0.00146484 18 0.00146484C8.05887 0.00146484 0 8.06034 0 18.0015C0 21.7017 1.11648 25.1411 3.03094 28.0012C6.25996 23.1771 11.7591 20.001 18 20.001C24.2409 20.001 29.74 23.1771 32.9691 28.0012Z"
-      fill="#45DEC4"
-      fillRule="evenodd"
-    />
-    <path
-      clipRule="evenodd"
-      d="M32.9692 28.0005C29.7402 32.8247 24.241 36.001 18 36.001C11.759 36.001 6.25977 32.8247 3.03077 28.0005C1.11642 30.8606 0 34.2999 0 38C0 47.9411 8.05887 56 18 56C27.9411 56 36 47.9411 36 38C36 34.2999 34.8836 30.8606 32.9692 28.0005Z"
-      fill="#E5484D"
-      fillRule="evenodd"
-    />
+  <svg viewBox="0 0 64 44" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" aria-hidden>
+    <circle cx="23" cy="22" r="17" fill="currentColor" fillOpacity="0.16" stroke="currentColor" strokeOpacity="0.7" strokeWidth="1.5" />
+    <circle cx="41" cy="22" r="17" fill="currentColor" fillOpacity="0.08" stroke="currentColor" strokeOpacity="0.45" strokeWidth="1.5" />
+    <path d="M32 7.9a17 17 0 0 1 0 28.2a17 17 0 0 1 0-28.2Z" fill="currentColor" fillOpacity="0.28" />
   </svg>
 );
 
@@ -36,6 +27,8 @@ interface ResponsiveProp<T> {
 
 interface BookProps {
   title: string;
+  /** Small line above the emblem, e.g. the year. */
+  eyebrow?: string;
   variant?: "simple" | "stripe";
   width?: number | ResponsiveProp<number>;
   color?: string;
@@ -47,10 +40,11 @@ interface BookProps {
 
 export const Book = ({
   title,
+  eyebrow,
   variant = "stripe",
   width = 196,
   color,
-  textColor = "var(--ds-gray-1000)",
+  textColor = "#fafafa",
   illustration,
   textured = false,
   className
@@ -60,78 +54,77 @@ export const Book = ({
   const _illustration = illustration ? illustration : DefaultIllustration;
 
   return (
-    <div className={clsx("inline-block w-fit", className)} style={{ perspective: 900 }}>
+    /*
+      The 3D construction (page block rotated 90° at the right edge, back cover pushed
+      behind) is LTR geometry. Under dir="rtl" the absolutely positioned page block
+      fell back to the right-hand static position and showed as a detached white bar
+      beside the cover, so the book itself is always laid out LTR; the title restores
+      its own direction.
+    */
+    <div dir="ltr" className={clsx("inline-block w-fit", className)} style={{ perspective: 900 }}>
       <div
-        className="aspect-[49/60] w-fit relative rotate-0 duration-[250ms] book-rotate"
+        className="aspect-[49/60] w-fit relative rotate-0 book-rotate"
         style={{ transformStyle: "preserve-3d", minWidth: _width, containerType: "inline-size" }}
       >
+        {/* Front cover */}
         <div
-          className="flex flex-col h-full rounded-l-md rounded-r overflow-hidden bg-background-200 shadow-book translate-x-0 relative after:absolute after:border after:border-gray-alpha-400 after:w-full after:h-full after:shadow-book-border after:rounded-l-md after:rounded-r"
-          style={{ width: _width }}
+          className="flex flex-col h-full rounded-l-md rounded-r-lg overflow-hidden shadow-book relative after:absolute after:inset-0 after:border after:border-gray-alpha-400 after:shadow-book-border after:rounded-l-md after:rounded-r-lg"
+          style={{ width: _width, background: _color, color: textColor }}
         >
+          {/* Upper panel: eyebrow + emblem */}
           <div
             className={clsx(
-              "w-full relative overflow-hidden",
-              variant === "stripe" && "flex-1"
+              "relative flex flex-col items-center justify-center gap-[5cqw] px-[10%] pl-[16%]",
+              variant === "stripe" ? "h-[56%]" : "h-[58%]"
             )}
-            style={{ background: _color }}
           >
-            {variant === "stripe" && (
-              <div className="absolute h-full w-full flex items-center justify-center opacity-40">
-                {_illustration}
-              </div>
-            )}
-            <div className="absolute h-full w-[8.2%] mix-blend-overlay" style={{ background: "var(--ds-book-bind)" }} />
-          </div>
-          <div
-            className={clsx(
-              "relative flex-1",
-              (variant === "stripe" || (variant === "simple" && color === undefined)) && "bg-book-gradient"
-            )}
-            style={{ background: variant === "simple" && color !== undefined ? _color : undefined }}
-          >
-            <div className="absolute h-full w-[8.2%] opacity-20" style={{ background: "var(--ds-book-bind)" }} />
-            <div
-              className={clsx(
-                "flex flex-col w-full p-[6.1%] pl-[14.3%] h-full",
-                variant === "simple" ? "gap-4" : "justify-between"
-              )}
-              style={{ containerType: "inline-size", gap: `calc((24px / 196) * ${_width})` }}
-            >
-              <span
-                className={clsx(
-                  "leading-[1.25em] tracking-[-.02em] text-balance font-semibold",
-                  variant === "simple" ? "text-[12cqw]" : "text-[10.5cqw]"
-                )}
-                style={{ color: textColor }}
-              >
-                {title}
+            {eyebrow && (
+              <span className="absolute top-[7cqw] right-[8cqw] text-[5.5cqw] font-mono font-semibold tracking-[0.18em] uppercase opacity-70">
+                {eyebrow}
               </span>
-              {variant === "stripe" ? (
-                <svg className="scale-75 -ml-1 -mb-1 opacity-60" height="24" width="24" style={{ fill: textColor }}>
-                  <path d="M21,21H3L12,3Z" />
-                </svg>
-              ) : (
-                <div className="opacity-60">{_illustration}</div>
-              )}
+            )}
+            <div className="w-[46%] aspect-[64/44] opacity-90 transition-transform duration-700 ease-out group-hover:scale-105">
+              {_illustration}
             </div>
           </div>
+
+          {/* Lower panel: title. The stripe variant darkens it into a band. */}
+          <div
+            className={clsx(
+              "relative flex-1 flex flex-col justify-end gap-[3cqw] p-[8%] pl-[16%]",
+              variant === "stripe" ? "bg-black/35" : "bg-book-gradient"
+            )}
+          >
+            <span className="block h-px w-[22%] bg-current opacity-40" />
+            <span
+              dir="auto"
+              className="block text-[11cqw] font-bold leading-[1.15] tracking-[-.01em] text-balance [overflow-wrap:anywhere]"
+            >
+              {title}
+            </span>
+          </div>
+
+          {/* Spine / binding shading along the left edge */}
+          <div className="absolute inset-y-0 left-0 w-[8.2%] mix-blend-overlay" style={{ background: "var(--ds-book-bind)" }} />
+          <div className="absolute inset-y-0 left-[8.2%] w-px bg-black/20" />
+
           {textured && (
-            <div
-              className="absolute top-0 left-0 inset-0 rotate-180 rounded-l-md rounded-r mix-blend-hard-light pointer-events-none bg-cover bg-no-repeat opacity-50 brightness-110 bg-[url('https://assets.vercel.com/image/upload/v1720554484/front/design/book-texture.avif')]" />
+            <div className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-40 bg-[url('/noise.svg')] bg-repeat" />
           )}
         </div>
 
+        {/* Page block, visible when the book turns */}
         <div
-          className="h-[calc(100%_-_2_*_3px)] w-[calc(29cqw_-_2px)] absolute top-[3px]"
+          className="h-[calc(100%_-_2_*_3px)] w-[calc(29cqw_-_2px)] absolute top-[3px] left-0"
           style={{
-            background: "linear-gradient(90deg, #eaeaea, transparent 70%), linear-gradient(#fff, #fafafa)",
+            background: "repeating-linear-gradient(90deg, #e9e6df 0 1px, #f7f5f0 1px 3px)",
             transform: `translateX(calc(${_width} * 1px - 29cqw / 2 - 3px)) rotateY(90deg) translateX(calc(29cqw / 2))`
           }}
         />
+        {/* Back cover */}
         <div
-          className="bg-gray-200 absolute left-0 top-0 rounded-l-md rounded-r h-full"
-          style={{ width: _width, transform: "translateZ(calc(-1 * 29cqw))" }}
+          className="absolute left-0 top-0 rounded-l-md rounded-r-lg h-full"
+          style={{ width: _width, background: _color, filter: "brightness(0.7)", transform: "translateZ(calc(-1 * 29cqw))" }}
         />
       </div>
     </div>

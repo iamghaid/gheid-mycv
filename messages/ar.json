@@ -407,7 +407,9 @@
             }
         ],
         "card": {
-            "label": "بطاقة التواصل"
+            "label": "بطاقة التواصل",
+            "name": "غيد عبد الكريم",
+            "role": "AI Engineer"
         }
     },
     "footer": {
@@ -622,6 +624,8 @@
         "filterView": "تصفية العرض",
         "backToSelection": "العودة للاختيار",
         "noRecords": "لا توجد سجلات في هذا القسم.",
+        "archiveIntro": "تنقّل عبر محطات مسيرتي المهنية، واختر زاوية العرض لتصفية سجل الخبرات.",
+        "tapToExplore": "اضغط لاستكشاف سجلات {category}",
         "showLess": "عرض أقل",
         "buildingTheFuture": "نبني المستقبل",
         "throughKnowledge": "بالمعرفة",

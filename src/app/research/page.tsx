@@ -14,12 +14,12 @@ export default function ResearchPage() {
 
     return (
         <>
-            <main className="min-h-screen px-6 pt-32 pb-24 max-w-6xl mx-auto">
+            <main className="min-h-screen px-5 sm:px-6 pt-28 md:pt-32 pb-24 max-w-6xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
+                    className="text-center mb-14 md:mb-20"
                 >
                     <h1 className="text-4xl md:text-5xl font-black mb-4">{t('pageTitle')}</h1>
                     <p className="text-neutral-500 dark:text-neutral-400 max-w-xl mx-auto leading-relaxed">
@@ -27,51 +27,66 @@ export default function ResearchPage() {
                     </p>
                 </motion.div>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 md:gap-y-20">
                     {research.map((item, i) => (
-                        <motion.div
+                        <motion.article
                             key={item.id}
                             initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-60px' }}
-                            transition={{ duration: 0.5, delay: i * 0.06 }}
+                            viewport={{ once: true, margin: '-40px' }}
+                            transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                             className="group flex flex-col items-center text-center"
                         >
-                            <Link href={item.fileUrl} target="_blank" rel="noopener noreferrer" className="mb-6">
-                                <Book
-                                    title={item.title}
-                                    color={item.color}
-                                    variant={item.variant}
-                                    textured
-                                    width={{ sm: 150, md: 190, lg: 210 }}
-                                />
-                            </Link>
-
-                            <h3 className="font-black text-lg">{item.title}</h3>
-                            {!isArabic && (
-                                <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-1">{item.titleAr}</p>
-                            )}
-                            <p className="text-xs uppercase tracking-wide text-neutral-400 dark:text-neutral-500 mb-1">
-                                {item.subtitle}
-                            </p>
-                            <p className="text-[11px] text-neutral-400 dark:text-neutral-600 mb-4">
-                                {item.context} · {item.date}
-                            </p>
-
-                            <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4 max-w-xs">
-                                {item.summary}
-                            </p>
-
                             <Link
                                 href={item.fileUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-foreground transition-colors"
+                                aria-label={`${item.title} — ${item.fileLabel}`}
+                                className="relative mb-8 block transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2"
                             >
-                                {item.fileLabel}
-                                <ArrowUpRight className="w-3.5 h-3.5" />
+                                <Book
+                                    title={item.title}
+                                    eyebrow={item.date.match(/\d{4}/)?.[0]}
+                                    color={item.color}
+                                    variant={item.variant}
+                                    textured
+                                    width={{ sm: 160, md: 180, lg: 200 }}
+                                />
+                                {/* Ground shadow — tightens as the book lifts */}
+                                <span
+                                    aria-hidden
+                                    className="pointer-events-none absolute -bottom-5 left-1/2 h-3 w-[80%] -translate-x-1/2 rounded-[100%] bg-black/25 blur-md transition-all duration-500 group-hover:w-[65%] group-hover:opacity-60 dark:bg-black/70"
+                                />
                             </Link>
-                        </motion.div>
+
+                            <div className="flex w-full max-w-xs flex-col items-center">
+                                <h3 className="text-xl font-black leading-tight">{item.title}</h3>
+                                {!isArabic && (
+                                    <p dir="rtl" className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">{item.titleAr}</p>
+                                )}
+                                <span className="mt-3 h-0.5 w-8 rounded-full" style={{ backgroundColor: item.color }} aria-hidden />
+                                <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400">
+                                    {item.subtitle}
+                                </p>
+                                <p className="mt-1 text-[11px] leading-relaxed text-neutral-400 dark:text-neutral-500">
+                                    {item.context} · {item.date}
+                                </p>
+
+                                <p className="mt-4 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+                                    {item.summary}
+                                </p>
+
+                                <Link
+                                    href={item.fileUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-neutral-200 px-4 py-2 text-xs font-bold uppercase tracking-widest text-neutral-600 transition-colors hover:border-neutral-400 hover:text-foreground dark:border-neutral-800 dark:text-neutral-400 dark:hover:border-neutral-600"
+                                >
+                                    {item.fileLabel}
+                                    <ArrowUpRight className="h-3.5 w-3.5 rtl:-scale-x-100" />
+                                </Link>
+                            </div>
+                        </motion.article>
                     ))}
                 </div>
             </main>

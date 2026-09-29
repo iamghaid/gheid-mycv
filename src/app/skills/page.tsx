@@ -13,6 +13,7 @@ import { ToolsSection } from '@/components/sections/skills/ToolsSection';
 import FeatureSection from '@/components/ui/stack-feature-section';
 import { cn } from '@/lib/utils';
 import { DeferredMount } from '@/components/ui/DeferredMount';
+import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 
 const techLogos: Record<string, string> = {
@@ -190,10 +191,13 @@ export default function SkillsPage() {
                     style={{ y: yHeroSpline, scale: scaleSpline, willChange: 'transform' }}
                 >
                     <DeferredMount fallback={<div className="w-full h-full opacity-10 bg-zinc-800 animate-pulse" />}>
-                        <SplineScene
-                            scene="https://prod.spline.design/qVnpleqGGhqRlQYK/scene.splinecode"
-                            className="w-full h-full opacity-60 md:opacity-100"
-                        />
+                        {/* A failed scene download must not take the page down with it. */}
+                        <ErrorBoundary fallback={null}>
+                            <SplineScene
+                                scene="https://prod.spline.design/qVnpleqGGhqRlQYK/scene.splinecode"
+                                className="w-full h-full opacity-60 md:opacity-100"
+                            />
+                        </ErrorBoundary>
                     </DeferredMount>
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/60 to-background pointer-events-none" />
                 </motion.div>

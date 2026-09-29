@@ -636,7 +636,7 @@ export default function AboutSection() {
                             </div>
                             <div className="w-full pb-0">
                                 <HorizontalTimeline data={showcaseMembers.map((member) => ({
-                                    title: member.id === 'view-more' ? 'Explore all experiences' : (member.role || member.name),
+                                    title: member.id === 'view-more' ? tShowcase('exploreAll') : (member.role || member.name),
                                     isEnd: member.id === 'view-more',
                                     period: 'period' in member ? member.period : undefined,
                                     content: member.id === 'view-more' ? (
@@ -646,15 +646,15 @@ export default function AboutSection() {
                                         >
                                             <div className="flex items-center gap-4">
                                                 <div className="p-4 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm flex items-center justify-center transition-all duration-500 group-hover:bg-primary group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.3)]">
-                                                    <ArrowUpRight className="w-8 h-8 text-neutral-600 dark:text-neutral-400 transition-all duration-500 group-hover:text-primary-foreground group-hover:rotate-45 group-hover:scale-110" />
+                                                    <ArrowUpRight className="w-8 h-8 text-neutral-600 dark:text-neutral-400 transition-all duration-500 group-hover:text-primary-foreground group-hover:rotate-45 rtl:-scale-x-100 rtl:group-hover:-rotate-45 group-hover:scale-110" />
                                                 </div>
-                                                <span className="text-lg md:text-xl font-bold text-neutral-900 dark:text-white opacity-0 -translate-x-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 whitespace-nowrap drop-shadow-sm">
+                                                <span className="text-lg md:text-xl font-bold text-neutral-900 dark:text-white opacity-0 -translate-x-4 rtl:translate-x-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 whitespace-nowrap drop-shadow-sm">
                                                     {tShowcase('viewMoreShort')}
                                                 </span>
                                             </div>
                                         </Link>
                                     ) : (
-                                        <div className="flex flex-col gap-4 w-[320px] md:w-[400px] border border-neutral-200 dark:border-neutral-800 p-6 rounded-2xl bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md shadow-xl mt-4">
+                                        <div className="flex flex-col gap-4 w-[min(260px,calc(100vw-120px))] sm:w-[320px] md:w-[400px] border border-neutral-200 dark:border-neutral-800 p-5 md:p-6 rounded-2xl bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md shadow-xl mt-4">
                                             <div className="flex flex-col gap-2">
                                                 <div className="flex flex-row items-center justify-between">
                                                     <h4 className="text-lg font-bold text-neutral-900 dark:text-white leading-tight">

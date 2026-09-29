@@ -53,11 +53,11 @@ export default function StatsSection({ scrollYProgress, showOnly }: { scrollYPro
                     <div className="w-full">
                         <ZoomParallax images={images}>
                             <Link
-                                href="/achievements"
+                                href="/gallery"
                                 className="group flex items-center gap-3 px-6 py-3.5 bg-foreground text-background rounded-full font-bold uppercase tracking-widest text-xs hover:scale-105 active:scale-95 transition-all shadow-xl border border-border/10"
                             >
                                 {tStats('viewGallery')}
-                                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                <ArrowUpRight className="w-4 h-4 rtl:-scale-x-100 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 group-hover:-translate-y-1 transition-transform" />
                             </Link>
                         </ZoomParallax>
                     </div>

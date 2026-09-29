@@ -23,7 +23,6 @@ export const HeroParallax = ({
   }[];
   isLowPowerMode?: boolean;
 }) => {
-  const tPage = useTranslations('projectsPage');
   const firstRow = products.slice(0, 5);
   const secondRow = products.slice(5, 10);
   const ref = React.useRef(null);
@@ -45,7 +44,19 @@ export const HeroParallax = ({
 
   const rotateZRaw = useTransform(scrollYProgress, [0, 0.2], [isLowPowerMode ? 0 : 5, 0]);
   const rotateZ = useSpring(rotateZRaw, rotateSpringConfig);
-  const translateY = useTransform(scrollYProgress, [0, 0.2], [isLowPowerMode ? -100 : -500, isLowPowerMode ? 100 : 500]);
+  // On phones the tiles start much closer to their resting place: the desktop
+  // -500px offset pulled the first row up over the heading and its intro text.
+  const [compact, setCompact] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const update = () => setCompact(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  const yStart = isLowPowerMode ? -100 : compact ? -60 : -500;
+  const yEnd = isLowPowerMode ? 100 : compact ? 160 : 500;
+  const translateY = useTransform(scrollYProgress, [0, 0.2], [yStart, yEnd]);
   return (
     <div
       ref={ref}
@@ -57,30 +68,37 @@ export const HeroParallax = ({
       )}
     >
       <Header />
+      {/*
+        The rows are LTR geometry (two over-wide rows slid in opposite directions), so
+        they are pinned to LTR; under RTL the rows anchored to the right edge and the
+        slide exposed empty space. `gap` replaces `space-x-*`, which also misbehaves
+        in RTL.
+      */}
       <motion.div
+        dir="ltr"
         style={{
           translateY,
           opacity,
           backfaceVisibility: 'hidden',
         }}
-        className=""
+        className="relative z-0"
       >
-        <motion.div className={cn("flex flex-row-reverse space-x-reverse space-x-20 mb-20", isLowPowerMode && "mb-10 space-x-10")}>
-          {firstRow.map((product) => (
+        <motion.div className={cn("flex flex-row-reverse gap-6 sm:gap-10 lg:gap-16 mb-8 sm:mb-14 lg:mb-20", isLowPowerMode && "mb-10 gap-8")}>
+          {firstRow.map((product, i) => (
             <ProductCard
               product={product}
               translate={translateX}
-              key={product.title}
+              key={`${product.title}-${i}`}
               isLowPowerMode={isLowPowerMode}
             />
           ))}
         </motion.div>
-        <motion.div className={cn("flex flex-row mb-20 space-x-20", isLowPowerMode && "mb-10 space-x-10")}>
-          {secondRow.map((product) => (
+        <motion.div className={cn("flex flex-row gap-6 sm:gap-10 lg:gap-16 mb-8 sm:mb-14 lg:mb-20", isLowPowerMode && "mb-10 gap-8")}>
+          {secondRow.map((product, i) => (
             <ProductCard
               product={product}
               translate={translateXReverse}
-              key={product.title}
+              key={`${product.title}-${i}`}
               isLowPowerMode={isLowPowerMode}
             />
           ))}
@@ -96,18 +114,18 @@ export const Header = () => {
     const tPage = useTranslations('projectsPage');
   const t = useTranslations('projectHeader');
   return (
-    <div className="max-w-7xl relative mx-auto pt-32 md:pt-48 px-4 w-full left-0 top-0">
-      <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
+    <div className="max-w-7xl relative z-10 mx-auto pt-28 md:pt-48 px-5 md:px-4 w-full">
+      <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold dark:text-white leading-[1.1] text-balance">
         {t('title')}
       </h1>
       <p
-        className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200"
+        className="max-w-2xl text-base md:text-xl mt-5 md:mt-8 leading-relaxed text-neutral-600 dark:text-neutral-300"
         dangerouslySetInnerHTML={{ __html: t.raw('subtitle') }}
       />
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute left-4 md:left-4 -bottom-32 md:-bottom-48 flex flex-col items-center gap-2"
+        className="absolute start-5 md:start-4 -bottom-24 md:-bottom-48 hidden sm:flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
@@ -144,32 +162,45 @@ export const ProductCard = ({
         x: translate,
       }}
       whileHover={isLowPowerMode ? {} : {
-        y: -20,
+        y: -12,
       }}
-      key={product.title}
+      transition={{ type: "spring", stiffness: 260, damping: 24 }}
       className={cn(
-        "group/product relative shrink-0",
-        isLowPowerMode ? "h-48 w-[12rem] md:h-64 md:w-[20rem]" : "h-64 w-[16rem] md:h-96 md:w-[30rem]"
+        "group/product relative shrink-0 aspect-[16/10]",
+        isLowPowerMode ? "w-[14rem] md:w-[20rem]" : "w-[15rem] sm:w-[22rem] md:w-[28rem] lg:w-[32rem]"
       )}
     >
+      {/*
+        One frame for every screenshot. Screenshots come in different shapes (phone
+        mock-ups, full-width web pages, generated covers), and cropping them all to
+        the same box cut some awkwardly. Each one is shown whole instead, over a
+        blurred, darkened fill of itself, so every tile has identical proportions.
+      */}
       <a
         href={product.link}
-        className="block group-hover/product:shadow-2xl "
+        className="absolute inset-0 block overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 bg-neutral-100 dark:bg-neutral-900 shadow-[0_18px_40px_-20px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover/product:shadow-2xl"
       >
         <Image
           src={product.thumbnail}
-          height={600}
-          width={600}
-          className="object-cover object-left-top absolute h-full w-full inset-0"
-          alt={product.title}
-          priority={true}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          fill
+          aria-hidden
+          alt=""
+          className="object-cover scale-110 blur-2xl opacity-60 dark:opacity-40"
+          sizes="200px"
         />
+        <Image
+          src={product.thumbnail}
+          fill
+          className="object-contain p-3 sm:p-4 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/product:scale-[1.03]"
+          alt={product.title}
+          sizes="(max-width: 640px) 240px, (max-width: 1024px) 450px, 520px"
+        />
+        {/* Caption bar */}
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 bg-gradient-to-t from-black/75 via-black/40 to-transparent px-4 pb-3 pt-10 opacity-0 translate-y-2 transition-all duration-300 group-hover/product:opacity-100 group-hover/product:translate-y-0">
+          <h2 className="truncate text-sm sm:text-base font-semibold text-white">{product.title}</h2>
+          <span aria-hidden className="shrink-0 text-white/80">↗</span>
+        </div>
       </a>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
-        {product.title}
-      </h2>
     </motion.div>
   );
 };

@@ -58,7 +58,7 @@ export default function GalleryPage() {
     const active = lightboxIndex === null ? null : visibleItems[lightboxIndex];
 
     return (
-        <main className="min-h-screen px-6 pt-32 pb-24 max-w-6xl mx-auto">
+        <main className="min-h-screen px-5 sm:px-6 pt-28 md:pt-32 pb-24 max-w-6xl mx-auto">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -93,7 +93,9 @@ export default function GalleryPage() {
                 </div>
             )}
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Wrapping row, centred: an incomplete last row sits in the middle instead
+                of leaving a single photo stranded on the left. */}
+            <div className="flex flex-wrap justify-center gap-6">
                 {visibleItems.map((item, i) => (
                     <motion.button
                         key={item.id}
@@ -102,16 +104,16 @@ export default function GalleryPage() {
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: '-60px' }}
-                        transition={{ duration: 0.5, delay: i * 0.06 }}
-                        className="group text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-2xl"
+                        transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                        className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] group text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-2xl"
                     >
-                        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900">
+                        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 ring-1 ring-black/5 dark:ring-white/10">
                             <Image
                                 src={item.url}
                                 alt={item.title}
                                 fill
                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                             />
                         </div>
                         <h3 className="mt-4 font-bold text-sm">{item.title}</h3>

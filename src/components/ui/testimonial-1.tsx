@@ -54,6 +54,8 @@ export default function Testimonial1() {
     value: number;
     decimals: number;
     suffix: string;
+    /** Word after the number (e.g. "Years"); laid out in the page direction. */
+    unit?: string;
     label: string;
     href: string;
     cta: string;
@@ -79,7 +81,8 @@ export default function Testimonial1() {
     {
       value: YEARS_OF_EXPERIENCE,
       decimals: 0,
-      suffix: `+ ${tStats('years')}`,
+      suffix: "+",
+      unit: tStats('years'),
       label: tStats('professionalExp'),
       href: "/experience",
       cta: tStats('exploreCareer'),
@@ -189,9 +192,14 @@ export default function Testimonial1() {
                     them and the GPA reads backwards as "4.0/3.8". Arabic keeps Latin
                     digits here, so LTR is the correct reading order for this run.
                   */}
-                  <div dir="ltr" className="text-2xl sm:text-3xl font-black text-neutral-900 dark:text-white tracking-tighter flex items-baseline">
-                    <Counter value={stat.value} decimals={stat.decimals} />
-                    <span className="text-lg sm:text-2xl ms-0.5">{stat.suffix}</span>
+                  <div className="text-2xl sm:text-3xl font-black text-neutral-900 dark:text-white flex items-baseline gap-1.5">
+                    <span dir="ltr" className="flex items-baseline tracking-tighter">
+                      <Counter value={stat.value} decimals={stat.decimals} />
+                      <span className="text-lg sm:text-2xl ms-0.5">{stat.suffix}</span>
+                    </span>
+                    {/* The unit is a word, not part of the numeric run, so it follows
+                        the page direction: "2+ Years" / "+2 سنوات". */}
+                    {stat.unit && <span className="text-lg sm:text-2xl">{stat.unit}</span>}
                   </div>
                 </div>
 

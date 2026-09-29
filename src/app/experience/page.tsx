@@ -132,7 +132,7 @@ function ExperienceTabSlider({ isLowPowerMode }: { isLowPowerMode: boolean }) {
             <div className="mx-auto w-full max-w-5xl px-8 text-center sm:px-12 mb-12">
                 {/* Orb with Hemisphere Background */}
                 <div className="relative h-28 sm:h-36">
-                    <div className="pointer-events-none absolute top-0 left-1/2 h-[400px] w-[400px] -translate-x-1/2 before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-cyan-500/25 before:via-cyan-500/5 before:via-25% before:to-cyan-500/0 before:to-75% sm:h-[560px] sm:w-[560px]">
+                    <div className="pointer-events-none absolute top-0 left-1/2 h-[min(400px,94vw)] w-[min(400px,94vw)] -translate-x-1/2 before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-cyan-500/25 before:via-cyan-500/5 before:via-25% before:to-cyan-500/0 before:to-75% sm:h-[560px] sm:w-[560px]">
                         <div className="h-24 [mask-image:_linear-gradient(0deg,transparent,theme(colors.white)_20%,theme(colors.white))] sm:h-32">
                             {tabs.map((tab, index) => (
                                 <Transition
@@ -260,11 +260,11 @@ function ExperienceTabSlider({ isLowPowerMode }: { isLowPowerMode: boolean }) {
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ delay: 0.2 }}
                                             >
-                                                <h2 className="text-5xl md:text-7xl font-black text-neutral-900 dark:text-white tracking-tighter mb-6 leading-[0.9]">{tPage('select')}<br />
+                                                <h2 className="text-5xl md:text-7xl font-black text-neutral-900 dark:text-white tracking-tighter mb-6 leading-[0.95]">{tPage('select')}<br />
                                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 via-neutral-600 to-neutral-400 dark:from-white dark:via-neutral-200 dark:to-neutral-500">{tPage('archive')}</span>
                                                 </h2>
                                                 <p className="text-xl text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
-                                                    Navigate through the timeline of my career. Choose a lens to filter the experience database.
+                                                    {tPage('archiveIntro')}
                                                 </p>
                                             </motion.div>
 
@@ -281,7 +281,7 @@ function ExperienceTabSlider({ isLowPowerMode }: { isLowPowerMode: boolean }) {
                                                     animate={{ opacity: 1, x: 0 }}
                                                     transition={{ delay: 0.1 * idx }}
                                                     onClick={() => setSelectedCategory(cat.id)}
-                                                    className="group relative flex items-center gap-6 p-6 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 hover:bg-white dark:hover:bg-neutral-800 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl dark:hover:shadow-neutral-900/50 text-left overflow-hidden"
+                                                    className="group relative flex items-center gap-4 sm:gap-6 p-4 sm:p-6 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 hover:bg-white dark:hover:bg-neutral-800 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl dark:hover:shadow-neutral-900/50 text-start overflow-hidden"
                                                 >
 
                                                     {/* Hover Gradient Background */}
@@ -292,25 +292,25 @@ function ExperienceTabSlider({ isLowPowerMode }: { isLowPowerMode: boolean }) {
 
                                                     {/* Category Icon */}
                                                     <div className={cn(
-                                                        "w-16 h-16 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-500",
+                                                        "w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-500",
                                                         cat.color
                                                     )}>
                                                         <cat.icon className="w-8 h-8" />
                                                     </div>
 
                                                     {/* Text Content */}
-                                                    <div className="flex-1 relative z-10">
-                                                        <h4 className="text-2xl font-bold text-neutral-900 dark:text-white mb-1 group-hover:text-neutral-700 dark:group-hover:text-neutral-200 transition-colors">
+                                                    <div className="flex-1 min-w-0 relative z-10">
+                                                        <h4 className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-white mb-1 group-hover:text-neutral-700 dark:group-hover:text-neutral-200 transition-colors">
                                                             {cat.label}
                                                         </h4>
                                                         <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400 line-clamp-1 group-hover:text-neutral-900 dark:group-hover:text-neutral-200 transition-colors">
-                                                            Tap to explore {cat.label.toLowerCase()} records
+                                                            {tPage('tapToExplore', { category: cat.label })}
                                                         </p>
                                                     </div>
 
                                                     {/* Arrow Action */}
                                                     <div className="w-10 h-10 rounded-full bg-white dark:bg-black border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white group-hover:border-neutral-400 dark:group-hover:border-neutral-600 transition-all duration-300">
-                                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+                                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
                                                     </div>
                                                 </motion.button>
                                             ))}
@@ -328,9 +328,9 @@ function ExperienceTabSlider({ isLowPowerMode }: { isLowPowerMode: boolean }) {
                                         <div className="lg:col-span-4 lg:sticky lg:top-32 h-fit space-y-8">
                                             <button
                                                 onClick={() => setSelectedCategory(null)}
-                                                className="group flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-neutral-500 hover:text-black dark:hover:text-white transition-colors px-4 py-2 -ml-4 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800/50 w-fit"
+                                                className="group flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-neutral-500 hover:text-black dark:hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800/50 w-fit -ms-4"
                                             >
-                                                <ArrowRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" />
+                                                <ArrowRight className="w-4 h-4 rotate-180 rtl:rotate-0 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 transition-transform" />
                                                 <span>{tPage('backToSelection')}</span>
                                             </button>
 
@@ -348,7 +348,7 @@ function ExperienceTabSlider({ isLowPowerMode }: { isLowPowerMode: boolean }) {
                                                         key={cat.id}
                                                         onClick={() => setSelectedCategory(cat.id)}
                                                         className={cn(
-                                                            "text-left px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 border border-transparent",
+                                                            "text-start px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 border border-transparent",
                                                             selectedCategory === cat.id
                                                                 ? "bg-white dark:bg-neutral-800 text-black dark:text-white shadow-lg border-neutral-200 dark:border-neutral-700"
                                                                 : "text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-neutral-900 dark:hover:text-neutral-300"
@@ -877,12 +877,12 @@ function ExperienceTimeline({ isLowPowerMode }: { isLowPowerMode: boolean }) {
                     const specificClasses = exp.logoInvertInDark ? "dark:invert" : "";
 
                     return (
-                    <div key={exp.id} className="relative pl-8 border-l-2 border-neutral-200 dark:border-neutral-800 group/timeline">
-                        <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border-2 border-white dark:border-black" />
+                    <div key={exp.id} className="relative ps-6 sm:ps-8 border-s-2 border-neutral-200 dark:border-neutral-800 group/timeline">
+                        <div className="absolute -start-[9px] top-0 w-4 h-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border-2 border-white dark:border-black" />
 
                         {/* HOVER LOGO ON THE LEFT */}
                         {exp.logo && (
-                            <div className="absolute top-0 right-full mr-6 w-32 h-10 md:w-40 md:h-16 opacity-0 group-hover/timeline:opacity-100 transition-all duration-300 pointer-events-none flex items-center justify-end -translate-x-4 group-hover/timeline:translate-x-0 hidden md:flex">
+                            <div className="absolute top-0 end-full me-6 w-32 h-10 md:w-40 md:h-16 opacity-0 group-hover/timeline:opacity-100 transition-all duration-300 pointer-events-none items-center justify-end -translate-x-4 rtl:translate-x-4 group-hover/timeline:translate-x-0 hidden md:flex">
                                 <div className="relative w-full h-full">
                                     <Image 
                                         src={exp.logo} 
@@ -911,14 +911,14 @@ function ExperienceTimeline({ isLowPowerMode }: { isLowPowerMode: boolean }) {
                             </div>
                         </div>
 
-                        <p className="text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed text-sm md:text-base text-justify">
+                        <p className="text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed text-sm md:text-base">
                             {exp.description}
                         </p>
 
                         {exp.responsibilities && (
                             <ul className="mb-8 space-y-3">
                                 {exp.responsibilities.slice(0, 3).map((resp, i) => (
-                                    <li key={i} className="flex items-start gap-2.5 text-xs md:text-sm text-neutral-500 dark:text-neutral-400 text-justify">
+                                    <li key={i} className="flex items-start gap-2.5 text-xs md:text-sm text-neutral-500 dark:text-neutral-400">
                                         <div className="w-1.5 h-1.5 rounded-full bg-primary/40 mt-1.5 shrink-0" />
                                         <span>{resp}</span>
                                     </li>

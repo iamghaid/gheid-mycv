@@ -611,8 +611,13 @@ html, body, * {
 .shadow-book { box-shadow: var(--ds-shadow-book); }
 .shadow-book-border { box-shadow: var(--ds-shadow-book-border); }
 .bg-book-gradient { background-image: var(--ds-book-gradient); }
-.book-rotate { transition: transform 0.5s ease-out; transform: rotateY(0deg); transform-style: preserve-3d; }
-.book-rotate:hover { transform: rotateY(-25deg); }
+.book-rotate { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); transform: rotateY(0deg); transform-style: preserve-3d; }
+.book-rotate:hover,
+.group:hover .book-rotate,
+.group:focus-within .book-rotate { transform: rotateY(-28deg); }
+@media (prefers-reduced-motion: reduce) {
+  .book-rotate { transition: none; }
+}
 
 /* ==========================================================================
    Arabic locale support — thmanyah font family + RTL-aware overrides
@@ -681,6 +686,24 @@ html, body, * {
   letter-spacing: normal;
 }
 
+/*
+  The same applies to every other element: wide uppercase tracking on labels
+  (`tracking-[0.5em]`, `tracking-widest`) pulls Arabic letters out of their joins, so
+  a word such as "الميزة" rendered as disconnected glyphs. Arabic has no case, so
+  the tracking only ever hurt it.
+*/
+.font-arabic [class*="tracking-"] {
+  letter-spacing: normal;
+}
+
+/* Sub-1 line-heights (`leading-[0.9]`, `leading-none`) clip Arabic ascenders too. */
+.font-arabic [class*="leading-[0."],
+.font-arabic [class*="leading-[1.0"],
+.font-arabic [class*="leading-[1.1]"],
+.font-arabic .leading-none {
+  line-height: 1.3;
+}
+
 /* Large display spans that are not headings but use the same tight metrics. */
 .font-arabic .text-shiny,
 .font-arabic .font-display {
@@ -699,4 +722,9 @@ html[dir="rtl"] {
 html[dir="rtl"] .ltr-only {
   direction: ltr;
   display: inline-block;
+}
+
+/* Slow drift of the dashed orbit lines on the experience page. */
+@keyframes orbit-dash {
+  to { stroke-dashoffset: -280; }
 }
