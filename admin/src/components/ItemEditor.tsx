@@ -9,6 +9,8 @@ import type { CollectionKey } from '@shared/content/types';
 import { deleteItemAction, saveItemAction } from '@/app/actions';
 import { FieldBlock } from './fields';
 
+const FLASH_KEY = 'admin-save-result';
+
 export function ItemEditor({ collection, id, initial, initialPublished }: {
     collection: CollectionKey;
     id: string | null;
@@ -22,7 +24,22 @@ export function ItemEditor({ collection, id, initial, initialPublished }: {
     const [dirty, setDirty] = useState(false);
     const [error, setError] = useState<{ message: string; field?: string } | null>(null);
     const [saved, setSaved] = useState(false);
+    const [warning, setWarning] = useState<string | null>(null);
     const [pending, start] = useTransition();
+
+    // The page remounts this editor after a save (it is keyed by updatedAt, and a new
+    // item redirects to its edit page), so the save result is handed over through
+    // sessionStorage instead of component state.
+    useEffect(() => {
+        try {
+            const raw = sessionStorage.getItem(FLASH_KEY);
+            if (!raw) return;
+            sessionStorage.removeItem(FLASH_KEY);
+            const flash = JSON.parse(raw) as { warning: string | null };
+            setSaved(true);
+            setWarning(flash.warning);
+        } catch { /* storage unavailable */ }
+    }, []);
 
     // Warn before leaving with unsaved edits.
     useEffect(() => {
@@ -39,6 +56,7 @@ export function ItemEditor({ collection, id, initial, initialPublished }: {
 
     const save = () => start(async () => {
         setError(null);
+        setWarning(null);
         const res = await saveItemAction(config.key, id, data, published);
         if (!res.ok) {
             setError({ message: res.error, field: res.field });
@@ -47,6 +65,8 @@ export function ItemEditor({ collection, id, initial, initialPublished }: {
         }
         setDirty(false);
         setSaved(true);
+        setWarning(res.warning ?? null);
+        try { sessionStorage.setItem(FLASH_KEY, JSON.stringify({ warning: res.warning ?? null })); } catch { /* ignore */ }
         if (!id) router.replace(`/${config.key}/${res.data!.id}`);
         else router.refresh();
     });
@@ -84,7 +104,8 @@ export function ItemEditor({ collection, id, initial, initialPublished }: {
                     <div className="ml-auto flex items-center gap-2">
                         {error && !error.field && <span className="text-sm text-red-600">{error.message}</span>}
                         {error?.field && <span className="text-sm text-red-600">Please fix the highlighted field.</span>}
-                        {saved && !dirty && <span className="inline-flex items-center gap-1 text-sm text-emerald-700"><Check className="h-4 w-4" /> Saved — live on the site</span>}
+                        {saved && !dirty && !warning && <span className="inline-flex items-center gap-1 text-sm text-emerald-700"><Check className="h-4 w-4" /> Saved — live on the site</span>}
+                        {saved && !dirty && warning && <span className="max-w-md text-sm text-amber-700">{warning}</span>}
                         {id && <button type="button" className="btn-danger" onClick={remove} disabled={pending}><Trash2 className="h-4 w-4" /> Delete</button>}
                         <button type="button" className="btn-primary" onClick={save} disabled={pending}>
                             {pending && <Loader2 className="h-4 w-4 animate-spin" />} Save

@@ -15,6 +15,7 @@ export function SingletonEditor({ singleton, initial, children }: { singleton: S
     const [dirty, setDirty] = useState(false);
     const [saved, setSaved] = useState(false);
     const [error, setError] = useState<{ message: string; field?: string } | null>(null);
+    const [warning, setWarning] = useState<string | null>(null);
     const [pending, start] = useTransition();
 
     const save = () => start(async () => {
@@ -23,6 +24,7 @@ export function SingletonEditor({ singleton, initial, children }: { singleton: S
         if (!res.ok) return setError({ message: res.error, field: res.field });
         setDirty(false);
         setSaved(true);
+        setWarning(res.warning ?? null);
         router.refresh();
     });
 
@@ -42,7 +44,8 @@ export function SingletonEditor({ singleton, initial, children }: { singleton: S
             <div className="fixed inset-x-0 bottom-0 z-20 border-t border-neutral-200 bg-white/95 backdrop-blur lg:left-64">
                 <div className="mx-auto flex max-w-5xl items-center justify-end gap-3 px-4 py-3 sm:px-8">
                     {error && <span className="text-sm text-red-600">{error.message}</span>}
-                    {saved && !dirty && <span className="inline-flex items-center gap-1 text-sm text-emerald-700"><Check className="h-4 w-4" /> Saved — live on the site</span>}
+                    {saved && !dirty && warning && <span className="max-w-md text-sm text-amber-700">{warning}</span>}
+                    {saved && !dirty && !warning && <span className="inline-flex items-center gap-1 text-sm text-emerald-700"><Check className="h-4 w-4" /> Saved — live on the site</span>}
                     <button type="button" className="btn-primary" onClick={save} disabled={pending}>{pending && <Loader2 className="h-4 w-4 animate-spin" />} Save</button>
                 </div>
             </div>

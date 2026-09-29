@@ -6,9 +6,11 @@ import { COLLECTIONS, SINGLETONS, ValidationError, sanitize, cleanUrl } from '@s
 import type { CollectionKey, MediaRecord, SingletonKey, SingletonMap } from '@shared/content/types';
 import { login, logout, requireAdmin } from '@/lib/auth';
 import * as repo from '@/lib/repo';
+import { publishToSite } from '@/lib/publish';
 import { ALLOWED_TYPES, MAX_UPLOAD_BYTES, isStorageUrl, removeStoredFile, saveLocal, storageMode } from '@/lib/storage';
 
-export type ActionResult<T = unknown> = { ok: true; data?: T } | { ok: false; error: string; field?: string };
+/** `warning`: the change was saved but the public site could not be refreshed right away. */
+export type ActionResult<T = unknown> = { ok: true; data?: T; warning?: string } | { ok: false; error: string; field?: string };
 
 const isCollection = (k: string): k is CollectionKey => k in COLLECTIONS;
 const isSingleton = (k: string): k is SingletonKey => k in SINGLETONS;
@@ -65,7 +67,7 @@ export async function saveItemAction(
             savedId = await repo.createItem(collection, data, published);
         }
         revalidatePath(`/${collection}`);
-        return { ok: true, data: { id: savedId! } };
+        return { ok: true, data: { id: savedId! }, warning: await publishToSite() };
     } catch (err) {
         return fail(err);
     }
@@ -76,7 +78,7 @@ export async function deleteItemAction(collection: string, id: string): Promise<
     try {
         await repo.deleteItem(id);
         revalidatePath(`/${collection}`);
-        return { ok: true };
+        return { ok: true, warning: await publishToSite() };
     } catch (err) {
         return fail(err);
     }
@@ -87,7 +89,7 @@ export async function setPublishedAction(collection: string, id: string, publish
     try {
         await repo.setPublished(id, published);
         revalidatePath(`/${collection}`);
-        return { ok: true };
+        return { ok: true, warning: await publishToSite() };
     } catch (err) {
         return fail(err);
     }
@@ -99,7 +101,7 @@ export async function reorderAction(collection: string, ids: string[]): Promise<
     try {
         await repo.reorder(collection, ids.filter((x) => typeof x === 'string').slice(0, 1000));
         revalidatePath(`/${collection}`);
-        return { ok: true };
+        return { ok: true, warning: await publishToSite() };
     } catch (err) {
         return fail(err);
     }
@@ -120,7 +122,7 @@ export async function saveSingletonAction(key: string, input: unknown): Promise<
         }
         await repo.saveSingleton(key, data);
         revalidatePath(`/${key}`);
-        return { ok: true };
+        return { ok: true, warning: await publishToSite() };
     } catch (err) {
         return fail(err);
     }

@@ -1,14 +1,13 @@
 import { connection } from 'next/server';
-import { getContentVersion } from '@/lib/content/server';
+import { getSiteContent } from '@/lib/content/server';
 
 /**
- * Current content version (bumped by every admin save). Open pages poll this to know
- * when to refresh. One single-row query; never cached.
+ * Version of the content the site is currently serving. Open pages poll this to know
+ * when to refresh, and the admin requests it right after a save to warm the cache.
+ * Served from the content cache: polling never touches (or wakes) the database.
  */
 export async function GET() {
     await connection();
-    return Response.json(
-        { version: await getContentVersion() },
-        { headers: { 'cache-control': 'no-store, max-age=0' } }
-    );
+    const { version } = await getSiteContent();
+    return Response.json({ version }, { headers: { 'cache-control': 'no-store, max-age=0' } });
 }

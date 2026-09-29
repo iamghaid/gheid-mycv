@@ -4,7 +4,7 @@ The repository now holds two Vercel projects:
 
 | Folder | Project | What it is |
 |---|---|---|
-| `/` (root) | `gheid-mycv` (existing) | The public portfolio. Read-only: it only reads published content from the database. |
+| `/` (root) | `gheid-mycv` (existing) | The public portfolio. Read-only: it only reads published content from the database, and serves it from a cache. |
 | `/admin` | new project, e.g. `gheid-mycv-admin` | The admin dashboard. Login required for every page and action. |
 | `/shared` | — | Content types, validation and the initial content (`seed.json`), used by both. |
 
@@ -40,9 +40,12 @@ Environment variables (Settings → Environment Variables):
 | `ADMIN_EMAIL` | the email you log in with |
 | `ADMIN_PASSWORD` | a strong password |
 | `AUTH_SECRET` | at least 32 random characters, e.g. the output of `openssl rand -base64 48` |
-| `NEXT_PUBLIC_PORTFOLIO_URL` | `https://gheid-mycv.vercel.app` (or your custom domain), used for the "View on site" links |
+| `NEXT_PUBLIC_PORTFOLIO_URL` | `https://gheid-mycv.vercel.app` (or your custom domain). Used for "View on site" links and to tell the site to refresh after a save |
+| `REVALIDATE_SECRET` | at least 32 random characters. **Set the same value on the portfolio project too** |
 | `DATABASE_URL` | added automatically when you connect Neon |
 | `BLOB_READ_WRITE_TOKEN` | added automatically when you connect Blob |
+
+Required on the **portfolio** project (`gheid-mycv`): `REVALIDATE_SECRET`, same value as on the admin. Without it the site still works, but edits only appear at the 6-hourly safety refresh.
 
 Optional on the **portfolio** project: `NEXT_PUBLIC_SITE_URL` = the public domain (used for metadata and the live-preview check).
 
@@ -61,9 +64,13 @@ Until the database is connected, the portfolio keeps showing the bundled content
 
 ## How updates reach the public site — كيف تظهر التعديلات
 
-- Every save, delete, reorder or publish toggle writes to Postgres and bumps a content version.
-- The portfolio reads published content per request (cached per version), so any new page load shows the change immediately. No rebuild or redeploy is needed.
-- Pages that are already open check `/api/content-version` every 20 seconds and refresh their data in place when it changes.
+Visitors never wait on the database (Neon's free tier sleeps after 5 idle minutes):
+
+- The portfolio serves content from Next's data cache (tag `content`). Page views do not query the database.
+- Every save, delete, reorder or publish toggle writes to Postgres, then the admin calls the portfolio's `POST /api/revalidate` (authorised with `REVALIDATE_SECRET`), which expires the cache, and immediately requests `/api/content-version`, which reloads it while the database is awake. The next visitor sees the change straight from the cache.
+- If that call fails, the admin shows an amber warning instead of "live on the site". The change is saved and appears at the next safety refresh (every 6 hours, done in the background so visitors are still served the cached content).
+- If the database is unreachable while the cache is empty, the site uses the last content it loaded; the bundled `seed.json` is only a last resort.
+- Pages that are already open check `/api/content-version` every 20 seconds (answered from the cache, so it never wakes the database) and refresh in place when the version changes.
 
 ## Live project previews — المعاينة الحية للمشاريع
 
@@ -89,12 +96,14 @@ ADMIN_EMAIL=...
 ADMIN_PASSWORD=...
 AUTH_SECRET=<32+ chars>
 NEXT_PUBLIC_PORTFOLIO_URL=http://localhost:3000
+REVALIDATE_SECRET=<32+ chars>
 ```
 
 Portfolio `.env.local`:
 
 ```
 DATABASE_URL=...
+REVALIDATE_SECRET=<same value>
 ADMIN_MEDIA_ORIGIN=http://localhost:3002
 ```
 

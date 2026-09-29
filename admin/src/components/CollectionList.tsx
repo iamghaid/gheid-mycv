@@ -15,6 +15,7 @@ export function CollectionList({ collection, items: initial }: { collection: Col
     const [drag, setDrag] = useState<number | null>(null);
     const [q, setQ] = useState('');
     const [error, setError] = useState<string | null>(null);
+    const [warning, setWarning] = useState<string | null>(null);
     const [, start] = useTransition();
 
     const title = (it: Item) => String(getPath(it.data, config.listTitle) || getPath(it.data, config.listTitle.replace('.en', '.ar')) || 'Untitled');
@@ -26,7 +27,7 @@ export function CollectionList({ collection, items: initial }: { collection: Col
         setItems(next);
         start(async () => {
             const res = await reorderAction(config.key, next.map((x) => x.id));
-            if (!res.ok) { setItems(prev); setError(res.error); }
+            if (!res.ok) { setItems(prev); setError(res.error); } else setWarning(res.warning ?? null);
         });
     };
     const move = (from: number, to: number) => {
@@ -40,7 +41,7 @@ export function CollectionList({ collection, items: initial }: { collection: Col
         setItems((all) => all.map((x) => (x.id === it.id ? { ...x, published: !x.published } : x)));
         start(async () => {
             const res = await setPublishedAction(config.key, it.id, !it.published);
-            if (!res.ok) setError(res.error);
+            if (!res.ok) setError(res.error); else setWarning(res.warning ?? null);
         });
     };
     const remove = (it: Item) => {
@@ -48,7 +49,7 @@ export function CollectionList({ collection, items: initial }: { collection: Col
         setItems((all) => all.filter((x) => x.id !== it.id));
         start(async () => {
             const res = await deleteItemAction(config.key, it.id);
-            if (!res.ok) setError(res.error);
+            if (!res.ok) setError(res.error); else setWarning(res.warning ?? null);
         });
     };
 
@@ -67,6 +68,7 @@ export function CollectionList({ collection, items: initial }: { collection: Col
                 <input className="input pl-8" placeholder="Search" value={q} onChange={(e) => setQ(e.target.value)} />
             </div>
             {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+            {warning && <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">{warning}</p>}
             {!q && items.length > 1 && <p className="text-xs text-neutral-500">Drag rows (or use the arrows) to change the order shown on the site.</p>}
 
             <ul className="card divide-y divide-neutral-100">

@@ -21,23 +21,20 @@ function sql(): postgres.Sql {
             prepare: false, // required behind Neon's PgBouncer pooler
             max: 3,
             idle_timeout: 20,
-            connect_timeout: 10,
+            connect_timeout: 8,
             ssl: local ? false : 'require',
         });
     }
     return globalForDb.__portfolioSql;
 }
 
-export async function fetchVersion(): Promise<number | null> {
-    const rows = await sql()`select value from content_meta where key = 'version'`;
-    return rows[0] ? Number(rows[0].value) : null;
-}
-
 type Row = { id: string; collection: string; data: unknown; sort_order: number; published: boolean; updated_at: Date };
 
-export async function fetchContent(version: number): Promise<SiteContent | null> {
+/** Everything the site shows, in one round of queries. Only called to refill the cache. */
+export async function fetchContent(): Promise<SiteContent | null> {
     const db = sql();
-    const [singles, rows] = await Promise.all([
+    const [meta, singles, rows] = await Promise.all([
+        db`select value from content_meta where key = 'version'`,
         db`select key, data from singletons`,
         db<Row[]>`
             select id, collection, data, sort_order, published, updated_at
@@ -60,7 +57,7 @@ export async function fetchContent(version: number): Promise<SiteContent | null>
         });
     }
     return {
-        version,
+        version: meta[0] ? Number(meta[0].value) : 1,
         profile: profile as SiteContent['profile'],
         resume: (singles.find((s) => s.key === 'resume')?.data as SiteContent['resume']) ?? { url: '', fileName: '', updatedAt: '' },
         collections,
