@@ -1,0 +1,10 @@
+# Build output and dependencies are produced on Vercel, not uploaded.
+node_modules
+.next
+.env.local
+.env*.local
+
+# Local tooling
+.claude
+AGENTS.md
+CLAUDE.md

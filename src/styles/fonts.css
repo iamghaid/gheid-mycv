@@ -1,0 +1,211 @@
+/* ==========================================================================
+   thmanyah font family — local @font-face declarations
+   Real font files verified in /public/fonts/thmanyah/ (15 files, all weights).
+   Licensed for commercial/compiled-product use per thmanyah's Font License.
+   These files are referenced only via @font-face — never linked as a direct
+   downloadable asset anywhere in the UI (per license terms).
+   ========================================================================== */
+
+/* ---- thmanyah Serif Display — headings, hero, short accent phrases ---- */
+@font-face {
+  font-family: "thmanyah Serif Display";
+  src: url("/fonts/thmanyah/thmanyahserifdisplay-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Serif Display";
+  src: url("/fonts/thmanyah/thmanyahserifdisplay-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Serif Display";
+  src: url("/fonts/thmanyah/thmanyahserifdisplay-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Serif Display";
+  src: url("/fonts/thmanyah/thmanyahserifdisplay-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Serif Display";
+  src: url("/fonts/thmanyah/thmanyahserifdisplay-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+
+/* ---- thmanyah Serif Text — long-form Arabic paragraphs (About, etc.) ---- */
+@font-face {
+  font-family: "thmanyah Serif Text";
+  src: url("/fonts/thmanyah/thmanyahseriftext-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Serif Text";
+  src: url("/fonts/thmanyah/thmanyahseriftext-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Serif Text";
+  src: url("/fonts/thmanyah/thmanyahseriftext-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Serif Text";
+  src: url("/fonts/thmanyah/thmanyahseriftext-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Serif Text";
+  src: url("/fonts/thmanyah/thmanyahseriftext-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+
+/* ---- thmanyah Sans (الرقمي) — UI chrome, nav, labels, numerals/dates ---- */
+@font-face {
+  font-family: "thmanyah Sans";
+  src: url("/fonts/thmanyah/thmanyahsans-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Sans";
+  src: url("/fonts/thmanyah/thmanyahsans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Sans";
+  src: url("/fonts/thmanyah/thmanyahsans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Sans";
+  src: url("/fonts/thmanyah/thmanyahsans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+@font-face {
+  font-family: "thmanyah Sans";
+  src: url("/fonts/thmanyah/thmanyahsans-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+08A0-08FF,
+    U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EC70-1ECB4,
+    U+1ED00-1ED3D, U+1EE00-1EEFF, U+200C-200F, U+2010-2011,
+    U+204F, U+2E41, U+FD3E-FD3F, U+FDFD;
+}
+
+/*
+  Arabic font role variables — used across the design system.
+  English pairing (display/body/mono) is defined separately in globals.css
+  alongside next/font-loaded Latin faces.
+*/
+:root {
+  /*
+    Each stack lists the thmanyah face first. Because those faces are limited to
+    Arabic unicode-ranges above, Latin characters fall through to the next font in
+    the stack, so mixed Arabic/English text renders each script in its own family.
+  */
+  --font-ar-display: "thmanyah Serif Display", serif;
+  --font-ar-text: "thmanyah Serif Text", serif;
+  --font-ar-sans: "thmanyah Sans", sans-serif;
+}
+
+/*
+  Declared on `body`, not `:root`, on purpose.
+
+  next/font defines --font-inter / --font-playfair / --font-jetbrains via classes on
+  the <body> element, so those variables do not exist on :root. A custom property whose
+  value contains an unresolvable var() becomes guaranteed-invalid and computes to an
+  empty string — which made every `font-family: var(--font-mixed-*)` rule invalid and
+  dropped the whole Arabic UI back to the browser's default serif (Times New Roman).
+  Defining them here puts them in the same scope as the next/font variables.
+*/
+body {
+  --font-mixed-sans: "thmanyah Sans", var(--font-inter), system-ui, sans-serif;
+  --font-mixed-display: "thmanyah Serif Display", var(--font-playfair), serif;
+  --font-mixed-text: "thmanyah Serif Text", var(--font-playfair), serif;
+  --font-mixed-mono: "thmanyah Sans", var(--font-jetbrains), ui-monospace, monospace;
+}

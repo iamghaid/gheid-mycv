@@ -1,0 +1,945 @@
+{
+    "navigation": {
+        "home": "الرئيسية",
+        "about": "نبذة",
+        "projects": "المشاريع",
+        "experience": "الخبرة",
+        "skills": "المهارات",
+        "achievements": "الإنجازات",
+        "blog": "المدونة",
+        "gallery": "المعرض",
+        "contact": "تواصل",
+        "resume": "السيرة الذاتية",
+        "tools": "الأدوات",
+        "menu": {
+            "achievements": "الإنجازات",
+            "achievementsDesc": "الشهادات والجوائز والإنجازات",
+            "skills": "المهارات",
+            "skillsDesc": "التقنيات والأدوات التي أعمل بها",
+            "experience": "الخبرة",
+            "experienceDesc": "مسيرتي المهنية ونموي",
+            "projects": "المشاريع",
+            "projectsDesc": "عرض لكل أعمالي",
+            "blog": "المدونة",
+            "blogDesc": "أفكار واستكشافات تقنية",
+            "gallery": "المعرض",
+            "galleryDesc": "أرشيف بصري للوسائط والمشاريع",
+            "research": "الأبحاث",
+            "researchDesc": "الدراسات ومشاركات الهاكاثونات",
+            "projectShort": "المشاريع",
+            "projectDesc2": "اكتشف أحدث أعمالي",
+            "experienceDesc2": "مسيرتي المهنية",
+            "skillShort": "المهارات",
+            "skillDesc2": "الخبرة التقنية",
+            "achievementsDesc2": "شهادات وجوائز ومحطات",
+            "researchDesc2": "أفكار واستكشافات جارية",
+            "resume": "السيرة الذاتية",
+            "resumeDesc": "عرض السيرة الذاتية أو تحميلها",
+            "contact": "تواصل",
+            "contactDesc": "أرسل لي رسالة"
+        },
+        "shortcuts": {
+            "volume1": "الفصل الأول: الهوية",
+            "volume2": "الفصل الثاني: المسيرة المهنية",
+            "volume3": "الفصل الثالث: مصفوفة الكفاءة",
+            "volume4": "الفصل الرابع: الأعمال الإبداعية",
+            "preview": "وضع المعاينة",
+            "idRef": "المعرف"
+        },
+        "research": "الأبحاث"
+    },
+    "hero": {
+        "greeting": "مرحبًا بك في مساحتي الرقمية",
+        "subtitle": "مهندسة برمجيات • مطورة ذكاء اصطناعي • مطورة متكاملة",
+        "cta": {
+            "primary": "استكشف مشاريعي",
+            "secondary": "تواصل معي",
+            "exploreMore": "اكتشف المزيد"
+        },
+        "badge": "متاحة للفرص",
+        "scroll": "مرر للأسفل",
+        "role": "مهندسة برمجيات",
+        "description": "أبني <span class='text-primary font-semibold'>حلولًا مدعومة بالذكاء الاصطناعي</span> و<span class='text-secondary font-semibold'>تطبيقات متكاملة</span>، من الفكرة إلى <span class='text-accent font-semibold'>النشر</span>.",
+        "headline": {
+            "line1": "ذكاء اصطناعي",
+            "line2a": "مهندسة",
+            "line2b": "برمجيات",
+            "line3a": "من الفكرة",
+            "line3b": "للنشر"
+        },
+        "intro": "مرحبًا، أنا {name}. أبني تطبيقات متكاملة وحلولًا مدعومة بالذكاء الاصطناعي.",
+        "collaboration": "منفتحة على كل أشكال التعاون، مهما كان المكان أو اللغة.",
+        "locationLine": "جدة، السعودية — ٢٠٢٦",
+        "workspaceTooltip": "انتقل إلى مساحة العمل",
+        "assistantTooltip": "كلّمي مساعدي الذكي"
+    },
+    "about": {
+        "title": "نبذة عني",
+        "subtitle": "مهندسة برمجيات ومطورة ذكاء اصطناعي",
+        "description": "طالبة علوم حاسب ومهندسة برمجيات من جدة، أبني تطبيقات ويب متكاملة وحلول مدعومة بالذكاء الاصطناعي.",
+        "stats": {
+            "experience": "سنوات الخبرة",
+            "projects": "مشاريع مكتملة",
+            "certifications": "شهادات",
+            "competitions": "مسابقات"
+        },
+        "identity": "تم تأكيد الهوية",
+        "architecting": "أبني",
+        "digitalReality": "حلول مدعومة بالذكاء الاصطناعي",
+        "leadIn": {
+            "label": "ماذا أفعل",
+            "tagline": "التركيز الأساسي",
+            "headlineAI": "ذكاء اصطناعي تطبيقي.",
+            "headlineData": "تطبيقات متكاملة.",
+            "headlineSoftware": "أتمتة ذكية",
+            "thesis": "أبني <span class='text-primary italic font-serif-elegant font-normal'>تطبيقات متكاملة</span> والميزات المدعومة بالذكاء الاصطناعي التي تجعلها أذكى.",
+            "scope": "بالتركيز على هندسة البرومبت وميزات نماذج اللغة الكبيرة وأتمتة سير العمل الذكية المبنية للاستخدام الفعلي.",
+            "bridging": "من الفكرة إلى النشر.",
+            "integration": "بعيدًا عن الميزات، أتولى الصورة الكاملة: واجهات متجاوبة، أنظمة مبنية على Firebase، ووكلاء ذكاء اصطناعي يقومون بعمل مفيد فعلاً.",
+            "signature": "غيد",
+            "role": "مهندسة برمجيات ومطورة ذكاء اصطناعي",
+            "aboutMe": "نبذة عني",
+            "scroll": "مرّر للاستكشاف",
+            "shortStory": "قصتي المختصرة"
+        },
+        "coreEngineering": {
+            "label": "الهندسة الأساسية",
+            "title": "تقنيات <span class='text-primary italic font-serif font-light lowercase'>عملية.</span> <br /> مشاريع <span class='italic font-serif font-light text-foreground'>حقيقية.</span>",
+            "p1": "أبني ميزات مدعومة بالذكاء الاصطناعي باستخدام هندسة البرومبت ونماذج اللغة الكبيرة ووكلاء الذكاء الاصطناعي — بما فيها سير عمل الأتمتة عبر n8n.",
+            "p2": "مدمجة بتطبيقات متكاملة باستخدام React وNode.js/Express وFirebase، مع REST APIs تربط كل شي ببعضه.",
+            "p3": "كل مشروع أديره من البداية للنهاية — التخطيط، التصميم، التطوير، والنشر.",
+            "gpa": "المعدل التراكمي",
+            "projects": "مشاريع مبنية",
+            "years": "سنوات الخبرة"
+        },
+        "emergingResearch": {
+            "label": "أتعلمه حاليًا",
+            "title": "تعلّم <span class='italic font-serif font-light text-primary lowercase'>و</span> نمو مستمر",
+            "agentic": {
+                "title": "وكلاء الذكاء الاصطناعي والأتمتة",
+                "desc": "تعميق عملي مع وكلاء الذكاء الاصطناعي وسير العمل المؤتمت عبر n8n والـwebhooks ونماذج الذكاء الاصطناعي."
+            },
+            "web3": {
+                "title": "هندسة البرومبت",
+                "desc": "صقل مستمر لطريقة تصميم البرومبت لتوليد المحتوى والتطوير بمساعدة الذكاء الاصطناعي، كما استكشفت بورشة Mabda AI المكثفة."
+            }
+        },
+        "profile": {
+            "title": "بناء أنظمة عملية <br /> حيث تلتقي البرمجيات بالذكاء الاصطناعي.",
+            "narrativeLabel": "القصة الأساسية",
+            "narrative": "كطالبة علوم حاسب متخصصة بهندسة البرمجيات والذكاء الاصطناعي التطبيقي، أركّز على بناء أنظمة مفيدة فعلاً.",
+            "narrative2": "عملي يجمع بين التطوير المتكامل وهندسة البرومبت والأتمتة العملية لتقديم حلول تحل مشاكل حقيقية.",
+            "pillars": {
+                "reliable": {
+                    "title": "مبني ليعمل",
+                    "desc": "مصمم ليعمل فعلاً للأشخاص اللي يستخدمونه."
+                },
+                "optimized": {
+                    "title": "منشور، مو مخطط بس",
+                    "desc": "من الفكرة لنشر فعلي شغال."
+                },
+                "maintainable": {
+                    "title": "مبني للنمو",
+                    "desc": "مصمم مع الأخذ بالمستقبل بعين الاعتبار."
+                },
+                "evolvable": {
+                    "title": "مستنير بالذكاء الاصطناعي",
+                    "desc": "استخدام الذكاء الاصطناعي حيث يفيد فعلاً."
+                }
+            }
+        },
+        "closing": {
+            "experience": {
+                "label": "الخلفية",
+                "title1": "أهم",
+                "title2": "الخبرات",
+                "viewMore": "كل الخبرات"
+            },
+            "projects": {
+                "label": "الأعمال",
+                "title1": "أبرز",
+                "title2": "المشاريع",
+                "viewMore": "كل المشاريع"
+            },
+            "experiencesList": [
+                {
+                    "company": "Mabda AI",
+                    "role": "مشاركة بورشة الذكاء الاصطناعي والأتمتة",
+                    "desc": "ورشة عملية مكثفة لمدة 3 أشهر حول الذكاء الاصطناعي والأتمتة. بناء وكلاء ذكاء اصطناعي وسير عمل مؤتمت باستخدام n8n والـwebhooks ونماذج الذكاء الاصطناعي."
+                },
+                {
+                    "company": "عمل حر / مستقل",
+                    "role": "مطورة برمجيات وحلول ذكاء اصطناعي",
+                    "desc": "تطوير تطبيقات ويب متجاوبة وحلول مدعومة بالذكاء الاصطناعي باستخدام نماذج اللغة الكبيرة وهندسة البرومبت."
+                },
+                {
+                    "company": "نادي الترفيه — الجامعة العربية المفتوحة",
+                    "role": "عضوة نادي",
+                    "desc": "المساهمة بتنظيم وإدارة الأنشطة والفعاليات الطلابية."
+                },
+                {
+                    "company": "نادي الحاسب — الجامعة العربية المفتوحة",
+                    "role": "عضوة نادي",
+                    "desc": "دعم الزميلات بالمفاهيم التقنية عبر كلية علوم الحاسب."
+                }
+            ],
+            "projectsList": [
+                {
+                    "title": "قُرب — مشروع التخرج",
+                    "desc": "منصة مخطط لها مدعومة بالذكاء الاصطناعي لحلقات تحفيظ القرآن. حاليًا بمرحلة التخطيط والبحث."
+                },
+                {
+                    "title": "Go Mission",
+                    "desc": "لعبة تعاونية بالفصل الدراسي بمهام مولّدة بالذكاء الاصطناعي ومدركة للبيئة."
+                },
+                {
+                    "title": "Global Eagle Travel",
+                    "desc": "موقع سفر بواجهة إدارية متصلة بـFirebase Realtime Database."
+                },
+                {
+                    "title": "مرجان الشرق للخدمات الأمنية",
+                    "desc": "تصميم الهوية البصرية والبروفايل لشركة خدمات أمنية."
+                }
+            ],
+            "discoverMore": "اكتشف المزيد"
+        },
+        "showcase": {
+            "present": "حتى الآن",
+            "viewMore": "عرض المزيد",
+            "exploreAll": "استكشف كل الخبرات",
+            "viewDetails": "عرض التفاصيل",
+            "galleryPiece": "من المعرض",
+            "scopePlatform": "النطاق والمنصة",
+            "integration": "التكامل",
+            "viewMoreShort": "عرض المزيد"
+        }
+    },
+    "projects": {
+        "title": "المشاريع",
+        "subtitle": "عرض لأعمالي",
+        "search": "ابحث عن مشاريع...",
+        "viewAll": "عرض كل المشاريع",
+        "viewProject": "عرض المشروع",
+        "liveDemo": "معاينة مباشرة",
+        "sourceCode": "الكود المصدري",
+        "techStack": "التقنيات المستخدمة",
+        "tools": "الأدوات المستخدمة",
+        "highlights": "أبرز النقاط",
+        "challenges": "التحديات",
+        "filters": {
+            "all": "الكل",
+            "ongoing": "قيد التطوير",
+            "completed": "مكتمل"
+        },
+        "sections": {
+            "missionBrief": "نظرة عامة",
+            "keyFeatures": "أبرز الميزات",
+            "engineeringChronicles": "خلف الكواليس",
+            "visualGallery": "المعرض البصري",
+            "installation": "تعليمات التثبيت",
+            "projectAccess": "الوصول للمشروع",
+            "technologies": "التقنيات",
+            "contents": "جدول المحتويات",
+            "moreProjects": "مشاريع أخرى",
+            "backToProjects": "الرجوع للمشاريع",
+            "viewMore": "عرض المزيد",
+            "viewLess": "عرض أقل",
+            "solution": "الحل",
+            "liveDemo": "معاينة مباشرة",
+            "sourceCode": "الكود المصدري",
+            "viewProfile": "عرض ملف الشركة",
+            "viewStudy": "اقرأ الدراسة كاملة"
+        },
+        "status": {
+            "ongoing": "قيد التطوير",
+            "completed": "مشروع مكتمل"
+        },
+        "metadata": {
+            "role": "الدور",
+            "timeline": "المدة الزمنية",
+            "team": "الفريق",
+            "techStack": "التقنيات المستخدمة",
+            "roleValue": "مطورة متكاملة",
+            "teamValue": "فردي",
+            "techStackValue": "{count} تقنيات"
+        }
+    },
+    "experience": {
+        "title": "الخبرة",
+        "subtitle": "مسيرتي المهنية ونموي",
+        "showDetail": "عرض التفاصيل",
+        "hideDetail": "إخفاء التفاصيل",
+        "tasks": "المهام",
+        "learned": "ما تعلمته",
+        "impact": "الأثر",
+        "present": "حتى الآن",
+        "responsibilities": "المسؤوليات",
+        "skills": "المهارات المستخدمة",
+        "month": "شهر",
+        "months": "أشهر",
+        "year": "سنة",
+        "years": "سنوات",
+        "type": {
+            "full-time": "دوام كامل",
+            "part-time": "دوام جزئي",
+            "internship": "تدريب",
+            "freelance": "عمل حر",
+            "contract": "عقد",
+            "apprenticeship": "تلمذة مهنية",
+            "volunteer": "تطوع",
+            "training": "تدريب"
+        },
+        "filters": {
+            "all": "الكل",
+            "latest": "الأحدث",
+            "oldest": "الأقدم",
+            "ongoing": "مستمر"
+        },
+        "education": {
+            "title": "التعليم"
+        }
+    },
+    "expertise": {
+        "title": "القدرات الأساسية",
+        "subtitle": "التقنيات والأساليب التي أستخدمها لبناء حلول حقيقية",
+        "dragHint": "اسحب أو مرّر للاستكشاف"
+    },
+    "skills": {
+        "title": "المهارات والأدوات",
+        "subtitle": "التقنيات والأدوات التي أعمل بها",
+        "hard": "المهارات التقنية",
+        "soft": "المهارات الشخصية",
+        "technical": "الكفاءة التقنية",
+        "tools": "الأدوات والبرامج",
+        "pillars": "الركائز الأساسية",
+        "achievements": "إنجازات موثّقة",
+        "level": {
+            "beginner": "مبتدئة",
+            "intermediate": "متوسطة",
+            "advanced": "متقدمة",
+            "expert": "خبيرة"
+        }
+    },
+    "achievements": {
+        "title": "الإنجازات",
+        "subtitle": "الشهادات والجوائز والإنجازات",
+        "search": "ابحث عن إنجازات...",
+        "viewCredential": "عرض الشهادة",
+        "category": {
+            "all": "الكل",
+            "certification": "شهادة",
+            "award": "جائزة",
+            "publication": "منشور",
+            "competition": "مسابقة",
+            "recognition": "تقدير"
+        },
+        "sort": {
+            "newest": "الأحدث",
+            "oldest": "الأقدم"
+        },
+        "stats": {
+            "total": "إجمالي الإنجازات",
+            "awards": "الجوائز المحصّلة",
+            "certifications": "الشهادات"
+        }
+    },
+    "contact": {
+        "title": "تواصل معي",
+        "subtitle": "خلينا نبني شي رائع مع بعض",
+        "form": {
+            "name": "اسمك",
+            "email": "بريدك الإلكتروني",
+            "subject": "الموضوع",
+            "message": "رسالتك",
+            "messagePlaceholder": "خبّرني عن مشروعك...",
+            "send": "إرسال الرسالة",
+            "submit": "إرسال",
+            "sending": "جاري الإرسال...",
+            "sent": "تم الإرسال!",
+            "success": "تم إرسال الرسالة بنجاح!",
+            "error": "حدث خطأ ما. حاول مرة أخرى."
+        },
+        "social": {
+            "title": "تواصل عبر وسائل التواصل الاجتماعي",
+            "openSource": "مفتوح المصدر",
+            "professional": "مهني",
+            "direct": "مباشر",
+            "connect": "تواصل",
+            "emailLabel": "البريد الإلكتروني"
+        },
+        "faq": {
+            "title": "الأسئلة الشائعة"
+        },
+        "info": {
+            "email": "البريد الإلكتروني",
+            "phone": "الجوال",
+            "location": "الموقع",
+            "availability": "متاحة للفرص"
+        },
+        "hero": {
+            "title": "لنتحدث",
+            "subtitle": "عندك فكرة؟ خلينا نبني شي رائع مع بعض.",
+            "ticker": {
+                "build": "خلينا نبني شي رائع مع بعض · ",
+                "freelance": "متاحة للعمل الحر · "
+            }
+        },
+        "faqData": [
+            {
+                "q": "شو مجال خبرتك الأساسي؟",
+                "a": "أنا طالبة علوم حاسب بالجامعة العربية المفتوحة، متخصصة بهندسة البرمجيات والذكاء الاصطناعي التطبيقي — التطوير المتكامل بـReact وFirebase، والميزات المدعومة بالذكاء الاصطناعي باستخدام هندسة البرومبت ونماذج اللغة الكبيرة."
+            },
+            {
+                "q": "هل أنتِ متاحة للتعاون بعمل حر؟",
+                "a": "إي، أشتغل بالعمل الحر بمجال البرمجيات وحلول الذكاء الاصطناعي منذ 2024، وأنا منفتحة على مشاريع أو تدريبات أو تعاونات تقنية جديدة."
+            },
+            {
+                "q": "شو التقنيات اللي تستخدمينها عادةً؟",
+                "a": "لتطبيقات الويب، أستخدم عادةً React وNode.js/Express وFirebase مع REST APIs. لميزات الذكاء الاصطناعي، أعمل بهندسة البرومبت ونماذج اللغة الكبيرة ووكلاء الذكاء الاصطناعي وأدوات أتمتة زي n8n."
+            },
+            {
+                "q": "عندك خبرة بمشاريع عملاء حقيقية؟",
+                "a": "إي — بنيت وصممت مشاريع زي Global Eagle Travel (موقع سفر بواجهة إدارية مبنية على Firebase) وبروفايل شركة لمرجان الشرق للخدمات الأمنية."
+            },
+            {
+                "q": "كيف نبدأ مشروع مع بعض؟",
+                "a": "أسهل طريقة هي استخدام نموذج التواصل فوق أو مراسلتي مباشرة على gheidabdulkarim@gmail.com. عادةً أرد خلال يوم أو يومين."
+            }
+        ],
+        "card": {
+            "label": "بطاقة التواصل"
+        }
+    },
+    "footer": {
+        "copyright": "جميع الحقوق محفوظة.",
+        "madeWith": "صُنع بـ",
+        "more": "المزيد",
+        "marquee": [
+            "متاحة للفرص",
+            "التطوير المتكامل",
+            "حلول مدعومة بالذكاء الاصطناعي",
+            "هندسة البرومبت",
+            "تصميم الواجهات",
+            "الأتمتة الذكية"
+        ],
+        "cta": {
+            "title": "لنعمل",
+            "titleHighlight": "معًا",
+            "subtitle": "عندك مشروع بالبال؟ خلينا نبني شي يحل مشاكل حقيقية."
+        },
+        "links": "روابط",
+        "socials": "التواصل الاجتماعي",
+        "localTime": "الوقت المحلي",
+        "version": "الإصدار",
+        "versionEdition": "إصدار © 2026",
+        "allRightsReserved": "جميع الحقوق محفوظة."
+    },
+    "ctaSection": {
+        "title": "لنبني شيئًا",
+        "together": "معًا",
+        "subtitle": "منفتحة على التعاون بحلول مدعومة بالذكاء الاصطناعي والتطوير المتكامل. خلينا نحول فكرتك لشي حقيقي.",
+        "start": "وظّفيني",
+        "work": "عرض سيرتي الذاتية",
+        "words": {
+            "amazing": "مذهل",
+            "innovative": "مبتكر",
+            "intelligent": "ذكي",
+            "creative": "إبداعي"
+        },
+        "ribbon1": "React • Node.js • Firebase • JavaScript • Python • Java • Go • Express.js • MongoDB • SQL",
+        "ribbon2": "مهندسة برمجيات • مطورة ذكاء اصطناعي • مطورة متكاملة • مهندسة برومبت • مطورة أتمتة"
+    },
+    "stats": {
+        "systemStatus": "حالة النظام: التحليلات نشطة",
+        "portfolio": "مقاييس هندسية",
+        "totalPulse": "النبض الإجمالي",
+        "peakActivity": "ذروة النشاط",
+        "dailyAverage": "المعدل اليومي",
+        "currentSprint": "السبرنت الحالي",
+        "engageFlow": "تدفق التفاعل",
+        "weeklyEffort": "جهد البرمجة الأسبوعي",
+        "processSpeed": "سرعة المعالجة",
+        "avgPerf": "متوسط الأداء",
+        "latency": "زمن الاستجابة: 14 مل ثانية",
+        "system": "النظام: مستقر",
+        "scanning": "جاري فحص الموارد المباشرة",
+        "engineering": "الهندسة",
+        "metrics": "المقاييس",
+        "analyticsSub": "التحليلات / البنية التحتية / بيانات الأداء",
+        "statusOnline": "الحالة: متصل",
+        "loadStable": "حمل النظام: مستقر"
+    },
+    "projectHeader": {
+        "title": "بناء حلول عملية",
+        "subtitle": "عرض منسّق لأعمالي المتكاملة والمدعومة بالذكاء الاصطناعي. استكشاف <span class='font-bold text-foreground'>الذكاء الاصطناعي</span> والأتمتة وتطوير الويب الحديث."
+    },
+    "common": {
+        "loading": "جاري التحميل...",
+        "error": "حدث خطأ ما",
+        "notFound": "الصفحة غير موجودة",
+        "backHome": "العودة للرئيسية",
+        "viewMore": "عرض المزيد",
+        "readMore": "قراءة المزيد",
+        "close": "إغلاق",
+        "download": "تحميل",
+        "share": "مشاركة",
+        "scrollAudit": "مرّر للاستكشاف"
+    },
+    "technical": {
+        "github": {
+            "title": "مساهمات GitHub",
+            "description": "نشاطي على GitHub خلال العام الماضي.",
+            "total": "الإجمالي",
+            "thisWeek": "هذا الأسبوع",
+            "best": "الأفضل",
+            "average": "المعدل",
+            "less": "أقل",
+            "more": "أكثر"
+        },
+        "wakatime": {
+            "title": "إحصائيات WakaTime",
+            "description": "نشاط البرمجة خلال آخر 7 أيام.",
+            "lastUpdate": "آخر تحديث",
+            "startDate": "تاريخ البداية",
+            "endDate": "تاريخ النهاية",
+            "dailyAverage": "المعدل اليومي",
+            "totalWeek": "إجمالي هذا الأسبوع",
+            "bestDay": "أفضل يوم",
+            "totalSince": "الإجمالي منذ الانضمام",
+            "topLanguages": "أهم اللغات"
+        }
+    },
+    "blog": {
+        "title": "أفكار واستكشافات",
+        "subtitle": "أفكار حول الذكاء الاصطناعي وهندسة البرمجيات وبناء حلول عملية.",
+        "sectionBadge": "الأرشيف الرقمي",
+        "search": "ابحث عن مقالات...",
+        "readTime": "دقيقة قراءة",
+        "readMore": "قراءة المقال",
+        "back": "الرجوع للمدونة",
+        "noResults": "ما تم العثور على مقالات",
+        "categories": {
+            "applied-ai": "الذكاء الاصطناعي التطبيقي",
+            "software-development": "تطوير البرمجيات",
+            "about-me": "نبذة عني",
+            "more": "المزيد"
+        }
+    },
+    "gallery": {
+        "title": "لحظات",
+        "subtitle": "هاكاثونات وورش عمل وفعاليات على الطريق.",
+        "filter": {
+            "all": "كل الوسائط",
+            "image": "صور",
+            "video": "فيديوهات"
+        },
+        "viewMedia": "عرض الوسائط"
+    },
+    "chatbot": {
+        "title": "مساعد الذكاء الاصطناعي",
+        "subtitle": "اسألني عن غيد",
+        "placeholder": "اكتب رسالة...",
+        "greeting": "أهلًا! أنا مساعد ذكاء اصطناعي لـ**{name}**. 👋\n\nأقدر أجاوب عن:\n- المهارات والخبرة التقنية\n- المشاريع والأعمال\n- الخبرة\n- التعليم\n- والمزيد!\n\nودك تسأل عن شي؟",
+        "suggestions": [
+            "شو أهم مهاراتك؟",
+            "خبّرني عن أفضل مشروع عندك",
+            "شو خبرتك المهنية؟",
+            "شو مهاراتك بالذكاء الاصطناعي؟"
+        ],
+        "error": "حدث خطأ. حاول مرة أخرى.",
+        "invalidResponse": "استجابة غير صالحة من الخادم.",
+        "unknownError": "حدث خطأ غير معروف.",
+        "retry": "حاول مرة أخرى",
+        "inputHint": "Enter للإرسال، Shift+Enter لسطر جديد",
+        "close": "إغلاق المحادثة"
+    },
+    "research": {
+        "label": "الدراسات",
+        "title": "الأبحاث وأعمال الهاكاثونات",
+        "subtitle": "الدراسات الكاملة خلف المنصات اللي صممتها وبنيت نماذجها الأولية — الوصولية، نزاهة المنصات، التعليم، واكتشاف الفرص.",
+        "viewAll": "كل الدراسات",
+        "pageTitle": "الأبحاث",
+        "pageSubtitle": "دراسات ومشاركات في هاكاثونات تستكشف منصات مدعومة بالذكاء الاصطناعي في الوصولية ونزاهة المنصات والتعليم واكتشاف الفرص."
+    },
+    "credentials": {
+        "label": "الخلفية",
+        "title": "التعليم واللغات",
+        "languages": "اللغات",
+        "gpa": "المعدل",
+        "present": "حتى الآن"
+    },
+    "achievementsPage": {
+        "theArchive": "الأرشيف",
+        "technicalUniverse": "العالم التقني",
+        "expandArchive": "توسيع الأرشيف",
+        "allEntries": "كل المدخلات",
+        "awards": "الجوائز",
+        "certifications": "الشهادات",
+        "competitions": "المسابقات",
+        "hackathons": "الهاكاثونات",
+        "searchArchive": "ابحث في الأرشيف...",
+        "search": "بحث...",
+        "sortOrder": "ترتيب العرض",
+        "gridView": "عرض شبكي",
+        "listView": "عرض قائمة",
+        "noEntries": "لا توجد مدخلات في الأرشيف",
+        "noAchievements": "لا توجد إنجازات",
+        "verifySource": "التحقق من المصدر",
+        "close": "إغلاق",
+        "heroUnavailable": "الصورة غير متاحة",
+        "visualsUnavailable": "الصور غير متاحة",
+        "professionalMilestones": "محطات مهنية",
+        "certificates": "الشهادات",
+        "certificatesSubtitle": "رحلة بصرية عبر الشهادات والإنجازات.",
+        "scrollToExplore": "مرّري للاستكشاف",
+        "certificationsAndAchievements": "الشهادات والإنجازات",
+        "validating": "توثيق",
+        "excellence": "التميّز",
+        "marqueeSubtitle": "شهادات في الذكاء الاصطناعي وتحليل البيانات، وفوز بمسابقات، وتكريمات أكاديمية على الطريق.",
+        "momentsSubtitle": "هاكاثونات وورش عمل وفعاليات على الطريق.",
+        "viewAllAchievements": "عرض كل الإنجازات",
+        "throughStandards": " وفق معايير عالمية.",
+        "verifiedCredential": "شهادة موثّقة",
+        "archive": "الأرشيف",
+        "certificatesLine1": "الشهادات",
+        "certificatesLine2": "والجوائز",
+        "fallingTextIntro": "تفاعلي مع التقنيات والقيم الأساسية التي تقود مسيرتي في البحث والتطوير.",
+        "momentsTitle": "لحظات"
+    },
+    "experiencePage": {
+        "archive": "الأرشيف",
+        "select": "اختيار",
+        "education": "التعليم",
+        "journey": "المسيرة",
+        "experience": "الخبرة",
+        "educationDesc": "بكالوريوس العلوم في علوم الحاسب من الجامعة العربية المفتوحة، بمعدل {gpa}.",
+        "journeyDesc": "أندية جامعية وتطوّع ومسابقات على طول الطريق.",
+        "experienceDesc": "تطوير برمجيات وذكاء اصطناعي بالعمل الحر، وورش عمل، وهاكاثونات.",
+        "professionalExperience": "الخبرة المهنية",
+        "leadership": "القيادة والتنظيم",
+        "volunteer": "الخبرة التطوعية",
+        "certifications": "الشهادات والتطوير",
+        "filterView": "تصفية العرض",
+        "backToSelection": "العودة للاختيار",
+        "noRecords": "لا توجد سجلات في هذا القسم.",
+        "showLess": "عرض أقل",
+        "buildingTheFuture": "نبني المستقبل",
+        "throughKnowledge": "بالمعرفة",
+        "craftingExperiences": "نصنع تجارب",
+        "thatMatter": "لها معنى",
+        "turningIdeas": "نحوّل الأفكار",
+        "intoReality": "إلى واقع",
+        "professionalJourney": "المسيرة المهنية",
+        "journeyTimelineDesc": "خط زمني للأدوار والمسؤوليات والنمو المهني عبر جهات مختلفة.",
+        "changelog": "سجل التغييرات في مسيرتي",
+        "present": "حتى الآن",
+        "heroTitle": "الخبرة",
+        "heroLine1": "حيث تلتقي الدقّة التقنية بالرؤية الإبداعية.",
+        "heroLine2": "خطٌّ زمنيّ منتقى لمسيرتي المهنية، من أساسيات البرمجة إلى حلول الذكاء الاصطناعي.",
+        "highlight": {
+            "educationTitle": "نبني المستقبل",
+            "educationHighlight": "بالمعرفة",
+            "educationDescription": "كل سطر برمجي يبدأ بالفهم. دراستي لعلوم الحاسب في الجامعة العربية المفتوحة شكّلت طريقتي في مقاربة المشكلات المعقّدة بتفكير منهجي.",
+            "journeyTitle": "نصنع تجارب",
+            "journeyHighlight": "لها معنى",
+            "journeyDescription": "من الأندية الجامعية والتطوّع إلى العمل الحر والهاكاثونات، كل خطوة كانت درسًا في التعاون وتجاوز الحدود.",
+            "experienceTitle": "نحوّل الأفكار",
+            "experienceHighlight": "إلى واقع",
+            "experienceDescription": "مشاريع واقعية تحلّ مشكلات حقيقية. بناء حلول تُحدث فرقًا."
+        },
+        "nodes": {
+            "aou": "الجامعة العربية المفتوحة",
+            "aouDesc": "بكالوريوس العلوم - علوم الحاسب (المعدل {gpa}).",
+            "deansList": "قائمة الشرف",
+            "deansListDesc": "الفصل الثاني ٢٠٢٦، كلية الدراسات الحاسوبية.",
+            "entertainmentClub": "النادي الترفيهي",
+            "entertainmentClubDesc": "الجامعة العربية المفتوحة - تنظيم الأنشطة والفعاليات الطلابية.",
+            "computerClub": "نادي الحاسب",
+            "computerClubDesc": "الجامعة العربية المفتوحة - دعم الزميلات في المفاهيم التقنية.",
+            "anaIjabi": "تطوّع «أنا إيجابي»",
+            "anaIjabiDesc": "٤٠ ساعة تطوّعية - نادي فتيات جدة × جمعية التنمية الإيجابية.",
+            "programmingCompetition": "مسابقة برمجية",
+            "programmingCompetitionDesc": "المركز الأول - مسابقة الإبداع البرمجي، الجامعة العربية المفتوحة بجدة.",
+            "freelanceDeveloper": "مطوّرة بالعمل الحر",
+            "freelanceDeveloperDesc": "تطوير برمجيات وحلول ذكاء اصطناعي، ٢٠٢٤ - حتى الآن.",
+            "mabdaWorkshop": "ورشة مبدأ للذكاء الاصطناعي",
+            "mabdaWorkshopDesc": "ذكاء اصطناعي وتوليدي وأتمتة - برنامج مكثّف لثلاثة أشهر.",
+            "hackathons": "هاكاثونات",
+            "hackathonsDesc": "هاكاثونات نيوتك وأفتر ميد وإنفاذ للابتكار."
+        },
+        "projectResource": "مورد المشروع",
+        "viewDocsOn": "اطّلعي على التوثيق وتفاصيل المشروع على {domain}."
+    },
+    "projectsPage": {
+        "archive": "أرشيف المشاريع",
+        "allRealms": "كل المجالات",
+        "artificialIntelligence": "الذكاء الاصطناعي",
+        "softwareArchitecture": "هندسة البرمجيات",
+        "searchProjects": "ابحث في المشاريع...",
+        "noProjects": "لا توجد مشاريع",
+        "exploreProject": "استكشاف المشروع",
+        "gridView": "عرض شبكي",
+        "listView": "عرض قائمة",
+        "more": "المزيد",
+        "scroll": "مرّري",
+        "lightboxView": "عرض موسّع",
+        "notFound": "المشروع غير موجود",
+        "untitled": "مشروع بلا عنوان",
+        "inDevelopment": "قيد التطوير",
+        "completed": "مكتمل",
+        "view": "عرض",
+        "viewAllProjects": "عرض كل المشاريع",
+        "viewLess": "عرض أقل",
+        "allCategories": "كل المشاريع",
+        "ongoing": "مستمر",
+        "done": "منجز",
+        "viewMore": "عرض المزيد",
+        "page": "صفحة"
+    },
+    "skillsPage": {
+        "coreTechnologies": "التقنيات الأساسية",
+        "engineeringFoundation": "الأساس الهندسي",
+        "strategicDirectives": "المهارات الشخصية",
+        "strategicDirectivesDesc": "القدرات الشخصية خلف العمل التقني — كيف أتعاون وأخطّط وأحل المشكلات.",
+        "toolsSubtitle": "التقنيات والأدوات التي أستخدمها في بناء مشاريعي",
+        "engineering": "الهندسة",
+        "myResume": "سيرتي الذاتية",
+        "viewProjects": "عرض المشاريع",
+        "viewMoreCount": "عرض المزيد ({count})",
+        "coreFocus": "التركيز الأساسي",
+        "appliedAI": "ذكاء اصطناعي تطبيقي",
+        "softwareEngineering": "هندسة برمجيات",
+        "additionalSkills": "مهارات إضافية",
+        "foundationSubtitle": "بناء معماريات قابلة للتوسّع بلغات وأطر حديثة مهيّأة للأداء العالي.",
+        "systemArchitecture": "هندسة الأنظمة",
+        "creativeEngineering": "هندسة إبداعية",
+        "drive": "نصنع",
+        "innovation": "الابتكار",
+        "closingBody": "حيث تلتقي الهندسة الدقيقة بخيال بلا حدود — لنحوّل الأفكار الطموحة إلى حلول تُنشَر فعلًا.",
+        "moreProjects": "مشاريع أكثر",
+        "coreCapability": "قدرة أساسية",
+        "readMore": "اقرأ المزيد",
+        "hoverToReveal": "مرّري المؤشر لعرض القائمة",
+        "skillExpansion": "مهارات إضافية",
+        "strategicLine1": "المهارات",
+        "strategicLine2": "الشخصية",
+        "capabilitiesArchitectures": "القدرات والمعماريات",
+        "experienced": "خبرة",
+        "professionalTooling": "أدوات احترافية",
+        "toolingSubtitle": "الاعتماد على منصات احترافية للتطوير والتصميم والنشر لضمان تسليم سريع وموثوق.",
+        "workflowInfrastructure": "سير العمل والبنية",
+        "heroTitle": "المهارات والأدوات",
+        "engineeringTheFuture": "المستقبل"
+    },
+    "statsSection": {
+        "label": "إحصائيات مهنية",
+        "headline1": "بيانات تتكلّم. ذكاء اصطناعي يستنتج.",
+        "headline2": "برمجيات تُنشَر فعلًا.",
+        "sub1": "ثلاثة تخصصات، مهندسة واحدة",
+        "sub2": "والأرقام خلف العمل.",
+        "currentGpa": "المعدل التراكمي",
+        "projectsCompleted": "مشاريع مكتملة",
+        "professionalExp": "الخبرة المهنية",
+        "techAndTools": "تقنيات وأدوات",
+        "years": "سنوات",
+        "viewResume": "عرض السيرة الذاتية",
+        "viewProjects": "عرض المشاريع",
+        "exploreCareer": "استكشاف المسيرة",
+        "seeSkills": "عرض المهارات",
+        "viewResumeHero": "عرض السيرة الذاتية",
+        "momentsTitle": "لحظات ومحطات",
+        "momentsSubtitle": "هاكاثونات وورش عمل وفعاليات على الطريق.",
+        "techStackTitle": "التقنيات والمنظومة",
+        "techStackEcosystem": "التقنيات والمنظومة",
+        "viewGallery": "عرض المعرض"
+    },
+    "githubSection": {
+        "ecosystem": "منظومة GitHub",
+        "creativeEngineering": "هندسة إبداعية،",
+        "openSource": "ومفتوحة المصدر.",
+        "totalContributions": "إجمالي المساهمات",
+        "followers": "المتابعون",
+        "repositories": "المستودعات",
+        "pinnedRepositories": "المستودعات المثبّتة",
+        "activityHeatmap": "خريطة النشاط",
+        "commitHistory": "سجل الالتزامات",
+        "realtimeActivity": "النشاط اللحظي",
+        "yearlyContributions": "المساهمات السنوية",
+        "noRecentActivity": "لا يوجد نشاط حديث",
+        "highlightFeature": "ميزة مميّزة",
+        "initializing": "جارٍ التحميل...",
+        "now": "الآن",
+        "dashboardSubtitle": "لوحة موثّقة للمحطات التقنية وإجمالي المساهمات ونشاط المشاريع اللحظي.",
+        "updatedRepository": "حدّثت المستودع",
+        "actionUpdated": "حُدِّث",
+        "actionOpened": "فُتح",
+        "actionClosed": "أُغلق",
+        "actionMerged": "دُمج",
+        "actionReopened": "أُعيد فتحه"
+    },
+    "resumePage": {
+        "backToPortfolio": "العودة للبورتفوليو",
+        "openInNewTab": "فتح في تبويب جديد"
+    },
+    "a11y": {
+        "close": "إغلاق",
+        "next": "التالي",
+        "previous": "السابق",
+        "logo": "شعار",
+        "openChatbot": "فتح المساعد الذكي",
+        "sendMessage": "إرسال الرسالة",
+        "openAssistant": "فتح المساعد الذكي",
+        "interactiveCardUnavailable": "البطاقة التفاعلية غير متاحة",
+        "availableForOpportunity": "متاحة للفرص",
+        "connect": "تواصل",
+        "email": "البريد الإلكتروني",
+        "toggleTheme": "تبديل المظهر",
+        "galleryExpanded": "صورة موسّعة من المعرض",
+        "drag": "اسحب"
+    },
+    "roles": {
+        "aiDeveloper": "مطوّرة ذكاء اصطناعي",
+        "aiDeveloperDesc": "أبني ميزات مدعومة بالذكاء الاصطناعي",
+        "fullStack": "مطوّرة متكاملة",
+        "fullStackDesc": "من الواجهة إلى Firebase",
+        "softwareEngineer": "مهندسة برمجيات",
+        "softwareEngineerDesc": "أبني تطبيقات متينة"
+    },
+    "expertiseScroll": {
+        "intelligenceHeading": "أنظمة ذكية",
+        "intelligenceDesc": "بناء ميزات مدعومة بالذكاء الاصطناعي تجعل المنتجات أذكى — هندسة البرومبت، ودمج نماذج اللغة الكبيرة، ووكلاء ذكاء اصطناعي يؤتمتون سير عمل حقيقيًا عبر n8n وWebhooks.",
+        "scalableHeading": "أنظمة متكاملة",
+        "scalableDesc": "بناء تطبيقات متكاملة من طرف إلى طرف — واجهات React متجاوبة، وخدمات Node.js/Express، وبيانات مبنية على Firebase، وواجهات REST تربط كل شيء ببعضه.",
+        "strategicHeading": "ابتكار استراتيجي",
+        "strategicDesc": "تحويل المتطلبات التقنية المعقّدة إلى حلول أعمال مؤثّرة عبر التفكير المنهجي والقيادة الاستراتيجية والتواصل الواضح داخل فرق متعدّدة التخصصات.",
+        "bridgeHeading": "اكتشف أحدث أعمالي والحلول الإبداعية التي تُحيي الأفكار",
+        "bridgeSubheading": "مرّري للاستكشاف",
+        "skillPromptEngineering": "هندسة البرومبت",
+        "skillLLMs": "نماذج اللغة الكبيرة",
+        "skillAIAgents": "وكلاء ذكاء اصطناعي",
+        "skillN8n": "أتمتة n8n",
+        "skillGenAI": "ذكاء اصطناعي توليدي",
+        "skillAIDev": "تطوير بمساعدة الذكاء الاصطناعي",
+        "skillFullStack": "تطوير متكامل",
+        "skillReact": "React",
+        "skillNode": "Node.js وExpress",
+        "skillFirebase": "Firebase",
+        "skillRest": "واجهات REST",
+        "skillDatabases": "SQL وMongoDB",
+        "skillSystemic": "التفكير المنهجي",
+        "skillLeadership": "القيادة",
+        "skillProblem": "حل المشكلات",
+        "skillTeamwork": "العمل الجماعي",
+        "skillCommunication": "التواصل",
+        "skillResearch": "البحث",
+        "featureLabel": "الميزة — {n}"
+    },
+    "techDescriptions": {
+        "java": "أساسيات البرمجة الكائنية والمقررات الجامعية.",
+        "javascript": "اللغة التي يقوم عليها الويب التفاعلي.",
+        "python": "معالجة البيانات والبرمجة النصية وتجارب الذكاء الاصطناعي.",
+        "go": "لغة مُصرَّفة لخدمات سريعة وبسيطة.",
+        "react": "واجهات مبنية على مكوّنات قابلة للصيانة.",
+        "node-js": "جافاسكربت على الخادم، من طرف إلى طرف.",
+        "express-js": "توجيه خفيف ونقاط نهاية REST.",
+        "mongodb": "تخزين مستندي لأشكال بيانات مرنة.",
+        "firebase": "قاعدة بيانات لحظية ومصادقة واستضافة في منصة واحدة.",
+        "sql": "استعلامات علائقية وتصميم مخطّطات.",
+        "git": "إدارة الإصدارات في كل مشروع.",
+        "github": "حيث يستقرّ العمل ومنه يُنشَر.",
+        "html5": "الطبقة البنيوية لكل صفحة.",
+        "css3": "التخطيط والتجاوب والتفاصيل البصرية.",
+        "rest-apis": "عقود تربط الواجهة الأمامية بالخلفية.",
+        "prompt-engineering": "تصميم برومبتات تُنتج مخرجات موثوقة.",
+        "llms": "دمج نماذج اللغة في ميزات حقيقية.",
+        "ai-agents": "أتمتة تقرّر وتنفّذ، لا تكتفي بالردّ.",
+        "n8n": "ربط الخدمات ببعضها في سير عمل مؤتمت.",
+        "vs-code": "المحرّر الذي يُكتب فيه العمل.",
+        "microsoft-office": "المستندات والجداول والعروض التقديمية.",
+        "fallback": "خبرة عملية مباشرة في {name}."
+    },
+    "projectCategories": {
+        "ai-software-engineering": "ذكاء اصطناعي وهندسة برمجيات",
+        "software-engineering": "هندسة برمجيات",
+        "data-ai": "بيانات وذكاء اصطناعي",
+        "design": "تصميم"
+    },
+    "errorPage": {
+        "errorTitle": "خطأ",
+        "lost": "يبدو أنك تهت!",
+        "exception": "حدث استثناء",
+        "missing": "الصفحة التي تبحث عنها غير موجودة.",
+        "internal": "حدث خطأ تقني داخلي.",
+        "returnHome": "العودة للرئيسية",
+        "reboot": "إعادة تشغيل الجلسة",
+        "stepBack": "رجوع",
+        "location": "جدة، المملكة العربية السعودية"
+    },
+    "projectDetail": {
+        "loading1": "جارٍ تجهيز نظرة عامة على المشروع...",
+        "loading2": "جارٍ تحميل المواصفات التقنية...",
+        "loading3": "جارٍ استخراج مؤشرات النجاح...",
+        "inProgress": "قيد التنفيذ",
+        "completed": "مكتمل",
+        "development": "تطوير",
+        "design": "تصميم",
+        "lightboxView": "عرض موسّع"
+    },
+    "projectCta": {
+        "heading": "جاهزة لبناء شيء حقيقي؟",
+        "body": "من الميزات المدعومة بالذكاء الاصطناعي إلى التطبيقات المتكاملة، حدّثني عن فكرتك.",
+        "option1": "تبحث عن مهندسة برمجيات وذكاء اصطناعي؟",
+        "option2": "تحتاج حلًّا ذكيًا لعملك؟",
+        "option3": "تحب تسلّم بس؟",
+        "tag": "/ لنتواصل",
+        "sendMessage": "أرسل رسالة",
+        "discussionTopic": "موضوع النقاش:"
+    },
+    "projectStats": {
+        "projectsBuilt": "مشاريع مبنية",
+        "yearsExperience": "سنوات خبرة",
+        "techStack": "التقنيات",
+        "activeDeployments": "مشاريع منشورة",
+        "label": "أثر المشاريع",
+        "heading": "نبني المستقبل",
+        "subheading": "تحويل الأفكار إلى حلول جاهزة للنشر تُحدث أثرًا حقيقيًا"
+    },
+    "achievementCategories": {
+        "certification": "شهادة",
+        "award": "جائزة",
+        "recognition": "تكريم",
+        "publication": "منشور",
+        "competition": "مسابقة",
+        "hackathon": "هاكاثون"
+    },
+    "preloader": {
+        "home": "الرئيسية",
+        "projects": "المشاريع",
+        "experience": "الخبرة",
+        "skills": "المهارات",
+        "achievements": "الإنجازات",
+        "gallery": "المعرض",
+        "research": "الأبحاث",
+        "contact": "تواصل",
+        "resume": "السيرة الذاتية",
+        "loading": "جارٍ التحميل"
+    },
+    "meta": {
+        "skillsTitle": "المهارات",
+        "skillsDesc": "مهاراتي التقنية والتقنيات والأدوات التي أعمل بها.",
+        "projectsTitle": "المشاريع",
+        "projectsDesc": "استعراض أعمالي ومشاريعي.",
+        "experienceTitle": "الخبرة",
+        "experienceDesc": "مسيرتي المهنية وخلفيتي التعليمية.",
+        "achievementsTitle": "الإنجازات",
+        "achievementsDesc": "شهاداتي وجوائزي وإنجازاتي.",
+        "contactTitle": "تواصل",
+        "contactDesc": "تواصل معي للتعاون والفرص.",
+        "galleryTitle": "المعرض",
+        "galleryDesc": "صور من الهاكاثونات وورش العمل والفعاليات الجامعية.",
+        "researchTitle": "الأبحاث",
+        "researchDesc": "دراسات ومشاركات في هاكاثونات حول منصات مدعومة بالذكاء الاصطناعي.",
+        "resumeTitle": "السيرة الذاتية",
+        "resumeDesc": "عرض السيرة الذاتية أو تحميلها."
+    }
+}

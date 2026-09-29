@@ -1,0 +1,945 @@
+{
+    "navigation": {
+        "home": "Home",
+        "about": "About",
+        "projects": "Projects",
+        "experience": "Experience",
+        "skills": "Skills",
+        "achievements": "Achievements",
+        "blog": "Blog",
+        "gallery": "Gallery",
+        "contact": "Contact",
+        "resume": "Resume",
+        "tools": "Tools",
+        "menu": {
+            "achievements": "Achievements",
+            "achievementsDesc": "Certifications, awards, and milestones",
+            "skills": "Skills",
+            "skillsDesc": "Technologies and tools I work with",
+            "experience": "Experience",
+            "experienceDesc": "My professional journey and growth",
+            "projects": "Projects",
+            "projectsDesc": "A showcase of all my work",
+            "blog": "Blog",
+            "blogDesc": "Thoughts and technical explorations",
+            "gallery": "Gallery",
+            "galleryDesc": "Visual archive of media and projects",
+            "research": "Research",
+            "researchDesc": "Studies and hackathon submissions",
+            "projectShort": "Projects",
+            "projectDesc2": "Discover my latest builds",
+            "experienceDesc2": "My professional journey",
+            "skillShort": "Skills",
+            "skillDesc2": "Technical expertise",
+            "achievementsDesc2": "Certifications, awards & milestones",
+            "researchDesc2": "Ideas & explorations in progress",
+            "resume": "Resume",
+            "resumeDesc": "View or download my CV",
+            "contact": "Contact",
+            "contactDesc": "Send me a message"
+        },
+        "shortcuts": {
+            "volume1": "Volume I: Identity",
+            "volume2": "Volume II: Professional Sequence",
+            "volume3": "Volume III: Competency Matrix",
+            "volume4": "Volume IV: Creative Output",
+            "preview": "Preview Mode",
+            "idRef": "ID_REF"
+        },
+        "research": "Research"
+    },
+    "hero": {
+        "greeting": "Welcome to my digital space",
+        "subtitle": "Software Engineer • AI Developer • Full-Stack Developer",
+        "cta": {
+            "primary": "Explore Projects",
+            "secondary": "Get in Touch",
+            "exploreMore": "Explore More"
+        },
+        "badge": "Available for opportunities",
+        "scroll": "Scroll Down",
+        "role": "Software Engineer",
+        "description": "Building <span class='text-primary font-semibold'>AI-powered solutions</span> and <span class='text-secondary font-semibold'>full-stack applications</span>, from idea to <span class='text-accent font-semibold'>deployment</span>.",
+        "headline": {
+            "line1": "APPLIED AI",
+            "line2a": "SOFT",
+            "line2b": "WARE",
+            "line3a": "EN",
+            "line3b": "GINEER"
+        },
+        "intro": "Hi, I'm {name}. I build full-stack applications and AI-powered solutions.",
+        "collaboration": "Open to all forms of collaboration, regardless of location and language.",
+        "locationLine": "JEDDAH, SA — 2026",
+        "workspaceTooltip": "Go to Workspace",
+        "assistantTooltip": "Talk to my AI Assistant"
+    },
+    "about": {
+        "title": "About Me",
+        "subtitle": "Software Engineer & AI Developer",
+        "description": "A Computer Science student and software engineer based in Jeddah, building full-stack web applications and AI-powered solutions.",
+        "stats": {
+            "experience": "Years of Experience",
+            "projects": "Projects Completed",
+            "certifications": "Certifications",
+            "competitions": "Competitions"
+        },
+        "identity": "Identity Link Established",
+        "architecting": "Building",
+        "digitalReality": "AI-Powered Solutions",
+        "leadIn": {
+            "label": "WHAT I DO",
+            "tagline": "CORE FOCUS",
+            "headlineAI": "Applied AI.",
+            "headlineData": "Full-Stack Apps.",
+            "headlineSoftware": "Intelligent automation",
+            "thesis": "I build <span class='text-primary italic font-serif-elegant font-normal'>full-stack applications</span> and the AI-powered features that make them smarter.",
+            "scope": "Focusing on prompt engineering, LLM-powered features, and intelligent automation workflows built for real use.",
+            "bridging": "From idea to deployment.",
+            "integration": "Beyond features, I handle the full picture: responsive frontends, Firebase-backed systems, and AI agents that do useful work.",
+            "signature": "Gheid",
+            "role": "Software Engineer & AI Developer",
+            "aboutMe": "About Me",
+            "scroll": "Scroll to Explore",
+            "shortStory": "My Short Story"
+        },
+        "coreEngineering": {
+            "label": "Core Engineering",
+            "title": "Practical <span class='text-primary italic font-serif font-light lowercase'>stack.</span> <br /> Real <span class='italic font-serif font-light text-foreground'>projects.</span>",
+            "p1": "I build AI-powered features using prompt engineering, LLMs, and AI agents — including automation workflows with n8n.",
+            "p2": "Integrated into full-stack apps with React, Node.js/Express, and Firebase, with REST APIs connecting it all together.",
+            "p3": "Every project is managed end to end — planning, design, development, and deployment.",
+            "gpa": "Academic GPA",
+            "projects": "Projects Built",
+            "years": "Years Exp."
+        },
+        "emergingResearch": {
+            "label": "Currently Learning",
+            "title": "CONTINUOUS <span class='italic font-serif font-light text-primary lowercase'>&</span> GROWING",
+            "agentic": {
+                "title": "AI AGENTS & AUTOMATION",
+                "desc": "Deepening my work with AI agents and automated workflows through n8n, webhooks, and AI models."
+            },
+            "web3": {
+                "title": "PROMPT ENGINEERING",
+                "desc": "Continuously refining how I design prompts for content generation and AI-assisted development, as explored in an intensive Mabda AI workshop."
+            }
+        },
+        "profile": {
+            "title": "Building Practical Systems <br /> Where Software Meets AI.",
+            "narrativeLabel": "Core Narrative",
+            "narrative": "As a Computer Science student specializing in software engineering and applied AI, I focus on building systems that are actually useful.",
+            "narrative2": "My work combines full-stack development, prompt engineering, and practical automation to deliver solutions that solve real problems.",
+            "pillars": {
+                "reliable": {
+                    "title": "Built to Work",
+                    "desc": "Engineered to actually function for the people using it."
+                },
+                "optimized": {
+                    "title": "Shipped, Not Just Planned",
+                    "desc": "From idea to a live, working deployment."
+                },
+                "maintainable": {
+                    "title": "Built to Grow",
+                    "desc": "Designed with the future in mind."
+                },
+                "evolvable": {
+                    "title": "AI-Informed",
+                    "desc": "Using AI where it genuinely helps."
+                }
+            }
+        },
+        "closing": {
+            "experience": {
+                "label": "BACKGROUND",
+                "title1": "KEY",
+                "title2": "EXPERIENCE",
+                "viewMore": "Full Experience"
+            },
+            "projects": {
+                "label": "PORTFOLIO",
+                "title1": "FEATURED",
+                "title2": "PROJECTS",
+                "viewMore": "All Projects"
+            },
+            "experiencesList": [
+                {
+                    "company": "Mabda AI",
+                    "role": "AI & AUTOMATION WORKSHOP PARTICIPANT",
+                    "desc": "Intensive 3-month practical workshop on AI, Generative AI, and automation. Built AI agents and automated workflows using n8n, webhooks, and AI models."
+                },
+                {
+                    "company": "Independent / Freelance",
+                    "role": "SOFTWARE DEVELOPER & AI SOLUTIONS DEVELOPER",
+                    "desc": "Developing responsive web applications and AI-powered solutions using LLMs and prompt engineering."
+                },
+                {
+                    "company": "Entertainment Club — Arab Open University",
+                    "role": "CLUB MEMBER",
+                    "desc": "Contributed to organizing and running student activities and events."
+                },
+                {
+                    "company": "Computer Club — Arab Open University",
+                    "role": "CLUB MEMBER",
+                    "desc": "Supported classmates with technical concepts across the Faculty of Computer Studies."
+                }
+            ],
+            "projectsList": [
+                {
+                    "title": "Qurb — Graduation Project",
+                    "desc": "Planned AI-powered platform for Quran memorization circles. Currently in the planning and research phase."
+                },
+                {
+                    "title": "Go Mission",
+                    "desc": "A classroom collaboration game with AI-generated, environment-aware missions."
+                },
+                {
+                    "title": "Global Eagle Travel",
+                    "desc": "A travel website with an Admin Interface connected to Firebase Realtime Database."
+                },
+                {
+                    "title": "Marjan Al Sharq Security Services",
+                    "desc": "Visual identity and profile design for a security services company."
+                }
+            ],
+            "discoverMore": "Discover More"
+        },
+        "showcase": {
+            "present": "Present",
+            "viewMore": "View more",
+            "exploreAll": "Explore all experiences",
+            "viewDetails": "View Details",
+            "galleryPiece": "Gallery Piece",
+            "scopePlatform": "Scope & Platform",
+            "integration": "Integration",
+            "viewMoreShort": "View More"
+        }
+    },
+    "projects": {
+        "title": "Projects",
+        "subtitle": "A showcase of my work",
+        "search": "Search projects...",
+        "viewAll": "View All Projects",
+        "viewProject": "View Project",
+        "liveDemo": "Live Demo",
+        "sourceCode": "Source Code",
+        "techStack": "Tech Stack",
+        "tools": "Tools Used",
+        "highlights": "Highlights",
+        "challenges": "Challenges",
+        "filters": {
+            "all": "All",
+            "ongoing": "Ongoing",
+            "completed": "Completed"
+        },
+        "sections": {
+            "missionBrief": "Overview",
+            "keyFeatures": "Key Features",
+            "engineeringChronicles": "Behind the Build",
+            "visualGallery": "Visual Gallery",
+            "installation": "Installation Instructions",
+            "projectAccess": "Project Access",
+            "technologies": "Technologies",
+            "contents": "Table of Contents",
+            "moreProjects": "More Projects",
+            "backToProjects": "Back to Projects",
+            "viewMore": "View More",
+            "viewLess": "Show Less",
+            "solution": "Solution",
+            "liveDemo": "Live Demo",
+            "sourceCode": "Source Code",
+            "viewProfile": "View Company Profile",
+            "viewStudy": "Read the Full Study"
+        },
+        "status": {
+            "ongoing": "In Progress",
+            "completed": "Completed Project"
+        },
+        "metadata": {
+            "role": "Role",
+            "timeline": "Timeline",
+            "team": "Team",
+            "techStack": "Tech Stack",
+            "roleValue": "Full Stack Dev",
+            "teamValue": "Individual",
+            "techStackValue": "{count} Technologies"
+        }
+    },
+    "experience": {
+        "title": "Experience",
+        "subtitle": "My professional journey and growth",
+        "showDetail": "Show Detail",
+        "hideDetail": "Hide Detail",
+        "tasks": "TASKS",
+        "learned": "WHAT I LEARNED",
+        "impact": "IMPACT",
+        "present": "Present",
+        "responsibilities": "Responsibilities",
+        "skills": "Skills Used",
+        "month": "month",
+        "months": "months",
+        "year": "year",
+        "years": "years",
+        "type": {
+            "full-time": "Full-time",
+            "part-time": "Part-time",
+            "internship": "Internship",
+            "freelance": "Freelance",
+            "contract": "Contract",
+            "apprenticeship": "Apprenticeship",
+            "volunteer": "Volunteer",
+            "training": "Training"
+        },
+        "filters": {
+            "all": "All",
+            "latest": "Latest",
+            "oldest": "Oldest",
+            "ongoing": "Ongoing"
+        },
+        "education": {
+            "title": "Education"
+        }
+    },
+    "expertise": {
+        "title": "Core Capabilities",
+        "subtitle": "Technologies and approaches I use to build real solutions",
+        "dragHint": "Drag or scroll to explore"
+    },
+    "skills": {
+        "title": "Skills & Tools",
+        "subtitle": "Technologies and tools I work with",
+        "hard": "Hard Skills",
+        "soft": "Soft Skills",
+        "technical": "Technical Proficiency",
+        "tools": "Tools & Software",
+        "pillars": "Core Pillars",
+        "achievements": "Verified Achievements",
+        "level": {
+            "beginner": "Beginner",
+            "intermediate": "Intermediate",
+            "advanced": "Advanced",
+            "expert": "Expert"
+        }
+    },
+    "achievements": {
+        "title": "Achievements",
+        "subtitle": "Certifications, awards, and milestones",
+        "search": "Search achievements...",
+        "viewCredential": "View Credential",
+        "category": {
+            "all": "All",
+            "certification": "Certification",
+            "award": "Award",
+            "publication": "Publication",
+            "competition": "Competition",
+            "recognition": "Recognition"
+        },
+        "sort": {
+            "newest": "Newest",
+            "oldest": "Oldest"
+        },
+        "stats": {
+            "total": "Total Achievements",
+            "awards": "Awards Won",
+            "certifications": "Certifications"
+        }
+    },
+    "contact": {
+        "title": "Get in Touch",
+        "subtitle": "Let's build something great together",
+        "form": {
+            "name": "Your Name",
+            "email": "Your Email",
+            "subject": "Subject",
+            "message": "Your Message",
+            "messagePlaceholder": "Tell me about your project...",
+            "send": "Send Message",
+            "submit": "SEND MESSAGE",
+            "sending": "SENDING...",
+            "sent": "SENT!",
+            "success": "Message sent successfully!",
+            "error": "Something went wrong. Please try again."
+        },
+        "social": {
+            "title": "Connect on Social Media",
+            "openSource": "Open Source",
+            "professional": "Professional",
+            "direct": "Direct",
+            "connect": "Connect",
+            "emailLabel": "Email"
+        },
+        "faq": {
+            "title": "Frequently Asked Questions"
+        },
+        "info": {
+            "email": "Email",
+            "phone": "Phone",
+            "location": "Location",
+            "availability": "Open for opportunities"
+        },
+        "hero": {
+            "title": "LET'S TALK",
+            "subtitle": "Have an idea? Let's build something great together.",
+            "ticker": {
+                "build": "Let's Build Something Together · ",
+                "freelance": "Available for Freelance Work · "
+            }
+        },
+        "faqData": [
+            {
+                "q": "What is your main area of expertise?",
+                "a": "I'm a Computer Science student at Arab Open University, specializing in software engineering and applied AI — full-stack development with React and Firebase, and AI-powered features using prompt engineering and LLMs."
+            },
+            {
+                "q": "Are you available for freelance collaborations?",
+                "a": "Yes. I've been doing freelance software and AI solutions development since 2024, and I'm open to new projects, internships, or technical collaborations."
+            },
+            {
+                "q": "What is your typical tech stack?",
+                "a": "For web applications, I typically use React, Node.js/Express, and Firebase, with REST APIs. For AI features, I work with prompt engineering, LLMs, AI agents, and automation tools like n8n."
+            },
+            {
+                "q": "Do you have experience with real client projects?",
+                "a": "Yes — I've built and designed projects like Global Eagle Travel (a travel website with a Firebase-backed admin interface) and a company profile for Marjan Al Sharq Security Services."
+            },
+            {
+                "q": "How can we start a project together?",
+                "a": "The easiest way is to use the contact form above or email me directly at gheidabdulkarim@gmail.com. I usually respond within a day or two."
+            }
+        ],
+        "card": {
+            "label": "Contact Card"
+        }
+    },
+    "footer": {
+        "copyright": "All rights reserved.",
+        "madeWith": "Made with",
+        "more": "More",
+        "marquee": [
+            "Open to Opportunities",
+            "Full-Stack Development",
+            "AI-Powered Solutions",
+            "Prompt Engineering",
+            "UI/UX Design",
+            "Intelligent Automation"
+        ],
+        "cta": {
+            "title": "Let's Work",
+            "titleHighlight": "Together",
+            "subtitle": "Have a project in mind? Let's build something that solves real problems."
+        },
+        "links": "LINKS",
+        "socials": "SOCIALS",
+        "localTime": "LOCAL TIME",
+        "version": "VERSION",
+        "versionEdition": "2026 © Edition",
+        "allRightsReserved": "All rights reserved."
+    },
+    "ctaSection": {
+        "title": "Let's Build Something",
+        "together": "Together",
+        "subtitle": "Open to collaborations in AI-powered solutions and full-stack development. Let's turn your idea into something real.",
+        "start": "Hire Me",
+        "work": "View My Resume",
+        "words": {
+            "amazing": "Amazing",
+            "innovative": "Innovative",
+            "intelligent": "Intelligent",
+            "creative": "Creative"
+        },
+        "ribbon1": "React • Node.js • Firebase • JavaScript • Python • Java • Go • Express.js • MongoDB • SQL",
+        "ribbon2": "Software Engineer • AI Developer • Full-Stack Developer • Prompt Engineer • Automation Developer"
+    },
+    "stats": {
+        "systemStatus": "System Status: Analytics Active",
+        "portfolio": "Engineering Metrics",
+        "totalPulse": "Total Pulse",
+        "peakActivity": "Peak Activity",
+        "dailyAverage": "Daily Average",
+        "currentSprint": "Current Sprint",
+        "engageFlow": "Engage Flow",
+        "weeklyEffort": "Weekly Coding Effort",
+        "processSpeed": "Process Speed",
+        "avgPerf": "Average Performance",
+        "latency": "LATENCY: 14MS",
+        "system": "SYSTEM: STABLE",
+        "scanning": "SCANNING_LIVE_RESOURCES",
+        "engineering": "ENGINEERING",
+        "metrics": "METRICS",
+        "analyticsSub": "ANALYTICS / INFRASTRUCTURE / PERFORMANCE DATA",
+        "statusOnline": "STATUS: ONLINE",
+        "loadStable": "SYSTEM_LOAD: STABLE"
+    },
+    "projectHeader": {
+        "title": "Building Practical Solutions",
+        "subtitle": "A curated showcase of full-stack and AI-powered work. Exploring <span class='font-bold text-foreground'>Artificial Intelligence</span>, automation, and modern web development."
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "Something went wrong",
+        "notFound": "Page not found",
+        "backHome": "Back to Home",
+        "viewMore": "View More",
+        "readMore": "Read More",
+        "close": "Close",
+        "download": "Download",
+        "share": "Share",
+        "scrollAudit": "Scroll to explore"
+    },
+    "technical": {
+        "github": {
+            "title": "GitHub Contributions",
+            "description": "My GitHub activity over the last year.",
+            "total": "Total",
+            "thisWeek": "This Week",
+            "best": "Best",
+            "average": "Average",
+            "less": "Less",
+            "more": "More"
+        },
+        "wakatime": {
+            "title": "WakaTime Stats",
+            "description": "Coding activity over the last 7 days.",
+            "lastUpdate": "Last Updated",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "dailyAverage": "Daily Average",
+            "totalWeek": "Total This Week",
+            "bestDay": "Best Day",
+            "totalSince": "Total Since Joined",
+            "topLanguages": "Top Languages"
+        }
+    },
+    "blog": {
+        "title": "Thoughts & Explorations",
+        "subtitle": "Insights on AI, software engineering, and building practical solutions.",
+        "sectionBadge": "The Digital Archive",
+        "search": "Search articles...",
+        "readTime": "min read",
+        "readMore": "Read Post",
+        "back": "Back to Blog",
+        "noResults": "No articles found",
+        "categories": {
+            "applied-ai": "Applied AI",
+            "software-development": "Software Dev",
+            "about-me": "About Me",
+            "more": "More"
+        }
+    },
+    "gallery": {
+        "title": "Moments",
+        "subtitle": "Hackathons, workshops, and events along the way.",
+        "filter": {
+            "all": "All Media",
+            "image": "Photos",
+            "video": "Videos"
+        },
+        "viewMedia": "View Media"
+    },
+    "chatbot": {
+        "title": "AI Assistant",
+        "subtitle": "Ask me about Gheid",
+        "placeholder": "Type a message...",
+        "greeting": "Hi! I'm an AI assistant for **{name}**. 👋\n\nI can answer questions about:\n- Skills & technical expertise\n- Projects and work\n- Experience\n- Education\n- And more!\n\nAnything you'd like to ask?",
+        "suggestions": [
+            "What are your main skills?",
+            "Tell me about your best project",
+            "What is your work experience?",
+            "What AI skills do you have?"
+        ],
+        "error": "An error occurred. Please try again.",
+        "invalidResponse": "Invalid response from server.",
+        "unknownError": "An unknown error occurred.",
+        "retry": "Try again",
+        "inputHint": "Enter to send, Shift+Enter for newline",
+        "close": "Close chat"
+    },
+    "research": {
+        "label": "Studies",
+        "title": "Research & Hackathon Work",
+        "subtitle": "Full write-ups behind the platforms I have designed and prototyped — accessibility, marketplace integrity, education, and opportunity discovery.",
+        "viewAll": "All studies",
+        "pageTitle": "Research",
+        "pageSubtitle": "Studies and hackathon submissions exploring AI-powered platforms across accessibility, marketplace trust, education, and opportunity discovery."
+    },
+    "credentials": {
+        "label": "Background",
+        "title": "Education & Languages",
+        "languages": "Languages",
+        "gpa": "GPA",
+        "present": "Present"
+    },
+    "achievementsPage": {
+        "theArchive": "The Archive",
+        "technicalUniverse": "Technical Universe",
+        "expandArchive": "Expand Archive",
+        "allEntries": "All Entries",
+        "awards": "Awards",
+        "certifications": "Certifications",
+        "competitions": "Competitions",
+        "hackathons": "Hackathons",
+        "searchArchive": "Search archive...",
+        "search": "Search...",
+        "sortOrder": "Sort order",
+        "gridView": "Grid view",
+        "listView": "List view",
+        "noEntries": "No Archive Entries Found",
+        "noAchievements": "No achievements found",
+        "verifySource": "Verify Source",
+        "close": "Close",
+        "heroUnavailable": "Hero Unavailable",
+        "visualsUnavailable": "Visuals Unavailable",
+        "professionalMilestones": "Professional Milestones",
+        "certificates": "Certificates",
+        "certificatesSubtitle": "A visual journey through certifications and achievements.",
+        "scrollToExplore": "Scroll to Explore",
+        "certificationsAndAchievements": "Certifications & Achievements",
+        "validating": "Validating",
+        "excellence": "Excellence",
+        "marqueeSubtitle": "Certifications in AI and data analysis, competition wins, and academic honors earned along the way.",
+        "momentsSubtitle": "Hackathons, workshops, and events along the way.",
+        "viewAllAchievements": "View All Achievements",
+        "throughStandards": " through Global Standards.",
+        "verifiedCredential": "Verified Credential",
+        "archive": "Archive",
+        "certificatesLine1": "Certificates",
+        "certificatesLine2": "& Awards",
+        "fallingTextIntro": "Interact with the core technologies and values that drive my research and development journey.",
+        "momentsTitle": "Moments"
+    },
+    "experiencePage": {
+        "archive": "ARCHIVE",
+        "select": "SELECT",
+        "education": "Education",
+        "journey": "Journey",
+        "experience": "Experience",
+        "educationDesc": "Bachelor of Science in Computer Science at Arab Open University, GPA {gpa}.",
+        "journeyDesc": "University clubs, volunteering, and competitions along the way.",
+        "experienceDesc": "Freelance software & AI development, workshops, and hackathons.",
+        "professionalExperience": "Professional Experience",
+        "leadership": "Leadership & Organizational",
+        "volunteer": "Volunteer Experience",
+        "certifications": "Certifications & Development",
+        "filterView": "Filter View",
+        "backToSelection": "Back to Selection",
+        "noRecords": "No records found in this sector.",
+        "showLess": "Show Less",
+        "buildingTheFuture": "Building the Future",
+        "throughKnowledge": "Through Knowledge",
+        "craftingExperiences": "Crafting Experiences",
+        "thatMatter": "That Matter",
+        "turningIdeas": "Turning Ideas",
+        "intoReality": "Into Reality",
+        "professionalJourney": "Professional Journey",
+        "journeyTimelineDesc": "A timeline of roles, responsibilities, and professional growth across various organizations.",
+        "changelog": "Changelog from my journey",
+        "present": "Present",
+        "heroTitle": "EXPERIENCE",
+        "heroLine1": "Merging technical precision with creative vision.",
+        "heroLine2": "A curated timeline of my professional journey, from foundational code to AI solutions.",
+        "highlight": {
+            "educationTitle": "Building the Future",
+            "educationHighlight": "Through Knowledge",
+            "educationDescription": "Every line of code starts with understanding. Studying Computer Science at Arab Open University shaped how I approach complex problems with systematic thinking.",
+            "journeyTitle": "Crafting Experiences",
+            "journeyHighlight": "That Matter",
+            "journeyDescription": "From university clubs and volunteering to freelance work and hackathons, each step has been a lesson in collaboration and pushing boundaries.",
+            "experienceTitle": "Turning Ideas",
+            "experienceHighlight": "Into Reality",
+            "experienceDescription": "Real-world projects that solve real problems. Building solutions that make a difference."
+        },
+        "nodes": {
+            "aou": "Arab Open University",
+            "aouDesc": "Bachelor of Science - Computer Science (GPA {gpa}).",
+            "deansList": "Dean's List",
+            "deansListDesc": "Spring 2026, Faculty of Computer Studies.",
+            "entertainmentClub": "Entertainment Club",
+            "entertainmentClubDesc": "Arab Open University - Organizing student activities and events.",
+            "computerClub": "Computer Club",
+            "computerClubDesc": "Arab Open University - Supporting classmates with technical concepts.",
+            "anaIjabi": "\"Ana Ijabi\" Volunteering",
+            "anaIjabiDesc": "40 volunteer hours - Jeddah Girls Club × Positive Development Association.",
+            "programmingCompetition": "Programming Competition",
+            "programmingCompetitionDesc": "1st Place - Programming Creativity Competition, AOU Jeddah.",
+            "freelanceDeveloper": "Freelance Developer",
+            "freelanceDeveloperDesc": "Software & AI solutions development, 2024 - Present.",
+            "mabdaWorkshop": "Mabda AI Workshop",
+            "mabdaWorkshopDesc": "AI, Generative AI & automation - 3-month intensive program.",
+            "hackathons": "Hackathons",
+            "hackathonsDesc": "NewTech, After Med, and Infaz Innovation hackathons."
+        },
+        "projectResource": "Project Resource",
+        "viewDocsOn": "View documentation and project details on {domain}."
+    },
+    "projectsPage": {
+        "archive": "Projects Archive",
+        "allRealms": "All Realms",
+        "artificialIntelligence": "Artificial Intelligence",
+        "softwareArchitecture": "Software Architecture",
+        "searchProjects": "Search projects...",
+        "noProjects": "No projects found",
+        "exploreProject": "Explore Project",
+        "gridView": "Grid View",
+        "listView": "List View",
+        "more": "More",
+        "scroll": "Scroll",
+        "lightboxView": "Lightbox View",
+        "notFound": "Project not found",
+        "untitled": "Untitled project",
+        "inDevelopment": "In Development",
+        "completed": "Completed",
+        "view": "view",
+        "viewAllProjects": "View All Projects",
+        "viewLess": "View Less",
+        "allCategories": "All Projects",
+        "ongoing": "ongoing",
+        "done": "done",
+        "viewMore": "View More",
+        "page": "Page"
+    },
+    "skillsPage": {
+        "coreTechnologies": "CORE TECHNOLOGIES",
+        "engineeringFoundation": "The Engineering Foundation",
+        "strategicDirectives": "Strategic Directives",
+        "strategicDirectivesDesc": "Interpersonal capabilities behind the technical work — how I collaborate, plan, and solve problems.",
+        "toolsSubtitle": "The technologies and tools I use to build my projects",
+        "engineering": "Engineering",
+        "myResume": "My Resume",
+        "viewProjects": "View Projects",
+        "viewMoreCount": "View More ({count})",
+        "coreFocus": "Core Focus",
+        "appliedAI": "Applied AI",
+        "softwareEngineering": "Software Engineering",
+        "additionalSkills": "Additional Skills",
+        "foundationSubtitle": "Building scalable architectures using modern languages and frameworks optimized for high-performance execution.",
+        "systemArchitecture": "System Architecture",
+        "creativeEngineering": "Creative Engineering",
+        "drive": "DRIVE",
+        "innovation": "INNOVATION",
+        "closingBody": "Precision engineering meets unbound imagination. Let's turn ambitious ideas into solutions that actually ship.",
+        "moreProjects": "More Projects",
+        "coreCapability": "Core Capability",
+        "readMore": "Read More",
+        "hoverToReveal": "Hover to reveal catalog",
+        "skillExpansion": "Skill Expansion",
+        "strategicLine1": "Strategic",
+        "strategicLine2": "Directives",
+        "capabilitiesArchitectures": "Capabilities & Architectures",
+        "experienced": "Exp",
+        "professionalTooling": "Professional Tooling",
+        "toolingSubtitle": "Leveraging industrial-grade platforms for development, design, and deployment to ensure rapid and reliable software delivery.",
+        "workflowInfrastructure": "WORKFLOW & INFRASTRUCTURE",
+        "heroTitle": "SKILLS & TOOLS",
+        "engineeringTheFuture": "the Future"
+    },
+    "statsSection": {
+        "label": "Professional Statistics",
+        "headline1": "Data that speaks. AI that reasons.",
+        "headline2": "Software that ships.",
+        "sub1": "Three disciplines, one engineer",
+        "sub2": "and the numbers behind the work.",
+        "currentGpa": "Current GPA",
+        "projectsCompleted": "Projects Completed",
+        "professionalExp": "Professional Exp",
+        "techAndTools": "Tech & Tools",
+        "years": "Years",
+        "viewResume": "View Resume",
+        "viewProjects": "View Projects",
+        "exploreCareer": "Explore Career",
+        "seeSkills": "See Skills",
+        "viewResumeHero": "View Resume",
+        "momentsTitle": "Moments & Milestones",
+        "momentsSubtitle": "Hackathons, workshops, and events along the way.",
+        "techStackTitle": "TECH STACK & ECOSYSTEM",
+        "techStackEcosystem": "Tech Stack & Ecosystem",
+        "viewGallery": "View Gallery"
+    },
+    "githubSection": {
+        "ecosystem": "GitHub Ecosystem",
+        "creativeEngineering": "Creative Engineering,",
+        "openSource": "Open Source.",
+        "totalContributions": "Total Contributions",
+        "followers": "Followers",
+        "repositories": "Repositories",
+        "pinnedRepositories": "Pinned Repositories",
+        "activityHeatmap": "Activity Heatmap",
+        "commitHistory": "Commit History",
+        "realtimeActivity": "Realtime Activity",
+        "yearlyContributions": "Yearly Contributions",
+        "noRecentActivity": "No recent activity",
+        "highlightFeature": "Highlight Feature",
+        "initializing": "Initializing...",
+        "now": "now",
+        "dashboardSubtitle": "A verified dashboard of technical milestones, total contributions, and real-time project activity.",
+        "updatedRepository": "Updated repository",
+        "actionUpdated": "Updated",
+        "actionOpened": "Opened",
+        "actionClosed": "Closed",
+        "actionMerged": "Merged",
+        "actionReopened": "Reopened"
+    },
+    "resumePage": {
+        "backToPortfolio": "Back to Portfolio",
+        "openInNewTab": "Open in New Tab"
+    },
+    "a11y": {
+        "close": "Close",
+        "next": "Next",
+        "previous": "Previous",
+        "logo": "Logo",
+        "openChatbot": "Open portfolio chatbot",
+        "sendMessage": "Send message",
+        "openAssistant": "Open AI Assistant",
+        "interactiveCardUnavailable": "Interactive Card Unavailable",
+        "availableForOpportunity": "AVAILABLE FOR OPPORTUNITY",
+        "connect": "Connect",
+        "email": "Email",
+        "toggleTheme": "Toggle theme",
+        "galleryExpanded": "Expanded gallery image",
+        "drag": "DRAG"
+    },
+    "roles": {
+        "aiDeveloper": "AI Developer",
+        "aiDeveloperDesc": "Building AI-powered features",
+        "fullStack": "Full-Stack Developer",
+        "fullStackDesc": "From frontend to Firebase",
+        "softwareEngineer": "Software Engineer",
+        "softwareEngineerDesc": "Crafting robust applications"
+    },
+    "expertiseScroll": {
+        "intelligenceHeading": "Intelligence Systems",
+        "intelligenceDesc": "Building AI-powered features that make products smarter — prompt engineering, LLM integration, and AI agents that automate real workflows with n8n and webhooks.",
+        "scalableHeading": "Scalable Systems",
+        "scalableDesc": "Building full-stack applications end to end — responsive React frontends, Node.js/Express services, Firebase-backed data, and REST APIs that tie it together.",
+        "strategicHeading": "Strategic Innovation",
+        "strategicDesc": "Translating complex technical requirements into impactful business solutions through systemic thinking, strategic leadership, and clear communication within cross-functional teams.",
+        "bridgeHeading": "Discover my latest work and creative solutions that bring ideas to life",
+        "bridgeSubheading": "SCROLL TO EXPLORE",
+        "skillPromptEngineering": "Prompt Engineering",
+        "skillLLMs": "LLMs",
+        "skillAIAgents": "AI Agents",
+        "skillN8n": "n8n Automation",
+        "skillGenAI": "Generative AI",
+        "skillAIDev": "AI-Assisted Development",
+        "skillFullStack": "Full-Stack Dev",
+        "skillReact": "React",
+        "skillNode": "Node.js & Express",
+        "skillFirebase": "Firebase",
+        "skillRest": "REST APIs",
+        "skillDatabases": "SQL & MongoDB",
+        "skillSystemic": "Systemic Thinking",
+        "skillLeadership": "Leadership",
+        "skillProblem": "Problem Solving",
+        "skillTeamwork": "Teamwork",
+        "skillCommunication": "Communication",
+        "skillResearch": "Research",
+        "featureLabel": "FEATURE — 0{n}"
+    },
+    "techDescriptions": {
+        "java": "Object-oriented fundamentals and university coursework.",
+        "javascript": "The language behind the interactive web.",
+        "python": "Data work, scripting, and AI experiments.",
+        "go": "A compiled language for fast, simple services.",
+        "react": "Component-based interfaces that stay maintainable.",
+        "node-js": "JavaScript on the server, end to end.",
+        "express-js": "Lightweight routing and REST endpoints.",
+        "mongodb": "Document storage for flexible data shapes.",
+        "firebase": "Realtime database, auth, and hosting in one.",
+        "sql": "Relational queries and schema design.",
+        "git": "Version control for every project.",
+        "github": "Where the work lives and ships from.",
+        "html5": "The structural layer of every page.",
+        "css3": "Layout, responsiveness, and visual detail.",
+        "rest-apis": "Contracts that connect frontend to backend.",
+        "prompt-engineering": "Designing prompts that produce reliable output.",
+        "llms": "Integrating language models into real features.",
+        "ai-agents": "Automation that decides and acts, not just responds.",
+        "n8n": "Wiring services together into automated workflows.",
+        "vs-code": "The editor the work gets written in.",
+        "microsoft-office": "Documents, sheets, and presentations.",
+        "fallback": "Practical, hands-on experience with {name}."
+    },
+    "projectCategories": {
+        "ai-software-engineering": "AI & Software Engineering",
+        "software-engineering": "Software Engineering",
+        "data-ai": "Data & AI",
+        "design": "Design"
+    },
+    "errorPage": {
+        "errorTitle": "ERROR",
+        "lost": "YOU ARE LOST!?",
+        "exception": "EXCEPTION_CAUGHT",
+        "missing": "The page you're looking for is missing.",
+        "internal": "An internal technical error has occurred.",
+        "returnHome": "Return Home",
+        "reboot": "Reboot Session",
+        "stepBack": "Step Back",
+        "location": "JEDDAH, SAUDI ARABIA"
+    },
+    "projectDetail": {
+        "loading1": "Initiating project overview...",
+        "loading2": "Loading technical specifications...",
+        "loading3": "Decrypting success metrics...",
+        "inProgress": "In Progress",
+        "completed": "Completed",
+        "development": "Development",
+        "design": "Design",
+        "lightboxView": "Lightbox View"
+    },
+    "projectCta": {
+        "heading": "Ready to build something real?",
+        "body": "From AI-powered features to full-stack applications, tell me what you have in mind.",
+        "option1": "Looking for a software & AI engineer?",
+        "option2": "Need an AI solution for your business?",
+        "option3": "Just want to say hi?",
+        "tag": "/ Let's Connect",
+        "sendMessage": "Send Message",
+        "discussionTopic": "DISCUSSION TOPIC:"
+    },
+    "projectStats": {
+        "projectsBuilt": "Projects Built",
+        "yearsExperience": "Years Experience",
+        "techStack": "Tech Stack",
+        "activeDeployments": "Active Deployments",
+        "label": "Project Impact",
+        "heading": "Building The Future",
+        "subheading": "Transforming ideas into production-ready solutions that drive real-world impact"
+    },
+    "achievementCategories": {
+        "certification": "Certification",
+        "award": "Award",
+        "recognition": "Recognition",
+        "publication": "Publication",
+        "competition": "Competition",
+        "hackathon": "Hackathon"
+    },
+    "preloader": {
+        "home": "Home",
+        "projects": "Projects",
+        "experience": "Experience",
+        "skills": "Skills",
+        "achievements": "Achievements",
+        "gallery": "Gallery",
+        "research": "Research",
+        "contact": "Contact",
+        "resume": "Resume",
+        "loading": "Loading"
+    },
+    "meta": {
+        "skillsTitle": "Skills",
+        "skillsDesc": "My technical skills, tech stack, and tools I work with.",
+        "projectsTitle": "Projects",
+        "projectsDesc": "Explore my portfolio of projects and work.",
+        "experienceTitle": "Experience",
+        "experienceDesc": "My professional journey and educational background.",
+        "achievementsTitle": "Achievements",
+        "achievementsDesc": "My certifications, awards, and accomplishments.",
+        "contactTitle": "Contact",
+        "contactDesc": "Get in touch with me for collaborations and opportunities.",
+        "galleryTitle": "Gallery",
+        "galleryDesc": "Photos from hackathons, workshops, and university events.",
+        "researchTitle": "Research",
+        "researchDesc": "Studies and hackathon submissions exploring AI-powered platforms.",
+        "resumeTitle": "Resume",
+        "resumeDesc": "View or download my CV."
+    }
+}
