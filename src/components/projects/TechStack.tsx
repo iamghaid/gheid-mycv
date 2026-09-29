@@ -3,7 +3,6 @@
 import { useRef, useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { portfolioData } from '@/data/portfolio';
 import { cn } from '@/lib/utils';
 import { Cpu, Wrench, Zap, RefreshCw, ArrowDown, ChevronDown } from 'lucide-react';
 import { TechStack as TechStackType, Tool } from '@/types/index';

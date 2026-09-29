@@ -3,24 +3,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ZoomParallax } from "@/components/ui/zoom-parallax";
-import { portfolioData } from "@/data/portfolio";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 import { useTranslations } from 'next-intl';
+import { useSiteView } from '@/providers/ContentProvider';
 
 export default function StatsSection({ scrollYProgress, showOnly }: { scrollYProgress?: any, showOnly?: 'top' | 'bottom' }) {
     const tStats = useTranslations('statsSection');
-    // Shadows the module import so this component reads translated copy.
-    const portfolioData = useLocalizedPortfolio();
 
     // Deliberately in the authored order, not shuffled. A random sort ran on every
     // mount, so the same visitor saw a different arrangement each time and the
     // strongest photo was rarely the one in the centre slot.
-    const images = React.useMemo(
-        () => portfolioData.gallery.map((g) => ({ src: g.url, alt: g.title })),
-        [portfolioData]
-    );
+    // Photos marked "Show on home page" in the admin, with their chosen positions.
+    const homeGallery = useSiteView().homeGallery;
+    const images = React.useMemo(() => homeGallery.map((g) => ({ src: g.src, alt: g.alt, slot: g.slot })), [homeGallery]);
 
     if (images.length === 0) return null;
 

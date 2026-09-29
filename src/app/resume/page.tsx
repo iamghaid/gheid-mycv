@@ -5,6 +5,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { usePerformance } from '@/hooks/usePerformance';
 import { useTranslations } from 'next-intl';
+import { useSiteView } from '@/providers/ContentProvider';
 
 // pdf.js relies on browser-only APIs (DOMMatrix, etc.) that don't exist
 // during server-side rendering, so this must load client-side only.
@@ -16,7 +17,8 @@ const PdfViewer = dynamic(
 export default function ResumePage() {
     const tPage = useTranslations('resumePage');
     const { isLowPowerMode } = usePerformance();
-    const resumeUrl = "/resume.pdf";
+    // The CV uploaded in the admin (CV / Resume); the bundled resume.pdf until one is.
+    const resumeUrl = useSiteView().resumeUrl;
 
     return (
         <div className="h-screen bg-background relative flex flex-col pt-24 pb-4 overflow-hidden">
@@ -56,7 +58,7 @@ export default function ResumePage() {
                 className="flex-1 w-full max-w-[1400px] mx-auto px-4 md:px-6 min-h-0 pb-4 relative"
             >
                 <div className="w-full h-full bg-muted/30 rounded-2xl border border-border/50 overflow-hidden relative group">
-                    <PdfViewer url="/resume.pdf" />
+                    <PdfViewer key={resumeUrl} url={resumeUrl} />
                 </div>
             </motion.div>
         </div>

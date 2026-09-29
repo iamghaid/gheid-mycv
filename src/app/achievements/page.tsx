@@ -6,7 +6,6 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate, 
 import { useTranslations, useLocale } from 'next-intl';
 import { Search, SortAsc, SortDesc, ExternalLink, X, Calendar, Building2, Trophy, Medal, Award, Target, ChevronRight, ChevronLeft, MousePointer2, Eye, Share2, PanelLeftClose, PanelLeftOpen, LayoutGrid, List } from 'lucide-react';
 import { cn, formatDate } from '@/lib/utils';
-import { portfolioData } from '@/data/portfolio';
 import { Achievement } from '@/types';
 import dynamic from 'next/dynamic';
 
@@ -556,6 +555,19 @@ const AchievementModal = React.forwardRef<HTMLDivElement, {
                                     <code className="text-[10px] font-bold text-primary">{achievement.credentialId || "VERIFIED_RECORD"}</code>
                                 </div>
                             </div>
+
+                            {/* Supporting files uploaded in the admin */}
+                            {!!achievement.files?.length && (
+                                <div className="flex flex-wrap gap-2">
+                                    {achievement.files.map((f) => (
+                                        <a key={f} href={f} target="_blank" rel="noopener noreferrer"
+                                            className="inline-flex max-w-full items-center gap-2 rounded-xl border border-border/50 bg-foreground/[0.03] px-3 py-2 text-xs font-semibold text-foreground/80 transition-colors hover:bg-foreground/[0.06]">
+                                            <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+                                            <span className="truncate" dir="ltr">{decodeURIComponent(f.split('/').pop() ?? f)}</span>
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
 
                         </div>
                     </div>

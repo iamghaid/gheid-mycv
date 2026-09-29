@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { GPA_LABEL } from '@/data/profileStats';
+import { useSiteView } from '@/providers/ContentProvider';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -26,30 +26,28 @@ interface InnovativeExperienceHeroProps {
 }
 
 /**
- * Node layout per tab. Labels and descriptions are message keys resolved at render
- * time, so the orbit content follows the reader's language.
+ * Where milestones sit on the orbits, by how many a tab has. Milestones themselves
+ * (title, text, image, order) come from the admin's Timeline section.
  *
- * Angles are chosen per tab rather than spread evenly: nodes on the upper arc carry
- * their label above, nodes on the lower arc below, and the angles keep neighbouring
- * labels apart horizontally so they never collide in either language.
+ * Angles are hand-picked per count rather than spread evenly: nodes on the upper arc
+ * carry their label above, nodes on the lower arc below, and the angles keep
+ * neighbouring labels apart horizontally so they never collide in either language.
  */
-const NODE_LAYOUT: Record<string, { key: string; orbitIndex: number; angle: number; imageUrl: string }[]> = {
-    education: [
-        { key: 'aou', orbitIndex: 0, angle: 240, imageUrl: "/journey/arabopenuniversity1.webp" },
-        { key: 'deansList', orbitIndex: 1, angle: 60, imageUrl: "/certificate/deans-list.jpg" },
-    ],
-    journey: [
-        { key: 'entertainmentClub', orbitIndex: 1, angle: 240, imageUrl: "/journey/arabopenuniversity1.webp" },
-        { key: 'computerClub', orbitIndex: 0, angle: 330, imageUrl: "/journey/arabopenuniversity1.webp" },
-        { key: 'anaIjabi', orbitIndex: 1, angle: 60, imageUrl: "/certificate/ana-ijabi.jpg" },
-        { key: 'programmingCompetition', orbitIndex: 0, angle: 150, imageUrl: "/certificate/programming-creativity.jpg" },
-    ],
-    experience: [
-        { key: 'freelanceDeveloper', orbitIndex: 1, angle: 240, imageUrl: "/about/gheid.jpg" },
-        { key: 'mabdaWorkshop', orbitIndex: 1, angle: 330, imageUrl: "/certificate/mabda-ai.jpg" },
-        { key: 'hackathons', orbitIndex: 1, angle: 110, imageUrl: "/certificate/after-med-hackathon.jpg" },
-    ],
-};
+const LAYOUTS: { orbitIndex: number; angle: number }[][] = [
+    [],
+    [{ orbitIndex: 1, angle: 240 }],
+    [{ orbitIndex: 0, angle: 240 }, { orbitIndex: 1, angle: 60 }],
+    [{ orbitIndex: 1, angle: 240 }, { orbitIndex: 1, angle: 330 }, { orbitIndex: 1, angle: 110 }],
+    [{ orbitIndex: 1, angle: 240 }, { orbitIndex: 0, angle: 330 }, { orbitIndex: 1, angle: 60 }, { orbitIndex: 0, angle: 150 }],
+    [{ orbitIndex: 1, angle: 240 }, { orbitIndex: 0, angle: 330 }, { orbitIndex: 1, angle: 60 }, { orbitIndex: 0, angle: 150 }, { orbitIndex: 1, angle: 200 }],
+    [{ orbitIndex: 1, angle: 240 }, { orbitIndex: 0, angle: 330 }, { orbitIndex: 1, angle: 60 }, { orbitIndex: 0, angle: 150 }, { orbitIndex: 1, angle: 200 }, { orbitIndex: 1, angle: 20 }],
+];
+
+function layoutFor(count: number) {
+    if (count < LAYOUTS.length) return LAYOUTS[count];
+    // More than six: spread evenly, alternating orbits.
+    return Array.from({ length: count }, (_, i) => ({ orbitIndex: i % 2 ? 0 : 1, angle: (240 + (360 / count) * i) % 360 }));
+}
 
 /* Orbit geometry, in the SVG's 1000 × 600 user space. */
 const VIEW_W = 1000;
@@ -72,17 +70,16 @@ function pointOnOrbit(orbitIndex: number, angleDeg: number) {
 }
 
 export function InnovativeExperienceHero({ type, title, highlight, description }: InnovativeExperienceHeroProps) {
-    const tNodes = useTranslations('experiencePage.nodes');
     const tStats = useTranslations('statsSection');
-    const layout = NODE_LAYOUT[type] || NODE_LAYOUT.experience;
-    const nodes: NodeData[] = layout.map((node) => ({
-        id: node.key,
-        label: tNodes(node.key),
-        description:
-            node.key === 'aou' ? tNodes('aouDesc', { gpa: GPA_LABEL }) : tNodes(`${node.key}Desc`),
-        orbitIndex: node.orbitIndex,
-        angle: node.angle,
-        imageUrl: node.imageUrl,
+    const milestones = useSiteView().timeline[type] ?? [];
+    const layout = layoutFor(milestones.length);
+    const nodes: NodeData[] = milestones.map((m, i) => ({
+        id: m.id,
+        label: m.label,
+        description: m.description,
+        orbitIndex: layout[i].orbitIndex,
+        angle: layout[i].angle,
+        imageUrl: m.imageUrl,
     }));
     const [activeNode, setActiveNode] = useState<string | null>(null);
 

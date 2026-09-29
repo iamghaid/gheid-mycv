@@ -4,7 +4,6 @@ import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'fra
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from "@/lib/utils";
-import { portfolioData } from "@/data/portfolio";
 import { ArrowUpRight } from "lucide-react";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations } from 'next-intl';

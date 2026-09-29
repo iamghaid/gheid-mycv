@@ -3,7 +3,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Github, Twitter, Youtube, Linkedin, Instagram, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { portfolioData } from "@/data/portfolio";
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 
 export interface ProfileCardProps {

@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono, Playfair_Display, Alex_Brush } from 'next/font/google';
 import { getMessages, getLocale } from 'next-intl/server';
 import { ThemeProvider, I18nProvider, SmoothScrollProvider } from '@/providers';
+import { ContentProvider } from '@/providers/ContentProvider';
+import { getSiteContent } from '@/lib/content/server';
 
 import '@/styles/globals.css';
 
@@ -113,6 +115,8 @@ export default async function RootLayout({
 }) {
     const locale = await getLocale();
     const messages = await getMessages();
+    // Site content comes from the database (managed in the admin dashboard).
+    const content = await getSiteContent();
     const dir = locale === 'ar' ? 'rtl' : 'ltr';
 
     return (
@@ -120,6 +124,7 @@ export default async function RootLayout({
             <body className={`${inter.variable} ${jetbrainsMono.variable} ${playfair.variable} ${signature.variable} font-sans relative ${locale === 'ar' ? 'font-arabic' : ''}`}>
                 <ThemeProvider>
                     <I18nProvider locale={locale} messages={messages}>
+                        <ContentProvider content={content}>
                         <SmoothScrollProvider>
                             <ThemeAwareClickSpark>
                                 <ArcPreloaderWrapper>
@@ -130,6 +135,7 @@ export default async function RootLayout({
                                 <ChatBot headless />
                             </ThemeAwareClickSpark>
                         </SmoothScrollProvider>
+                        </ContentProvider>
                     </I18nProvider>
                 </ThemeProvider>
             </body>

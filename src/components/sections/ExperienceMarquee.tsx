@@ -9,7 +9,6 @@ import {
     useAnimationFrame,
 } from "framer-motion";
 import Image from "next/image";
-import { portfolioData } from "@/data/portfolio";
 import { Experience } from "@/types";
 import { usePerformance } from "@/hooks/usePerformance";
 import { cn } from "@/lib/utils";

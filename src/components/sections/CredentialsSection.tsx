@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { GraduationCap, Languages as LanguagesIcon, Award } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
-import { portfolioData } from '@/data/portfolio';
 import { formatDate } from '@/lib/utils';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 

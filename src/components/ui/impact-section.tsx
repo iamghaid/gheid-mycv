@@ -6,7 +6,6 @@ import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import Link from "next/link";
-import { portfolioData } from "@/data/portfolio";
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 
 export default function ImpactSection() {

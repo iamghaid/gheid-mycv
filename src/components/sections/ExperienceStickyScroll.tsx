@@ -2,8 +2,9 @@
 import React from "react";
 import { GraduationCap, Award, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { GPA_LABEL, GPA_VALUE } from '@/data/profileStats';
 import { motion } from "framer-motion";
+import { useTranslations } from 'next-intl';
+import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 
 const CornerAccents = ({ hoverClass }: { hoverClass: string }) => (
     <>
@@ -14,13 +15,19 @@ const CornerAccents = ({ hoverClass }: { hoverClass: string }) => (
     </>
 );
 
+const year = (d?: string) => (d ? new Date(d).getFullYear() : '');
+
 export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isLowPowerMode?: boolean }) {
+    const t = useTranslations('experiencePage');
+    const { education, personal } = useLocalizedPortfolio();
     return (
         <div className="w-full max-w-6xl mx-auto p-4 md:p-8">
             <div className="grid grid-cols-1 gap-6">
 
-                {/* Arab Open University Box */}
+                {/* One card per education record (managed in the admin's Education section) */}
+                {education.map((edu) => (
                 <motion.div
+                    key={edu.id}
                     initial={isLowPowerMode ? {} : { opacity: 0, y: 20 }}
                     whileInView={isLowPowerMode ? {} : { opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -30,11 +37,14 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
                     <CornerAccents hoverClass="group-hover:border-emerald-500 dark:group-hover:border-emerald-400" />
                     <div className="p-8 relative z-10 transition-transform duration-500 group-hover:translate-x-1">
                         <div className="flex items-center gap-2 mb-4">
-                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Higher Education • Current</span>
+                            <span className="text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{t('higherEducation')}{edu.isOngoing && ` • ${t('current')}`}</span>
                         </div>
-                        <h3 className="text-3xl font-black text-neutral-900 dark:text-white mb-4">Arab Open University</h3>
+                        <h3 className="text-3xl font-black text-neutral-900 dark:text-white mb-4">{edu.institution}</h3>
                         <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                            Bachelor of Science in Computer Science, 2022–2026, GPA {GPA_LABEL}. Strong foundation in software engineering, artificial intelligence, databases, and full-stack web development. Named to the Dean's List for Spring Semester 2026, Faculty of Computer Studies.
+                            {[edu.degree, edu.major].filter(Boolean).join(' — ')}
+                            {edu.startDate && <span dir="ltr">{`, ${year(edu.startDate)}–${year(edu.endDate)}`}</span>}
+                            {edu.gpa && <>{`. ${t('gpa')} `}<span dir="ltr">{edu.gpa}</span></>}.
+                            {edu.achievements?.length ? ` ${edu.achievements.join(' · ')}` : ''}
                         </p>
                     </div>
 
@@ -54,13 +64,13 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
                             </div>
 
                             <div className="flex flex-wrap gap-2 justify-center mb-4">
-                                {[`GPA ${GPA_VALUE}`, "Dean's List", "Computer Science"].map(s => (
+                                {[edu.gpa && `${t('gpa')} ${edu.gpa.split('/')[0]}`, edu.achievements?.[0]?.split('—')[0].trim(), edu.major].filter(Boolean).map(s => (
                                     <span key={s} className="px-3 py-1 rounded-full text-[10px] bg-black/40 dark:bg-white/10 text-white border border-white/20 font-mono font-bold backdrop-blur-md shadow-lg group-hover:bg-emerald-600/50 transition-colors">
                                         {s}
                                     </span>
                                 ))}
                             </div>
-                            <p className="text-[10px] font-mono text-white/90 uppercase tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-white/10 group-hover:border-emerald-500/50 transition-colors">Jeddah, Saudi Arabia</p>
+                            <p className="text-[10px] font-mono text-white/90 uppercase tracking-widest bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-white/10 group-hover:border-emerald-500/50 transition-colors">{personal.location}</p>
                         </div>
 
                         {!isLowPowerMode && (
@@ -68,6 +78,7 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
                         )}
                     </div>
                 </motion.div>
+                ))}
 
                 {/* Coming Soon Box */}
                 <motion.div
@@ -82,11 +93,11 @@ export default function ExperienceStickyScroll({ isLowPowerMode = false }: { isL
 
                     <div className="relative z-10 max-w-xl transition-transform duration-500 group-hover:translate-x-2">
                         <div className="flex items-center gap-2 mb-4">
-                            <span className="text-xs font-bold uppercase tracking-widest text-cyan-600 dark:text-cyan-500">Continuous Learning</span>
+                            <span className="text-xs font-bold uppercase tracking-widest text-cyan-600 dark:text-cyan-500">{t('continuousLearning')}</span>
                         </div>
-                        <h3 className="text-3xl md:text-4xl font-black text-neutral-900 dark:text-white mb-4 group-hover:text-cyan-950 dark:group-hover:text-cyan-50 transition-colors">Coming Soon</h3>
+                        <h3 className="text-3xl md:text-4xl font-black text-neutral-900 dark:text-white mb-4 group-hover:text-cyan-950 dark:group-hover:text-cyan-50 transition-colors">{t('comingSoon')}</h3>
                         <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                            Always eager to expand my horizons. Future academic pursuits, specialized certifications, and continuous growth to stay at the forefront of technology.
+                            {t('comingSoonDesc')}
                         </p>
                     </div>
 

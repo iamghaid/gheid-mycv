@@ -16,7 +16,6 @@ import {
     Minimize2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { portfolioData } from "@/data/portfolio";
 import { useTranslations, useLocale } from "next-intl";
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 

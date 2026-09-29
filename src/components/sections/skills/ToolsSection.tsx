@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { portfolioData } from '@/data/portfolio';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';

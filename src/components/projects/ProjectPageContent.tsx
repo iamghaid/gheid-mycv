@@ -7,10 +7,10 @@ import { X, Calendar, Code, Box, Award, Share2, ExternalLink, Github, Terminal, 
 import { cn, formatDate } from '@/lib/utils';
 import { Project } from '@/types';
 import { TechStack } from './TechStack';
+import { LiveProjectPreview } from './LiveProjectPreview';
 import { ProjectPlaceholder } from './ProjectPlaceholder';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { portfolioData } from '@/data/portfolio';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 
 // --- Animated Terminal Component ---
@@ -171,11 +171,13 @@ const Typewriter = ({ examples }: { examples: string[] }) => {
     );
 };
 
-export function ProjectPageContent({ project, isLowPowerMode }: { project: Project; isLowPowerMode?: boolean }) {
+export function ProjectPageContent({ project: initialProject, isLowPowerMode }: { project: Project; isLowPowerMode?: boolean }) {
     const tDetail = useTranslations('projectDetail');
     const locale = useLocale();
     // Shadows the module import so this component reads translated copy.
     const portfolioData = useLocalizedPortfolio();
+    // Prefer the live record so an admin edit (or a language switch) updates the page in place.
+    const project = portfolioData.projects.find((p) => p.slug === initialProject.slug) ?? initialProject;
 
     const t = useTranslations('projects');
     const tCommon = useTranslations('common');
@@ -249,8 +251,12 @@ export function ProjectPageContent({ project, isLowPowerMode }: { project: Proje
                 </motion.div>
             </div>
 
-            {/* 2. HERO IMAGE SECTION (Wide Banner) */}
+            {/* 2. HERO: the live website when the project has one (falls back to the
+                screenshot if the site forbids embedding), otherwise the screenshot. */}
             <div className="container max-w-7xl mx-auto px-6 mb-16">
+                {project.demoUrl && project.demoUrl !== '#' && project.embedMode !== 'off' ? (
+                    <LiveProjectPreview project={project} onOpenImage={setSelectedImage} />
+                ) : (
                 <motion.div
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -271,6 +277,7 @@ export function ProjectPageContent({ project, isLowPowerMode }: { project: Proje
                     {/* Overlay Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                 </motion.div>
+                )}
             </div>
 
             {/* 3. METADATA BAR (Horizontal Strip) */}

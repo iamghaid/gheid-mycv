@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { MapPin } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
+import { useSiteView } from '@/providers/ContentProvider';
 import { cn } from '@/lib/utils';
 
 /**
@@ -24,6 +25,8 @@ import { cn } from '@/lib/utils';
 export function IdentityCard({ className }: { className?: string }) {
     const { personal } = useLocalizedPortfolio();
     const t = useTranslations('contact.card');
+    // Name, role and photo are edited in the admin (Profile → Contact card).
+    const card = useSiteView().card;
 
     return (
         <div className={cn('flex h-full w-full items-center justify-center p-3 sm:p-4', className)}>
@@ -46,8 +49,8 @@ export function IdentityCard({ className }: { className?: string }) {
                 <div className="flex min-h-0 flex-1 items-center justify-center px-[9%] pt-3">
                     <div className="relative aspect-square h-auto max-h-full w-full overflow-hidden rounded-2xl border border-black/10 bg-black/5 dark:border-white/15 dark:bg-white/5">
                         <Image
-                            src={personal.avatar}
-                            alt={t('name')}
+                            src={card.avatar || personal.avatar}
+                            alt={card.name}
                             fill
                             sizes="(max-width: 640px) 80vw, 380px"
                             className="object-cover object-center"
@@ -59,10 +62,10 @@ export function IdentityCard({ className }: { className?: string }) {
                 {/* Name and role, directly under the photo */}
                 <div className="shrink-0 px-4 pb-4 pt-4 text-center">
                     <p dir="rtl" className="text-[clamp(1.1rem,2.2vh,1.5rem)] font-black leading-snug">
-                        {t('name')}
+                        {card.name}
                     </p>
                     <p dir="ltr" className="mt-1 text-[clamp(0.75rem,1.4vh,0.95rem)] font-semibold tracking-wide text-[#1E6B52] dark:text-[#8FD3B6]">
-                        {t('role')}
+                        {card.role}
                     </p>
                     <p className="mt-2 flex items-center justify-center gap-1.5 text-[clamp(0.62rem,1.1vh,0.75rem)] text-muted-foreground">
                         <MapPin className="h-3 w-3 shrink-0" />

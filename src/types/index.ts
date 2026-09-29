@@ -26,6 +26,9 @@ export interface Project {
     team?: string;
     customTimeline?: string;
     role?: string;
+    featured?: boolean;
+    /** 'auto' embeds the live site when it allows framing; 'off' always shows the screenshot. */
+    embedMode?: 'auto' | 'off';
 }
 
 export interface Experience {
@@ -76,6 +79,8 @@ export interface Achievement {
     tags?: string[];
     type?: string;
     category: 'certification' | 'award' | 'recognition' | 'publication' | 'competition' | 'hackathon';
+    /** Supporting documents/images. */
+    files?: string[];
 }
 
 export interface Skill {

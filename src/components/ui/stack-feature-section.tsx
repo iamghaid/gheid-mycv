@@ -10,7 +10,6 @@ import {
   SiVite, SiTypescript, SiTailwindcss, SiNextdotjs, 
   SiFlask, SiJavascript, SiVercel
 } from "react-icons/si";
-import { portfolioData } from "@/data/portfolio";
 import MagneticEffect from "@/components/ui/MagneticEffect";
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 import { useTranslations } from 'next-intl';

@@ -2,19 +2,19 @@
 
 import { motion } from 'framer-motion';
 import { Code2, Award, Sparkles, TrendingUp } from 'lucide-react';
-import { portfolioData } from '@/data/portfolio';
+import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
+import { useProfileStats } from '@/hooks/useProfileStats';
+import type { PortfolioData } from '@/types';
 import { Counter } from '@/components/ui/Counter';
 import { useTranslations } from 'next-intl';
 
 // Calculate metrics from portfolio data
-const calculateMetrics = () => {
+const calculateMetrics = (portfolioData: PortfolioData, yearsExp: number) => {
     const totalProjects = portfolioData.projects?.length || 0;
     const completedProjects = portfolioData.projects?.filter(p => p.status === 'completed').length || 0;
     const totalTechStack = portfolioData.techStack?.length || 0;
     const totalTools = portfolioData.tools?.length || 0;
 
-    // Calculate years of experience (assuming earliest project start date)
-    const yearsExp = 2; // Hardcoded based on resume/experience
 
     return {
         projects: totalProjects,
@@ -97,7 +97,7 @@ const StatCard = ({ value, label, icon, delay, gradient, isLowPowerMode }: StatC
 
 export function ProjectStats({ isLowPowerMode }: { isLowPowerMode?: boolean }) {
     const tStats = useTranslations('projectStats');
-    const metrics = calculateMetrics();
+    const metrics = calculateMetrics(useLocalizedPortfolio(), useProfileStats().yearsOfExperience);
 
     const stats = [
         {

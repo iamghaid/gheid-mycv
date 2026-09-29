@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, Briefcase, Rocket, ChevronDown, ChevronRight, Calendar, MapPin } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { cn, formatDate } from '@/lib/utils';
-import { portfolioData } from '@/data/portfolio';
 import { Education, Experience } from '@/types/index';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 import { useLocale } from 'next-intl';

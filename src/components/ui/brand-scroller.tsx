@@ -3,12 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
-
-const techStackItems = portfolioData.techStack.slice(0, 12);
-
-const toolItems = portfolioData.tools.slice(0, 10);
+import { useLocalizedPortfolio } from "@/hooks/useLocalizedPortfolio";
 
 const ScrollerItem = ({
     name,
@@ -45,6 +41,9 @@ const ScrollerItem = ({
 // Arabic page's RTL direction the rows anchored to the right edge, leaving part of
 // the line empty as they moved.
 export const BrandScroller = () => {
+    // Skills marked "Show in logo rows" in the admin (tech row: everything but tools).
+    const techStackItems = useLocalizedPortfolio().techStack.slice(0, 12);
+    if (!techStackItems.length) return null;
     return (
         <div dir="ltr" className="relative flex overflow-hidden py-2 w-full px-8 md:px-16 lg:px-24 [mask-image:linear-gradient(to_right,_rgba(0,_0,_0,_0),rgba(0,_0,_0,_1)_10%,rgba(0,_0,_0,_1)_90%,rgba(0,_0,_0,_0))]">
             <motion.div
@@ -75,6 +74,8 @@ export const BrandScroller = () => {
 };
 
 export const BrandScrollerReverse = () => {
+    const toolItems = useLocalizedPortfolio().tools.slice(0, 10);
+    if (!toolItems.length) return null;
     return (
         <div dir="ltr" className="relative flex overflow-hidden py-2 w-full px-8 md:px-16 lg:px-24 [mask-image:linear-gradient(to_right,_rgba(0,_0,_0,_0),rgba(0,_0,_0,_1)_10%,rgba(0,_0,_0,_1)_90%,rgba(0,_0,_0,_0))]">
             <motion.div

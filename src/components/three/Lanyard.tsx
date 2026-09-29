@@ -18,16 +18,15 @@ import * as THREE from 'three';
 import { useTheme } from 'next-themes';
 
 import { usePerformance } from '@/hooks/usePerformance';
-import { portfolioData } from '@/data/portfolio';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 import { useTranslations } from 'next-intl';
+import { useSiteView } from '@/providers/ContentProvider';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
 // Preload assets for faster startup
 useGLTF.preload('/lanyard/card.glb');
 useTexture.preload('/lanyard/lanyard.webp');
-useTexture.preload('/about/gheid.jpg');
 
 interface LanyardProps {
     position?: [number, number, number];
@@ -53,6 +52,8 @@ export function Lanyard({
     const { resolvedTheme } = useTheme();
     const isDark = resolvedTheme === 'dark';
     const tCard = useTranslations('contact.card');
+    // Name, role and photo come from the admin (Profile → Contact card).
+    const card = useSiteView().card;
 
     useEffect(() => {
         setIsMobile(window.innerWidth < 768);
@@ -70,17 +71,17 @@ export function Lanyard({
                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-blue-500 to-purple-500" />
                         <div className="relative w-40 aspect-square mb-6 rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl">
                             <img
-                                src={portfolioData.personal.avatar}
-                                alt={tCard('name')}
+                                src={card.avatar || portfolioData.personal.avatar}
+                                alt={card.name}
                                 className="w-full h-full object-cover object-center"
                             />
                         </div>
                         <div className="space-y-2">
                             <h3 dir="rtl" className="text-xl font-bold text-white">
-                                {tCard('name')}
+                                {card.name}
                             </h3>
                             <p dir="ltr" className="text-sm text-[#8FD3B6] font-semibold tracking-wide">
-                                {tCard('role')}
+                                {card.role}
                             </p>
                         </div>
                         <div className="mt-8 pt-6 border-t border-white/5 w-full">
@@ -210,9 +211,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, isDark = false }:
 
     const { nodes, materials } = useGLTF('/lanyard/card.glb') as any;
     const texture = useTexture('/lanyard/lanyard.webp');
-    const portrait = useTexture('/about/gheid.jpg');
-    const tCard = useTranslations('contact.card');
-    const cardTexture = useCardTexture(portrait, tCard('name'), tCard('role'));
+    const cardInfo = useSiteView().card;
+    const portrait = useTexture(cardInfo.avatar || '/about/gheid.jpg');
+    const cardTexture = useCardTexture(portrait, cardInfo.name, cardInfo.role);
 
     // Use the original lanyard texture directly for light mode (black)
     // For dark mode, convert the black background to dark grey (#333333)

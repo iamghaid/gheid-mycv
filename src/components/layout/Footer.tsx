@@ -26,7 +26,6 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/useIsMobile';
-import { portfolioData } from '@/data/portfolio';
 
 type SocialIconComponent = typeof Github;
 

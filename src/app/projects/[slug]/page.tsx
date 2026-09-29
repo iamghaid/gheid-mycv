@@ -1,27 +1,23 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { portfolioData } from '@/data/portfolio';
+import { getLocale } from 'next-intl/server';
 import { ProjectPageContent } from '@/components/projects/ProjectPageContent';
-import { getProjectImages } from '@/app/actions/getProjectImages';
+import { getSiteContent } from '@/lib/content/server';
+import { buildView } from '@/lib/content/view';
 
-export async function generateStaticParams() {
-    return portfolioData.projects.map((project) => ({
-        slug: project.slug,
-    }));
+/*
+ * Rendered on request from the database, so a project added in the admin has a page
+ * immediately (no build-time list of slugs).
+ */
+async function findProject(slug: string) {
+    const locale = (await getLocale()) === 'ar' ? 'ar' : 'en';
+    const view = buildView(await getSiteContent(), locale);
+    return view.portfolio.projects.find((p) => p.slug === slug);
 }
 
-export async function generateMetadata({
-    params,
-}: {
-    params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-    const { slug } = await params;
-    const project = portfolioData.projects.find((p) => p.slug === slug);
-
-    if (!project) {
-        return { title: 'Project not found' };
-    }
-
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const project = await findProject((await params).slug);
+    if (!project) return { title: 'Project not found' };
     return {
         title: project.title,
         description: project.description,
@@ -35,22 +31,7 @@ export async function generateMetadata({
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-    const project = portfolioData.projects.find((p) => p.slug === slug);
-
-    if (!project) {
-        notFound();
-    }
-
-    // Picks up screenshots named <slug>1.png, <slug>2.png ... in public/project/
-    // (webp/png/jpg/jpeg, up to 10) with no code change needed.
-    const galleryImages = await getProjectImages(slug, project.title);
-
-    const updatedProject = {
-        ...project,
-        image: galleryImages.length > 0 ? galleryImages[0] : project.image,
-        galleryImages: galleryImages.length > 0 ? galleryImages : project.galleryImages,
-    };
-
-    return <ProjectPageContent project={updatedProject} />;
+    const project = await findProject((await params).slug);
+    if (!project) notFound();
+    return <ProjectPageContent project={project} />;
 }

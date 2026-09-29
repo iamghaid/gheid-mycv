@@ -407,9 +407,7 @@
             }
         ],
         "card": {
-            "label": "Contact Card",
-            "name": "غيد عبد الكريم",
-            "role": "AI Engineer"
+            "label": "Contact Card"
         }
     },
     "footer": {
@@ -556,6 +554,7 @@
         "close": "Close chat"
     },
     "research": {
+        "inProgress": "In progress",
         "label": "Studies",
         "title": "Research & Hackathon Work",
         "subtitle": "Full write-ups behind the platforms I have designed and prototyped — accessibility, marketplace integrity, education, and opportunity discovery.",
@@ -624,6 +623,12 @@
         "filterView": "Filter View",
         "backToSelection": "Back to Selection",
         "noRecords": "No records found in this sector.",
+        "higherEducation": "Higher Education",
+        "current": "Current",
+        "continuousLearning": "Continuous Learning",
+        "comingSoon": "Coming Soon",
+        "comingSoonDesc": "Always eager to expand my horizons. Future academic pursuits, specialized certifications, and continuous growth to stay at the forefront of technology.",
+        "gpa": "GPA",
         "archiveIntro": "Navigate through the timeline of my career. Choose a lens to filter the experience database.",
         "tapToExplore": "Tap to explore {category} records",
         "showLess": "Show Less",
@@ -650,26 +655,6 @@
             "experienceTitle": "Turning Ideas",
             "experienceHighlight": "Into Reality",
             "experienceDescription": "Real-world projects that solve real problems. Building solutions that make a difference."
-        },
-        "nodes": {
-            "aou": "Arab Open University",
-            "aouDesc": "Bachelor of Science - Computer Science (GPA {gpa}).",
-            "deansList": "Dean's List",
-            "deansListDesc": "Spring 2026, Faculty of Computer Studies.",
-            "entertainmentClub": "Entertainment Club",
-            "entertainmentClubDesc": "Arab Open University - Organizing student activities and events.",
-            "computerClub": "Computer Club",
-            "computerClubDesc": "Arab Open University - Supporting classmates with technical concepts.",
-            "anaIjabi": "\"Ana Ijabi\" Volunteering",
-            "anaIjabiDesc": "40 volunteer hours - Jeddah Girls Club × Positive Development Association.",
-            "programmingCompetition": "Programming Competition",
-            "programmingCompetitionDesc": "1st Place - Programming Creativity Competition, AOU Jeddah.",
-            "freelanceDeveloper": "Freelance Developer",
-            "freelanceDeveloperDesc": "Software & AI solutions development, 2024 - Present.",
-            "mabdaWorkshop": "Mabda AI Workshop",
-            "mabdaWorkshopDesc": "AI, Generative AI & automation - 3-month intensive program.",
-            "hackathons": "Hackathons",
-            "hackathonsDesc": "NewTech, After Med, and Infaz Innovation hackathons."
         },
         "projectResource": "Project Resource",
         "viewDocsOn": "View documentation and project details on {domain}."
@@ -880,6 +865,13 @@
         "location": "JEDDAH, SAUDI ARABIA"
     },
     "projectDetail": {
+        "livePreview": "Live preview",
+        "desktop": "Desktop",
+        "mobile": "Mobile",
+        "openLive": "Open live project",
+        "embedBlocked": "This website doesn't allow being shown inside other pages, so here is a screenshot.",
+        "checkingLive": "Checking live preview…",
+        "loadingLive": "Loading the live site…",
         "loading1": "Initiating project overview...",
         "loading2": "Loading technical specifications...",
         "loading3": "Decrypting success metrics...",

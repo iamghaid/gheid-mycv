@@ -8,7 +8,6 @@ import { useLenis } from 'lenis/react';
 import { useTranslations } from 'next-intl';
 import { Search, X, Layers, ArrowRight, ArrowUpRight, Sparkles, Code2, Zap, Brain, Cpu, Wifi, Blocks, Globe, Database, LayoutGrid, List } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { portfolioData as basePortfolioData } from '@/data/portfolio';
 import { Project } from '@/types';
 import { HeroParallax } from '@/components/ui/hero-parallax';
 import { LogoTimeline, LogoItem } from '@/components/ui/logo-timeline';
@@ -23,8 +22,7 @@ import { getProjectCover } from '@/lib/projectCover';
 import { messageKey } from '@/lib/messageKey';
 import { DeferredMount } from '@/components/ui/DeferredMount';
 
-import { getProjectImages } from '@/app/actions/getProjectImages';
-import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
+import { useBasePortfolio, useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 
 type FilterType = 'all' | 'ongoing' | 'completed';
 
@@ -964,6 +962,8 @@ export default function ProjectsPage() {
     const tPage = useTranslations('projectsPage');
     // Shadows the module import so this component reads translated copy.
     const portfolioData = useLocalizedPortfolio();
+    // English records: category ids stay stable when the visible labels are Arabic.
+    const basePortfolioData = useBasePortfolio();
     const tCategories = useTranslations('projectCategories');
 
     const t = useTranslations('projects');
@@ -996,7 +996,7 @@ export default function ProjectsPage() {
         const filled = [...baseProducts];
         while (filled.length < 10) filled.push(...baseProducts);
         return filled.slice(0, 10);
-    }, []);
+    }, [portfolioData]);
 
     // Generate Timeline Items - delay is calculated in component based on index
     const timelineItems: LogoItem[] = useMemo(() => {
@@ -1019,7 +1019,7 @@ export default function ProjectsPage() {
                 row: row
             };
         });
-    }, []);
+    }, [portfolioData]);
 
     const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -1034,43 +1034,24 @@ export default function ProjectsPage() {
         const present = Array.from(
             new Set(basePortfolioData.projects.map((p) => p.category).filter(Boolean))
         ) as string[];
+        // Label: the category as written in the admin, in the reader's language.
+        const localizedLabel = (id: string) => {
+            const base = basePortfolioData.projects.find((p) => p.category === id);
+            return portfolioData.projects.find((p) => p.id === base?.id)?.category || id;
+        };
         return [
             { id: 'All', label: tPage('allCategories'), icon: Globe },
             ...present.map((id) => ({
                 id,
-                label: tCategories.has(messageKey(id)) ? tCategories(messageKey(id)) : id,
+                label: tCategories.has(messageKey(id)) ? tCategories(messageKey(id)) : localizedLabel(id),
                 icon: CATEGORY_ICONS[id] ?? Layers,
             })),
         ];
-    }, [tPage, tCategories]);
+    }, [tPage, tCategories, basePortfolioData, portfolioData]);
 
-    const [projects, setProjects] = useState(portfolioData.projects);
-
-    useEffect(() => {
-        const loadImages = async () => {
-            const updatedProjects = await Promise.all(
-                portfolioData.projects.map(async (project) => {
-                    // Try to find dynamic images
-                    try {
-                        const images = await getProjectImages(project.slug, project.title);
-                        if (images.length > 0) {
-                            return { ...project, image: images[0] }; // Use first image as cover
-                        }
-                    } catch (e) {
-                        console.error("Failed to load images for", project.title, e);
-                    }
-
-                    // Preload the placeholder image if no dynamic image is found
-                    const img = new Image();
-                    img.src = getPlaceholderImageUrl(project.title, project.slug, project.category);
-
-                    return project;
-                })
-            );
-            setProjects(updatedProjects);
-        };
-        loadImages();
-    }, []);
+    // Straight from the database content (thumbnail set in the admin), so edits and
+    // new projects show up without a reload.
+    const projects = portfolioData.projects;
 
     const filteredProjects = useMemo(() => {
         let currentProjects = [...projects];

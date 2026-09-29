@@ -28,15 +28,6 @@ import { CertificateShowcase } from "@/components/ui/certificate-marquee";
 import { GitHubShowcase } from "@/components/ui/github-showcase";
 import { ShowcaseStack } from "@/components/ui/showcase-stack";
 
-const experienceImages: Record<string, string> = {
-    'prof-mabda-ai': '/certificate/mabda-ai.jpg',
-    'prof-freelance-2024': '/about/gheid.jpg',
-    'lead-entertainment-club': '/journey/arabopenuniversity1.webp',
-    'lead-computer-club': '/journey/arabopenuniversity1.webp',
-    'vol-ana-ijabi': '/certificate/ana-ijabi.jpg',
-    'cert-hackathons-2026': '/certificate/after-med-hackathon.jpg',
-};
-
 type ShowcaseMember = {
     id: string;
     name: string;
@@ -65,14 +56,16 @@ function useShowcaseMembers(): ShowcaseMember[] {
                 period: exp.isOngoing
                     ? `${new Date(exp.startDate).getFullYear()} - ${t('present')}`
                     : `${new Date(exp.startDate).getFullYear()}`,
-                image: experienceImages[exp.id] || '/about/gheid.jpg',
+                // First image set in the admin (Experience → Images). No default
+                // photo: an experience without images simply shows no image.
+                image: exp.galleryImages?.[0] ?? '',
                 social: undefined,
             })),
             {
                 id: 'view-more',
                 name: t('viewMore'),
                 role: t('exploreAll'),
-                image: '/about/gheid.jpg',
+                image: '',
                 social: { website: '/experience' },
             },
         ],
@@ -669,7 +662,7 @@ export default function AboutSection() {
                                                 </p>
                                             )}
 
-                                            <div className="w-full mt-4 rounded-xl border border-neutral-200 dark:border-neutral-800 overflow-hidden relative group/card h-32">
+                                            {member.image && <div className="w-full mt-4 rounded-xl border border-neutral-200 dark:border-neutral-800 overflow-hidden relative group/card h-32">
                                                 <img
                                                     src={member.image}
                                                     alt={member.name}
@@ -680,7 +673,7 @@ export default function AboutSection() {
                                                         <Link href={member.social.website} target="_blank" className="px-5 py-2.5 bg-white text-black text-xs font-bold rounded-full hover:scale-105 transition-transform">{tShowcase('viewDetails')}</Link>
                                                     </div>
                                                 )}
-                                            </div>
+                                            </div>}
                                         </div>
                                     )
                                 }))} />

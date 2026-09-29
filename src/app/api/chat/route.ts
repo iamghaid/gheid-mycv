@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { portfolioData } from '@/data/portfolio';
+import { getSiteContent } from '@/lib/content/server';
+import { buildView } from '@/lib/content/view';
 
 // ─── Build system prompt from portfolio data ─────────────────────────────────
-function buildSystemPrompt(locale: string = 'en'): string {
-    const { personal, projects, experience, education, skills, achievements, softSkills, tools } = portfolioData as any;
+async function buildSystemPrompt(locale: string = 'en'): Promise<string> {
+    // Current content from the database, so the assistant knows about admin edits.
+    const portfolioData = buildView(await getSiteContent(), locale === 'ar' ? 'ar' : 'en').portfolio;
+    const { personal, projects, education, achievements, softSkills, tools } = portfolioData as any;
+    // These keys were read as `experience` / `skills`, which do not exist, so the
+    // assistant previously knew nothing about either.
+    const experience = portfolioData.experiences as any[];
+    const skills = portfolioData.hardSkills as any[];
 
     const projectList = (projects ?? [])
         .map((p: any) =>
@@ -195,7 +202,7 @@ export async function POST(req: NextRequest) {
 
         // Limit to last 20 messages to avoid token overflow
         const messages = body.messages.slice(-20);
-        const systemPrompt = buildSystemPrompt(body.locale);
+        const systemPrompt = await buildSystemPrompt(body.locale);
 
         let reply: string;
         let provider: string;

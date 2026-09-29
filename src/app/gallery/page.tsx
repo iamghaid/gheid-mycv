@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { portfolioData } from '@/data/portfolio';
 import { cn } from '@/lib/utils';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 

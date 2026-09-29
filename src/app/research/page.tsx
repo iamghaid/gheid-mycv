@@ -46,7 +46,8 @@ export default function ResearchPage() {
                             >
                                 <Book
                                     title={item.title}
-                                    eyebrow={item.date.match(/\d{4}/)?.[0]}
+                                    eyebrow={item.date.match(/\d{4}|[٠-٩]{4}/)?.[0]}
+                                    cover={item.cover}
                                     color={item.color}
                                     variant={item.variant}
                                     textured
@@ -61,6 +62,11 @@ export default function ResearchPage() {
 
                             <div className="flex w-full max-w-xs flex-col items-center">
                                 <h3 className="text-xl font-black leading-tight">{item.title}</h3>
+                                {item.status === 'in-progress' && (
+                                    <span className="mt-2 rounded-full border border-amber-500/40 bg-amber-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400">
+                                        {t('inProgress')}
+                                    </span>
+                                )}
                                 {!isArabic && (
                                     <p dir="rtl" className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">{item.titleAr}</p>
                                 )}
@@ -85,6 +91,17 @@ export default function ResearchPage() {
                                     {item.fileLabel}
                                     <ArrowUpRight className="h-3.5 w-3.5 rtl:-scale-x-100" />
                                 </Link>
+                                {item.links.length > 0 && (
+                                    <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1">
+                                        {item.links.map((l) => (
+                                            <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1 text-xs text-neutral-500 underline-offset-4 hover:text-foreground hover:underline dark:text-neutral-400">
+                                                {l.label}
+                                                <ArrowUpRight className="h-3 w-3 rtl:-scale-x-100" />
+                                            </a>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </motion.article>
                     ))}

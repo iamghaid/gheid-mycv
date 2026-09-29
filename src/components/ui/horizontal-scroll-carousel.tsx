@@ -2,8 +2,7 @@
 
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useMemo, useRef } from "react";
-import { portfolioData as basePortfolioData } from "@/data/portfolio";
-import { useLocalizedPortfolio } from "@/hooks/useLocalizedPortfolio";
+import { useBasePortfolio, useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 import {
   Users, Brain, Users2, MessageSquare, Puzzle,
   RefreshCw, BookOpen, Network, LineChart, Search
@@ -41,7 +40,8 @@ export const HorizontalScrollCarousel = () => {
   const targetRef = useRef(null);
   // Built per render rather than at module load so the card titles follow the locale.
   const portfolioData = useLocalizedPortfolio();
-  const englishSkills = basePortfolioData.softSkills;
+  // English names key the artwork and icons, so they stay the same in Arabic.
+  const englishSkills = useBasePortfolio().softSkills;
 
   const allCards: SkillCard[] = useMemo(
     () =>

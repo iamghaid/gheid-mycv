@@ -29,6 +29,8 @@ interface BookProps {
   title: string;
   /** Small line above the emblem, e.g. the year. */
   eyebrow?: string;
+  /** Optional cover image (set in the admin); replaces the ring emblem. */
+  cover?: string;
   variant?: "simple" | "stripe";
   width?: number | ResponsiveProp<number>;
   color?: string;
@@ -41,6 +43,7 @@ interface BookProps {
 export const Book = ({
   title,
   eyebrow,
+  cover,
   variant = "stripe",
   width = 196,
   color,
@@ -74,18 +77,28 @@ export const Book = ({
           {/* Upper panel: eyebrow + emblem */}
           <div
             className={clsx(
-              "relative flex flex-col items-center justify-center gap-[5cqw] px-[10%] pl-[16%]",
+              "relative overflow-hidden flex flex-col items-center justify-center gap-[5cqw] px-[10%] pl-[16%]",
               variant === "stripe" ? "h-[56%]" : "h-[58%]"
             )}
           >
+            {cover && (
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={cover} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                {/* Tint with the book colour so covers stay in the series' style */}
+                <div className="absolute inset-0 mix-blend-multiply opacity-60" style={{ background: _color }} />
+              </>
+            )}
             {eyebrow && (
-              <span className="absolute top-[7cqw] right-[8cqw] text-[5.5cqw] font-mono font-semibold tracking-[0.18em] uppercase opacity-70">
+              <span className="absolute z-10 top-[7cqw] right-[8cqw] text-[5.5cqw] font-mono font-semibold tracking-[0.18em] uppercase opacity-70">
                 {eyebrow}
               </span>
             )}
-            <div className="w-[46%] aspect-[64/44] opacity-90 transition-transform duration-700 ease-out group-hover:scale-105">
-              {_illustration}
-            </div>
+            {!cover && (
+              <div className="w-[46%] aspect-[64/44] opacity-90 transition-transform duration-700 ease-out group-hover:scale-105">
+                {_illustration}
+              </div>
+            )}
           </div>
 
           {/* Lower panel: title. The stripe variant darkens it into a band. */}

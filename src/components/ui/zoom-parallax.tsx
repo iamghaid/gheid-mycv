@@ -7,6 +7,32 @@ import { useRef } from 'react';
 interface ZoomImage {
 	src: string;
 	alt?: string;
+	/** Fixed position chosen in the admin (Gallery → Home page position); 'auto' fills in. */
+	slot?: string;
+}
+
+/** Admin slot names → index in SLOTS. */
+const SLOT_BY_NAME: Record<string, number> = {
+	center: 0, left: 1, right: 2, top: 3, bottom: 4, 'corner-top': 5, 'corner-bottom': 6,
+};
+
+/**
+ * Places each image: explicit slots first (the first image to claim a slot wins),
+ * then everything else fills the free slots in SLOT_ORDER. Returns [slotIndex, image].
+ */
+function assignSlots(images: ZoomImage[]): [number, ZoomImage][] {
+	const placed = new Map<number, ZoomImage>();
+	const rest: ZoomImage[] = [];
+	for (const img of images) {
+		const idx = img.slot ? SLOT_BY_NAME[img.slot] : undefined;
+		if (idx !== undefined && !placed.has(idx)) placed.set(idx, img);
+		else rest.push(img);
+	}
+	for (const idx of SLOT_ORDER) {
+		if (!rest.length) break;
+		if (!placed.has(idx)) placed.set(idx, rest.shift()!);
+	}
+	return [...placed.entries()];
 }
 
 interface ZoomParallaxProps {
@@ -75,7 +101,7 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 	// Fade the call to action out as the centre photo takes over the screen.
 	const ctaOpacity = useTransform(scrollYProgress, [0, 0.55, 0.8], [1, 1, 0]);
 
-	const used = SLOT_ORDER.slice(0, Math.min(images.length, SLOTS.length));
+	const used = assignSlots(images);
 
 	return (
 		<div ref={container} className="relative h-[300vh] z-[1]">
@@ -92,9 +118,8 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 						height: 'min(100vh, calc(100vw / var(--zp-a)))',
 					}}
 				>
-					{used.map((slotIndex, i) => {
+					{used.map(([slotIndex, image], i) => {
 						const slot = SLOTS[slotIndex];
-						const image = images[i];
 						const isCentre = slotIndex === 0;
 
 						return (

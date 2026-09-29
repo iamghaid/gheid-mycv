@@ -3,7 +3,6 @@
 import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { portfolioData } from "@/data/portfolio";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 import { useTranslations } from 'next-intl';

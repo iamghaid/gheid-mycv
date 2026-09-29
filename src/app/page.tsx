@@ -10,7 +10,6 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 
 import { Sparkles, Mail, ArrowRight, ArrowDown } from 'lucide-react';
 import { LoadingScreen } from '@/components/layout';
-import { portfolioData } from '@/data/portfolio';
 import { cn } from "@/lib/utils";
 import { SocialCorner } from '@/components/layout/SocialCorner';
 import { DeferredMount } from '@/components/ui/DeferredMount';

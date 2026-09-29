@@ -4,8 +4,7 @@ import { ArrowUp, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { portfolioData } from "@/data/portfolio";
-import { GPA_SCALE, GPA_VALUE, YEARS_OF_EXPERIENCE } from "@/data/profileStats";
+import { useProfileStats } from "@/hooks/useProfileStats";
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 import { useTranslations } from 'next-intl';
 
@@ -46,6 +45,7 @@ function Counter({ value, decimals = 0 }: { value: number; decimals?: number }) 
 export default function Testimonial1() {
     const tStats = useTranslations('statsSection');
     // Shadows the module import so this component reads translated copy.
+    const profileStats = useProfileStats();
     const portfolioData = useLocalizedPortfolio();
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -63,9 +63,9 @@ export default function Testimonial1() {
 
   const stats: StatItem[] = [
     {
-      value: GPA_VALUE,
+      value: profileStats.gpaValue,
       decimals: 1,
-      suffix: `/${GPA_SCALE.toFixed(1)}`,
+      suffix: `/${Number(profileStats.gpaScale).toFixed(1)}`,
       label: tStats('currentGpa'),
       href: "/resume",
       cta: tStats('viewResume'),
@@ -79,7 +79,7 @@ export default function Testimonial1() {
       cta: tStats('viewProjects'),
     },
     {
-      value: YEARS_OF_EXPERIENCE,
+      value: profileStats.yearsOfExperience,
       decimals: 0,
       suffix: "+",
       unit: tStats('years'),

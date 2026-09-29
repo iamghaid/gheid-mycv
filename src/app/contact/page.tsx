@@ -5,7 +5,6 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { useLocale, useTranslations } from 'next-intl';
 import { Send, CheckCircle, AlertCircle, Loader2, Mail, ArrowUpRight, Sparkles, HelpCircle, MessageSquare, ExternalLink, Github, Linkedin, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { portfolioData } from '@/data/portfolio';
 import dynamic from 'next/dynamic';
 
 const Lanyard = dynamic<{ position?: [number, number, number], gravity?: [number, number, number], isLowPowerMode?: boolean }>(() => import('@/components/three/Lanyard').then(mod => mod.Lanyard), {

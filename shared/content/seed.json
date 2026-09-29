@@ -1,0 +1,2150 @@
+{
+  "profile": {
+    "name": {
+      "en": "Gheid Abdulkarim",
+      "ar": "غيد عبدالكريم"
+    },
+    "title": {
+      "en": "Software Engineer & AI Developer",
+      "ar": "مهندسة برمجيات ومطوّرة ذكاء اصطناعي"
+    },
+    "headline": {
+      "en": "Software Engineer • AI Developer | Building Full-Stack Applications and AI-Powered Solutions",
+      "ar": "مهندسة برمجيات • مطوّرة ذكاء اصطناعي | أبني تطبيقات متكاملة وحلولًا مدعومة بالذكاء الاصطناعي"
+    },
+    "intro": {
+      "en": "Computer Science student and software engineer in Jeddah, building full-stack applications and AI-powered solutions — from idea to deployment.",
+      "ar": "طالبة علوم حاسب ومهندسة برمجيات من جدة، أبني تطبيقات متكاملة وحلولًا مدعومة بالذكاء الاصطناعي — من الفكرة إلى النشر."
+    },
+    "bio": {
+      "en": "I'm a Computer Science student and software engineer based in Jeddah, building full-stack web applications and AI-powered solutions. My path into programming started years before my freelance work did — I've been writing code since around 2022, and turned that into professional freelance work in AI solutions and full-stack development starting in 2024. I work across intelligent automation, prompt engineering, and modern AI technologies, and I care about shipping things end to end — from idea, to design, to deployment.",
+      "ar": "طالبة علوم حاسب ومهندسة برمجيات من جدة، أبني تطبيقات ويب متكاملة وحلولًا مدعومة بالذكاء الاصطناعي. بدأت أكتب الكود من ٢٠٢٢ تقريبًا، وحوّلت ذلك إلى عمل حر احترافي في حلول الذكاء الاصطناعي والتطوير المتكامل من ٢٠٢٤. أشتغل على الأتمتة الذكية وهندسة البرومبت وتقنيات الذكاء الاصطناعي الحديثة، ويهمّني أن أُسلّم العمل كاملًا — من الفكرة إلى التصميم إلى النشر."
+    },
+    "location": {
+      "en": "Jeddah, Saudi Arabia",
+      "ar": "جدة، المملكة العربية السعودية"
+    },
+    "avatar": "/about/gheid.jpg",
+    "heroImage": "/about/gheid-hero.jpg",
+    "cardName": {
+      "en": "غيد عبد الكريم",
+      "ar": "غيد عبد الكريم"
+    },
+    "cardRole": {
+      "en": "AI Engineer",
+      "ar": "AI Engineer"
+    },
+    "email": "gheidabdulkarim@gmail.com",
+    "phone": "+966571244582",
+    "website": "",
+    "socialLinks": [
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/iamghaid",
+        "username": "iamghaid"
+      },
+      {
+        "platform": "LinkedIn",
+        "url": "https://www.linkedin.com/in/gheid-abdulkarim-6567872ab",
+        "username": "Gheid Abdulkarim"
+      }
+    ],
+    "languages": [
+      {
+        "name": {
+          "en": "Arabic",
+          "ar": "العربية"
+        },
+        "level": {
+          "en": "Native",
+          "ar": "اللغة الأم"
+        }
+      },
+      {
+        "name": {
+          "en": "English",
+          "ar": "الإنجليزية"
+        },
+        "level": {
+          "en": "Professional",
+          "ar": "مستوى احترافي"
+        }
+      },
+      {
+        "name": {
+          "en": "Turkish",
+          "ar": "التركية"
+        },
+        "level": {
+          "en": "Elementary",
+          "ar": "مستوى مبتدئ"
+        }
+      }
+    ],
+    "gpaValue": 3.8,
+    "gpaScale": 4,
+    "careerStartYear": 2024
+  },
+  "resume": {
+    "url": "",
+    "fileName": "",
+    "updatedAt": ""
+  },
+  "collections": {
+    "projects": [
+      {
+        "id": "ad46254c-8f12-4363-8b1e-37ec661d63a5",
+        "data": {
+          "slug": "qurb",
+          "name": {
+            "en": "Qurb",
+            "ar": "قُرب"
+          },
+          "description": {
+            "en": "A planned AI-powered platform for Quran memorization circles, currently in the planning and research phase.",
+            "ar": "منصة مخطّط لها مدعومة بالذكاء الاصطناعي لحلقات تحفيظ القرآن، حاليًا في مرحلة التخطيط والبحث."
+          },
+          "longDescription": {
+            "en": "Qurb is my graduation project — a platform planned to support Quran memorization circles (halaqat). We're currently past the ideation stage and into technical planning: Firebase for the backend, React or React Native for the frontend, and ongoing research into which AI/LLM approach fits the memorization-support features best. Development hasn't started yet.",
+            "ar": "قُرب هو مشروع تخرّجي — منصة مخطّط لها لدعم حلقات تحفيظ القرآن. تجاوزنا مرحلة توليد الفكرة ودخلنا التخطيط التقني: Firebase للواجهة الخلفية، وReact أو React Native للواجهة الأمامية، مع بحث مستمر عن مقاربة الذكاء الاصطناعي الأنسب لميزات دعم الحفظ. التطوير لم يبدأ بعد."
+          },
+          "category": {
+            "en": "AI & Software Engineering",
+            "ar": "ذكاء اصطناعي وهندسة برمجيات"
+          },
+          "role": {
+            "en": "Full-stack Developer (Graduation Project)",
+            "ar": "مطوّرة متكاملة (مشروع تخرّج)"
+          },
+          "team": {
+            "en": "Personal / Graduation Project",
+            "ar": "مشروع شخصي / تخرّج"
+          },
+          "status": "ongoing",
+          "featured": false,
+          "liveUrl": "",
+          "embedMode": "auto",
+          "repoUrl": "",
+          "documentUrl": {
+            "en": "",
+            "ar": ""
+          },
+          "thumbnail": "/project/qurb-app.png",
+          "screenshots": [],
+          "technologies": [
+            "Firebase",
+            "React",
+            "React Native (planned)",
+            "AI (research phase)"
+          ],
+          "tools": [
+            "Git",
+            "GitHub",
+            "VS Code"
+          ],
+          "highlights": {
+            "en": [
+              "Currently in planning & research phase",
+              "Firebase + React stack decided",
+              "AI approach under research"
+            ],
+            "ar": [
+              "حاليًا في مرحلة التخطيط والبحث",
+              "تم اعتماد Firebase مع React",
+              "مقاربة الذكاء الاصطناعي قيد البحث"
+            ]
+          },
+          "challenges": [
+            {
+              "problem": {
+                "en": "Finding a graduation project idea that was realistic to build and genuinely useful.",
+                "ar": "إيجاد فكرة مشروع تخرّج واقعية التنفيذ ومفيدة فعلًا."
+              },
+              "solution": {
+                "en": "Spent significant time researching the problem space and validating the idea before committing to technical planning.",
+                "ar": "قضيت وقتًا طويلًا في بحث المشكلة والتحقق من الفكرة قبل الالتزام بالتخطيط التقني."
+              }
+            }
+          ],
+          "startDate": "2025-09-01",
+          "endDate": ""
+        },
+        "sortOrder": 0,
+        "published": true
+      },
+      {
+        "id": "6431211e-2a83-4d53-adc3-defba26a053a",
+        "data": {
+          "slug": "go-mission",
+          "name": {
+            "en": "Go Mission",
+            "ar": "Go Mission"
+          },
+          "description": {
+            "en": "A classroom game where players with different sensory/communication limitations must collaborate to complete AI-generated missions.",
+            "ar": "لعبة صفّية يتعاون فيها لاعبون بقيود حسّية وتواصلية مختلفة لإنجاز مهام يولّدها الذكاء الاصطناعي."
+          },
+          "longDescription": {
+            "en": "Go Mission is a classroom-based collaborative game. Each player is assigned a role with specific communication or sensory limitations, and the group has to work together to complete a mission inside the classroom despite those constraints. Missions aren't hardcoded — they're generated by AI based on a prompt describing the classroom's actual layout and available resources, so every mission is realistically completable in the room it's played in.",
+            "ar": "Go Mission لعبة تعاونية داخل الفصل الدراسي. يُسنَد لكل لاعب دور بقيود تواصلية أو حسّية محددة، وعلى المجموعة العمل معًا لإنجاز مهمة داخل الفصل رغم تلك القيود. المهام ليست مكتوبة مسبقًا — يولّدها الذكاء الاصطناعي بناءً على وصف لتخطيط الفصل وموارده المتاحة، فتكون كل مهمة قابلة للتنفيذ فعليًا في الغرفة التي تُلعب فيها."
+          },
+          "category": {
+            "en": "Software Engineering",
+            "ar": "هندسة برمجيات"
+          },
+          "role": {
+            "en": "Developer",
+            "ar": "مطوّرة"
+          },
+          "team": {
+            "en": "Personal Project",
+            "ar": "مشروع شخصي"
+          },
+          "status": "completed",
+          "featured": false,
+          "liveUrl": "https://go-mission-312794797291.europe-west2.run.app/",
+          "embedMode": "auto",
+          "repoUrl": "",
+          "documentUrl": {
+            "en": "",
+            "ar": ""
+          },
+          "thumbnail": "/project/go-mission.png",
+          "screenshots": [],
+          "technologies": [
+            "JavaScript",
+            "Firebase",
+            "AI (prompt-generated missions)"
+          ],
+          "tools": [
+            "Git",
+            "GitHub"
+          ],
+          "highlights": {
+            "en": [
+              "AI-generated, environment-aware missions",
+              "Role-based player constraints",
+              "Classroom-focused collaborative UX"
+            ],
+            "ar": [
+              "مهام مولّدة بالذكاء الاصطناعي وواعية بالبيئة",
+              "قيود لكل لاعب حسب دوره",
+              "تجربة تعاونية مصمّمة للفصل الدراسي"
+            ]
+          },
+          "challenges": [
+            {
+              "problem": {
+                "en": "Missions needed to be realistically completable with whatever objects and space were actually available in a given classroom.",
+                "ar": "كان لا بدّ أن تكون المهام قابلة للإنجاز فعلًا بالأدوات والمساحة المتوفرة في كل فصل."
+              },
+              "solution": {
+                "en": "Designed a prompt that feeds the AI details about the classroom and its available resources, so it generates a mission tailored to what's actually achievable in that environment.",
+                "ar": "صمّمت برومبت يزوّد الذكاء الاصطناعي بتفاصيل الفصل وموارده، فيولّد مهمة مفصّلة على ما هو ممكن في تلك البيئة تحديدًا."
+              }
+            }
+          ],
+          "startDate": "2026-01-01",
+          "endDate": ""
+        },
+        "sortOrder": 1,
+        "published": true
+      },
+      {
+        "id": "33b724f4-3b1c-4a90-b92e-8220c171e677",
+        "data": {
+          "slug": "global-eagle-travel",
+          "name": {
+            "en": "Global Eagle Travel",
+            "ar": "Global Eagle Travel"
+          },
+          "description": {
+            "en": "A travel and tourism website with an admin interface that lets non-developers edit site content directly.",
+            "ar": "موقع سفر وسياحة بواجهة إدارية تتيح لغير المبرمجين تعديل محتوى الموقع مباشرة."
+          },
+          "longDescription": {
+            "en": "Global Eagle Travel is a travel and tourism website built so the site owner can update content — like the header and other sections — without touching code. I built an Admin Interface connected to Firebase Realtime Database that lets an administrator log in and edit the site's content directly.",
+            "ar": "Global Eagle Travel موقع سفر وسياحة بُني ليتمكّن صاحب الموقع من تحديث المحتوى — كالترويسة وبقية الأقسام — دون لمس الكود. بنيت واجهة إدارية متصلة بـFirebase Realtime Database تتيح للمشرف تسجيل الدخول وتعديل محتوى الموقع مباشرة."
+          },
+          "category": {
+            "en": "Software Engineering",
+            "ar": "هندسة برمجيات"
+          },
+          "role": {
+            "en": "Full-stack Developer",
+            "ar": "مطوّرة متكاملة"
+          },
+          "team": {
+            "en": "Personal Project",
+            "ar": "مشروع شخصي"
+          },
+          "status": "completed",
+          "featured": false,
+          "liveUrl": "https://iamghaid.github.io/eagle/index.html",
+          "embedMode": "auto",
+          "repoUrl": "",
+          "documentUrl": {
+            "en": "",
+            "ar": ""
+          },
+          "thumbnail": "/project/global-eagle-travel.png",
+          "screenshots": [],
+          "technologies": [
+            "Firebase Realtime Database",
+            "HTML",
+            "CSS"
+          ],
+          "tools": [
+            "Git",
+            "GitHub"
+          ],
+          "highlights": {
+            "en": [
+              "Admin interface for non-developers",
+              "Realtime content management via Firebase"
+            ],
+            "ar": [
+              "واجهة إدارية لغير المبرمجين",
+              "إدارة محتوى لحظية عبر Firebase"
+            ]
+          },
+          "challenges": [
+            {
+              "problem": {
+                "en": "The site needed to be editable by a non-technical admin without requiring a developer to change code for every content update.",
+                "ar": "احتاج الموقع أن يكون قابلًا للتعديل من مشرف غير تقني دون الحاجة لمبرمج مع كل تحديث محتوى."
+              },
+              "solution": {
+                "en": "Built a dedicated Admin Interface wired to Firebase Realtime Database, so content changes happen through a login-protected UI instead of the codebase.",
+                "ar": "بنيت واجهة إدارية مخصّصة موصولة بـFirebase Realtime Database، فصارت التعديلات تتم عبر واجهة محمية بتسجيل دخول بدل الكود."
+              }
+            }
+          ],
+          "startDate": "2025-01-01",
+          "endDate": ""
+        },
+        "sortOrder": 2,
+        "published": true
+      },
+      {
+        "id": "58d92cb6-24ef-4256-ab19-4a398387c265",
+        "data": {
+          "slug": "marjan-al-sharq",
+          "name": {
+            "en": "Marjan Al Sharq Security Services",
+            "ar": "مرجان الشرق للخدمات الأمنية"
+          },
+          "description": {
+            "en": "Visual identity and profile design for a security services company, including logo, color palette, and a ~24-page company profile.",
+            "ar": "تصميم الهوية البصرية والملف التعريفي لشركة خدمات أمنية، شاملًا الشعار ولوحة الألوان وملفًا من ٢٤ صفحة تقريبًا."
+          },
+          "longDescription": {
+            "en": "Designed the profile and visual identity for Marjan Al Sharq Security Services — including the logo, color palette, and overall design direction — and laid out approximately 24 pages for the company's profile document.",
+            "ar": "صمّمت الملف التعريفي والهوية البصرية لشركة مرجان الشرق للخدمات الأمنية — شاملًا الشعار ولوحة الألوان والاتجاه التصميمي العام — ونفّذت تنسيق ٢٤ صفحة تقريبًا للملف التعريفي للشركة."
+          },
+          "category": {
+            "en": "Design",
+            "ar": "تصميم"
+          },
+          "role": {
+            "en": "Designer",
+            "ar": "مصمّمة"
+          },
+          "team": {
+            "en": "Freelance",
+            "ar": "عمل حر"
+          },
+          "status": "completed",
+          "featured": false,
+          "liveUrl": "",
+          "embedMode": "auto",
+          "repoUrl": "",
+          "documentUrl": {
+            "en": "/documents/marjan-al-sharq-en.pdf",
+            "ar": "/documents/marjan-al-sharq-ar.pdf"
+          },
+          "thumbnail": "",
+          "screenshots": [],
+          "technologies": [
+            "Design",
+            "Branding"
+          ],
+          "tools": [
+            "Design Tools"
+          ],
+          "highlights": {
+            "en": [
+              "Logo & visual identity design",
+              "Color palette",
+              "~24-page company profile"
+            ],
+            "ar": [
+              "تصميم الشعار والهوية البصرية",
+              "لوحة الألوان",
+              "ملف تعريفي من ٢٤ صفحة تقريبًا"
+            ]
+          },
+          "challenges": [],
+          "startDate": "2025-01-01",
+          "endDate": ""
+        },
+        "sortOrder": 3,
+        "published": true
+      },
+      {
+        "id": "4918914b-9467-4ba8-a820-22d3bc4cf0b5",
+        "data": {
+          "slug": "mizan",
+          "name": {
+            "en": "Mizan",
+            "ar": "ميزان"
+          },
+          "description": {
+            "en": "An integrity layer for auction platforms that flags unusual bidding patterns and makes any later tampering with the record detectable.",
+            "ar": "طبقة نزاهة لمنصات المزادات ترصد أنماط المزايدة غير الاعتيادية وتجعل أي تلاعب لاحق بالسجل قابلًا للكشف."
+          },
+          "longDescription": {
+            "en": "Mizan (ميزان) was built for the Auctions track of the Infaz Innovation Hackathon, run by Qassim University with the Infaz Assignment & Liquidation Center. Auction platforms can be gamed in ways that are invisible in a raw bid log — coordinated bidders pushing a price up, or a record quietly edited after the fact. Mizan sits alongside the existing auction engine as a review layer: it engineers behavioural features per bidder, scores each auction for unusual activity, and links every bid into a cryptographic chain so that altering an earlier entry breaks the chain and shows up. Every output is framed as an unusual pattern recommended for review, never an automated fraud verdict, because the decision stays with a human reviewer.",
+            "ar": "بُني ميزان لمسار المزادات في هاكاثون إنفاذ للابتكار، الذي نظّمته جامعة القصيم مع مركز إنفاذ للتصفية والإسناد. منصات المزادات يمكن التلاعب بها بطرق لا تظهر في سجل المزايدات الخام — مزايدون متواطئون يرفعون السعر، أو سجل يُعدَّل بهدوء بعد وقوعه. يعمل ميزان بجانب محرك المزادات القائم كطبقة مراجعة: يهندس خصائص سلوكية لكل مزايد، ويقيّم كل مزاد بحثًا عن نشاط غير اعتيادي، ويربط كل مزايدة في سلسلة تشفيرية بحيث يكسر أي تعديل على مدخل سابق السلسلة فيظهر. كل مخرجاته تُصاغ كـ«نمط غير اعتيادي — يُنصح بالمراجعة»، لا كحكم آلي بالاحتيال، لأن القرار يبقى للمراجع البشري."
+          },
+          "category": {
+            "en": "Data & AI",
+            "ar": "بيانات وذكاء اصطناعي"
+          },
+          "role": {
+            "en": "Data & AI Developer",
+            "ar": "مطوّرة بيانات وذكاء اصطناعي"
+          },
+          "team": {
+            "en": "Infaz Innovation Hackathon Team",
+            "ar": "فريق هاكاثون إنفاذ للابتكار"
+          },
+          "status": "completed",
+          "featured": false,
+          "liveUrl": "",
+          "embedMode": "auto",
+          "repoUrl": "",
+          "documentUrl": {
+            "en": "/research/mizan-study.docx",
+            "ar": "/research/mizan-study.docx"
+          },
+          "thumbnail": "",
+          "screenshots": [],
+          "technologies": [
+            "Python",
+            "Pandas",
+            "Anomaly Detection",
+            "Feature Engineering",
+            "Hash Chaining"
+          ],
+          "tools": [
+            "Git",
+            "GitHub",
+            "VS Code"
+          ],
+          "highlights": {
+            "en": [
+              "Modelled 8,562 bids across 120 auctions and 699 bidders",
+              "Engineered per-bidder behavioural features (bid speed, increment size, repeat pairings)",
+              "Tamper-evident bid record via a cryptographically linked chain",
+              "Explainable flags for human review, never an automated verdict"
+            ],
+            "ar": [
+              "نمذجة ٨٬٥٦٢ مزايدة عبر ١٢٠ مزادًا و٦٩٩ مزايدًا",
+              "هندسة خصائص سلوكية لكل مزايد (سرعة المزايدة، حجم الزيادة، التكرار بين المزايدين)",
+              "سجل مزايدات مقاوم للتلاعب عبر سلسلة مترابطة تشفيريًا",
+              "مؤشرات قابلة للتفسير للمراجعة البشرية — لا حكم آلي"
+            ]
+          },
+          "challenges": [
+            {
+              "problem": {
+                "en": "Real auction data with labelled manipulation does not exist publicly, so there was nothing to develop or validate the detection against.",
+                "ar": "لا توجد بيانات مزادات حقيقية موسومة بالتلاعب متاحة للعموم، فلم يكن هناك ما يُبنى عليه الكشف أو يُتحقّق منه."
+              },
+              "solution": {
+                "en": "Generated a synthetic dataset modelled on Infaz auction structure — 120 auctions, 699 bidders, 8,562 bids — with 1,153 bids labelled as a suspicious pattern, giving a ground truth to measure the indicators against.",
+                "ar": "ولّدت بيانات اصطناعية مبنية على هيكل مزادات إنفاذ — ١٢٠ مزادًا و٦٩٩ مزايدًا و٨٬٥٦٢ مزايدة — منها ١٬١٥٣ مزايدة موسومة كنمط مشبوه، ما أعطى مرجعًا حقيقيًا لقياس المؤشرات عليه."
+              }
+            },
+            {
+              "problem": {
+                "en": "An automated fraud label on a real bidder is a serious accusation, and a wrong one is costly.",
+                "ar": "وسم مزايد حقيقي آليًا بـ«الاحتيال» اتهام خطير، وتكلفة الخطأ فيه عالية."
+              },
+              "solution": {
+                "en": "Designed every output as an explainable indicator that names which behaviour triggered it and routes to a human reviewer, rather than a score that silently decides.",
+                "ar": "صمّمت كل مخرج كمؤشر قابل للتفسير يسمّي السلوك الذي أطلقه ويحوّله لمراجع بشري، بدل درجة تقرّر بصمت."
+              }
+            }
+          ],
+          "startDate": "2026-08-01",
+          "endDate": "2026-08-31"
+        },
+        "sortOrder": 4,
+        "published": true
+      }
+    ],
+    "experience": [
+      {
+        "id": "c43d3dfb-6694-4f16-a449-abee397eb1ef",
+        "data": {
+          "company": {
+            "en": "Mabda AI",
+            "ar": "مبدأ للذكاء الاصطناعي"
+          },
+          "position": {
+            "en": "AI & Automation Workshop Participant",
+            "ar": "مشاركة في ورشة الذكاء الاصطناعي والأتمتة"
+          },
+          "description": {
+            "en": "An intensive 3-month practical workshop focused on AI, Generative AI, and automation.",
+            "ar": "ورشة عملية مكثّفة لمدة ٣ أشهر حول الذكاء الاصطناعي والذكاء الاصطناعي التوليدي والأتمتة."
+          },
+          "responsibilities": {
+            "en": [
+              "Developed skills in Prompt Engineering, Generative AI, and AI-assisted design and development",
+              "Built AI agents and automated workflows using n8n, webhooks, and AI models",
+              "Applied AI tools to develop websites, digital content, and business solutions",
+              "Collaborated on team-based projects and delivered technical presentations"
+            ],
+            "ar": [
+              "تطوير مهارات في هندسة البرومبت والذكاء الاصطناعي التوليدي والتصميم والتطوير بمساعدة الذكاء الاصطناعي",
+              "بناء وكلاء ذكاء اصطناعي وسير عمل مؤتمت باستخدام n8n وWebhooks ونماذج الذكاء الاصطناعي",
+              "توظيف أدوات الذكاء الاصطناعي في تطوير المواقع والمحتوى الرقمي وحلول الأعمال",
+              "العمل ضمن فرق على مشاريع مشتركة وتقديم عروض تقنية"
+            ]
+          },
+          "location": {
+            "en": "Jeddah, Saudi Arabia",
+            "ar": "جدة، السعودية"
+          },
+          "type": "training",
+          "group": "professional",
+          "startDate": "2026-05-01",
+          "endDate": "",
+          "current": true,
+          "technologies": {
+            "en": [
+              "Prompt Engineering",
+              "Generative AI",
+              "n8n",
+              "AI Agents"
+            ],
+            "ar": [
+              "هندسة البرومبت",
+              "الذكاء الاصطناعي التوليدي",
+              "n8n",
+              "وكلاء ذكاء اصطناعي"
+            ]
+          },
+          "images": [
+            "/certificate/mabda-ai.jpg"
+          ],
+          "logo": "",
+          "link": ""
+        },
+        "sortOrder": 0,
+        "published": true
+      },
+      {
+        "id": "787205c4-bee2-4b0f-a5ff-c351d96104c1",
+        "data": {
+          "company": {
+            "en": "Independent / Freelance",
+            "ar": "عمل حر / مستقلة"
+          },
+          "position": {
+            "en": "Freelance Software Developer & AI Solutions Developer",
+            "ar": "مطوّرة برمجيات وحلول ذكاء اصطناعي بالعمل الحر"
+          },
+          "description": {
+            "en": "Freelance work spanning full-stack development and applied AI, from client discovery through deployment.",
+            "ar": "عمل حر يمتد من التطوير المتكامل إلى الذكاء الاصطناعي التطبيقي، من فهم احتياج العميل حتى النشر."
+          },
+          "responsibilities": {
+            "en": [
+              "Developed responsive web applications using modern technologies",
+              "Built AI-powered solutions using LLMs and prompt engineering",
+              "Integrated REST APIs and third-party services",
+              "Managed projects end to end — planning, design, and deployment",
+              "Designed professional profile materials and digital designs for companies",
+              "Designed AI assistants and intelligent automation workflows (incl. n8n)"
+            ],
+            "ar": [
+              "تطوير تطبيقات ويب متجاوبة بتقنيات حديثة",
+              "بناء حلول مدعومة بالذكاء الاصطناعي باستخدام نماذج اللغة الكبيرة وهندسة البرومبت",
+              "دمج واجهات REST وخدمات الطرف الثالث",
+              "إدارة المشاريع من طرف إلى طرف — التخطيط والتصميم والنشر",
+              "تصميم ملفات تعريفية احترافية وتصاميم رقمية للشركات",
+              "تصميم مساعدين أذكياء وسير عمل أتمتة ذكية (منها n8n)"
+            ]
+          },
+          "location": {
+            "en": "Jeddah, Saudi Arabia",
+            "ar": "جدة، السعودية"
+          },
+          "type": "freelance",
+          "group": "professional",
+          "startDate": "2024-01-01",
+          "endDate": "",
+          "current": true,
+          "technologies": {
+            "en": [
+              "React",
+              "Node.js",
+              "Firebase",
+              "Prompt Engineering",
+              "LLMs",
+              "n8n"
+            ],
+            "ar": [
+              "React",
+              "Node.js",
+              "Firebase",
+              "هندسة البرومبت",
+              "LLMs",
+              "n8n"
+            ]
+          },
+          "images": [],
+          "logo": "",
+          "link": ""
+        },
+        "sortOrder": 1,
+        "published": true
+      },
+      {
+        "id": "53363ba4-1181-42f5-b767-424207f9565e",
+        "data": {
+          "company": {
+            "en": "Entertainment Club — Arab Open University",
+            "ar": "النادي الترفيهي — الجامعة العربية المفتوحة"
+          },
+          "position": {
+            "en": "Club Member",
+            "ar": "عضوة نادي"
+          },
+          "description": {
+            "en": "Contributed to organizing and running student activities and events as part of the university's Entertainment Club.",
+            "ar": "المساهمة في تنظيم وإدارة الأنشطة والفعاليات الطلابية ضمن النادي الترفيهي بالجامعة."
+          },
+          "responsibilities": {
+            "en": [],
+            "ar": []
+          },
+          "location": {
+            "en": "Jeddah, Saudi Arabia",
+            "ar": "جدة، السعودية"
+          },
+          "type": "volunteer",
+          "group": "leadership",
+          "startDate": "2023-01-01",
+          "endDate": "",
+          "current": false,
+          "technologies": {
+            "en": [
+              "Event Organization",
+              "Teamwork",
+              "Communication"
+            ],
+            "ar": [
+              "تنظيم الفعاليات",
+              "العمل الجماعي",
+              "التواصل"
+            ]
+          },
+          "images": [
+            "/journey/arabopenuniversity1.webp"
+          ],
+          "logo": "",
+          "link": ""
+        },
+        "sortOrder": 2,
+        "published": true
+      },
+      {
+        "id": "ed67af39-fa48-417f-bcc6-10b8c96c68b9",
+        "data": {
+          "company": {
+            "en": "Computer Club — Arab Open University",
+            "ar": "نادي الحاسب — الجامعة العربية المفتوحة"
+          },
+          "position": {
+            "en": "Club Member",
+            "ar": "عضوة نادي"
+          },
+          "description": {
+            "en": "Supported classmates with technical concepts and contributed to Computer Club activities within the Faculty of Computer Studies.",
+            "ar": "دعم الزميلات في المفاهيم التقنية والمساهمة في أنشطة نادي الحاسب ضمن كلية الدراسات الحاسوبية."
+          },
+          "responsibilities": {
+            "en": [],
+            "ar": []
+          },
+          "location": {
+            "en": "Jeddah, Saudi Arabia",
+            "ar": "جدة، السعودية"
+          },
+          "type": "volunteer",
+          "group": "leadership",
+          "startDate": "2023-01-01",
+          "endDate": "",
+          "current": false,
+          "technologies": {
+            "en": [
+              "Mentoring",
+              "Technical Support",
+              "Community Building"
+            ],
+            "ar": [
+              "الإرشاد والتوجيه",
+              "الدعم التقني",
+              "بناء المجتمع"
+            ]
+          },
+          "images": [
+            "/journey/arabopenuniversity1.webp"
+          ],
+          "logo": "",
+          "link": ""
+        },
+        "sortOrder": 3,
+        "published": true
+      },
+      {
+        "id": "4723b9cd-e316-43dd-b7c7-9424ced60ef3",
+        "data": {
+          "company": {
+            "en": "Jeddah Girls Club × Positive Development Association",
+            "ar": "نادي فتيات جدة × جمعية التنمية الإيجابية"
+          },
+          "position": {
+            "en": "\"Ana Ijabi\" Volunteering Initiative",
+            "ar": "مبادرة «أنا إيجابي» التطوعية"
+          },
+          "description": {
+            "en": "40 volunteer hours across community, cultural, and organizational fields.",
+            "ar": "٤٠ ساعة تطوّعية في المجالات المجتمعية والثقافية والتنظيمية."
+          },
+          "responsibilities": {
+            "en": [],
+            "ar": []
+          },
+          "location": {
+            "en": "Jeddah, Saudi Arabia",
+            "ar": "جدة، السعودية"
+          },
+          "type": "volunteer",
+          "group": "volunteer",
+          "startDate": "2024-08-01",
+          "endDate": "",
+          "current": false,
+          "technologies": {
+            "en": [
+              "Volunteering",
+              "Community Engagement"
+            ],
+            "ar": [
+              "العمل التطوعي",
+              "المشاركة المجتمعية"
+            ]
+          },
+          "images": [
+            "/certificate/ana-ijabi.jpg"
+          ],
+          "logo": "",
+          "link": ""
+        },
+        "sortOrder": 4,
+        "published": true
+      },
+      {
+        "id": "26c64b40-9763-4892-8c63-b7247c2a194d",
+        "data": {
+          "company": {
+            "en": "NewTech · After Med · Infaz Innovation",
+            "ar": "نيوتك · أفتر ميد · إنفاذ للابتكار"
+          },
+          "position": {
+            "en": "Hackathon Participant",
+            "ar": "مشاركة في هاكاثونات"
+          },
+          "description": {
+            "en": "Participated in multiple hackathons building AI-powered prototypes: data analysis, healthcare tech, and marketplace trust/asset-marketing platforms.",
+            "ar": "المشاركة في عدة هاكاثونات ببناء نماذج أولية مدعومة بالذكاء الاصطناعي: تحليل البيانات، وتقنيات الصحة، ومنصات نزاهة الأسواق وتسويق الأصول."
+          },
+          "responsibilities": {
+            "en": [],
+            "ar": []
+          },
+          "location": {
+            "en": "Saudi Arabia",
+            "ar": "السعودية"
+          },
+          "type": "training",
+          "group": "certifications",
+          "startDate": "2026-01-01",
+          "endDate": "",
+          "current": false,
+          "technologies": {
+            "en": [
+              "Rapid Prototyping",
+              "AI Prototyping",
+              "Team Collaboration"
+            ],
+            "ar": [
+              "النمذجة السريعة",
+              "نمذجة أولية بالذكاء الاصطناعي",
+              "العمل ضمن فريق"
+            ]
+          },
+          "images": [
+            "/certificate/after-med-hackathon.jpg"
+          ],
+          "logo": "",
+          "link": ""
+        },
+        "sortOrder": 5,
+        "published": true
+      }
+    ],
+    "education": [
+      {
+        "id": "376e2972-1b42-4ee9-963c-d16e9f6be7f3",
+        "data": {
+          "institution": {
+            "en": "Arab Open University",
+            "ar": "الجامعة العربية المفتوحة"
+          },
+          "degree": {
+            "en": "Bachelor of Science",
+            "ar": "بكالوريوس العلوم"
+          },
+          "major": {
+            "en": "Computer Science",
+            "ar": "علوم الحاسب"
+          },
+          "startDate": "2022-09-01",
+          "endDate": "2026-06-01",
+          "current": true,
+          "gpa": "3.8/4.0",
+          "achievements": {
+            "en": [
+              "Dean's List — Spring Semester 2026, Faculty of Computer Studies"
+            ],
+            "ar": [
+              "قائمة الشرف — الفصل الدراسي الثاني ٢٠٢٦، كلية الدراسات الحاسوبية"
+            ]
+          },
+          "activities": {
+            "en": [
+              "Entertainment Club",
+              "Computer Club"
+            ],
+            "ar": [
+              "النادي الترفيهي",
+              "نادي الحاسب"
+            ]
+          }
+        },
+        "sortOrder": 0,
+        "published": true
+      }
+    ],
+    "skills": [
+      {
+        "id": "42bfd712-2984-43aa-aa5d-587fec4cf210",
+        "data": {
+          "name": {
+            "en": "Java",
+            "ar": "Java"
+          },
+          "category": "programming",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 0,
+        "published": true
+      },
+      {
+        "id": "17237429-d54a-4f59-98e2-3ca8c8d83e90",
+        "data": {
+          "name": {
+            "en": "JavaScript",
+            "ar": "JavaScript"
+          },
+          "category": "programming",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 1,
+        "published": true
+      },
+      {
+        "id": "4265f0f1-b803-462d-8eb4-a59e6b0ce322",
+        "data": {
+          "name": {
+            "en": "Python",
+            "ar": "Python"
+          },
+          "category": "ai",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 2,
+        "published": true
+      },
+      {
+        "id": "2b600c07-6753-48d1-9949-740c4fe86706",
+        "data": {
+          "name": {
+            "en": "Go",
+            "ar": "Go"
+          },
+          "category": "programming",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 3,
+        "published": true
+      },
+      {
+        "id": "c1c7d372-8236-41b9-8cb6-2a21cc458ebe",
+        "data": {
+          "name": {
+            "en": "HTML5",
+            "ar": "HTML5"
+          },
+          "category": "frontend",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 4,
+        "published": true
+      },
+      {
+        "id": "5094045e-2ff0-4609-bafb-507fca345564",
+        "data": {
+          "name": {
+            "en": "CSS3",
+            "ar": "CSS3"
+          },
+          "category": "frontend",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 5,
+        "published": true
+      },
+      {
+        "id": "72c2f369-f0be-4399-886d-8e5e63501367",
+        "data": {
+          "name": {
+            "en": "React",
+            "ar": "React"
+          },
+          "category": "frameworks",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 6,
+        "published": true
+      },
+      {
+        "id": "22ff69f1-6d8b-4c73-ad0f-7fdfc209b830",
+        "data": {
+          "name": {
+            "en": "Node.js",
+            "ar": "Node.js"
+          },
+          "category": "frameworks",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 7,
+        "published": true
+      },
+      {
+        "id": "10f3347f-8787-4467-8a72-8cbbb51d73d6",
+        "data": {
+          "name": {
+            "en": "Express.js",
+            "ar": "Express.js"
+          },
+          "category": "frameworks",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+          "iconInvertInDark": true,
+          "showInStack": true
+        },
+        "sortOrder": 8,
+        "published": true
+      },
+      {
+        "id": "c17dbfb7-201c-48dc-b044-6e01149bd3ea",
+        "data": {
+          "name": {
+            "en": "REST APIs",
+            "ar": "REST APIs"
+          },
+          "category": "backend",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 9,
+        "published": true
+      },
+      {
+        "id": "b742f77b-fdda-4893-9c5b-c9b5424d13db",
+        "data": {
+          "name": {
+            "en": "MongoDB",
+            "ar": "MongoDB"
+          },
+          "category": "databases",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 10,
+        "published": true
+      },
+      {
+        "id": "cbcda9ed-45bf-4b07-a04b-1944391a6621",
+        "data": {
+          "name": {
+            "en": "SQL",
+            "ar": "SQL"
+          },
+          "category": "databases",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 11,
+        "published": true
+      },
+      {
+        "id": "e17541a8-334c-4f72-80ef-e9067b8fa18c",
+        "data": {
+          "name": {
+            "en": "Firebase",
+            "ar": "Firebase"
+          },
+          "category": "databases",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 12,
+        "published": true
+      },
+      {
+        "id": "5b6a5a06-10e3-4413-be56-769da4f3849d",
+        "data": {
+          "name": {
+            "en": "Prompt Engineering",
+            "ar": "هندسة البرومبت"
+          },
+          "category": "ai",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 13,
+        "published": true
+      },
+      {
+        "id": "cebebbb6-37a2-4e59-8aae-3671884b1244",
+        "data": {
+          "name": {
+            "en": "LLMs",
+            "ar": "LLMs"
+          },
+          "category": "ai",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 14,
+        "published": true
+      },
+      {
+        "id": "a7e69bb7-5a76-46c3-be82-3797ffc59810",
+        "data": {
+          "name": {
+            "en": "AI Agents",
+            "ar": "وكلاء ذكاء اصطناعي"
+          },
+          "category": "ai",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 15,
+        "published": true
+      },
+      {
+        "id": "5de45d9a-dcb3-450e-8eb8-be523a70a428",
+        "data": {
+          "name": {
+            "en": "n8n",
+            "ar": "n8n"
+          },
+          "category": "ai",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 16,
+        "published": true
+      },
+      {
+        "id": "4b99a30b-c7bb-4c5f-bfa0-854380d32444",
+        "data": {
+          "name": {
+            "en": "Git",
+            "ar": "Git"
+          },
+          "category": "tools",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 17,
+        "published": true
+      },
+      {
+        "id": "4e42e38c-b171-47b7-b5f0-1e8af5749f59",
+        "data": {
+          "name": {
+            "en": "GitHub",
+            "ar": "GitHub"
+          },
+          "category": "tools",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+          "iconInvertInDark": true,
+          "showInStack": true
+        },
+        "sortOrder": 18,
+        "published": true
+      },
+      {
+        "id": "e6877d9b-2ce1-4429-bbb9-d129de23a8d4",
+        "data": {
+          "name": {
+            "en": "VS Code",
+            "ar": "VS Code"
+          },
+          "category": "tools",
+          "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+          "iconInvertInDark": false,
+          "showInStack": true
+        },
+        "sortOrder": 19,
+        "published": true
+      },
+      {
+        "id": "ae34e66e-e1c3-4227-b535-7e3d64d121d8",
+        "data": {
+          "name": {
+            "en": "Microsoft Office",
+            "ar": "Microsoft Office"
+          },
+          "category": "tools",
+          "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/microsoft365.svg",
+          "iconInvertInDark": true,
+          "showInStack": true
+        },
+        "sortOrder": 20,
+        "published": true
+      },
+      {
+        "id": "1c53ebfe-a215-44ab-ad97-1c150eb9aca4",
+        "data": {
+          "name": {
+            "en": "Problem Solving",
+            "ar": "حل المشكلات"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 21,
+        "published": true
+      },
+      {
+        "id": "ce6ccec6-8332-4f03-8af8-58fd03a929fa",
+        "data": {
+          "name": {
+            "en": "Critical Thinking",
+            "ar": "التفكير النقدي"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 22,
+        "published": true
+      },
+      {
+        "id": "577d8770-2038-4f31-9b01-f2647a47d9cc",
+        "data": {
+          "name": {
+            "en": "Communication",
+            "ar": "التواصل"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 23,
+        "published": true
+      },
+      {
+        "id": "626c85b5-d103-4e44-a2bb-b30f2ea4d8b1",
+        "data": {
+          "name": {
+            "en": "Teamwork",
+            "ar": "العمل الجماعي"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 24,
+        "published": true
+      },
+      {
+        "id": "4784250f-9715-48ae-98d2-35c3a6772ff1",
+        "data": {
+          "name": {
+            "en": "Leadership",
+            "ar": "القيادة"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 25,
+        "published": true
+      },
+      {
+        "id": "6abc8984-1d38-4568-a622-38167a8588ef",
+        "data": {
+          "name": {
+            "en": "Time Management",
+            "ar": "إدارة الوقت"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 26,
+        "published": true
+      },
+      {
+        "id": "58995419-217d-4c37-9588-3c6462cda90e",
+        "data": {
+          "name": {
+            "en": "Adaptability",
+            "ar": "المرونة والتكيّف"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 27,
+        "published": true
+      },
+      {
+        "id": "c92a45d6-d296-4f38-944d-54479352ea3f",
+        "data": {
+          "name": {
+            "en": "Fast Learner",
+            "ar": "سرعة التعلّم"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 28,
+        "published": true
+      },
+      {
+        "id": "ae297047-3615-4066-97dd-bd18ac6f8235",
+        "data": {
+          "name": {
+            "en": "Attention to Detail",
+            "ar": "الدقة في التفاصيل"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 29,
+        "published": true
+      },
+      {
+        "id": "79fda8fd-60ec-4f9c-a92f-b8ae5d818aa1",
+        "data": {
+          "name": {
+            "en": "Analytical Thinking",
+            "ar": "التفكير التحليلي"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 30,
+        "published": true
+      },
+      {
+        "id": "8dde74a0-c8b3-43c4-902e-0f5bed4db64d",
+        "data": {
+          "name": {
+            "en": "Decision Making",
+            "ar": "اتخاذ القرار"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 31,
+        "published": true
+      },
+      {
+        "id": "2e4e8710-ba90-4bf4-8892-fd88690d451c",
+        "data": {
+          "name": {
+            "en": "Presentation Skills",
+            "ar": "مهارات العرض والتقديم"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 32,
+        "published": true
+      },
+      {
+        "id": "6b53d0dd-d5b9-47cf-9983-75033fa53cee",
+        "data": {
+          "name": {
+            "en": "Chess",
+            "ar": "الشطرنج"
+          },
+          "category": "soft",
+          "icon": "",
+          "iconInvertInDark": false,
+          "showInStack": false
+        },
+        "sortOrder": 33,
+        "published": true
+      }
+    ],
+    "achievements": [
+      {
+        "id": "97f2ef61-665a-4de0-b78d-db3ffa1085e4",
+        "data": {
+          "title": {
+            "en": "Programming Creativity Competition — 1st Place",
+            "ar": "مسابقة الإبداع البرمجي — المركز الأول"
+          },
+          "organization": {
+            "en": "College of Computer Studies, Arab Open University — Jeddah",
+            "ar": "كلية الدراسات الحاسوبية، الجامعة العربية المفتوحة — جدة"
+          },
+          "description": {
+            "en": "",
+            "ar": ""
+          },
+          "category": "competition",
+          "date": "2025-04-30",
+          "image": "/certificate/programming-creativity.jpg",
+          "files": [],
+          "link": "",
+          "credentialId": "",
+          "tags": {
+            "en": [
+              "Programming",
+              "Problem Solving"
+            ],
+            "ar": [
+              "البرمجة",
+              "حل المشكلات"
+            ]
+          }
+        },
+        "sortOrder": 0,
+        "published": true
+      },
+      {
+        "id": "29be8e5d-630b-4dad-ba2b-d3696d95dad2",
+        "data": {
+          "title": {
+            "en": "EYOUTH Learning Plan",
+            "ar": "خطة تعلّم EYOUTH"
+          },
+          "organization": {
+            "en": "IBM SkillsBuild",
+            "ar": "IBM SkillsBuild"
+          },
+          "description": {
+            "en": "",
+            "ar": ""
+          },
+          "category": "certification",
+          "date": "2026-01-10",
+          "image": "/certificate/ibm-skillsbuild.jpg",
+          "files": [],
+          "link": "",
+          "credentialId": "PLAN-1422AC626F2C",
+          "tags": {
+            "en": [],
+            "ar": []
+          }
+        },
+        "sortOrder": 1,
+        "published": true
+      },
+      {
+        "id": "cf3d36b2-c3e2-468c-bdf7-99711a0c4253",
+        "data": {
+          "title": {
+            "en": "NewTech Hackathon — Data Analysis Track",
+            "ar": "هاكاثون نيوتك — مسار تحليل البيانات"
+          },
+          "organization": {
+            "en": "NewTech",
+            "ar": "نيوتك"
+          },
+          "description": {
+            "en": "",
+            "ar": ""
+          },
+          "category": "hackathon",
+          "date": "2026-01-15",
+          "image": "/certificate/newtech-hackathon.jpg",
+          "files": [],
+          "link": "",
+          "credentialId": "",
+          "tags": {
+            "en": [
+              "Hackathon",
+              "Data Analysis"
+            ],
+            "ar": [
+              "هاكاثون",
+              "تحليل البيانات"
+            ]
+          }
+        },
+        "sortOrder": 2,
+        "published": true
+      },
+      {
+        "id": "b2d9c5cb-74db-4e1e-b997-f47a6cbcdf3b",
+        "data": {
+          "title": {
+            "en": "Afaq for AI — 3rd Cohort",
+            "ar": "آفاق للذكاء الاصطناعي — الدفعة الثالثة"
+          },
+          "organization": {
+            "en": "eYouth × IBM SkillsBuild",
+            "ar": "eYouth × IBM SkillsBuild"
+          },
+          "description": {
+            "en": "",
+            "ar": ""
+          },
+          "category": "certification",
+          "date": "2026-01-20",
+          "image": "/certificate/afaq-ai.jpg",
+          "files": [],
+          "link": "",
+          "credentialId": "",
+          "tags": {
+            "en": [],
+            "ar": []
+          }
+        },
+        "sortOrder": 3,
+        "published": true
+      },
+      {
+        "id": "82cd1bb3-177e-4fbe-9ece-8adff7e6c7bd",
+        "data": {
+          "title": {
+            "en": "Data Analysis with Gemini",
+            "ar": "تحليل البيانات باستخدام Gemini"
+          },
+          "organization": {
+            "en": "Google Developer Group (KKU, Mustaqbal & Qassim Universities)",
+            "ar": "مجموعة مطوّري جوجل (جامعات الملك خالد والمستقبل والقصيم)"
+          },
+          "description": {
+            "en": "",
+            "ar": ""
+          },
+          "category": "certification",
+          "date": "2026-01-21",
+          "image": "/certificate/gdg-gemini.jpg",
+          "files": [],
+          "link": "",
+          "credentialId": "",
+          "tags": {
+            "en": [],
+            "ar": []
+          }
+        },
+        "sortOrder": 4,
+        "published": true
+      },
+      {
+        "id": "ecf797f7-be93-4f30-a6f1-9b7725d09f9b",
+        "data": {
+          "title": {
+            "en": "After Med Hackathon",
+            "ar": "هاكاثون أفتر ميد"
+          },
+          "organization": {
+            "en": "Andalusia Hospital × Faculty of Medicine × The Bridge",
+            "ar": "مستشفى الأندلسية × كلية الطب × ذا بريدج"
+          },
+          "description": {
+            "en": "",
+            "ar": ""
+          },
+          "category": "hackathon",
+          "date": "2026-01-01",
+          "image": "/certificate/after-med-hackathon.jpg",
+          "files": [],
+          "link": "",
+          "credentialId": "",
+          "tags": {
+            "en": [
+              "Hackathon",
+              "Participation"
+            ],
+            "ar": [
+              "هاكاثون",
+              "مشاركة"
+            ]
+          }
+        },
+        "sortOrder": 5,
+        "published": true
+      },
+      {
+        "id": "8c4284cd-24a2-4368-9190-d45ac0939789",
+        "data": {
+          "title": {
+            "en": "Become AI Fluent",
+            "ar": "إتقان الذكاء الاصطناعي"
+          },
+          "organization": {
+            "en": "Mabda AI",
+            "ar": "مبدأ للذكاء الاصطناعي"
+          },
+          "description": {
+            "en": "",
+            "ar": ""
+          },
+          "category": "certification",
+          "date": "2026-01-01",
+          "image": "/certificate/mabda-ai.jpg",
+          "files": [],
+          "link": "",
+          "credentialId": "",
+          "tags": {
+            "en": [],
+            "ar": []
+          }
+        },
+        "sortOrder": 6,
+        "published": true
+      },
+      {
+        "id": "22fae767-1d2c-4b5b-a108-29d864907030",
+        "data": {
+          "title": {
+            "en": "\"Ana Ijabi\" Volunteering Initiative — 40 Hours",
+            "ar": "مبادرة «أنا إيجابي» التطوعية — ٤٠ ساعة"
+          },
+          "organization": {
+            "en": "Jeddah Girls Club × Positive Development Association",
+            "ar": "نادي فتيات جدة × جمعية التنمية الإيجابية"
+          },
+          "description": {
+            "en": "",
+            "ar": ""
+          },
+          "category": "recognition",
+          "date": "2024-08-01",
+          "image": "/certificate/ana-ijabi.jpg",
+          "files": [],
+          "link": "",
+          "credentialId": "",
+          "tags": {
+            "en": [
+              "Volunteering",
+              "Community"
+            ],
+            "ar": [
+              "العمل التطوعي",
+              "المجتمع"
+            ]
+          }
+        },
+        "sortOrder": 7,
+        "published": true
+      }
+    ],
+    "research": [
+      {
+        "id": "c2ca94d7-88af-425f-af79-f70b8f7cbf37",
+        "data": {
+          "slug": "qurb",
+          "title": {
+            "en": "Qurb",
+            "ar": "قُرب"
+          },
+          "type": {
+            "en": "Graduation Project — Full Study",
+            "ar": "مشروع التخرّج — الدراسة الكاملة"
+          },
+          "context": {
+            "en": "Faculty of Computer Studies, Arab Open University",
+            "ar": "كلية الدراسات الحاسوبية، الجامعة العربية المفتوحة"
+          },
+          "summary": {
+            "en": "A smart GIS-based platform for Quranic memorization circles (Halaqas). Solves three real gaps found through stakeholder interviews: discovering nearby Halaqas via an interactive map, coordinating a substitute teacher automatically during emergencies via spatial matching, and generating personalized weekly revision schedules from daily oral evaluations.",
+            "ar": "منصة ذكية قائمة على نظم المعلومات الجغرافية لحلقات تحفيظ القرآن. تعالج ثلاث فجوات حقيقية ظهرت من مقابلات مع أصحاب الشأن: اكتشاف الحلقات القريبة عبر خريطة تفاعلية، وتنسيق معلّم بديل تلقائيًا وقت الطوارئ عبر المطابقة المكانية، وتوليد جداول مراجعة أسبوعية مخصّصة انطلاقًا من التقييمات الشفوية اليومية."
+          },
+          "date": {
+            "en": "2026",
+            "ar": "٢٠٢٦"
+          },
+          "status": "completed",
+          "file": {
+            "en": "/research/qurb-full-study.docx",
+            "ar": "/research/qurb-full-study.docx"
+          },
+          "fileLabel": {
+            "en": "Full Study (.docx)",
+            "ar": "الدراسة الكاملة (.docx)"
+          },
+          "cover": "",
+          "color": "#1E6B52",
+          "variant": "stripe",
+          "links": []
+        },
+        "sortOrder": 0,
+        "published": true
+      },
+      {
+        "id": "61209d6d-c19c-4f80-b5e7-3b615ed1d223",
+        "data": {
+          "slug": "istibaq",
+          "title": {
+            "en": "Istibaq",
+            "ar": "استباق"
+          },
+          "type": {
+            "en": "Madinah Hackathon 2026 — Smart Services Tracking Track",
+            "ar": "برمجان المدينة ٢٠٢٦ — مسار تتبّع الخدمات الذكية"
+          },
+          "context": {
+            "en": "Barmajan Al Munawwarah 2026",
+            "ar": "برمجان المدينة المنورة ٢٠٢٦"
+          },
+          "summary": {
+            "en": "A platform protecting the mobility rights of people with disabilities and the elderly in Al Madinah. Two engines: a compliance engine that checks every street against official Universal Accessibility Code thresholds using the city's official geographic data, and a prediction engine that ranks routes at risk of losing accessibility within 60 days — before they actually fail.",
+            "ar": "منصة تحمي حق التنقّل لذوي الإعاقة وكبار السن في المدينة المنورة. محرّكان اثنان: محرّك امتثال يفحص كل شارع مقابل عتبات كود الوصول الشامل الرسمي باستخدام البيانات الجغرافية الرسمية للمدينة، ومحرّك تنبّؤ يرتّب المسارات المهدّدة بفقدان إمكانية الوصول خلال ٦٠ يومًا — قبل أن تتعطّل فعلًا."
+          },
+          "date": {
+            "en": "August 2026",
+            "ar": "أغسطس ٢٠٢٦"
+          },
+          "status": "completed",
+          "file": {
+            "en": "/research/istibaq.pdf",
+            "ar": "/research/istibaq.pdf"
+          },
+          "fileLabel": {
+            "en": "Full Study (PDF)",
+            "ar": "الدراسة الكاملة (PDF)"
+          },
+          "cover": "",
+          "color": "#0F6B5C",
+          "variant": "stripe",
+          "links": []
+        },
+        "sortOrder": 1,
+        "published": true
+      },
+      {
+        "id": "ebd626be-6c34-4e54-9e6a-64ac1d8362f1",
+        "data": {
+          "slug": "asl",
+          "title": {
+            "en": "Asl",
+            "ar": "أصل"
+          },
+          "type": {
+            "en": "Infaz Innovation Hackathon — Asset Marketing Track",
+            "ar": "هاكاثون إنفاذ للابتكار — مسار تسويق الأصول"
+          },
+          "context": {
+            "en": "Qassim University × Infaz Assignment & Liquidation Center",
+            "ar": "جامعة القصيم × مركز إنفاذ للتصفية والإسناد"
+          },
+          "summary": {
+            "en": "An intelligent asset-marketing layer working alongside Infaz's existing sales process. Analyzes each asset and market data to identify the right buyer profile, then turns that analysis into a ready-to-review marketing plan and content — without replacing the sales agent or auction engine.",
+            "ar": "طبقة تسويق ذكية للأصول تعمل بجانب عملية البيع القائمة في إنفاذ. تحلّل كل أصل وبيانات السوق لتحديد ملف المشتري المناسب، ثم تحوّل ذلك التحليل إلى خطة تسويقية ومحتوى جاهزَين للمراجعة — دون أن تحلّ محل مندوب المبيعات أو محرّك المزادات."
+          },
+          "date": {
+            "en": "August 2026",
+            "ar": "أغسطس ٢٠٢٦"
+          },
+          "status": "completed",
+          "file": {
+            "en": "/research/asl-study.docx",
+            "ar": "/research/asl-study.docx"
+          },
+          "fileLabel": {
+            "en": "Full Study (.docx)",
+            "ar": "الدراسة الكاملة (.docx)"
+          },
+          "cover": "",
+          "color": "#8A6D1F",
+          "variant": "simple",
+          "links": []
+        },
+        "sortOrder": 2,
+        "published": true
+      },
+      {
+        "id": "821d2684-a9b7-48f4-bd67-9b01a2f0e5e0",
+        "data": {
+          "slug": "mizan",
+          "title": {
+            "en": "Mizan",
+            "ar": "ميزان"
+          },
+          "type": {
+            "en": "Infaz Innovation Hackathon — Auctions Track",
+            "ar": "هاكاثون إنفاذ للابتكار — مسار المزادات"
+          },
+          "context": {
+            "en": "Qassim University × Infaz Assignment & Liquidation Center",
+            "ar": "جامعة القصيم × مركز إنفاذ للتصفية والإسناد"
+          },
+          "summary": {
+            "en": "An intelligent integrity layer for auction platforms. Analyzes bidding behavior with explainable indicators to flag unusual patterns and recurring relationships between bidders, and builds a cryptographically-linked record that reveals any later tampering — surfacing findings as \"unusual pattern — recommended for review,\" never an automated fraud verdict.",
+            "ar": "طبقة نزاهة ذكية لمنصات المزادات. تحلّل سلوك المزايدة بمؤشرات قابلة للتفسير لرصد الأنماط غير الاعتيادية والعلاقات المتكرّرة بين المزايدين، وتبني سجلًّا مترابطًا تشفيريًا يكشف أي تلاعب لاحق — وتعرض النتائج كـ«نمط غير اعتيادي — يُنصح بالمراجعة»، لا كحكم آلي بالاحتيال."
+          },
+          "date": {
+            "en": "August 2026",
+            "ar": "أغسطس ٢٠٢٦"
+          },
+          "status": "completed",
+          "file": {
+            "en": "/research/mizan-study.docx",
+            "ar": "/research/mizan-study.docx"
+          },
+          "fileLabel": {
+            "en": "Full Study (.docx)",
+            "ar": "الدراسة الكاملة (.docx)"
+          },
+          "cover": "",
+          "color": "#4A4A4A",
+          "variant": "simple",
+          "links": []
+        },
+        "sortOrder": 3,
+        "published": true
+      },
+      {
+        "id": "c38b765d-0a8e-4fee-bb30-ab5a69acc245",
+        "data": {
+          "slug": "fursa",
+          "title": {
+            "en": "Fursa",
+            "ar": "فُرصة"
+          },
+          "type": {
+            "en": "Opportunity Intelligence Platform — Team DataMinds",
+            "ar": "منصة ذكاء الفرص السوقية — فريق DataMinds"
+          },
+          "context": {
+            "en": "Competition Submission",
+            "ar": "مشاركة في مسابقة"
+          },
+          "summary": {
+            "en": "A market-opportunity intelligence platform for entrepreneurs and individual investors. Instead of starting from an idea and researching backward, Fursa starts from data — analyzing market gap, growth, demand, competition, and trend stability into a single explained FURSA Score, so decisions start from evidence rather than a hunch.",
+            "ar": "منصة ذكاء للفرص السوقية موجّهة لروّاد الأعمال والمستثمرين الأفراد. بدل الانطلاق من فكرة ثم البحث عنها بأثر رجعي، تبدأ فُرصة من البيانات — تحلّل فجوة السوق والنمو والطلب والمنافسة واستقرار الاتجاه في درجة واحدة مُفسَّرة هي «درجة فُرصة»، فتنطلق القرارات من دليل لا من حدس."
+          },
+          "date": {
+            "en": "August 2026",
+            "ar": "أغسطس ٢٠٢٦"
+          },
+          "status": "completed",
+          "file": {
+            "en": "/research/fursa-study.docx",
+            "ar": "/research/fursa-study.docx"
+          },
+          "fileLabel": {
+            "en": "Full Study (.docx)",
+            "ar": "الدراسة الكاملة (.docx)"
+          },
+          "cover": "",
+          "color": "#B5652B",
+          "variant": "stripe",
+          "links": []
+        },
+        "sortOrder": 4,
+        "published": true
+      },
+      {
+        "id": "22170f34-38ff-46d3-9097-3223bb21b313",
+        "data": {
+          "slug": "voiceanatomy",
+          "title": {
+            "en": "VoiceAnatomy",
+            "ar": "مساعد التشريح الذكي"
+          },
+          "type": {
+            "en": "Interactive 3D Learning Assistant",
+            "ar": "مساعد تعلّم ثلاثي الأبعاد تفاعلي"
+          },
+          "context": {
+            "en": "Individual Project",
+            "ar": "مشروع فردي"
+          },
+          "summary": {
+            "en": "An interactive 3D educational system for anatomy, controlled entirely through natural voice conversation in multiple languages. A student can simply ask \"show me the heart\" or \"how does the respiratory system work?\" and get an accurate 3D visualization with a spoken explanation — addressing the cost, visualization, and language barriers of traditional anatomy education.",
+            "ar": "نظام تعليمي تفاعلي ثلاثي الأبعاد لعلم التشريح، يُدار بالكامل عبر محادثة صوتية طبيعية بعدة لغات. يستطيع الطالب أن يسأل ببساطة «أرني القلب» أو «كيف يعمل الجهاز التنفسي؟» فيحصل على تمثيل ثلاثي الأبعاد دقيق مع شرح منطوق — ما يعالج حواجز التكلفة والتصوّر واللغة في تعليم التشريح التقليدي."
+          },
+          "date": {
+            "en": "2026",
+            "ar": "٢٠٢٦"
+          },
+          "status": "completed",
+          "file": {
+            "en": "/research/voiceanatomy-study.docx",
+            "ar": "/research/voiceanatomy-study.docx"
+          },
+          "fileLabel": {
+            "en": "Full Study (.docx)",
+            "ar": "الدراسة الكاملة (.docx)"
+          },
+          "cover": "",
+          "color": "#7A2E3B",
+          "variant": "simple",
+          "links": []
+        },
+        "sortOrder": 5,
+        "published": true
+      }
+    ],
+    "timeline": [
+      {
+        "id": "ac13e9b0-dbc4-4406-9085-896f7ce6ccd8",
+        "data": {
+          "category": "education",
+          "title": {
+            "en": "Arab Open University",
+            "ar": "الجامعة العربية المفتوحة"
+          },
+          "description": {
+            "en": "Bachelor of Science - Computer Science (GPA 3.8/4.0).",
+            "ar": "بكالوريوس العلوم - علوم الحاسب (المعدل 3.8/4.0)."
+          },
+          "date": "",
+          "images": [
+            "/journey/arabopenuniversity1.webp"
+          ]
+        },
+        "sortOrder": 0,
+        "published": true
+      },
+      {
+        "id": "dc2fd0c9-9bfb-4300-9534-6842383d897e",
+        "data": {
+          "category": "education",
+          "title": {
+            "en": "Dean's List",
+            "ar": "قائمة الشرف"
+          },
+          "description": {
+            "en": "Spring 2026, Faculty of Computer Studies.",
+            "ar": "الفصل الثاني ٢٠٢٦، كلية الدراسات الحاسوبية."
+          },
+          "date": "",
+          "images": [
+            "/certificate/deans-list.jpg"
+          ]
+        },
+        "sortOrder": 1,
+        "published": true
+      },
+      {
+        "id": "9b46351e-7486-4573-8094-bdee31541166",
+        "data": {
+          "category": "journey",
+          "title": {
+            "en": "Entertainment Club",
+            "ar": "النادي الترفيهي"
+          },
+          "description": {
+            "en": "Arab Open University - Organizing student activities and events.",
+            "ar": "الجامعة العربية المفتوحة - تنظيم الأنشطة والفعاليات الطلابية."
+          },
+          "date": "",
+          "images": [
+            "/journey/arabopenuniversity1.webp"
+          ]
+        },
+        "sortOrder": 2,
+        "published": true
+      },
+      {
+        "id": "3e70bc3e-7f57-4460-95a5-99ce4496b452",
+        "data": {
+          "category": "journey",
+          "title": {
+            "en": "Computer Club",
+            "ar": "نادي الحاسب"
+          },
+          "description": {
+            "en": "Arab Open University - Supporting classmates with technical concepts.",
+            "ar": "الجامعة العربية المفتوحة - دعم الزميلات في المفاهيم التقنية."
+          },
+          "date": "",
+          "images": [
+            "/journey/arabopenuniversity1.webp"
+          ]
+        },
+        "sortOrder": 3,
+        "published": true
+      },
+      {
+        "id": "96881e57-6019-41bf-b514-cd58671176b8",
+        "data": {
+          "category": "journey",
+          "title": {
+            "en": "\"Ana Ijabi\" Volunteering",
+            "ar": "تطوّع «أنا إيجابي»"
+          },
+          "description": {
+            "en": "40 volunteer hours - Jeddah Girls Club × Positive Development Association.",
+            "ar": "٤٠ ساعة تطوّعية - نادي فتيات جدة × جمعية التنمية الإيجابية."
+          },
+          "date": "",
+          "images": [
+            "/certificate/ana-ijabi.jpg"
+          ]
+        },
+        "sortOrder": 4,
+        "published": true
+      },
+      {
+        "id": "97c63d9e-196c-4542-b582-1dabb7bbff64",
+        "data": {
+          "category": "journey",
+          "title": {
+            "en": "Programming Competition",
+            "ar": "مسابقة برمجية"
+          },
+          "description": {
+            "en": "1st Place - Programming Creativity Competition, AOU Jeddah.",
+            "ar": "المركز الأول - مسابقة الإبداع البرمجي، الجامعة العربية المفتوحة بجدة."
+          },
+          "date": "",
+          "images": [
+            "/certificate/programming-creativity.jpg"
+          ]
+        },
+        "sortOrder": 5,
+        "published": true
+      },
+      {
+        "id": "1b1b83e8-6543-4965-ac29-da9973e2996f",
+        "data": {
+          "category": "experience",
+          "title": {
+            "en": "Freelance Developer",
+            "ar": "مطوّرة بالعمل الحر"
+          },
+          "description": {
+            "en": "Software & AI solutions development, 2024 - Present.",
+            "ar": "تطوير برمجيات وحلول ذكاء اصطناعي، ٢٠٢٤ - حتى الآن."
+          },
+          "date": "",
+          "images": [
+            "/about/gheid.jpg"
+          ]
+        },
+        "sortOrder": 6,
+        "published": true
+      },
+      {
+        "id": "f5347dcc-4252-478c-9df2-a7a0ffdd2049",
+        "data": {
+          "category": "experience",
+          "title": {
+            "en": "Mabda AI Workshop",
+            "ar": "ورشة مبدأ للذكاء الاصطناعي"
+          },
+          "description": {
+            "en": "AI, Generative AI & automation - 3-month intensive program.",
+            "ar": "ذكاء اصطناعي وتوليدي وأتمتة - برنامج مكثّف لثلاثة أشهر."
+          },
+          "date": "",
+          "images": [
+            "/certificate/mabda-ai.jpg"
+          ]
+        },
+        "sortOrder": 7,
+        "published": true
+      },
+      {
+        "id": "0bbce312-2eb0-4c65-aa8b-9fb9761ce89d",
+        "data": {
+          "category": "experience",
+          "title": {
+            "en": "Hackathons",
+            "ar": "هاكاثونات"
+          },
+          "description": {
+            "en": "NewTech, After Med, and Infaz Innovation hackathons.",
+            "ar": "هاكاثونات نيوتك وأفتر ميد وإنفاذ للابتكار."
+          },
+          "date": "",
+          "images": [
+            "/certificate/after-med-hackathon.jpg"
+          ]
+        },
+        "sortOrder": 8,
+        "published": true
+      }
+    ],
+    "gallery": [
+      {
+        "id": "c7f1b8f5-b332-4afe-ad0a-2daa47a27486",
+        "data": {
+          "title": {
+            "en": "After Med Hackathon",
+            "ar": "هاكاثون أفتر ميد"
+          },
+          "description": {
+            "en": "Participating in the After Med Hackathon — Andalusia Hospital × Faculty of Medicine × The Bridge.",
+            "ar": "المشاركة في هاكاثون أفتر ميد — مستشفى الأندلسية × كلية الطب × ذا بريدج."
+          },
+          "category": {
+            "en": "Hackathons",
+            "ar": "هاكاثونات"
+          },
+          "date": "2026-01-01",
+          "image": "/gallery/after-med-hackathon.jpg",
+          "slot": "auto",
+          "showOnHome": true
+        },
+        "sortOrder": 0,
+        "published": true
+      },
+      {
+        "id": "4af527b5-d643-4cec-a503-0ca9bbabba13",
+        "data": {
+          "title": {
+            "en": "Mabda AI — Become AI Fluent",
+            "ar": "مبدأ للذكاء الاصطناعي — إتقان الذكاء الاصطناعي"
+          },
+          "description": {
+            "en": "Group photo after completing the Mabda AI workshop.",
+            "ar": "صورة جماعية بعد إتمام ورشة مبدأ للذكاء الاصطناعي."
+          },
+          "category": {
+            "en": "Workshops",
+            "ar": "ورش عمل"
+          },
+          "date": "2026-01-01",
+          "image": "/gallery/mabda-ai-workshop.jpg",
+          "slot": "auto",
+          "showOnHome": true
+        },
+        "sortOrder": 1,
+        "published": true
+      },
+      {
+        "id": "6a10a7b4-cd9a-40d9-b078-38ed06bcb8a7",
+        "data": {
+          "title": {
+            "en": "Arab Open University Event",
+            "ar": "فعالية الجامعة العربية المفتوحة"
+          },
+          "description": {
+            "en": "Certificate recognition event at Arab Open University.",
+            "ar": "حفل تكريم وتسليم الشهادات في الجامعة العربية المفتوحة."
+          },
+          "category": {
+            "en": "University",
+            "ar": "الجامعة"
+          },
+          "date": "2026-01-01",
+          "image": "/gallery/aou-event-1.jpg",
+          "slot": "auto",
+          "showOnHome": true
+        },
+        "sortOrder": 2,
+        "published": true
+      },
+      {
+        "id": "1d574f25-e17b-430b-b3a5-32c8eae9974b",
+        "data": {
+          "title": {
+            "en": "Arab Open University Event",
+            "ar": "فعالية الجامعة العربية المفتوحة"
+          },
+          "description": {
+            "en": "Certificate recognition event at Arab Open University.",
+            "ar": "حفل تكريم وتسليم الشهادات في الجامعة العربية المفتوحة."
+          },
+          "category": {
+            "en": "University",
+            "ar": "الجامعة"
+          },
+          "date": "2026-01-01",
+          "image": "/gallery/aou-event-2.jpg",
+          "slot": "auto",
+          "showOnHome": true
+        },
+        "sortOrder": 3,
+        "published": true
+      }
+    ]
+  }
+}

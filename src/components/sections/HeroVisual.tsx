@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { Github, Linkedin, Mail, ArrowDown, ArrowDownRight, Bot, Zap, ExternalLink, MessageSquare } from 'lucide-react';
-import { portfolioData } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import Link from 'next/link';
 import gsap from "gsap";

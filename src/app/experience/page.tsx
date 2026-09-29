@@ -24,8 +24,7 @@ import {
     Link2
 } from 'lucide-react';
 import { cn, formatDate } from '@/lib/utils';
-import { portfolioData } from '@/data/portfolio';
-import { GPA_LABEL } from '@/data/profileStats';
+import { useProfileStats } from '@/hooks/useProfileStats';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
 import { Experience, Education } from '@/types';
@@ -46,7 +45,6 @@ const HIGHLIGHT_KEYS: Record<TabType, { title: string; highlight: string; descri
 
 import { usePerformance } from '@/hooks/usePerformance';
 
-import { getJourneyImages } from '@/app/actions/getJourneyImages';
 
 function ExperienceHighlightSection({ type, isLowPowerMode }: { type: TabType; isLowPowerMode: boolean }) {
     const tHighlight = useTranslations('experiencePage.highlight');
@@ -97,8 +95,9 @@ function ExperienceTabSlider({ isLowPowerMode }: { isLowPowerMode: boolean }) {
     const [activeTab, setActiveTab] = useState<number>(1);
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+    const gpaLabel = useProfileStats().gpaLabel;
     const tabs: TabItem[] = [
-        { id: 'education', label: tPage('education'), description: tPage('educationDesc', { gpa: GPA_LABEL }) },
+        { id: 'education', label: tPage('education'), description: tPage('educationDesc', { gpa: gpaLabel }) },
         { id: 'journey', label: tPage('journey'), description: tPage('journeyDesc') },
         { id: 'experience', label: tPage('experience'), description: tPage('experienceDesc') },
     ];
@@ -710,33 +709,12 @@ function TimelineGallery({ images, id, title, externalLink, logo }: { images: st
 
     const [verifiedImages, setVerifiedImages] = useState<string[]>([]);
 
+    // Images come only from the admin (Experience → Images, in the order set there).
+    // The old fallback that scanned public/journey for files named after the title
+    // could surface stray files; it is gone.
     useEffect(() => {
-        const checkImages = async () => {
-            if (images.length > 0) {
-                setVerifiedImages(images);
-                return;
-            }
-
-            if (!title) {
-                setVerifiedImages([]);
-                return;
-            }
-
-
-
-            const baseSlug = slugify(title);
-
-            try {
-                const results = await getJourneyImages(baseSlug);
-                setVerifiedImages(results);
-            } catch (error) {
-                console.error("Failed to verify images", error);
-                setVerifiedImages([]);
-            }
-        };
-
-        checkImages();
-    }, [images, title]);
+        setVerifiedImages(images);
+    }, [images]);
 
     const allImages = verifiedImages.map((src, i) => ({ src, index: i, type: 'image' as const }));
     const validImages = allImages.filter(img => !failedImages.has(img.index));

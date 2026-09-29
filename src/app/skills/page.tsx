@@ -3,7 +3,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useAnimationFrame, useMotionValue } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { portfolioData } from '@/data/portfolio';
 import { SplineScene } from '@/components/ui/SplineScene';
 import { KineticTechGrid } from '@/components/ui/KineticTechGrid';
 import { ArchedTechIconsInteractive } from '@/components/ui/ArchedTechIcons';

@@ -1,0 +1,2 @@
+# Locally stored uploads (development only; production uses Vercel Blob)
+.media/

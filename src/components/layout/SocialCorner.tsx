@@ -1,7 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
 import { FaLinkedinIn, FaGithub, FaInstagram } from "react-icons/fa";
-import { portfolioData } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import { ChatBot } from "@/components/layout/ChatBot";
 import { Bot } from "lucide-react";
