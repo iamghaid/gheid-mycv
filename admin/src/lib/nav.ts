@@ -11,6 +11,7 @@ export const NAV: { href: string; label: string; labelAr: string; group: string 
     { href: '/timeline', label: 'Timeline & milestones', labelAr: 'المحطات', group: 'Content' },
     { href: '/gallery', label: 'Gallery', labelAr: 'المعرض', group: 'Content' },
     { href: '/media', label: 'Media library', labelAr: 'مكتبة الوسائط', group: 'Files' },
+    { href: '/trash', label: 'Trash', labelAr: 'سلة المحذوفات', group: 'Files' },
 ];
 
 /** Public portfolio origin — used to preview files that ship with the portfolio (e.g. /certificate/x.jpg). */

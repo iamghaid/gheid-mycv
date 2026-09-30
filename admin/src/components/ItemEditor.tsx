@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useMemo, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Check, Loader2, Trash2 } from 'lucide-react';
@@ -8,14 +8,14 @@ import { COLLECTIONS } from '@shared/content/schema';
 import type { CollectionKey } from '@shared/content/types';
 import { deleteItemAction, saveItemAction } from '@/app/actions';
 import { FieldBlock } from './fields';
+import { HistoryPanel, UndoButton, useFlash, writeFlash } from './history';
 
-const FLASH_KEY = 'admin-save-result';
-
-export function ItemEditor({ collection, id, initial, initialPublished }: {
+export function ItemEditor({ collection, id, initial, initialPublished, updatedAt }: {
     collection: CollectionKey;
     id: string | null;
     initial: Record<string, unknown>;
     initialPublished: boolean;
+    updatedAt?: string;
 }) {
     const config = COLLECTIONS[collection];
     const router = useRouter();
@@ -23,23 +23,22 @@ export function ItemEditor({ collection, id, initial, initialPublished }: {
     const [published, setPublished] = useState(initialPublished);
     const [dirty, setDirty] = useState(false);
     const [error, setError] = useState<{ message: string; field?: string } | null>(null);
-    const [saved, setSaved] = useState(false);
-    const [warning, setWarning] = useState<string | null>(null);
     const [pending, start] = useTransition();
 
-    // The page remounts this editor after a save (it is keyed by updatedAt, and a new
-    // item redirects to its edit page), so the save result is handed over through
-    // sessionStorage instead of component state.
-    useEffect(() => {
-        try {
-            const raw = sessionStorage.getItem(FLASH_KEY);
-            if (!raw) return;
-            sessionStorage.removeItem(FLASH_KEY);
-            const flash = JSON.parse(raw) as { warning: string | null };
-            setSaved(true);
-            setWarning(flash.warning);
-        } catch { /* storage unavailable */ }
-    }, []);
+    // Save result from before the remount (the page keys this editor by updatedAt).
+    const [flash, setFlash] = useFlash(`item:${id}`);
+    const [saved, setSaved] = useState(false);
+    const warning = flash?.warning ?? null;
+    useEffect(() => { if (flash) setSaved(true); }, [flash]);
+
+    /** After any save or restore: hand the result to the remounted editor and reload. */
+    const finish = (savedId: string, revisionId: string | null | undefined, warn: string | undefined) => {
+        setDirty(false);
+        setSaved(true);
+        setFlash(writeFlash(`item:${savedId}`, warn, revisionId));
+        if (!id) router.replace(`/${config.key}/${savedId}`);
+        else router.refresh();
+    };
 
     // Warn before leaving with unsaved edits.
     useEffect(() => {
@@ -47,6 +46,8 @@ export function ItemEditor({ collection, id, initial, initialPublished }: {
         window.addEventListener('beforeunload', h);
         return () => window.removeEventListener('beforeunload', h);
     }, [dirty]);
+
+    const historyTarget = useMemo(() => ({ kind: 'item' as const, id: id ?? '' }), [id]);
 
     const set = (key: string, value: unknown) => {
         setData((d) => ({ ...d, [key]: value }));
@@ -56,28 +57,22 @@ export function ItemEditor({ collection, id, initial, initialPublished }: {
 
     const save = () => start(async () => {
         setError(null);
-        setWarning(null);
         const res = await saveItemAction(config.key, id, data, published);
         if (!res.ok) {
             setError({ message: res.error, field: res.field });
             if (res.field) document.getElementById(`field-${res.field}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
         }
-        setDirty(false);
-        setSaved(true);
-        setWarning(res.warning ?? null);
-        try { sessionStorage.setItem(FLASH_KEY, JSON.stringify({ warning: res.warning ?? null })); } catch { /* ignore */ }
-        if (!id) router.replace(`/${config.key}/${res.data!.id}`);
-        else router.refresh();
+        finish(res.data!.id, res.data!.revisionId, res.warning);
     });
 
     const remove = () => {
-        if (!id || !confirm(`Delete this ${config.singular.toLowerCase()}? This cannot be undone.`)) return;
+        if (!id || !confirm(`Move this ${config.singular.toLowerCase()} to the Trash? It disappears from the site now and can be restored from the Trash for 30 days.`)) return;
         start(async () => {
             const res = await deleteItemAction(config.key, id);
             if (!res.ok) return setError({ message: res.error });
             setDirty(false);
-            router.push(`/${config.key}`);
+            router.push(`/${config.key}?trashed=${id}&title=${encodeURIComponent('this ' + config.singular.toLowerCase())}`);
         });
     };
 
@@ -95,6 +90,15 @@ export function ItemEditor({ collection, id, initial, initialPublished }: {
                 ))}
             </div>
 
+            {id && (
+                <HistoryPanel
+                    target={historyTarget}
+                    refreshKey={updatedAt ?? ''}
+                    disabled={dirty}
+                    onRestored={(revisionId, warn) => finish(id, revisionId, warn)}
+                />
+            )}
+
             <div className="fixed inset-x-0 bottom-0 z-20 border-t border-neutral-200 bg-white/95 backdrop-blur lg:left-64">
                 <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-3 px-4 py-3 sm:px-8">
                     <label className="inline-flex items-center gap-2 text-sm">
@@ -106,6 +110,13 @@ export function ItemEditor({ collection, id, initial, initialPublished }: {
                         {error?.field && <span className="text-sm text-red-600">Please fix the highlighted field.</span>}
                         {saved && !dirty && !warning && <span className="inline-flex items-center gap-1 text-sm text-emerald-700"><Check className="h-4 w-4" /> Saved — live on the site</span>}
                         {saved && !dirty && warning && <span className="max-w-md text-sm text-amber-700">{warning}</span>}
+                        {!dirty && id && (
+                            <UndoButton
+                                undo={flash?.undo ?? null}
+                                onDone={(revisionId, warn) => finish(id, revisionId, warn)}
+                                onError={(message) => setError({ message })}
+                            />
+                        )}
                         {id && <button type="button" className="btn-danger" onClick={remove} disabled={pending}><Trash2 className="h-4 w-4" /> Delete</button>}
                         <button type="button" className="btn-primary" onClick={save} disabled={pending}>
                             {pending && <Loader2 className="h-4 w-4 animate-spin" />} Save

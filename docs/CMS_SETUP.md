@@ -80,6 +80,14 @@ If the site blocks framing, the page shows the project thumbnail and an **Open l
 
 Set **Embed mode = off** on a project to always use the screenshot.
 
+## Undo, history and Trash — التراجع والسجل وسلة المحذوفات
+
+- **History / السجل**: every item, the profile and the CV have a History panel under the form. Each entry is how the record looked *before* a change (time in Asia/Riyadh, the fields that changed, a before/after preview). **Restore / استرجاع** is a normal save, so it can be undone as well. The last 30 versions per record are kept.
+- **Undo / تراجع**: shown for 15 seconds after a save; it restores the state from before that save.
+- **Trash / سلة المحذوفات**: Delete moves an item to the Trash (sidebar → Trash) and removes it from the site immediately. Restore puts it back with the same id and position; if its slug was taken in the meantime, it comes back hidden with a `-restored` slug. Items are purged automatically after 30 days, or with "Delete forever". Files used by trashed items can't be deleted from the media library until then.
+- Reordering is not part of the history.
+- The table (`content_revisions`) is created automatically the next time the admin starts; existing content is not touched. The public site never reads it.
+
 ## Local development
 
 ```bash

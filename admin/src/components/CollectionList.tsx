@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useTransition } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowDown, ArrowUp, Eye, EyeOff, GripVertical, Plus, Search, Trash2 } from 'lucide-react';
 import type { Item } from '@shared/content/types';
 import { COLLECTIONS, getPath } from '@shared/content/schema';
 import type { CollectionKey } from '@shared/content/types';
-import { deleteItemAction, reorderAction, setPublishedAction } from '@/app/actions';
+import { deleteItemAction, reorderAction, restoreFromTrashAction, setPublishedAction } from '@/app/actions';
 import { Thumb } from './media';
 
 export function CollectionList({ collection, items: initial }: { collection: CollectionKey; items: Item[] }) {
@@ -17,6 +18,23 @@ export function CollectionList({ collection, items: initial }: { collection: Col
     const [error, setError] = useState<string | null>(null);
     const [warning, setWarning] = useState<string | null>(null);
     const [, start] = useTransition();
+    const router = useRouter();
+    const params = useSearchParams();
+    // The last item moved to the Trash, offered for a quick restore. Kept in the URL
+    // (?trashed=<id>&title=…) because this list remounts when its items change.
+    const trashedId = params.get('trashed');
+    const trashed = trashedId ? { id: trashedId, title: params.get('title') || 'the item' } : null;
+    const clearTrashed = () => router.replace(`/${config.key}`, { scroll: false });
+
+    const undoDelete = () => {
+        if (!trashed) return;
+        start(async () => {
+            const res = await restoreFromTrashAction(trashed.id);
+            if (!res.ok) return setError(res.error);
+            setWarning(res.warning ?? null);
+            clearTrashed();
+        });
+    };
 
     const title = (it: Item) => String(getPath(it.data, config.listTitle) || getPath(it.data, config.listTitle.replace('.en', '.ar')) || 'Untitled');
     const subtitle = (it: Item) => (config.listSubtitle ? String(getPath(it.data, config.listSubtitle) ?? '') : '');
@@ -45,11 +63,13 @@ export function CollectionList({ collection, items: initial }: { collection: Col
         });
     };
     const remove = (it: Item) => {
-        if (!confirm(`Delete “${title(it)}”? This cannot be undone.`)) return;
+        if (!confirm(`Move “${title(it)}” to the Trash? It disappears from the site now and can be restored for 30 days.`)) return;
         setItems((all) => all.filter((x) => x.id !== it.id));
         start(async () => {
             const res = await deleteItemAction(config.key, it.id);
-            if (!res.ok) setError(res.error); else setWarning(res.warning ?? null);
+            if (!res.ok) { setItems(items); setError(res.error); return; }
+            setWarning(res.warning ?? null);
+            router.replace(`/${config.key}?trashed=${it.id}&title=${encodeURIComponent(`“${title(it)}”`)}`, { scroll: false });
         });
     };
 
@@ -68,6 +88,14 @@ export function CollectionList({ collection, items: initial }: { collection: Col
                 <input className="input pl-8" placeholder="Search" value={q} onChange={(e) => setQ(e.target.value)} />
             </div>
             {error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
+            {trashed && (
+                <p className="flex flex-wrap items-center gap-2 rounded-lg bg-neutral-100 px-3 py-2 text-sm text-neutral-700">
+                    Moved {trashed.title} to the Trash.
+                    <button className="font-medium underline" onClick={undoDelete}>Restore · استرجاع</button>
+                    <Link className="ml-auto text-neutral-500 underline" href="/trash">Open Trash</Link>
+                    <button className="text-neutral-400" onClick={clearTrashed} aria-label="Dismiss">✕</button>
+                </p>
+            )}
             {warning && <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">{warning}</p>}
             {!q && items.length > 1 && <p className="text-xs text-neutral-500">Drag rows (or use the arrows) to change the order shown on the site.</p>}
 

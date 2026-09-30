@@ -9,6 +9,9 @@
  * - `content_meta`   a version counter bumped on every change; the public site keys
  *                    its cache on it, so a save is visible on the very next request.
  * - `login_attempts` failed logins, for rate limiting.
+ * - `content_revisions` the previous state of a record, copied before every change
+ *                    (last 30 per record). Deleted items live here as the Trash.
+ *                    The public site never reads this table.
  */
 export const SCHEMA_SQL = `
 create extension if not exists pgcrypto;
@@ -55,6 +58,20 @@ create table if not exists login_attempts (
     at timestamptz not null default now()
 );
 create index if not exists login_attempts_ip_at on login_attempts (ip, at);
+
+create table if not exists content_revisions (
+    id bigserial primary key,
+    target_kind text not null check (target_kind in ('item', 'singleton')),
+    target_id text not null,
+    collection text,
+    data jsonb not null,
+    published boolean,
+    sort_order integer,
+    action text not null check (action in ('update', 'delete')),
+    created_at timestamptz not null default now()
+);
+create index if not exists content_revisions_target on content_revisions (target_kind, target_id, id desc);
+create index if not exists content_revisions_deleted on content_revisions (created_at) where action = 'delete';
 
 -- Public chatbot rate limits (written only by the portfolio's /api/chat).
 create table if not exists chat_rate_limits (

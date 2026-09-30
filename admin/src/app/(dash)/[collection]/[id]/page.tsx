@@ -21,6 +21,7 @@ export default async function ItemPage({ params }: { params: Promise<{ collectio
             id={item.id}
             initial={{ ...config.defaults(), ...(item.data as unknown as Record<string, unknown>) }}
             initialPublished={item.published}
+            updatedAt={item.updatedAt}
         />
     );
 }
