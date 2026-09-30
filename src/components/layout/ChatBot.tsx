@@ -126,12 +126,24 @@ function SimpleMarkdown({ text }: { text: string }) {
     return <div className="space-y-1">{elements}</div>;
 }
 
+/** Links the model writes are untrusted: allow only web, mail and same-site links. */
+function safeHref(raw: string | null | undefined): string | null {
+    if (!raw) return null;
+    if (/^\/(?!\/)/.test(raw)) return raw; // same-site path, not protocol-relative
+    try {
+        const u = new URL(raw);
+        return ['http:', 'https:', 'mailto:'].includes(u.protocol) ? u.href : null;
+    } catch {
+        return null;
+    }
+}
+
 function inlineFormat(text: string): React.ReactNode {
     // Bold (**text**), italic (*text*), code (`code`), links [text](url)
-    const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g);
+    const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\)|https?:\/\/[^\s)<>\]]+)/g);
     return parts.map((part, idx) => {
         if (part.startsWith("**") && part.endsWith("**")) {
-            return <strong key={idx}>{part.slice(2, -2)}</strong>;
+            return <strong key={idx}>{inlineFormat(part.slice(2, -2))}</strong>;
         }
         if (part.startsWith("*") && part.endsWith("*")) {
             return <em key={idx}>{part.slice(1, -1)}</em>;
@@ -144,19 +156,25 @@ function inlineFormat(text: string): React.ReactNode {
             );
         }
         const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-        if (linkMatch) {
+        const bareUrl = /^https?:\/\//.test(part) ? part.replace(/[.,;:!?،؛]+$/, '') : null;
+        const href = safeHref(linkMatch ? linkMatch[2].trim() : bareUrl);
+        if (href) {
+            const internal = href.startsWith('/');
+            const trailing = bareUrl ? part.slice(bareUrl.length) : '';
             return (
-                <a
-                    key={idx}
-                    href={linkMatch[2]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline underline-offset-2 hover:opacity-80"
-                >
-                    {linkMatch[1]}
-                </a>
+                <React.Fragment key={idx}>
+                    <a
+                        href={href}
+                        {...(internal ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                        className="font-medium underline underline-offset-2 hover:opacity-80 break-words"
+                    >
+                        {linkMatch ? linkMatch[1] : bareUrl}
+                    </a>
+                    {trailing}
+                </React.Fragment>
             );
         }
+        if (linkMatch) return linkMatch[1]; // unsafe or unknown scheme: show the label only
         return part;
     });
 }
