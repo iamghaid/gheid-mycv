@@ -108,3 +108,16 @@ ADMIN_MEDIA_ORIGIN=http://localhost:3002
 ```
 
 Without `BLOB_READ_WRITE_TOKEN`, uploads are saved to `admin/.media` and served by the admin at `/media/*`. This is for local development only.
+
+## Chatbot / الشات بوت
+
+Set these on the **portfolio** project (Settings → Environment Variables). At least one provider key is needed; Groq is tried first, then Gemini.
+
+| Variable | Value |
+|---|---|
+| `GROQ_API_KEY` | optional, from console.groq.com |
+| `GEMINI_API_KEY` | from aistudio.google.com → Get API key |
+| `GEMINI_MODEL` | optional, defaults to `gemini-3.5-flash-lite` (see ai.google.dev/gemini-api/docs/models) |
+| `CHAT_LIMIT_PER_MINUTE` / `CHAT_LIMIT_PER_DAY` | optional, default 10 and 60 requests per visitor IP |
+
+Limits are stored in the same Postgres database (table `chat_rate_limits`, IPs hashed). Messages longer than 1000 characters are rejected. Provider errors are only written to the Vercel logs; visitors see a generic message.

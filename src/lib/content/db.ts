@@ -5,7 +5,8 @@ import { COLLECTION_KEYS } from '@shared/content/types';
 
 /**
  * Read-only database access for the public site. All writes happen in the admin
- * app; this side only ever runs SELECTs, and only for published records.
+ * app; page rendering only ever runs SELECTs, and only for published records.
+ * (The one exception is /api/chat, which keeps its rate-limit counters here.)
  */
 const globalForDb = globalThis as unknown as { __portfolioSql?: postgres.Sql };
 
@@ -13,7 +14,8 @@ export function hasDatabase(): boolean {
     return !!(process.env.DATABASE_URL || process.env.POSTGRES_URL);
 }
 
-function sql(): postgres.Sql {
+/** Shared client. Also used by the chat route's rate limiter (the only writer on this side). */
+export function sql(): postgres.Sql {
     if (!globalForDb.__portfolioSql) {
         const url = (process.env.DATABASE_URL || process.env.POSTGRES_URL)!;
         const local = /localhost|127\.0\.0\.1/.test(url);

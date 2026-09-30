@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSiteContent } from '@/lib/content/server';
 import { buildView } from '@/lib/content/view';
+import { checkChatRate, clientIp } from '@/lib/chat-rate-limit';
 
 // ─── Build system prompt from portfolio data ─────────────────────────────────
 async function buildSystemPrompt(locale: string = 'en'): Promise<string> {
@@ -101,10 +102,45 @@ interface ChatRequest {
     locale?: string;
 }
 
+// ─── Limits ──────────────────────────────────────────────────────────────────
+const MAX_MESSAGES = 40; // per request; the UI sends at most the last 20
+const MODEL_CONTEXT = 20; // messages actually passed to the model
+const MAX_USER_CHARS = 1000;
+const MAX_ASSISTANT_CHARS = 8000; // earlier replies echoed back by the UI
+const MAX_TOTAL_CHARS = 30000;
+
+// Shown as-is by the chat UI, in the visitor's language.
+const MESSAGES = {
+    en: {
+        rateLimited: "You're sending messages a little too fast. Please wait a moment and try again.",
+        dailyLimit: "You've reached today's message limit for this assistant. Please come back tomorrow.",
+        tooLong: `Your message is too long. Please keep it under ${MAX_USER_CHARS} characters.`,
+        invalid: 'Invalid request.',
+        unavailable: 'The assistant is unavailable right now. Please try again later.',
+        internal: 'Something went wrong. Please try again.',
+    },
+    ar: {
+        rateLimited: 'أرسلت رسائل كثيرة بسرعة. انتظر قليلاً ثم حاول مرة أخرى.',
+        dailyLimit: 'وصلت إلى الحد اليومي للرسائل مع المساعد. يمكنك المحاولة مرة أخرى غداً.',
+        tooLong: `رسالتك طويلة جداً. يرجى ألا تتجاوز ${MAX_USER_CHARS} حرف.`,
+        invalid: 'طلب غير صالح.',
+        unavailable: 'المساعد غير متاح حالياً. يرجى المحاولة لاحقاً.',
+        internal: 'حدث خطأ ما. يرجى المحاولة مرة أخرى.',
+    },
+};
+type MessageKey = keyof typeof MESSAGES.en;
+
+function fail(locale: 'en' | 'ar', key: MessageKey, status: number, headers?: HeadersInit) {
+    return NextResponse.json({ error: MESSAGES[locale][key], code: key }, { status, headers });
+}
+
+/** Provider errors carry status and body for the server log only; they never reach the browser. */
+class ProviderError extends Error {}
+
 // ─── Groq API call ───────────────────────────────────────────────────────────
 async function callGroq(messages: Message[], systemPrompt: string): Promise<string> {
     const apiKey = process.env.GROQ_API_KEY;
-    if (!apiKey) throw new Error('GROQ_API_KEY not configured');
+    if (!apiKey) throw new ProviderError('GROQ_API_KEY not configured');
 
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
@@ -125,19 +161,22 @@ async function callGroq(messages: Message[], systemPrompt: string): Promise<stri
 
     if (!response.ok) {
         const errorBody = await response.text();
-        throw new Error(`Groq API error ${response.status}: ${errorBody}`);
+        throw new ProviderError(`Groq API error ${response.status}: ${errorBody}`);
     }
 
     const data = await response.json();
     const content = data?.choices?.[0]?.message?.content;
-    if (!content) throw new Error('Empty response from Groq');
+    if (!content) throw new ProviderError('Empty response from Groq');
     return content;
 }
 
 // ─── Gemini API call ─────────────────────────────────────────────────────────
+// Current models: https://ai.google.dev/gemini-api/docs/models
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.5-flash-lite';
+
 async function callGemini(messages: Message[], systemPrompt: string): Promise<string> {
     const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) throw new Error('GEMINI_API_KEY not configured');
+    if (!apiKey) throw new ProviderError('GEMINI_API_KEY not configured');
 
     // Convert messages to Gemini format
     const geminiContents = messages.map((m) => ({
@@ -146,15 +185,18 @@ async function callGemini(messages: Message[], systemPrompt: string): Promise<st
     }));
 
     const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(GEMINI_MODEL)}:generateContent`,
         {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            // Key in a header, not the URL, so it can't end up in request logs.
+            headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
             body: JSON.stringify({
                 systemInstruction: { parts: [{ text: systemPrompt }] },
                 contents: geminiContents,
                 generationConfig: {
-                    maxOutputTokens: 1024,
+                    // Leaves room for the model's own reasoning tokens, which count
+                    // against this limit on current Gemini models.
+                    maxOutputTokens: 2048,
                     temperature: 0.7,
                 },
             }),
@@ -163,46 +205,58 @@ async function callGemini(messages: Message[], systemPrompt: string): Promise<st
 
     if (!response.ok) {
         const errorBody = await response.text();
-        throw new Error(`Gemini API error ${response.status}: ${errorBody}`);
+        throw new ProviderError(`Gemini API error ${response.status} (${GEMINI_MODEL}): ${errorBody}`);
     }
 
     const data = await response.json();
-    const content = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!content) throw new Error('Empty response from Gemini');
+    const parts: { text?: string; thought?: boolean }[] = data?.candidates?.[0]?.content?.parts ?? [];
+    const content = parts.filter((p) => !p.thought && p.text).map((p) => p.text).join('');
+    if (!content) throw new ProviderError(`Empty response from Gemini (finishReason: ${data?.candidates?.[0]?.finishReason ?? 'none'})`);
     return content;
+}
+
+// ─── Request validation ──────────────────────────────────────────────────────
+function validate(body: ChatRequest): MessageKey | null {
+    const list = body?.messages;
+    if (!Array.isArray(list) || list.length === 0 || list.length > MAX_MESSAGES) return 'invalid';
+    let total = 0;
+    for (const msg of list) {
+        if (!msg || typeof msg.content !== 'string' || !msg.content.trim()) return 'invalid';
+        if (msg.role !== 'user' && msg.role !== 'assistant') return 'invalid';
+        const max = msg.role === 'user' ? MAX_USER_CHARS : MAX_ASSISTANT_CHARS;
+        if (msg.content.length > max) return msg.role === 'user' ? 'tooLong' : 'invalid';
+        total += msg.content.length;
+    }
+    if (total > MAX_TOTAL_CHARS) return 'invalid';
+    if (list[list.length - 1].role !== 'user') return 'invalid';
+    return null;
 }
 
 // ─── POST handler ─────────────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
+    let locale: 'en' | 'ar' = req.cookies.get('NEXT_LOCALE')?.value === 'ar' ? 'ar' : 'en';
     try {
-        const body: ChatRequest = await req.json();
+        let body: ChatRequest;
+        try {
+            body = await req.json();
+        } catch {
+            return fail(locale, 'invalid', 400);
+        }
+        if (body?.locale === 'ar' || body?.locale === 'en') locale = body.locale;
 
-        if (!body?.messages || !Array.isArray(body.messages) || body.messages.length === 0) {
-            return NextResponse.json(
-                { error: 'Invalid request: messages array is required.' },
-                { status: 400 }
-            );
+        const problem = validate(body);
+        if (problem) return fail(locale, problem, problem === 'tooLong' ? 413 : 400);
+
+        // Checked before any provider call; only well-formed requests count.
+        const rate = await checkChatRate(clientIp(req.headers));
+        if (!rate.ok) {
+            const key: MessageKey = rate.retryAfter > 60 ? 'dailyLimit' : 'rateLimited';
+            return fail(locale, key, 429, { 'Retry-After': String(rate.retryAfter) });
         }
 
-        // Validate each message
-        for (const msg of body.messages) {
-            if (!msg.role || !msg.content || typeof msg.content !== 'string') {
-                return NextResponse.json(
-                    { error: 'Invalid message format.' },
-                    { status: 400 }
-                );
-            }
-            if (!['user', 'assistant'].includes(msg.role)) {
-                return NextResponse.json(
-                    { error: 'Invalid message role.' },
-                    { status: 400 }
-                );
-            }
-        }
-
-        // Limit to last 20 messages to avoid token overflow
-        const messages = body.messages.slice(-20);
-        const systemPrompt = await buildSystemPrompt(body.locale);
+        // Only the recent part of the conversation goes to the model.
+        const messages = body.messages.slice(-MODEL_CONTEXT).map(({ role, content }) => ({ role, content }));
+        const systemPrompt = await buildSystemPrompt(locale);
 
         let reply: string;
         let provider: string;
@@ -218,26 +272,14 @@ export async function POST(req: NextRequest) {
                 provider = 'gemini';
             } catch (geminiError) {
                 console.error('[Chat] Gemini also failed:', geminiError);
-                return NextResponse.json(
-                    {
-                        error: 'Both AI providers are currently unavailable. Please try again later.',
-                        details: {
-                            groq: groqError instanceof Error ? groqError.message : String(groqError),
-                            gemini: geminiError instanceof Error ? geminiError.message : String(geminiError),
-                        },
-                    },
-                    { status: 503 }
-                );
+                return fail(locale, 'unavailable', 503);
             }
         }
 
         return NextResponse.json({ reply, provider });
     } catch (error) {
         console.error('[Chat] Unexpected error:', error);
-        return NextResponse.json(
-            { error: 'Internal server error.' },
-            { status: 500 }
-        );
+        return fail(locale, 'internal', 500);
     }
 }
 

@@ -55,4 +55,12 @@ create table if not exists login_attempts (
     at timestamptz not null default now()
 );
 create index if not exists login_attempts_ip_at on login_attempts (ip, at);
+
+-- Public chatbot rate limits (written only by the portfolio's /api/chat).
+create table if not exists chat_rate_limits (
+    bucket text primary key,
+    count integer not null default 0,
+    expires_at timestamptz not null
+);
+create index if not exists chat_rate_limits_expires on chat_rate_limits (expires_at);
 `;

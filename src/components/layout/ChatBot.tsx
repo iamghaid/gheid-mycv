@@ -373,7 +373,9 @@ function ChatWindow({ onClose, origin }: { onClose: () => void, origin?: { x: nu
             // Build messages array for API (exclude error messages)
             const apiMessages = [...messages, userMsg]
                 .filter((m) => !m.error)
-                .map(({ role, content }) => ({ role, content }));
+                .map(({ role, content }) => ({ role, content }))
+                // The server only uses the recent part of the conversation.
+                .slice(-20);
 
             abortControllerRef.current?.abort();
             abortControllerRef.current = new AbortController();
@@ -614,6 +616,7 @@ function ChatWindow({ onClose, origin }: { onClose: () => void, origin?: { x: nu
                             onKeyDown={handleKeyDown}
                             disabled={isLoading}
                             placeholder={t("placeholder")}
+                            maxLength={1000}
                             rows={1}
                             className={cn(
                                 "flex-1 resize-none rounded-xl px-3.5 py-2.5 text-sm",
