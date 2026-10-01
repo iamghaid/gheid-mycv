@@ -6,6 +6,7 @@
  * as it was: components keep reading `useLocalizedPortfolio()` and friends, and only
  * the source of the data changed — from source files to the database.
  */
+import { canonicalProjectUrl } from '@/lib/project-presentation';
 import type {
     AchievementData, EducationData, ExperienceData, GalleryData, GallerySlot, Item, L10n, L10nList, ProjectData,
     ResearchData, SiteContent, SkillCategory, SkillData, TimelineData,
@@ -109,7 +110,7 @@ export function buildView(content: SiteContent, locale: Locale): SiteView {
             techStack: x.technologies,
             tools: x.tools,
             status: x.status,
-            demoUrl: optional(x.liveUrl),
+            demoUrl: canonicalProjectUrl(optional(x.liveUrl)),
             repoUrl: optional(x.repoUrl),
             documentUrl: optional(x.documentUrl.en || x.documentUrl.ar),
             documentUrlAr: optional(x.documentUrl.ar || x.documentUrl.en),

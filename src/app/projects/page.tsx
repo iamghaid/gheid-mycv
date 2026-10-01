@@ -23,6 +23,8 @@ import { messageKey } from '@/lib/messageKey';
 import { DeferredMount } from '@/components/ui/DeferredMount';
 
 import { useBasePortfolio, useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
+import { useProjectPresentation } from '@/hooks/useProjectPresentation';
+import { projectPresentationUrl } from '@/lib/project-presentation';
 
 type FilterType = 'all' | 'ongoing' | 'completed';
 
@@ -959,6 +961,7 @@ const getIconKey = (name: string): keyof typeof Icons => {
 };
 
 export default function ProjectsPage() {
+    const { preferences } = useProjectPresentation();
     const tPage = useTranslations('projectsPage');
     // Shadows the module import so this component reads translated copy.
     const portfolioData = useLocalizedPortfolio();
@@ -987,7 +990,7 @@ export default function ProjectsPage() {
     const products = useMemo(() => {
         const baseProducts = portfolioData.projects.map((p) => ({
             title: p.title,
-            link: p.demoUrl || p.repoUrl || `/projects/${p.slug}`,
+            link: projectPresentationUrl(p.demoUrl, preferences) || p.repoUrl || `/projects/${p.slug}`,
             thumbnail:
                 p.image ||
                 getProjectCover({ slug: p.slug, title: p.title, category: p.category }),
@@ -996,7 +999,7 @@ export default function ProjectsPage() {
         const filled = [...baseProducts];
         while (filled.length < 10) filled.push(...baseProducts);
         return filled.slice(0, 10);
-    }, [portfolioData]);
+    }, [portfolioData, preferences.language, preferences.theme]);
 
     // Generate Timeline Items - delay is calculated in component based on index
     const timelineItems: LogoItem[] = useMemo(() => {

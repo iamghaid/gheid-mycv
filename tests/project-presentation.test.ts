@@ -1,6 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { projectPresentationUrl, supportsProjectPresentation } from '../src/lib/project-presentation';
+test('legacy Eagle demo resolves to its current bilingual deployment', () => {
+ const result = new URL(projectPresentationUrl('https://iamghaid.github.io/eagle/?demo=1#services', {language:'ar',theme:'light'})!);
+ assert.equal(result.origin,'https://eagle-azure.vercel.app');
+ assert.equal(result.searchParams.get('demo'),'1');
+ assert.equal(result.searchParams.get('portfolio_lang'),'ar');
+ assert.equal(result.searchParams.get('portfolio_theme'),'light');
+ assert.equal(result.hash,'#services');
+});
 for (const language of ['en','ar'] as const) for (const theme of ['light','dark'] as const) {
  test(`${language}/${theme} preserves mission routes and existing parameters`, () => {
   const result = new URL(projectPresentationUrl('https://go-mission.vercel.app/?demo=1#/join', {language,theme})!);
