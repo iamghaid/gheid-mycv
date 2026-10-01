@@ -132,3 +132,6 @@ Limits are stored in the same Postgres database (table `chat_rate_limits`, IPs h
 
 ## Project language and theme
 The public portfolio decorates supported live project links with its current language and resolved light/dark theme. Embedded projects also receive a validated `portfolio:presentation` message when either preference changes, so their current session can stay mounted. The supported projects are Go Mission, Irth, Mizan, Muhla and Global Eagle Travel. Other external links are preserved.
+
+### Matching screenshots
+The same five projects use real cover and feature screenshots for every English/Arabic and light/dark combination. `src/lib/project-screenshots.ts` selects the captures under `public/project/previews/`; the reader's current preferences update cards, hover previews, carousels, fallback previews and visual galleries together. Mizan captures use its synthetic demo dashboard, never uploaded bidder records. Refresh these assets after changing a project's interface. Project text and other records still come from the admin database; its original thumbnail/gallery values are retained as stored content, and projects outside the capture registry keep their admin images.

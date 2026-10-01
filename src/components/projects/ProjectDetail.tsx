@@ -9,6 +9,7 @@ import { cn, formatDate } from '@/lib/utils';
 import { Project } from '@/types';
 import { TechStack } from './TechStack';
 import { useProjectPresentation } from '@/hooks/useProjectPresentation';
+import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 
 // --- Animated Terminal Component ---
 const TerminalBlock = ({ title, code }: { title: string; code: string }) => {
@@ -165,14 +166,17 @@ const Typewriter = ({ examples }: { examples: string[] }) => {
     );
 };
 
-export function ProjectDetail({ project, onClose, isLowPowerMode }: { project: Project; onClose: () => void; isLowPowerMode?: boolean }) {
-    const { url: liveUrl } = useProjectPresentation(project.demoUrl);
+export function ProjectDetail({ project: initialProject, onClose, isLowPowerMode }: { project: Project; onClose: () => void; isLowPowerMode?: boolean }) {
+    const portfolioData = useLocalizedPortfolio();
+    const project = portfolioData.projects.find((p) => p.slug === initialProject.slug) ?? initialProject;
+    const { url: liveUrl, preferences } = useProjectPresentation(project.demoUrl);
     const locale = useLocale();
     const t = useTranslations('projects');
     const isOngoing = project.status === 'ongoing';
     const [activeSection, setActiveSection] = useState<'overview' | 'tech' | 'features' | 'gallery' | 'install'>('overview');
     const [selectedFeature, setSelectedFeature] = useState<number | null>(null);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    useEffect(() => { setSelectedImage(null); }, [preferences.language, preferences.theme]);
 
     // Parallax & Scroll Animations for Hero
     const heroRef = useRef<HTMLDivElement>(null);

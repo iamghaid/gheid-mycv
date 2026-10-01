@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useMemo, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
+import { useTheme } from 'next-themes';
 import type { SiteContent } from '@shared/content/types';
 import { buildView, type Locale, type SiteView } from '@/lib/content/view';
 
@@ -61,7 +62,9 @@ export function useSiteContent(): SiteContent {
 export function useSiteView(): SiteView {
     const content = useSiteContent();
     const locale = (useLocale() === 'ar' ? 'ar' : 'en') as Locale;
-    return useMemo(() => buildView(content, locale), [content, locale]);
+    const { resolvedTheme } = useTheme();
+    const theme = resolvedTheme === 'light' ? 'light' : 'dark';
+    return useMemo(() => buildView(content, locale, theme), [content, locale, theme]);
 }
 
 /** The English view, for code that matches on canonical English names. */

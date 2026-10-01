@@ -7,6 +7,7 @@
  * the source of the data changed — from source files to the database.
  */
 import { canonicalProjectUrl } from '@/lib/project-presentation';
+import { projectScreenshots } from '@/lib/project-screenshots';
 import type {
     AchievementData, EducationData, ExperienceData, GalleryData, GallerySlot, Item, L10n, L10nList, ProjectData,
     ResearchData, SiteContent, SkillCategory, SkillData, TimelineData,
@@ -92,7 +93,7 @@ const isToolCategory = (c: SkillCategory) => c === 'tools' || c === 'design';
 
 const data = <T>(items: Item[]) => items.map((i) => ({ id: i.id, ...(i.data as T) }));
 
-export function buildView(content: SiteContent, locale: Locale): SiteView {
+export function buildView(content: SiteContent, locale: Locale, theme: 'light' | 'dark' = 'dark'): SiteView {
     const p = content.profile;
     const c = content.collections;
 
@@ -124,6 +125,7 @@ export function buildView(content: SiteContent, locale: Locale): SiteView {
             role: optional(pick(x.role, locale)),
             featured: x.featured,
             embedMode: x.embedMode,
+            ...projectScreenshots(x.slug, { language: locale, theme }),
         }));
 
     const experiences: Experience[] = data<ExperienceData>(c.experience).map((x) => ({

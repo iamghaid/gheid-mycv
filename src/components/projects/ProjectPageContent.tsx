@@ -180,12 +180,13 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
     // Prefer the live record so an admin edit (or a language switch) updates the page in place.
     const project = portfolioData.projects.find((p) => p.slug === initialProject.slug) ?? initialProject;
 
-    const { url: liveUrl } = useProjectPresentation(project.demoUrl);
+    const { url: liveUrl, preferences } = useProjectPresentation(project.demoUrl);
     const t = useTranslations('projects');
     const tCommon = useTranslations('common');
     const router = useRouter();
     const isOngoing = project.status === 'ongoing';
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    useEffect(() => { setSelectedImage(null); }, [preferences.language, preferences.theme]);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     const handleExit = () => {
