@@ -129,3 +129,6 @@ Set these on the **portfolio** project (Settings → Environment Variables). At 
 | `CHAT_LIMIT_PER_MINUTE` / `CHAT_LIMIT_PER_DAY` | optional, default 10 and 60 requests per visitor IP |
 
 Limits are stored in the same Postgres database (table `chat_rate_limits`, IPs hashed). Messages longer than 1000 characters are rejected. Provider errors are only written to the Vercel logs; visitors see a generic message.
+
+## Project language and theme
+The public portfolio decorates supported live project links with its current language and resolved light/dark theme. Embedded projects also receive a validated `portfolio:presentation` message when either preference changes, so their current session can stay mounted. The supported projects are Go Mission, Irth, Mizan, Muhla and Global Eagle Travel. Other external links are preserved.

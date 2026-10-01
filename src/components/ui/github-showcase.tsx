@@ -1,6 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useProjectPresentation } from "@/hooks/useProjectPresentation";
+import { projectPresentationUrl } from "@/lib/project-presentation";
 import { useLocalizedPortfolio } from "@/hooks/useLocalizedPortfolio";
 import type { Project } from "@/types";
 import React, { useState, useEffect, useRef, useMemo } from "react";
@@ -46,6 +48,7 @@ type PinnedRepo = {
  */
 function usePinnedRepos(): PinnedRepo[] {
   const portfolioData = useLocalizedPortfolio();
+  const { preferences } = useProjectPresentation();
 
   return useMemo(
     () =>
@@ -58,9 +61,9 @@ function usePinnedRepos(): PinnedRepo[] {
           stars: 0,
           forks: 0,
           lang: project.techStack[0] ?? '',
-          url: (project.demoUrl || project.repoUrl) as string,
+          url: (projectPresentationUrl(project.demoUrl, preferences) || project.repoUrl) as string,
         })),
-    [portfolioData]
+    [portfolioData, preferences.language, preferences.theme]
   );
 }
 

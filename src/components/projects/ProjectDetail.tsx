@@ -8,6 +8,7 @@ import { X, Calendar, Code, Box, Award, Share2, ExternalLink, Github, Terminal, 
 import { cn, formatDate } from '@/lib/utils';
 import { Project } from '@/types';
 import { TechStack } from './TechStack';
+import { useProjectPresentation } from '@/hooks/useProjectPresentation';
 
 // --- Animated Terminal Component ---
 const TerminalBlock = ({ title, code }: { title: string; code: string }) => {
@@ -165,6 +166,7 @@ const Typewriter = ({ examples }: { examples: string[] }) => {
 };
 
 export function ProjectDetail({ project, onClose, isLowPowerMode }: { project: Project; onClose: () => void; isLowPowerMode?: boolean }) {
+    const { url: liveUrl } = useProjectPresentation(project.demoUrl);
     const locale = useLocale();
     const t = useTranslations('projects');
     const isOngoing = project.status === 'ongoing';
@@ -328,7 +330,7 @@ export function ProjectDetail({ project, onClose, isLowPowerMode }: { project: P
                         <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
                             {project.demoUrl && (
                                 <motion.a
-                                    href={project.demoUrl === '#' ? undefined : project.demoUrl}
+                                    href={project.demoUrl === '#' ? undefined : liveUrl}
                                     target={project.demoUrl === '#' ? undefined : "_blank"}
                                     rel={project.demoUrl === '#' ? undefined : "noopener noreferrer"}
                                     className={cn(

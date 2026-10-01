@@ -7,6 +7,7 @@ import { X, Calendar, Code, Box, Award, Share2, ExternalLink, Github, Terminal, 
 import { cn, formatDate } from '@/lib/utils';
 import { Project } from '@/types';
 import { TechStack } from './TechStack';
+import { useProjectPresentation } from '@/hooks/useProjectPresentation';
 import { LiveProjectPreview } from './LiveProjectPreview';
 import { ProjectPlaceholder } from './ProjectPlaceholder';
 import Link from 'next/link';
@@ -179,6 +180,7 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
     // Prefer the live record so an admin edit (or a language switch) updates the page in place.
     const project = portfolioData.projects.find((p) => p.slug === initialProject.slug) ?? initialProject;
 
+    const { url: liveUrl } = useProjectPresentation(project.demoUrl);
     const t = useTranslations('projects');
     const tCommon = useTranslations('common');
     const router = useRouter();
@@ -456,7 +458,7 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
                                 <div className="flex flex-col gap-3">
                                     {project.demoUrl && (
                                         <motion.a
-                                            href={project.demoUrl === '#' ? undefined : project.demoUrl}
+                                            href={project.demoUrl === '#' ? undefined : liveUrl}
                                             target={project.demoUrl === '#' ? undefined : "_blank"}
                                             rel={project.demoUrl === '#' ? undefined : "noopener noreferrer"}
                                             className={cn(

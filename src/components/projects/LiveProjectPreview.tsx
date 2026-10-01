@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Loader2, Monitor, Smartphone } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import type { Project } from '@/types';
 import { ProjectPlaceholder } from './ProjectPlaceholder';
+import { useProjectPresentation } from '@/hooks/useProjectPresentation';
+import { projectPresentationUrl, supportsProjectPresentation, PRESENTATION_MESSAGE } from '@/lib/project-presentation';
 
 type State = 'checking' | 'embed' | 'fallback';
 const DESKTOP_WIDTH = 1280;
@@ -28,7 +30,20 @@ export function LiveProjectPreview({ project, onOpenImage }: { project: Project;
     const [loaded, setLoaded] = useState(false);
     const frame = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState(0);
-    const url = project.demoUrl!;
+    const { url: presentationUrl, preferences } = useProjectPresentation(project.demoUrl);
+    const url = presentationUrl!;
+    const baseUrl = project.demoUrl!;
+    const initialPreferences = useRef(preferences);
+    // Keep the iframe alive while parent preferences change: update it by message.
+    const frameUrl = useMemo(() => projectPresentationUrl(baseUrl, initialPreferences.current)!, [baseUrl]);
+    const iframe = useRef<HTMLIFrameElement>(null);
+    const syncPreferences = () => {
+        if (supportsProjectPresentation(baseUrl)) iframe.current?.contentWindow?.postMessage(
+            { type: PRESENTATION_MESSAGE, ...preferences }, new URL(baseUrl).origin
+        );
+    };
+    useEffect(() => { syncPreferences(); }, [preferences.language, preferences.theme, loaded, baseUrl]);
+    useEffect(() => { setLoaded(false); }, [frameUrl, device]);
 
     useEffect(() => {
         let cancelled = false;
@@ -37,7 +52,7 @@ export function LiveProjectPreview({ project, onOpenImage }: { project: Project;
             .then((v: { embeddable: boolean }) => !cancelled && setState(v.embeddable ? 'embed' : 'fallback'))
             .catch(() => !cancelled && setState('fallback'));
         return () => { cancelled = true; };
-    }, [project.slug, url]);
+    }, [project.slug, baseUrl]);
 
     useEffect(() => {
         const el = frame.current;
@@ -128,12 +143,13 @@ export function LiveProjectPreview({ project, onOpenImage }: { project: Project;
                     {device === 'desktop' ? (
                         <iframe
                             key="desktop"
-                            src={url}
+                            src={frameUrl}
+                            ref={iframe}
                             title={project.title}
                             loading="lazy"
                             referrerPolicy="strict-origin-when-cross-origin"
                             sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                            onLoad={() => setLoaded(true)}
+                            onLoad={() => { setLoaded(true); syncPreferences(); }}
                             className="absolute left-0 top-0 origin-top-left border-0 bg-white"
                             style={{ width: DESKTOP_WIDTH, height: frameHeight / scale, transform: `scale(${scale})` }}
                         />
@@ -141,12 +157,13 @@ export function LiveProjectPreview({ project, onOpenImage }: { project: Project;
                         <div className="my-4 overflow-hidden rounded-[2rem] border-[6px] border-neutral-900 bg-white shadow-xl dark:border-neutral-700" style={{ width: MOBILE_WIDTH + 12, height: frameHeight - 32 }}>
                             <iframe
                                 key="mobile"
-                                src={url}
+                                src={frameUrl}
+                                ref={iframe}
                                 title={project.title}
                                 loading="lazy"
                                 referrerPolicy="strict-origin-when-cross-origin"
                                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                                onLoad={() => setLoaded(true)}
+                                onLoad={() => { setLoaded(true); syncPreferences(); }}
                                 className="h-full w-full border-0"
                             />
                         </div>
