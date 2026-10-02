@@ -26,10 +26,10 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
   // the joins — so the Arabic cut gets its own metrics instead of inheriting these.
   const headlineClass = isArabic
     ? 'text-[clamp(2.25rem,8vw,9rem)] font-bold leading-[1.25] tracking-normal text-shiny will-change-transform px-0 md:px-4'
-    : 'text-[clamp(3rem,11vw,13rem)] font-black leading-[0.85] tracking-tighter text-shiny will-change-transform px-0 md:px-4';
+    : 'text-[clamp(2rem,10vw,4rem)] md:text-[clamp(3rem,11vw,13rem)] font-black leading-[0.85] tracking-tighter text-shiny will-change-transform px-0 md:px-4';
   const sideNoteClass = isArabic
-    ? 'text-sm md:text-sm text-muted-foreground leading-loose max-w-[220px] md:max-w-[240px] font-medium tracking-normal'
-    : 'text-xs md:text-xs text-muted-foreground leading-relaxed max-w-[200px] md:max-w-[220px] font-medium uppercase tracking-[0.2em]';
+    ? 'text-sm md:text-sm text-muted-foreground leading-loose max-w-full md:max-w-[240px] font-medium tracking-normal'
+    : 'text-xs md:text-xs text-muted-foreground leading-relaxed max-w-full md:max-w-[220px] font-medium uppercase tracking-[0.08em] md:tracking-[0.2em]';
   const [showProfile, setShowProfile] = useState(false);
   const [tooltip, setTooltip] = useState<{ show: boolean; text: string; x: number; y: number; icon: 'zap' | 'bot' | null }>({
     show: false,
