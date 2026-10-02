@@ -597,8 +597,21 @@ export default function AchievementsPage() {
     const portfolioData = useLocalizedPortfolio();
 
     const t = useTranslations('achievements');
-    const certificateTopics = useMemo(() => Array.from(new Set(portfolioData.achievements.flatMap(item => item.tags ?? []))), [portfolioData.achievements]);
-    const technicalTerms = useMemo(() => Array.from(new Set([...portfolioData.hardSkills.slice(0, 12).map(skill => skill.name), ...certificateTopics])), [portfolioData.hardSkills, certificateTopics]);
+    // Certificate tags also describe participation, awards and organizations.
+    // This playground represents practiced skills, so use the actual skill
+    // inventory instead and merge spelling/case variants before displaying it.
+    const technicalTerms = useMemo(() => {
+        const normalize = (name: string) => name.toLocaleLowerCase().replace(/[\s\p{P}]+/gu, '');
+        const seen = new Set<string>();
+        return [...portfolioData.hardSkills.map(skill => skill.name), ...portfolioData.techStack.map(skill => skill.name)]
+            .filter(name => {
+                const key = normalize(name);
+                if (!key || seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            })
+            .slice(0, 20);
+    }, [portfolioData.hardSkills, portfolioData.techStack]);
     const { isLowPowerMode } = usePerformance();
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
@@ -1086,7 +1099,7 @@ export default function AchievementsPage() {
                             <ErrorBoundary fallback={<div className="text-center opacity-50">{tPage('visualsUnavailable')}</div>}>
                                 <FallingText
                                     terms={technicalTerms}
-                                    highlightWords={certificateTopics}
+                                    highlightWords={technicalTerms}
                                     trigger="scroll"
                                     gravity={0.8}
                                     mouseConstraintStiffness={0.2}
