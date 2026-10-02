@@ -10,5 +10,5 @@ export function SkillLogo({ src, name, invertInDark, className }: {
     const fallback = !src || failedSrc === src;
     return <img src={fallback ? '/skill-logos/skill.svg' : src} alt={name}
         className={cn('h-full w-full object-contain', !fallback && invertInDark && 'dark:invert', className)}
-        loading="lazy" decoding="async" onError={() => { if (!fallback) setFailedSrc(src!); }} />;
+        loading="eager" decoding="async" onError={() => { if (!fallback) setFailedSrc(src!); }} />;
 }
