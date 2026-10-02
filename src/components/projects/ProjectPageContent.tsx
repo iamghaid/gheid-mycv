@@ -489,7 +489,7 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
                                             <span>{t(project.category === 'Design' ? 'sections.viewProfile' : 'sections.viewStudy')}</span>
                                         </a>
                                     )}
-                                    {project.documentUrlAr && (
+                                    {project.documentUrlAr && project.documentUrlAr !== project.documentUrl && (
                                         <a href={project.documentUrlAr} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-medium text-sm bg-black/10 dark:bg-secondary/10 hover:bg-black/20 dark:hover:bg-secondary/20 text-foreground transition-all border border-black/5 dark:border-transparent hover:border-black/10 dark:hover:border-white/5">
                                             <ExternalLink className="w-4 h-4" />
                                             <span dir="rtl">عرض الملف بالعربي (PDF)</span>
