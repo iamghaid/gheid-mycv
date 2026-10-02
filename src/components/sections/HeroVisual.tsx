@@ -144,7 +144,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="relative min-h-screen w-full flex flex-col bg-background text-foreground overflow-hidden selection:bg-primary/20"
+      className="relative md:min-h-screen w-full flex flex-col bg-background text-foreground overflow-hidden selection:bg-primary/20"
     >
       {/* Background Pattern */}
       <div className="w-full absolute h-full z-0 bg-[radial-gradient(circle,_#888_0.5px,_transparent_0.5px)] dark:bg-[radial-gradient(circle,_#444_0.5px,_transparent_0.5px)] opacity-20 [background-size:24px_24px]" />
@@ -161,7 +161,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
         />
       </div>
 
-      <main className="relative flex-1 flex flex-col justify-center pt-28 md:pt-40 pb-12 md:pb-20 z-10 max-w-[105rem] w-full mx-auto">
+      <main className="relative md:flex-1 flex flex-col md:justify-center pt-24 md:pt-40 pb-6 md:pb-20 z-10 max-w-[105rem] w-full mx-auto">
         <div className="flex relative gap-4 px-6 md:items-center w-full flex-col justify-center">
 
           {/* Follow-Cursor Tooltip */}
@@ -311,7 +311,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
         </div>
 
         {/* Separator Section */}
-        <div className="mx-auto max-w-[105rem] w-full px-8 md:px-20 mt-12 md:mt-24">
+        <div className="mx-auto max-w-[105rem] w-full px-8 md:px-20 mt-6 md:mt-24">
           <div className="flex items-center gap-6">
             <Separator className="flex-1 h-[1px] bg-foreground/10 hidden md:block" />
             <div

@@ -22,14 +22,14 @@ export default function CredentialsSection() {
     const languages = personal.languages ?? [];
 
     return (
-        <section className="relative bg-background py-20 md:py-28">
+        <section className="relative bg-background py-8 md:py-28">
             <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-80px' }}
                     transition={{ duration: 0.6 }}
-                    className="mb-12"
+                    className="mb-6 md:mb-12"
                 >
                     <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary/60">
                         {t('label')}

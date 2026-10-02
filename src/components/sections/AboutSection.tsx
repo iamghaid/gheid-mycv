@@ -156,7 +156,7 @@ const AboutLeadIn = () => {
     const t = useTranslations('about');
 
     return (
-        <div className="w-full max-w-[1650px] mx-auto px-6 py-6 flex justify-center items-center">
+        <div className="w-full max-w-[1650px] mx-auto px-6 py-3 md:py-6 flex justify-center items-center">
             {/* The Reference Card Container (Gambar 1 Style with Dark/Light Support) */}
             <motion.div
                 initial="hidden"
@@ -710,7 +710,7 @@ function MobileAboutSection() {
     const tp = useTranslations('projectsPage');
     const te = useTranslations('experiencePage');
     return (
-        <section id="about" className="bg-background text-foreground py-8 space-y-12">
+        <section id="about" className="bg-background text-foreground pt-3 pb-6 space-y-8">
             <AboutLeadIn />
             <div className="space-y-5">
                 <div className="px-6 flex items-center justify-between gap-4">
