@@ -853,6 +853,9 @@ function ExperienceTimeline({ isLowPowerMode }: { isLowPowerMode: boolean }) {
                 {group.experiences.map((exp) => {
                     // Logos supplied as dark artwork on transparent backgrounds need inverting in dark mode.
                     const specificClasses = exp.logoInvertInDark ? "dark:invert" : "";
+                    const organizationLogoClasses = exp.logo?.startsWith('/experience/')
+                        ? 'rounded-lg bg-white p-2'
+                        : '';
 
                     return (
                     <div key={exp.id} className="relative ps-6 sm:ps-8 border-s-2 border-neutral-200 dark:border-neutral-800 group/timeline">
@@ -861,13 +864,13 @@ function ExperienceTimeline({ isLowPowerMode }: { isLowPowerMode: boolean }) {
                         {/* HOVER LOGO ON THE LEFT */}
                         {exp.logo && (
                             <div className="absolute top-0 end-full me-6 w-32 h-10 md:w-40 md:h-16 opacity-0 group-hover/timeline:opacity-100 transition-all duration-300 pointer-events-none items-center justify-end -translate-x-4 rtl:translate-x-4 group-hover/timeline:translate-x-0 hidden md:flex">
-                                <div className="relative w-full h-full">
+                                <div className={`relative w-full h-full ${organizationLogoClasses}`}>
                                     <Image 
                                         src={exp.logo} 
                                         alt={`${exp.company} Logo`} 
                                         fill 
                                         unoptimized
-                                        className={`object-contain object-right ${specificClasses}`}
+                                        className={`object-contain object-right ${organizationLogoClasses} ${specificClasses}`}
                                     />
                                 </div>
                             </div>
