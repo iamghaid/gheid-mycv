@@ -1,6 +1,7 @@
 'use client';
 
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react';
+import type { Application } from '@splinetool/runtime';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
@@ -10,11 +11,54 @@ interface InteractiveRobotSplineProps {
 }
 
 export function InteractiveRobotSpline({ scene, className }: InteractiveRobotSplineProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const applicationRef = useRef<Application | null>(null);
+  const visibleRef = useRef(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const syncPlayback = useCallback(() => {
+    const application = applicationRef.current;
+    if (!application) return;
+    const shouldPlay = visibleRef.current && !document.hidden;
+    if (shouldPlay && application.isStopped) application.play();
+    if (!shouldPlay && !application.isStopped) application.stop();
+  }, []);
+  const handleLoad = useCallback((application: Application) => {
+    applicationRef.current = application;
+    syncPlayback();
+  }, [syncPlayback]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    // Fetch ahead of scrolling into view, then retain the scene so returning
+    // to the robot never requires downloading or constructing it again.
+    const preloadObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setShouldLoad(true);
+        preloadObserver.disconnect();
+      }
+    }, { rootMargin: '400px' });
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting;
+      syncPlayback();
+    });
+    preloadObserver.observe(container);
+    visibilityObserver.observe(container);
+    document.addEventListener('visibilitychange', syncPlayback);
+    return () => {
+      preloadObserver.disconnect();
+      visibilityObserver.disconnect();
+      document.removeEventListener('visibilitychange', syncPlayback);
+      applicationRef.current = null;
+    };
+  }, [syncPlayback]);
   // The scene streams from Spline's CDN. If that request fails (network, an ad
   // blocker, a CDN outage) the runtime throws, and without a boundary the error
   // reached the route and replaced the whole Projects page with the error screen.
   // The robot is decoration, so it simply drops out instead.
   return (
+    <div ref={containerRef} className={className}>
+    {shouldLoad && (
     <ErrorBoundary fallback={null}>
     <Suspense
       fallback={
@@ -30,8 +74,12 @@ export function InteractiveRobotSpline({ scene, className }: InteractiveRobotSpl
       <Spline
         scene={scene}
         className={className} 
+        onLoad={handleLoad}
+        renderOnDemand
       />
     </Suspense>
     </ErrorBoundary>
+    )}
+    </div>
   );
 }

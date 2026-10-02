@@ -132,18 +132,22 @@ function ProjectListItem({
     const displayIndex = String(index + 1).padStart(2, '0');
 
     const rafRef = useRef<number | null>(null);
+    const pointerRef = useRef({ x: 0, y: 0 });
 
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!itemRef.current) return;
-        if (rafRef.current) cancelAnimationFrame(rafRef.current);
-
-        const rect = itemRef.current.getBoundingClientRect();
+        pointerRef.current = { x: e.clientX, y: e.clientY };
+        if (rafRef.current !== null) return;
 
         rafRef.current = requestAnimationFrame(() => {
-            mouseX.set(e.clientX - rect.left);
-            mouseY.set(e.clientY - rect.top);
-            cursorX.set(e.clientX);
-            cursorY.set(e.clientY);
+            rafRef.current = null;
+            if (!itemRef.current) return;
+            const rect = itemRef.current.getBoundingClientRect();
+            const { x, y } = pointerRef.current;
+            mouseX.set(x - rect.left);
+            mouseY.set(y - rect.top);
+            cursorX.set(x);
+            cursorY.set(y);
         });
     };
 
@@ -344,28 +348,33 @@ function FeaturedCard({ project, onClick, index, isLowPowerMode }: { project: Pr
     const pixelY = useMotionValue(0);
 
     const rafRef = useRef<number | null>(null);
+    const pointerRef = useRef({ x: 0, y: 0 });
 
     const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], isLowPowerMode ? [0, 0] : [8, -8]), { stiffness: 300, damping: 30 });
     const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], isLowPowerMode ? [0, 0] : [-8, 8]), { stiffness: 300, damping: 30 });
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!cardRef.current) return;
-        if (rafRef.current) cancelAnimationFrame(rafRef.current);
-
-        const rect = cardRef.current.getBoundingClientRect();
+        pointerRef.current = { x: e.clientX, y: e.clientY };
+        if (rafRef.current !== null) return;
 
         rafRef.current = requestAnimationFrame(() => {
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            rafRef.current = null;
+            if (!cardRef.current) return;
+            const rect = cardRef.current.getBoundingClientRect();
+            const pointer = pointerRef.current;
+            const x = (pointer.x - rect.left) / rect.width - 0.5;
+            const y = (pointer.y - rect.top) / rect.height - 0.5;
             mouseX.set(x);
             mouseY.set(y);
-            pixelX.set(e.clientX - rect.left);
-            pixelY.set(e.clientY - rect.top);
+            pixelX.set(pointer.x - rect.left);
+            pixelY.set(pointer.y - rect.top);
         });
     };
 
     const handleMouseLeave = () => {
         if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
         mouseX.set(0);
         mouseY.set(0);
         setIsHovered(false);

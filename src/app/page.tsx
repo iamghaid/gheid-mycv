@@ -69,15 +69,28 @@ export default function HomePage() {
         }
 
         if (typeof window === 'undefined' || !('ResizeObserver' in window)) return;
+        let refreshFrame = 0;
+        let previousWidth = -1;
+        let previousHeight = -1;
         const refreshLayout = () => {
-            window.dispatchEvent(new Event('resize'));
-            ScrollTrigger.refresh();
+            if (refreshFrame) return;
+            refreshFrame = requestAnimationFrame(() => {
+                refreshFrame = 0;
+                ScrollTrigger.refresh();
+            });
         };
-        const resizeObserver = new ResizeObserver(() => { refreshLayout(); });
+        const resizeObserver = new ResizeObserver(([entry]) => {
+            const { width, height } = entry.contentRect;
+            if (width === previousWidth && height === previousHeight) return;
+            previousWidth = width;
+            previousHeight = height;
+            refreshLayout();
+        });
         resizeObserver.observe(document.body);
         window.addEventListener('load', refreshLayout);
         return () => {
             resizeObserver.disconnect();
+            cancelAnimationFrame(refreshFrame);
             window.removeEventListener('load', refreshLayout);
             ScrollTrigger.getAll().forEach(t => t.kill());
         };
