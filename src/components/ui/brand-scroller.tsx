@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import { SkillLogo } from "./SkillLogo";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useLocalizedPortfolio } from "@/hooks/useLocalizedPortfolio";
@@ -23,13 +23,7 @@ const ScrollerItem = ({
               Inverting all of them — which is what a blanket `dark:invert` did —
               stripped every logo down to a grey silhouette.
             */}
-            <Image
-                src={icon}
-                alt={name}
-                fill
-                className={cn('object-contain', invertInDark && 'dark:invert')}
-                unoptimized
-            />
+            <SkillLogo src={icon} name={name} invertInDark={invertInDark} />
         </div>
         <p className="text-xl font-bold text-zinc-600 dark:text-zinc-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-500 whitespace-nowrap">
             {name}
@@ -42,7 +36,7 @@ const ScrollerItem = ({
 // the line empty as they moved.
 export const BrandScroller = () => {
     // Skills marked "Show in logo rows" in the admin (tech row: everything but tools).
-    const techStackItems = useLocalizedPortfolio().techStack.slice(0, 12);
+    const techStackItems = useLocalizedPortfolio().techStack;
     if (!techStackItems.length) return null;
     return (
         <div dir="ltr" className="relative flex overflow-hidden py-2 w-full px-8 md:px-16 lg:px-24 [mask-image:linear-gradient(to_right,_rgba(0,_0,_0,_0),rgba(0,_0,_0,_1)_10%,rgba(0,_0,_0,_1)_90%,rgba(0,_0,_0,_0))]">
@@ -74,7 +68,7 @@ export const BrandScroller = () => {
 };
 
 export const BrandScrollerReverse = () => {
-    const toolItems = useLocalizedPortfolio().tools.slice(0, 10);
+    const toolItems = useLocalizedPortfolio().tools;
     if (!toolItems.length) return null;
     return (
         <div dir="ltr" className="relative flex overflow-hidden py-2 w-full px-8 md:px-16 lg:px-24 [mask-image:linear-gradient(to_right,_rgba(0,_0,_0,_0),rgba(0,_0,_0,_1)_10%,rgba(0,_0,_0,_1)_90%,rgba(0,_0,_0,_0))]">

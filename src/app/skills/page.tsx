@@ -13,25 +13,8 @@ import FeatureSection from '@/components/ui/stack-feature-section';
 import { cn } from '@/lib/utils';
 import { DeferredMount } from '@/components/ui/DeferredMount';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
+import { skillLogo } from '@/lib/skill-logos';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
-
-const techLogos: Record<string, string> = {
-    'Java': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
-    'JavaScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
-    'Python': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
-    'Go': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg',
-    'HTML5': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
-    'CSS3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
-    'React': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-    'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-    'Express.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
-    'MongoDB': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
-    'SQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-    'Firebase': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
-    'Git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-    'GitHub': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
-    'VS Code': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
-};
 
 function TechSchematic() {
     return (
@@ -76,7 +59,6 @@ function Bubble({ b, mouseX, mouseY }: { b: any, mouseX: any, mouseY: any }) {
         return Math.max(0, Math.min(1, (250 - d) / 250));
     });
 
-    const grayscale = useTransform(proximity, [0, 1], [100, 0]);
     const scaleFactor = useTransform(proximity, [0, 1], [1, 1.2]);
     const opacityFactor = useTransform(proximity, [0, 1], [0.3, 0.8]);
 
@@ -104,11 +86,8 @@ function Bubble({ b, mouseX, mouseY }: { b: any, mouseX: any, mouseY: any }) {
             className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-full bg-foreground/[0.05] dark:bg-white/5 backdrop-blur-2xl border border-foreground/10 dark:border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.05)] transition-colors duration-500"
         >
             <motion.img
-                src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${b.icon}/${b.icon}-original.svg`}
-                className="w-7 h-7 md:w-10 md:h-10"
-                style={{
-                    filter: useTransform(grayscale, (v) => `grayscale(${v}%)`),
-                }}
+                src={skillLogo(({java:'Java',react:'React',python:'Python',nodejs:'Node.js',firebase:'Firebase',javascript:'JavaScript',express:'Express.js',go:'Go',mongodb:'MongoDB',mysql:'SQL'} as Record<string,string>)[b.icon])}
+                className={cn("w-7 h-7 md:w-10 md:h-10", b.icon === "express" && "dark:invert")}
                 alt={b.icon}
             />
         </motion.div>
@@ -314,7 +293,7 @@ export default function SkillsPage() {
                         <div className="relative w-full flex flex-col justify-center items-center mb-0">
                             <ArchedTechIconsInteractive
                                 key="arched-tech-icons-interactive"
-                                icons={portfolioData.techStack.map(t => techLogos[t.name] || (t.icon?.includes('http') ? t.icon : `https://cdn.simpleicons.org/${t.name.toLowerCase().replace(/[\s.]/g, '')}`))}
+                                icons={portfolioData.techStack.map(t => ({ src: t.icon, name: t.name, invertInDark: t.iconInvertInDark }))}
                             />
 
                             <motion.div
@@ -348,7 +327,8 @@ export default function SkillsPage() {
                             <KineticTechGrid
                                 items={portfolioData.techStack.map(t => ({
                                     name: t.name,
-                                    icon: techLogos[t.name] || (t.icon?.includes('http') ? t.icon : `https://cdn.simpleicons.org/${t.name.toLowerCase().replace(/[\s.]/g, '')}`)
+                                    icon: t.icon,
+                                    iconInvertInDark: t.iconInvertInDark
                                 }))}
                             />
                         </motion.div>

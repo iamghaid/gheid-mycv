@@ -2,12 +2,13 @@
 
 import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
+import { SkillLogo } from './SkillLogo';
 import { Terminal, Activity, Zap, Cpu, ChevronRight, Boxes, Radio } from 'lucide-react';
 
 interface ToolItem {
     name: string;
     icon: string;
+    iconInvertInDark?: boolean;
 }
 
 interface SystemPipelineProps {
@@ -115,14 +116,8 @@ export const SystemPipeline = ({ tools, className }: SystemPipelineProps) => {
                                     <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-1000" />
 
                                     <div className="flex items-center gap-10 mb-10">
-                                        <div className="w-24 h-24 relative grayscale group-hover:grayscale-0 transition-all duration-700 p-3 bg-white/5 rounded-3xl group-hover:bg-primary/5">
-                                            <Image
-                                                src={tool.icon}
-                                                alt={tool.name}
-                                                fill
-                                                className="object-contain"
-                                                unoptimized
-                                            />
+                                        <div className="w-24 h-24 relative transition-all duration-700 p-3 bg-white/5 rounded-3xl group-hover:bg-primary/5">
+                                            <SkillLogo src={tool.icon} name={tool.name} invertInDark={tool.iconInvertInDark} />
                                         </div>
                                         <div className="space-y-3">
                                             <h3 className="text-4xl font-black italic uppercase tracking-tighter group-hover:text-primary transition-colors leading-none">

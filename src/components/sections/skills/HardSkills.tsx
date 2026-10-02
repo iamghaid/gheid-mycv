@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { SkillLogo } from '@/components/ui/SkillLogo';
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 import { useTranslations } from 'next-intl';
@@ -42,7 +43,7 @@ export const HardSkills = () => {
       }
     });
     return groups;
-  }, []);
+  }, [portfolioData.hardSkills]);
 
   return (
     <section id="hard-skills" className="w-full bg-background pt-32 md:pt-40 lg:pt-52 pb-24 relative overflow-hidden">
@@ -238,7 +239,7 @@ const SkillCard = ({ skill, delay }: { skill: any, delay: number }) => {
     >
       <div className="mb-4 relative z-10">
         <div className="flex flex-wrap justify-between items-start mb-4 gap-2">
-          <h5 className="font-sans font-bold text-base tracking-tight text-foreground/90 leading-tight group-hover:text-primary transition-colors">{skill.name}</h5>
+          <div className="flex items-center gap-3"><div className="h-8 w-8 shrink-0"><SkillLogo src={skill.icon} name={skill.name} invertInDark={skill.iconInvertInDark} /></div><h5 className="font-sans font-bold text-base tracking-tight text-foreground/90 leading-tight group-hover:text-primary transition-colors">{skill.name}</h5></div>
           <span className={cn(
             "text-[10px] font-mono font-bold px-2 py-1 rounded-full uppercase tracking-wider whitespace-nowrap transition-all duration-300 border",
             skill.level === 'beginner' && "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",

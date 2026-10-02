@@ -85,6 +85,8 @@ export interface Achievement {
 
 export interface Skill {
     name: string;
+    icon?: string;
+    iconInvertInDark?: boolean;
     level?: 'beginner' | 'intermediate' | 'advanced' | 'expert';
     category: 'frontend' | 'backend' | 'database' | 'devops' | 'mobile' | 'ai' | 'data' | 'blockchain' | 'software' | 'cloud' | 'tools' | 'other';
     description?: string;

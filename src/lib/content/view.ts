@@ -6,6 +6,7 @@
  * as it was: components keep reading `useLocalizedPortfolio()` and friends, and only
  * the source of the data changed — from source files to the database.
  */
+import { skillLogo, skillLogoNeedsInvert } from '@/lib/skill-logos';
 import { canonicalProjectUrl } from '@/lib/project-presentation';
 import { projectScreenshots } from '@/lib/project-screenshots';
 import type {
@@ -172,7 +173,7 @@ export function buildView(content: SiteContent, locale: Locale, theme: 'light' |
         files: x.files,
     }));
 
-    const skills = data<SkillData>(c.skills);
+    const skills = data<SkillData>(c.skills).map(s => ({ ...s, icon: skillLogo(s.name.en, s.icon), iconInvertInDark: skillLogoNeedsInvert(s.name.en, s.iconInvertInDark) }));
     const techStack: TechStack[] = skills
         .filter((s) => s.showInStack && s.icon && !isToolCategory(s.category) && s.category !== 'soft')
         .map((s) => ({ name: pick(s.name, locale), icon: s.icon, category: STACK_CATEGORY[s.category], iconInvertInDark: s.iconInvertInDark }));
@@ -181,7 +182,7 @@ export function buildView(content: SiteContent, locale: Locale, theme: 'light' |
         .map((s) => ({ name: pick(s.name, locale), icon: s.icon, category: s.category === 'design' ? 'design' : 'devops', iconInvertInDark: s.iconInvertInDark }));
     const hardSkills: Skill[] = skills
         .filter((s) => s.category !== 'soft')
-        .map((s) => ({ name: pick(s.name, locale), category: HARD_CATEGORY[s.category] }));
+        .map((s) => ({ name: pick(s.name, locale), category: HARD_CATEGORY[s.category], icon: s.icon, iconInvertInDark: s.iconInvertInDark }));
     const softSkills: SoftSkill[] = skills.filter((s) => s.category === 'soft').map((s) => ({ name: pick(s.name, locale) }));
 
     const galleryData = data<GalleryData>(c.gallery);

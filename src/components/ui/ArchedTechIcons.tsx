@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
+import { SkillLogo } from './SkillLogo';
 import { motion, useMotionValue, useTransform, PanInfo, animate } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
 interface ArchedIconsProps {
-  icons: string[];
+  icons: { src: string; name: string; invertInDark?: boolean }[];
 }
 
 
@@ -160,15 +160,8 @@ export function ArchedTechIconsInteractive({ icons }: ArchedIconsProps) {
                       }}
                     >
                       <div className="w-full h-full relative" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}>
-                          <Image 
-                            src={icon} 
-                            alt={`tech-icon-${i}`} 
-                            fill 
-                            className="object-contain opacity-90 transform-gpu" 
-                            unoptimized 
-                            priority={true} 
-                            draggable={false}
-                          />
+                          <SkillLogo src={icon.src} name={icon.name} invertInDark={icon.invertInDark}
+                            className="opacity-90 transform-gpu" />
                       </div>
                     </motion.div>
                   </div>

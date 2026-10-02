@@ -1,32 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { SkillLogo } from '@/components/ui/SkillLogo';
 import { cn } from '@/lib/utils';
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 import { useTranslations } from 'next-intl';
-
-// Logo mapping - keeping the existing refined mappings
-const toolLogos: Record<string, string> = {
-    'VS Code': 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg',
-    'Figma': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
-    'Postman': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg',
-    'GitHub': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
-    'Linux': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',
-    'Jupyter': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg',
-    'Docker': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-    'Git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-    'Conda': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/anaconda/anaconda-original.svg',
-    'Google Colab': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecolab/googlecolab-original.svg',
-};
 
 export const ToolsSection = () => {
     const tPage = useTranslations('skillsPage');
     // Shadows the module import so this component reads translated copy.
     const portfolioData = useLocalizedPortfolio();
 
-    const topRow = portfolioData.tools.slice(0, 5);
-    const bottomRow = portfolioData.tools.slice(5, 10);
+    const middle = Math.ceil(portfolioData.tools.length / 2);
+    const topRow = portfolioData.tools.slice(0, middle);
+    const bottomRow = portfolioData.tools.slice(middle);
 
     return (
         <section
@@ -120,21 +107,13 @@ const MarqueeRow = ({ items, direction, speed }: { items: any[], direction: 'lef
 };
 
 const ToolPill = ({ tool }: { tool: any }) => {
-    const iconUrl = toolLogos[tool.name] || tool.icon;
+    const iconUrl = tool.icon;
 
     return (
         <div className="flex items-center gap-6 px-10 py-5 bg-[#0a0a0a]/10 dark:bg-white/5 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-full transition-all duration-300 hover:scale-105 hover:bg-black/20 dark:hover:bg-white/10 group select-none">
             <div className="relative w-10 h-10 md:w-12 md:h-12 shrink-0">
-                <Image
-                    src={iconUrl}
-                    alt={tool.name}
-                    fill
-                    className={cn(
-                        "object-contain filter grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]",
-                        tool.iconInvertInDark && "dark:invert"
-                    )}
-                    unoptimized
-                />
+                <SkillLogo src={iconUrl} name={tool.name} invertInDark={tool.iconInvertInDark}
+                    className="transition-all duration-500 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />
             </div>
             <span className="text-xl md:text-2xl font-bold uppercase tracking-[0.1em] text-black/70 dark:text-white/70 group-hover:text-black dark:group-hover:text-white transition-colors duration-300">
                 {tool.name}
