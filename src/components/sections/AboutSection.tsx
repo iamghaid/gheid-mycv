@@ -576,6 +576,7 @@ const ScrollHijackSection = () => {
 };
 
 export default function AboutSection() {
+    const isMobile = useIsMobile();
     const tShowcase = useTranslations('about.showcase');
     const showcaseMembers = useShowcaseMembers();
     const containerRef = useRef<HTMLElement>(null);
@@ -590,6 +591,8 @@ export default function AboutSection() {
     const yLeadIn = useTransform(scrollYProgress, [0, 0.12], [0, -80]);
 
     const leadInTriggerRef = useRef(null);
+
+    if (isMobile) return <MobileAboutSection />;
 
     return (
         <section
@@ -698,4 +701,46 @@ export default function AboutSection() {
         </section >
     );
 };
+
+// Touch layouts use normal document flow rather than several pinned 400–600vh tracks.
+function MobileAboutSection() {
+    const data = useLocalizedPortfolio();
+    const members = useShowcaseMembers();
+    const t = useTranslations('about.showcase');
+    const tp = useTranslations('projectsPage');
+    return (
+        <section id="about" className="bg-background text-foreground py-10 space-y-16">
+            <AboutLeadIn />
+            <div className="px-5 space-y-5">
+                <h2 className="text-3xl font-bold">{tp('allCategories')}</h2>
+                {data.projects.map(project => (
+                    <Link key={project.id} href={`/projects/${project.slug}`} className="block overflow-hidden rounded-2xl border border-border bg-secondary/5">
+                        {project.image && <img src={project.image} alt={project.title} loading="lazy" className="aspect-video w-full object-cover" />}
+                        <div className="p-5 space-y-2">
+                            <h3 className="text-xl font-bold flex items-start justify-between gap-3">{project.title}<ArrowUpRight className="size-5 shrink-0 mt-1" /></h3>
+                            <p className="text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+                        </div>
+                    </Link>
+                ))}
+            </div>
+            <div className="px-5 space-y-5">
+                <h2 className="text-3xl font-bold">{t('exploreAll')}</h2>
+                {members.filter(member => member.id !== 'view-more').map(member => (
+                    <article key={member.id} className="overflow-hidden rounded-2xl border border-border">
+                        {member.image && <img src={member.image} alt={member.name} loading="lazy" className="w-full aspect-video object-cover" />}
+                        <div className="p-5 space-y-2">
+                            <p className="text-xs text-muted-foreground">{member.period}</p>
+                            <h3 className="text-xl font-bold">{member.role}</h3>
+                            <p className="font-medium">{member.name}</p>
+                            <p className="text-sm leading-relaxed text-muted-foreground">{member.description}</p>
+                        </div>
+                    </article>
+                ))}
+                <Link href="/experience" className="inline-flex min-h-11 items-center gap-2 font-bold">{t('viewMore')}<ArrowUpRight className="size-4" /></Link>
+            </div>
+            <CertificateShowcase />
+            <div className="overflow-hidden"><GitHubShowcase /></div>
+        </section>
+    );
+}
 

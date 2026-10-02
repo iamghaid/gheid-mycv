@@ -234,16 +234,16 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
                         </div>
 
                         {/* Full Width Layout for Title */}
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight text-foreground mb-6 leading-[1.0] break-words uppercase">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black tracking-tight text-foreground mb-6 leading-[1.0] break-words uppercase">
                             {project.title}
                         </h1>
 
-                        <p className="text-xl md:text-2xl text-muted-foreground/80 leading-relaxed max-w-3xl font-light mb-8">
+                        <p className="text-base sm:text-xl md:text-2xl text-muted-foreground/80 leading-relaxed max-w-3xl font-light mb-8">
                             {project.description}
                         </p>
 
                         {/* Typewriter Effect (Subtext) */}
-                        <div className="font-mono text-sm text-emerald-500/80 mb-8 h-6 flex items-center">
+                        <div className="font-mono text-sm text-emerald-500/80 mb-8 min-h-6 flex items-center break-words">
                             <Typewriter examples={[
                                 tDetail('loading1'),
                                 tDetail('loading2'),
@@ -285,7 +285,7 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
 
             {/* 3. METADATA BAR (Horizontal Strip) */}
             <div className="container max-w-7xl mx-auto px-6 mb-20">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 border-y border-black/20 dark:border-border/40 py-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 border-y border-black/20 dark:border-border/40 py-8">
                     <div className="flex flex-col gap-2">
                         <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold flex items-center gap-2">
                             <Code className="w-3 h-3" /> {t('metadata.role')}

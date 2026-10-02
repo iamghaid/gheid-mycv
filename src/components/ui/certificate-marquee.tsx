@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import { canScramble } from "@/lib/textSplit";
 import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 
+
 function ScrambleButton({ href }: { href: string }) {
     const tPage = useTranslations('achievementsPage');
   const [displayText, setDisplayText] = useState(() => tPage('viewAllAchievements'));
@@ -157,8 +158,16 @@ export function CertificateShowcase() {
         </motion.div>
       </div>
 
+      {/* Readable previews on touch screens; parallax columns on desktop. */}
+      <div className="md:hidden px-5 grid gap-4">
+        {columns.flat().filter((src, index, all) => all.indexOf(src) === index).slice(0, 4).map(src => (
+          <Link key={src} href="/achievements" className="rounded-xl overflow-hidden border border-border bg-secondary/5">
+            <img src={src} alt={tPage('certificationsAndAchievements')} loading="lazy" className="w-full aspect-[4/3] object-contain" />
+          </Link>
+        ))}
+      </div>
       {/* Parallax Gallery - Reduced to 3 columns with margins on sides */}
-      <div className="w-full max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12">
+      <div className="hidden md:block w-full max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12">
         <div
           ref={gallery}
           className="relative box-border flex h-[100vh] md:h-[130vh] gap-4 md:gap-6 overflow-hidden rounded-none"

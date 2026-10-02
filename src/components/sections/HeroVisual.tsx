@@ -25,11 +25,11 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
   // no case, its letterforms carry ascenders and descenders, and tight tracking breaks
   // the joins — so the Arabic cut gets its own metrics instead of inheriting these.
   const headlineClass = isArabic
-    ? 'text-[clamp(2.25rem,8vw,9rem)] font-bold leading-[1.25] tracking-normal text-shiny will-change-transform px-4'
-    : 'text-[clamp(3rem,11vw,13rem)] font-black leading-[0.85] tracking-tighter text-shiny will-change-transform px-4';
+    ? 'text-[clamp(2.25rem,8vw,9rem)] font-bold leading-[1.25] tracking-normal text-shiny will-change-transform px-0 md:px-4'
+    : 'text-[clamp(3rem,11vw,13rem)] font-black leading-[0.85] tracking-tighter text-shiny will-change-transform px-0 md:px-4';
   const sideNoteClass = isArabic
-    ? 'text-[11px] md:text-sm text-muted-foreground leading-loose max-w-[220px] md:max-w-[240px] font-medium tracking-normal'
-    : 'text-[10px] md:text-xs text-muted-foreground leading-relaxed max-w-[200px] md:max-w-[220px] font-medium uppercase tracking-[0.2em]';
+    ? 'text-sm md:text-sm text-muted-foreground leading-loose max-w-[220px] md:max-w-[240px] font-medium tracking-normal'
+    : 'text-xs md:text-xs text-muted-foreground leading-relaxed max-w-[200px] md:max-w-[220px] font-medium uppercase tracking-[0.2em]';
   const [showProfile, setShowProfile] = useState(false);
   const [tooltip, setTooltip] = useState<{ show: boolean; text: string; x: number; y: number; icon: 'zap' | 'bot' | null }>({
     show: false,
@@ -161,7 +161,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
         />
       </div>
 
-      <main className="relative flex-1 flex flex-col justify-center pt-40 pb-20 z-10 max-w-[105rem] w-full mx-auto">
+      <main className="relative flex-1 flex flex-col justify-center pt-28 md:pt-40 pb-12 md:pb-20 z-10 max-w-[105rem] w-full mx-auto">
         <div className="flex relative gap-4 px-6 md:items-center w-full flex-col justify-center">
 
           {/* Follow-Cursor Tooltip */}
@@ -198,7 +198,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               {t('intro', { name: personal.name })}
             </motion.p>
             <div className="relative">
-              <div ref={githubRef} className="absolute -top-4 right-0 md:right-2 text-primary/60 hover:text-primary z-20 opacity-0">
+              <div ref={githubRef} className="hidden md:block absolute -top-4 right-0 md:right-2 text-primary/60 hover:text-primary z-20 opacity-0">
                 <a
                   href={personal.socialLinks.find(s => s.platform === 'GitHub')?.url}
                   target="_blank"
@@ -221,7 +221,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
           {/* Line 2: SOFT [ICON] WARE / مهندسة [ICON] برمجيات */}
           <div dir={isArabic ? 'rtl' : 'ltr'} className="md:flex gap-8 items-center relative">
             <div className="relative">
-              <div ref={linkedinRef} className="absolute -top-8 left-4 text-primary/60 hover:text-primary z-20 opacity-0">
+              <div ref={linkedinRef} className="hidden md:block absolute -top-8 left-4 text-primary/60 hover:text-primary z-20 opacity-0">
                 <a
                   href={personal.socialLinks.find(s => s.platform === 'LinkedIn')?.url}
                   target="_blank"
@@ -230,7 +230,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
                   <Linkedin size={32} />
                 </a>
               </div>
-              <div ref={emailRef} className="absolute -bottom-12 right-24 md:right-36 text-primary/60 hover:text-primary z-20 opacity-0">
+              <div ref={emailRef} className="hidden md:block absolute -bottom-12 right-24 md:right-36 text-primary/60 hover:text-primary z-20 opacity-0">
                 <a
                   href={`mailto:${personal.email}`}
                   className="block"
@@ -242,7 +242,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isExiting ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className={cn(headlineClass, 'md:flex items-center')}
+                className={cn(headlineClass, 'flex flex-wrap items-center gap-y-1')}
               >
                 <span>{t('headline.line2a')}</span>
                 <div
@@ -276,7 +276,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               initial={{ opacity: 0, y: 30 }}
               animate={isExiting ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className={cn(headlineClass, 'md:flex items-center')}
+              className={cn(headlineClass, 'flex flex-wrap items-center gap-y-1')}
             >
               <span>{t('headline.line3a')}</span>
               <div
