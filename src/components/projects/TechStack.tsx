@@ -339,6 +339,7 @@ export function TechStack({ techStack, tools, compact = false, isLowPowerMode }:
                                         : "bg-white/80 dark:bg-white/5 border-zinc-200 dark:border-white/5 text-zinc-700 dark:text-white/80"
                                 )}
                                 style={{
+                                    left: 0, top: 0,
                                     width: body.radius * 2, height: body.radius * 2,
                                     transform: `translate(${body.x - body.radius}px, ${body.y - body.radius}px)`,
                                 }}
