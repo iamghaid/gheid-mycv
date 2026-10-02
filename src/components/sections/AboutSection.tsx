@@ -172,7 +172,7 @@ const AboutLeadIn = () => {
                         transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } 
                     }
                 }}
-                className="relative w-full bg-white dark:bg-black border border-red-600/20 dark:border-red-600/40 p-6 md:p-12 lg:p-16 overflow-hidden shadow-xl dark:shadow-2xl transition-colors duration-500 group"
+                className="relative w-full bg-background md:bg-white md:dark:bg-black border border-red-600/20 dark:border-red-600/40 p-6 md:p-12 lg:p-16 overflow-hidden md:shadow-xl md:dark:shadow-2xl transition-colors duration-500 group"
             >
 
                 {/* 1. Grid Background Overlay (Dynamic Colors) */}

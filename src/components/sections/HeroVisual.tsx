@@ -147,10 +147,10 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
       className="relative md:min-h-screen w-full flex flex-col bg-background text-foreground overflow-hidden selection:bg-primary/20"
     >
       {/* Background Pattern */}
-      <div className="w-full absolute h-full z-0 bg-[radial-gradient(circle,_#888_0.5px,_transparent_0.5px)] dark:bg-[radial-gradient(circle,_#444_0.5px,_transparent_0.5px)] opacity-20 [background-size:24px_24px]" />
+      <div className="[mask-image:linear-gradient(to_bottom,black_50%,transparent_100%)] md:[mask-image:none] w-full absolute h-full z-0 bg-[radial-gradient(circle,_#888_0.5px,_transparent_0.5px)] dark:bg-[radial-gradient(circle,_#444_0.5px,_transparent_0.5px)] opacity-20 [background-size:24px_24px]" />
 
       {/* Spotlight Effect - Dramatic lighting */}
-      <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden [mask-image:linear-gradient(to_bottom,black_30%,transparent_100%)] md:[mask-image:none]">
         <Spotlight
           duration={10}
           xOffset={120}
