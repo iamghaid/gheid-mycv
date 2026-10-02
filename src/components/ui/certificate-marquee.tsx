@@ -143,7 +143,7 @@ export function CertificateShowcase() {
           <div className="space-y-6 w-full">
             <div className="space-y-4">
               <h2 className="text-sm font-bold tracking-[0.2em] text-primary/60 uppercase">{tPage('certificationsAndAchievements')}</h2>
-              <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] tracking-tight max-w-none text-foreground">{tPage('validating')}<span className="text-shiny">{tPage('excellence')}</span>{tPage('throughStandards')}
+              <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] tracking-tight max-w-none text-foreground">{tPage('validating')}{' '}<span className="text-shiny">{tPage('excellence')}</span>{tPage('throughStandards')}
               </h3>
               <p className="text-lg text-muted-foreground max-w-none leading-relaxed lg:whitespace-nowrap">
                 {tPage('marqueeSubtitle')}
