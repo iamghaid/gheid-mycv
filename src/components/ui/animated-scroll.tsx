@@ -291,7 +291,7 @@ function BridgeSlide({ page, isActive, scrollProgress, index, totalPages }: { pa
 
 function BlendedVisual({ src, component, side }: { src?: string, component?: React.ReactNode, side: 'left' | 'right' }) {
     return (
-        <div className="relative w-full h-full overflow-hidden bg-background dark:bg-black flex items-center justify-center">
+        <div aria-hidden="true" className="relative w-full h-full overflow-hidden bg-background dark:bg-black flex items-center justify-center pointer-events-none select-none">
             {src ? (
                 <motion.div
                     initial={{ scale: 1 }}
@@ -396,7 +396,7 @@ function MagneticTag({ text, index }: { text: string, index: number }) {
         <div
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative cursor-pointer p-1 -m-1 md:p-2 md:-m-2 pointer-events-auto"
+            className="relative cursor-default p-1 -m-1 md:p-2 md:-m-2 pointer-events-auto"
         >
             <motion.div
                 style={{ x: springX, y: springY }}

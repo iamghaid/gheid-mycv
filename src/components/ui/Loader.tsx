@@ -95,7 +95,7 @@ const Loader = ({ type = 'default' }: LoaderProps) => {
   }, []);
 
   return (
-    <div className="relative w-full h-full min-h-[400px] flex items-center justify-center overflow-hidden bg-transparent" style={{ perspective: 1500 }}>
+    <div aria-hidden="true" className="relative w-full h-full min-h-[400px] flex items-center justify-center overflow-hidden bg-transparent pointer-events-none select-none" style={{ perspective: 1500 }}>
       {/* Background Dots */}
       <div
         className="absolute inset-0 opacity-10 pointer-events-none hidden"
@@ -140,12 +140,12 @@ const Loader = ({ type = 'default' }: LoaderProps) => {
 function Face({ icon: Icon, label, color, transform }: { icon: any, label: string, color: string, transform: string }) {
   return (
     <div
-      className="absolute w-full h-full border-[5px] border-black box-border flex flex-col items-center justify-center overflow-hidden"
+      className="absolute inset-0 w-full h-full box-border flex flex-col items-center justify-center overflow-hidden"
       style={{
         background: color,
         transform,
-        backfaceVisibility: 'visible',
-        boxShadow: '12px 12px 0 black'
+        backfaceVisibility: 'hidden',
+        boxShadow: 'inset 0 0 0 1.5px rgba(0, 0, 0, 0.8)'
       }}
     >
       <div className="absolute w-[150%] h-[20px] bg-black opacity-20 -rotate-45 -translate-y-10" />
