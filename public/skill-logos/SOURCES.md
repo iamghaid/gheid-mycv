@@ -20,3 +20,5 @@ Brand artwork is preserved in its original colours.
 - n8n: https://github.com/n8n-io/n8n/blob/master/assets/n8n-logo.png
 
 REST APIs, SQL, prompt engineering, LLMs, AI agents and data analysis use purpose-built concept symbols, since these disciplines have no single official brand logo.
+
+- n8n compact symbol: https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/n8n.svg (original brand colour).
