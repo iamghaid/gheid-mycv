@@ -397,6 +397,13 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
                             </section>
                         )}
 
+                        {project.techStack.length > 0 && (
+                            <section id="technologies">
+                                <h2 className="text-2xl font-bold text-foreground mb-6">{t('sections.technologies')}</h2>
+                                <TechStack techStack={project.techStack} tools={project.tools} compact />
+                            </section>
+                        )}
+
                         {/* GALLERY (Vertical Stack, Limit 2) */}
                         {project.galleryImages && project.galleryImages.length > 0 && (
                             <section id="gallery">

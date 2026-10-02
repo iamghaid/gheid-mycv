@@ -12,6 +12,7 @@ import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 interface TechStackProps {
     techStack: string[];
     tools?: string[];
+    compact?: boolean;
 }
 
 interface PhysicsBody {
@@ -57,7 +58,7 @@ const DAMPING = 0.96;
 const CENTER_PULL = 0.002;
 const MAX_SPEED = 12;
 
-export function TechStack({ techStack, tools, isLowPowerMode }: TechStackProps & { isLowPowerMode?: boolean }) {
+export function TechStack({ techStack, tools, compact = false, isLowPowerMode }: TechStackProps & { isLowPowerMode?: boolean }) {
     // Shadows the module import so this component reads translated copy.
     const portfolioData = useLocalizedPortfolio();
 
@@ -80,6 +81,24 @@ export function TechStack({ techStack, tools, isLowPowerMode }: TechStackProps &
     const [gravityOn, setGravityOn] = useState(false);
     const { resolvedTheme } = useTheme();
     const requestRef = useRef<number>(0);
+    const [isActive, setIsActive] = useState(false);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+        let inView = false;
+        const sync = () => setIsActive(inView && !document.hidden);
+        const observer = new IntersectionObserver(([entry]) => {
+            inView = entry.isIntersecting;
+            sync();
+        });
+        observer.observe(container);
+        document.addEventListener('visibilitychange', sync);
+        return () => {
+            observer.disconnect();
+            document.removeEventListener('visibilitychange', sync);
+        };
+    }, []);
 
     // --- Physics Initialization & Loop ---
     useEffect(() => {
@@ -135,7 +154,7 @@ export function TechStack({ techStack, tools, isLowPowerMode }: TechStackProps &
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 const interactionRadius = 250;
 
-                if (dist < interactionRadius) {
+                if (dist > 0 && dist < interactionRadius) {
                     const force = (1 - dist / interactionRadius) * MAGNETIC_FORCE;
                     vx += (dx / dist) * force * 3;
                     vy += (dy / dist) * force * 3;
@@ -192,17 +211,17 @@ export function TechStack({ techStack, tools, isLowPowerMode }: TechStackProps &
                 return { ...body, x, y, vx, vy };
             });
         });
-        if (!isLowPowerMode) {
+        if (!isLowPowerMode && isActive) {
             requestRef.current = requestAnimationFrame(updatePhysics);
         }
     };
 
     useEffect(() => {
-        if (!isLowPowerMode) {
+        if (!isLowPowerMode && isActive) {
             requestRef.current = requestAnimationFrame(updatePhysics);
         }
         return () => cancelAnimationFrame(requestRef.current);
-    }, [mousePos, gravityOn, isLowPowerMode]);
+    }, [mousePos, gravityOn, isLowPowerMode, isActive]);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
@@ -222,10 +241,10 @@ export function TechStack({ techStack, tools, isLowPowerMode }: TechStackProps &
     };
 
     return (
-        <div className="relative min-h-[160vh]"> {/* Increased scroll height */}
+        <div className={compact ? 'relative' : 'relative min-h-[160vh]'}>
 
             {/* Sticky Physics Header */}
-            <div className="sticky top-0 h-[80vh] w-full z-0 overflow-hidden dark:mix-blend-lighten"> {/* Taller sticky area */}
+            <div className={cn('w-full z-0 overflow-hidden dark:mix-blend-lighten', compact ? 'relative h-[400px] md:h-[480px]' : 'sticky top-0 h-[80vh]')}>
                 <div
                     ref={containerRef}
                     onMouseMove={handleMouseMove}
@@ -303,6 +322,16 @@ export function TechStack({ techStack, tools, isLowPowerMode }: TechStackProps &
                     ) : (
                         bodies.map((body) => (
                             <div key={body.id}
+                                role="button"
+                                tabIndex={0}
+                                aria-label={body.id.replace('-tool', '')}
+                                onClick={() => setBodies(previous => previous.map(item => item.id === body.id ? { ...item, vx: (Math.random() - 0.5) * 24, vy: -12 } : item))}
+                                onKeyDown={event => {
+                                    if (event.key === 'Enter' || event.key === ' ') {
+                                        event.preventDefault();
+                                        setBodies(previous => previous.map(item => item.id === body.id ? { ...item, vx: (Math.random() - 0.5) * 24, vy: -12 } : item));
+                                    }
+                                }}
                                 className={cn(
                                     "absolute flex items-center justify-center rounded-full shadow-lg backdrop-blur-sm border transition-colors select-none",
                                     body.isHero
