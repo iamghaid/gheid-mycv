@@ -702,45 +702,53 @@ export default function AboutSection() {
     );
 };
 
-// Touch layouts use normal document flow rather than several pinned 400–600vh tracks.
+// Mobile keeps the same editorial imagery with shorter, touch-friendly sections.
 function MobileAboutSection() {
     const data = useLocalizedPortfolio();
     const members = useShowcaseMembers();
     const t = useTranslations('about.showcase');
     const tp = useTranslations('projectsPage');
+    const te = useTranslations('experiencePage');
     return (
-        <section id="about" className="bg-background text-foreground py-10 space-y-16">
+        <section id="about" className="bg-background text-foreground py-8 space-y-12">
             <AboutLeadIn />
-            <div className="px-5 space-y-5">
-                <h2 className="text-3xl font-bold">{tp('allCategories')}</h2>
-                {data.projects.map(project => (
-                    <Link key={project.id} href={`/projects/${project.slug}`} className="block overflow-hidden rounded-2xl border border-border bg-secondary/5">
-                        {project.image && <img src={project.image} alt={project.title} loading="lazy" className="aspect-video w-full object-cover" />}
-                        <div className="p-5 space-y-2">
-                            <h3 className="text-xl font-bold flex items-start justify-between gap-3">{project.title}<ArrowUpRight className="size-5 shrink-0 mt-1" /></h3>
-                            <p className="text-sm leading-relaxed text-muted-foreground">{project.description}</p>
-                        </div>
-                    </Link>
-                ))}
+            <div className="space-y-5">
+                <div className="px-6 flex items-center justify-between gap-4">
+                    <h2 className="text-2xl font-bold">{tp('allCategories')}</h2>
+                    <Link href="/projects" className="text-xs text-muted-foreground min-h-11 inline-flex items-center gap-1">{tp('viewAllProjects')}<ArrowUpRight className="size-4" /></Link>
+                </div>
+                <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 pb-4 [scrollbar-width:thin]">
+                    {data.projects.map(project => (
+                        <Link key={project.id} href={`/projects/${project.slug}`} className="snap-start shrink-0 w-[85%] overflow-hidden rounded-xl border border-border bg-secondary/5">
+                            {project.image && <img src={project.image} alt={project.title} loading="lazy" className="aspect-[16/10] w-full object-cover" />}
+                            <div className="p-4 space-y-2">
+                                <h3 className="text-xl font-bold flex items-start justify-between gap-3">{project.title}<ArrowUpRight className="size-5 shrink-0 mt-1" /></h3>
+                                <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">{project.description}</p>
+                                <div className="flex flex-wrap gap-2 pt-1">{project.techStack?.slice(0,2).map(tech => <span key={tech} className="text-[11px] rounded-full border border-border px-2 py-1 text-muted-foreground">{tech}</span>)}</div>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
             </div>
-            <div className="px-5 space-y-5">
-                <h2 className="text-3xl font-bold">{t('exploreAll')}</h2>
-                {members.filter(member => member.id !== 'view-more').map(member => (
-                    <article key={member.id} className="overflow-hidden rounded-2xl border border-border">
-                        {member.image && <img src={member.image} alt={member.name} loading="lazy" className="w-full aspect-video object-cover" />}
-                        <div className="p-5 space-y-2">
-                            <p className="text-xs text-muted-foreground">{member.period}</p>
-                            <h3 className="text-xl font-bold">{member.role}</h3>
-                            <p className="font-medium">{member.name}</p>
-                            <p className="text-sm leading-relaxed text-muted-foreground">{member.description}</p>
-                        </div>
-                    </article>
-                ))}
-                <Link href="/experience" className="inline-flex min-h-11 items-center gap-2 font-bold">{t('viewMore')}<ArrowUpRight className="size-4" /></Link>
+            <div className="px-6 space-y-5">
+                <h2 className="text-2xl font-bold">{te('experience')}</h2>
+                <div className="border-s border-border ps-5">
+                    {members.filter(member => member.id !== 'view-more').slice(0,5).map((member,index) => (
+                        <details key={member.id} open={index===0} className="group relative py-4 border-b border-border last:border-b-0">
+                            <span className="absolute -start-[25px] top-6 size-2 rounded-full bg-foreground/60" />
+                            <summary className="list-none cursor-pointer flex items-start justify-between gap-3 min-h-11">
+                                <div className="space-y-1"><p className="text-xs text-muted-foreground">{member.period}</p><h3 className="text-lg font-bold">{member.role}</h3><p className="text-sm text-muted-foreground">{member.name}</p></div>
+                                <ArrowUpRight className="size-4 shrink-0 mt-2 transition-transform group-open:rotate-90" />
+                            </summary>
+                            <div className="pt-4 space-y-4"><p className="text-sm leading-relaxed text-muted-foreground">{member.description}</p>
+                            {member.image && <img src={member.image} alt={member.name} loading="lazy" className="w-full max-h-48 object-contain rounded-lg bg-secondary/5" />}</div>
+                        </details>
+                    ))}
+                </div>
+                <Link href="/experience" className="inline-flex min-h-11 items-center gap-2 text-sm font-medium">{t('viewMore')}<ArrowUpRight className="size-4" /></Link>
             </div>
             <CertificateShowcase />
             <div className="overflow-hidden"><GitHubShowcase /></div>
         </section>
     );
 }
-

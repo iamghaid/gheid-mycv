@@ -131,9 +131,9 @@ export function CertificateShowcase() {
   }, []);
 
   return (
-    <section className="relative w-full bg-background overflow-hidden pb-32">
+    <section className="relative w-full bg-background overflow-hidden pb-12 md:pb-32">
       {/* Intro Text Section */}
-      <div className="container mx-auto px-4 md:px-12 lg:px-24 relative z-10 max-w-[1750px] mb-20 pt-20">
+      <div className="container mx-auto px-4 md:px-12 lg:px-24 relative z-10 max-w-[1750px] mb-6 md:mb-20 pt-8 md:pt-20">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -146,7 +146,7 @@ export function CertificateShowcase() {
               <h2 className="text-sm font-bold tracking-[0.2em] text-primary/60 uppercase">{tPage('certificationsAndAchievements')}</h2>
               <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] tracking-tight max-w-none text-foreground">{tPage('validating')}{' '}<span className="text-shiny">{tPage('excellence')}</span>{tPage('throughStandards')}
               </h3>
-              <p className="text-lg text-muted-foreground max-w-none leading-relaxed lg:whitespace-nowrap">
+              <p className="text-sm md:text-lg text-muted-foreground max-w-none leading-relaxed lg:whitespace-nowrap">
                 {tPage('marqueeSubtitle')}
               </p>
             </div>
@@ -159,9 +159,9 @@ export function CertificateShowcase() {
       </div>
 
       {/* Readable previews on touch screens; parallax columns on desktop. */}
-      <div className="md:hidden px-5 grid gap-4">
-        {columns.flat().filter((src, index, all) => all.indexOf(src) === index).slice(0, 4).map(src => (
-          <Link key={src} href="/achievements" className="rounded-xl overflow-hidden border border-border bg-secondary/5">
+      <div className="md:hidden px-6 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4">
+        {columns.flat().filter((src, index, all) => all.indexOf(src) === index).map(src => (
+          <Link key={src} href="/achievements" className="snap-start shrink-0 w-[78%] rounded-xl overflow-hidden border border-border bg-secondary/5">
             <img src={src} alt={tPage('certificationsAndAchievements')} loading="lazy" className="w-full aspect-[4/3] object-contain" />
           </Link>
         ))}

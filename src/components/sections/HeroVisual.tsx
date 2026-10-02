@@ -25,7 +25,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
   // no case, its letterforms carry ascenders and descenders, and tight tracking breaks
   // the joins — so the Arabic cut gets its own metrics instead of inheriting these.
   const headlineClass = isArabic
-    ? 'text-[clamp(2.25rem,8vw,9rem)] font-bold leading-[1.25] tracking-normal text-shiny will-change-transform px-0 md:px-4'
+    ? 'text-[clamp(1.85rem,8.5vw,3rem)] md:text-[clamp(2.25rem,8vw,9rem)] font-bold leading-[1.25] tracking-normal text-shiny will-change-transform px-0 md:px-4'
     : 'text-[clamp(2rem,10vw,4rem)] md:text-[clamp(3rem,11vw,13rem)] font-black leading-[0.85] tracking-tighter text-shiny will-change-transform px-0 md:px-4';
   const sideNoteClass = isArabic
     ? 'text-sm md:text-sm text-muted-foreground leading-loose max-w-full md:max-w-[240px] font-medium tracking-normal'
@@ -279,9 +279,11 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
               className={cn(headlineClass, 'flex flex-wrap items-center gap-y-1')}
             >
               <span>{t('headline.line3a')}</span>
-              <div
+              <button
                 ref={botRef}
-                className={cn('relative cursor-pointer group', isArabic ? 'mx-[0.18em]' : 'mx-[0.05em]')}
+                type="button"
+                aria-label={tA11y('openAssistant')}
+                className={cn('relative cursor-pointer group min-w-11 min-h-11 md:min-w-0 md:min-h-0 inline-flex items-center justify-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-500', isArabic ? 'mx-[0.18em]' : 'mx-[0.05em]')}
                 onClick={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   window.dispatchEvent(new CustomEvent('portfolio:toggle-chatbot', {
@@ -293,7 +295,7 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
                 onMouseLeave={() => setTooltip(prev => ({ ...prev, show: false }))}
               >
                 <Bot className="w-[0.85em] h-[0.85em] text-yellow-500 fill-yellow-500/10 group-hover:text-yellow-400 group-hover:fill-yellow-400/20 transition-colors" />
-              </div>
+              </button>
               <span>{t('headline.line3b')}</span>
             </motion.h1>
 
