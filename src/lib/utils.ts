@@ -14,6 +14,9 @@ export function cn(...inputs: ClassValue[]) {
  */
 export function formatDate(input: string | number, locale?: string): string {
     const date = new Date(input)
+    if (Number.isNaN(date.getTime())) {
+        return locale === "ar" ? "التاريخ غير محدد" : "Date not specified"
+    }
     const tag = locale === "ar" ? "ar-SA-u-nu-latn-ca-gregory" : "en-US"
     return date.toLocaleDateString(tag, {
         month: "long",
