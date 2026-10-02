@@ -597,6 +597,8 @@ export default function AchievementsPage() {
     const portfolioData = useLocalizedPortfolio();
 
     const t = useTranslations('achievements');
+    const certificateTopics = useMemo(() => Array.from(new Set(portfolioData.achievements.flatMap(item => item.tags ?? []))), [portfolioData.achievements]);
+    const technicalTerms = useMemo(() => Array.from(new Set([...portfolioData.hardSkills.slice(0, 12).map(skill => skill.name), ...certificateTopics])), [portfolioData.hardSkills, certificateTopics]);
     const { isLowPowerMode } = usePerformance();
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
@@ -1083,8 +1085,8 @@ export default function AchievementsPage() {
                         >
                             <ErrorBoundary fallback={<div className="text-center opacity-50">{tPage('visualsUnavailable')}</div>}>
                                 <FallingText
-                                    text="Java JavaScript Python Go React NodeJS Express Firebase MongoDB SQL PromptEngineering LLMs AIAgents n8n Git GitHub"
-                                    highlightWords={['React', 'Firebase', 'PromptEngineering', 'LLMs', 'AIAgents']}
+                                    terms={technicalTerms}
+                                    highlightWords={certificateTopics}
                                     trigger="scroll"
                                     gravity={0.8}
                                     mouseConstraintStiffness={0.2}

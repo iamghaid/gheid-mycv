@@ -6,6 +6,7 @@ import { usePerformance } from '@/hooks/usePerformance';
 
 interface FallingTextProps {
     text?: string;
+    terms?: string[];
     highlightWords?: string[];
     trigger?: 'auto' | 'scroll' | 'click' | 'hover';
     backgroundColor?: string;
@@ -20,6 +21,7 @@ interface FallingTextProps {
 
 export default function FallingText({
     text = '',
+    terms,
     highlightWords = [],
     trigger = 'auto',
     backgroundColor = 'transparent',
@@ -50,17 +52,21 @@ export default function FallingText({
     const createTextHTML = useCallback(() => {
         if (!textRef.current) return;
 
-        const words = text.split(' ');
-        const newHTML = words
-            .map(word => {
+        const words = terms ?? text.split(' ');
+        const fragment = document.createDocumentFragment();
+        words.forEach(word => {
                 const isHighlighted = highlightWords.some(hw =>
                     word.toLowerCase().includes(hw.toLowerCase())
                 );
-                return `<span class="inline-block mx-1 select-none cursor-grab active:cursor-grabbing" style="color: ${isHighlighted ? highlightColor : textColor}; font-weight: ${isHighlighted ? '900' : fontWeight}">${word}</span>`;
-            })
-            .join(' ');
-
-        textRef.current.innerHTML = newHTML;
+                const span = document.createElement('span');
+                span.className = 'inline-block mx-1 select-none cursor-grab active:cursor-grabbing';
+                span.style.color = isHighlighted ? highlightColor : textColor;
+                span.style.fontWeight = isHighlighted ? '900' : fontWeight;
+                span.style.whiteSpace = 'nowrap';
+                span.textContent = word;
+                fragment.append(span, document.createTextNode(' '));
+        });
+        textRef.current.replaceChildren(fragment);
 
         // If low power mode, we don't need to position absolute
         if (isLowPowerMode) {
@@ -70,7 +76,7 @@ export default function FallingText({
                 span.style.transform = 'none';
             });
         }
-    }, [text, highlightWords, textColor, highlightColor, fontWeight, isLowPowerMode]);
+    }, [text, terms, highlightWords, textColor, highlightColor, fontWeight, isLowPowerMode]);
 
     const cleanup = useCallback(() => {
         if (animationFrameIdRef.current) {
