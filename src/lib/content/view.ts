@@ -269,7 +269,9 @@ export function buildView(content: SiteContent, locale: Locale, theme: 'light' |
         homeGallery: galleryData.filter((g) => g.showOnHome && g.image).map((g) => ({ src: g.image, alt: pick(g.title, locale), slot: g.slot })),
         stats,
         card: { name: pick(p.cardName, locale) || pick(p.name, locale), role: pick(p.cardRole, locale) || pick(p.title, locale), avatar: p.avatar },
-        resumeUrl: content.resume.url || '/Gheid_Abdulkarim_CV.pdf',
+        resumeUrl: content.resume.url && content.resume.url !== '/resume.pdf'
+            ? content.resume.url
+            : '/Gheid_Abdulkarim_CV.pdf',
         intro: pick(p.intro, locale),
     };
 }
