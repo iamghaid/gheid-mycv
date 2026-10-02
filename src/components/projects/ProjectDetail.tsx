@@ -431,9 +431,11 @@ export function ProjectDetail({ project: initialProject, onClose, isLowPowerMode
                                                     <p className="text-xs text-muted-foreground uppercase tracking-wider">Project Overview</p>
                                                 </div>
                                             </div>
-                                            <p className="text-base md:text-lg leading-relaxed text-zinc-600 dark:text-muted-foreground font-light tracking-wide border-l-2 border-black/15 dark:border-white/10 pl-6">
-                                                {project.longDescription || project.description}
-                                            </p>
+                                            <div className="space-y-5 text-base md:text-lg leading-relaxed text-zinc-600 dark:text-muted-foreground font-light tracking-wide border-s-2 border-black/15 dark:border-white/10 ps-6">
+                                                {(project.longDescription || project.description).split(/\r?\n\s*\r?\n/).filter(Boolean).map((paragraph, index) => (
+                                                    <p key={index}>{paragraph}</p>
+                                                ))}
+                                            </div>
                                         </motion.div>
 
                                         {/* Metadata Strip */}

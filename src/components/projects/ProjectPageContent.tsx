@@ -329,7 +329,9 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
                                 <h2 className="text-2xl font-bold text-foreground">{t('sections.missionBrief')}</h2>
                             </div>
                             <div className="prose prose-lg dark:prose-invert prose-emerald max-w-none prose-headings:font-black prose-headings:tracking-tight prose-p:leading-loose text-zinc-600 dark:text-muted-foreground">
-                                <p>{project.longDescription || project.description}</p>
+                                {(project.longDescription || project.description).split(/\r?\n\s*\r?\n/).filter(Boolean).map((paragraph, index) => (
+                                    <p key={index}>{paragraph}</p>
+                                ))}
                             </div>
                         </section>
 
