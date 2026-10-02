@@ -7,18 +7,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import { canScramble } from "@/lib/textSplit";
-
-const certificates = [
-  "/certificate/programming-creativity.jpg",
-  "/certificate/ibm-skillsbuild.jpg",
-  "/certificate/newtech-hackathon.jpg",
-  "/certificate/afaq-ai.jpg",
-  "/certificate/gdg-gemini.jpg",
-  "/certificate/after-med-hackathon.jpg",
-  "/certificate/mabda-ai.jpg",
-  "/certificate/ana-ijabi.jpg",
-  "/certificate/deans-list.jpg",
-];
+import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 
 function ScrambleButton({ href }: { href: string }) {
     const tPage = useTranslations('achievementsPage');
@@ -100,6 +89,11 @@ const Column = ({ images, y }: ColumnProps) => {
 
 export function CertificateShowcase() {
     const tPage = useTranslations('achievementsPage');
+  const { achievements } = useLocalizedPortfolio();
+  const images = achievements.map(item => item.image).filter((src): src is string => !!src && !/\.pdf(?:[?#]|$)/i.test(src));
+  const columns = [0, 1, 2].map(column => images.length
+    ? Array.from({ length: Math.max(6, Math.ceil(images.length / 3)) }, (_, index) => images[(column * Math.ceil(images.length / 3) + index) % images.length])
+    : []);
   const gallery = useRef<HTMLDivElement>(null);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
@@ -170,9 +164,9 @@ export function CertificateShowcase() {
           className="relative box-border flex h-[100vh] md:h-[130vh] gap-4 md:gap-6 overflow-hidden rounded-none"
         >
           {/* Fill each column with more images so they don't run out during the scroll */}
-          <Column images={[certificates[0], certificates[1], certificates[2], certificates[3], certificates[4], certificates[5]]} y={y} />
-          <Column images={[certificates[5], certificates[6], certificates[7], certificates[8], certificates[0], certificates[1]]} y={y2} />
-          <Column images={[certificates[8], certificates[7], certificates[6], certificates[5], certificates[4], certificates[3]]} y={y3} />
+          <Column images={columns[0]} y={y} />
+          <Column images={columns[1]} y={y2} />
+          <Column images={columns[2]} y={y3} />
         </div>
       </div>
       

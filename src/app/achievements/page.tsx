@@ -208,7 +208,7 @@ const AchievementCard = React.memo(React.forwardRef<HTMLDivElement, {
                         {/* Credential ID - Mono style */}
                         <div className="absolute bottom-4 left-4 z-20">
                             <div className="text-[10px] font-mono text-white/60 uppercase tracking-widest mb-1 shadow-black/50 drop-shadow-sm">
-                                {achievement.credentialId ? achievement.credentialId : tPage('verifiedCredential')}
+                                {achievement.credentialId || tPage('archive')}
                             </div>
                         </div>
 
@@ -217,9 +217,7 @@ const AchievementCard = React.memo(React.forwardRef<HTMLDivElement, {
                             <div className="flex items-center gap-1.5">
                                 <Calendar className="w-3 h-3 text-white/70" />
                                 <span className="text-[10px] text-white/90 font-bold drop-shadow-sm">
-                                    {new Date(achievement.date)
-                                        .toLocaleDateString(locale === 'ar' ? 'ar-SA-u-nu-latn-ca-gregory' : 'en-US', { month: 'short', year: 'numeric' })
-                                        .toUpperCase()}
+                                    {achievement.date ? formatDate(achievement.date, locale) : (locale === 'ar' ? 'التاريخ غير محدّد' : 'Date not specified')}
                                 </span>
                             </div>
                         </div>
@@ -545,15 +543,30 @@ const AchievementModal = React.forwardRef<HTMLDivElement, {
                                 </div>
                             </div>
 
+                            {achievement.description && (
+                                <div className="space-y-3 text-sm leading-relaxed text-foreground/75">
+                                    {achievement.description.split(/\r?\n\s*\r?\n/).filter(Boolean).map((paragraph, index) => (
+                                        <p key={index}>{paragraph}</p>
+                                    ))}
+                                </div>
+                            )}
+                            {!!achievement.tags?.length && (
+                                <ul aria-label={locale === 'ar' ? 'المهارات والمجالات المرتبطة' : 'Related skills and topics'} className="flex flex-wrap gap-2">
+                                    {achievement.tags.map(tag => (
+                                        <li key={tag} className="rounded-lg border border-border/50 bg-foreground/5 px-3 py-1.5 text-xs text-foreground/80">{tag}</li>
+                                    ))}
+                                </ul>
+                            )}
+
                             <div className="grid grid-cols-1 gap-2.5 font-mono">
                                 <div className="group flex flex-col gap-1 p-4 rounded-xl bg-foreground/[0.03] border border-border/50 hover:bg-foreground/[0.05] transition-all">
                                     <span className="text-[8px] font-black uppercase tracking-[0.2em] text-muted-foreground/40">$ date --issued</span>
-                                    <span className="text-[10px] font-bold text-foreground/90 uppercase tracking-wider">{formatDate(achievement.date, locale)}</span>
+                                    <span className="text-[10px] font-bold text-foreground/90 uppercase tracking-wider">{achievement.date ? formatDate(achievement.date, locale) : (locale === 'ar' ? 'التاريخ غير محدّد' : 'Date not specified')}</span>
                                 </div>
-                                <div className="group flex flex-col gap-1 p-4 rounded-xl bg-foreground/[0.03] border border-border/50 hover:bg-foreground/[0.05] transition-all">
+                                {achievement.credentialId && <div className="group flex flex-col gap-1 p-4 rounded-xl bg-foreground/[0.03] border border-border/50 hover:bg-foreground/[0.05] transition-all">
                                     <span className="text-[8px] font-black uppercase tracking-[0.2em] text-muted-foreground/40">$ credential --id</span>
-                                    <code className="text-[10px] font-bold text-primary">{achievement.credentialId || "VERIFIED_RECORD"}</code>
-                                </div>
+                                    <code className="text-[10px] font-bold text-primary">{achievement.credentialId}</code>
+                                </div>}
                             </div>
 
                             {/* Supporting files uploaded in the admin */}
@@ -749,12 +762,12 @@ export default function AchievementsPage() {
             achievements = achievements.filter(a => a.category.toLowerCase() === activeCategory.toLowerCase());
         }
         achievements.sort((a, b) => {
-            const dateA = new Date(a.date).getTime();
-            const dateB = new Date(b.date).getTime();
+            const dateA = (new Date(a.date).getTime() || 0);
+            const dateB = (new Date(b.date).getTime() || 0);
             return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
         });
         return achievements;
-    }, [searchQuery, sortOrder, activeCategory]);
+    }, [searchQuery, sortOrder, activeCategory, portfolioData.achievements]);
 
     // Navigation logic for modal (Stabilized with useCallback)
     const currentIndex = useMemo(() => {

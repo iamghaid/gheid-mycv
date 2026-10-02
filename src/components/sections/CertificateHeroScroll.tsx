@@ -9,6 +9,7 @@ import Image from "next/image";
 import { usePerformance } from "@/hooks/usePerformance";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from 'next-intl';
+import { useLocalizedPortfolio } from '@/hooks/useLocalizedPortfolio';
 
 interface ImageItem {
     id: string;
@@ -36,18 +37,6 @@ interface CertificateHeroScrollProps {
     isLowPowerMode?: boolean;
 }
 
-const CERTIFICATE_POOL = [
-    "programming-creativity.jpg",
-    "ibm-skillsbuild.jpg",
-    "newtech-hackathon.jpg",
-    "afaq-ai.jpg",
-    "gdg-gemini.jpg",
-    "after-med-hackathon.jpg",
-    "mabda-ai.jpg",
-    "ana-ijabi.jpg",
-    "deans-list.jpg"
-];
-
 const CertificateHeroScroll: FC<CertificateHeroScrollProps> = ({ onDownloadClick, isLowPowerMode: isLowPowerModeProp }) => {
     const tPage = useTranslations('achievementsPage');
     const spacerRef = useRef<HTMLDivElement>(null);
@@ -57,23 +46,11 @@ const CertificateHeroScroll: FC<CertificateHeroScrollProps> = ({ onDownloadClick
     const { isLowPowerMode: performanceLowPower, isMobile } = usePerformance();
     const isLowPowerMode = isLowPowerModeProp ?? performanceLowPower;
 
-    // Select and randomize certificates on mount to avoid hydration mismatch
-    const [randomCertificates, setRandomCertificates] = useState<ImageItem[]>([]);
-
-    const createCertItem = useCallback((filename: string): ImageItem => ({
-        id: filename.replace(/\s+/g, '-').toLowerCase(),
-        src: `/certificate/${filename}`,
-        alt: filename.replace(/\.(pdf|jpg|jpeg|png|webp)$/i, ''),
-        isPdf: /\.pdf$/i.test(filename)
-    }), []);
-
-    useEffect(() => {
-        // The first six of the pool, in the authored order — previously a random draw,
-        // which meant the hero showed different certificates on every visit.
-        const selected = CERTIFICATE_POOL.slice(0, 6).map(createCertItem);
-        setRandomCertificates(selected);
-    }, [createCertItem]);
-
+    const { achievements } = useLocalizedPortfolio();
+    const randomCertificates = useMemo<ImageItem[]>(() => achievements
+        .filter(item => item.image && !/\.pdf(?:[?#]|$)/i.test(item.image))
+        .slice(0, 6)
+        .map(item => ({ id: item.id, src: item.image!, alt: item.title, isPdf: false })), [achievements]);
 
     const getPositions = useCallback((): Positions => {
         const vw = typeof window !== "undefined" ? window.innerWidth : 1920;
