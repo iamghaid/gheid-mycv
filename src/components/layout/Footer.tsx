@@ -405,17 +405,6 @@ export function Footer() {
                                     </div>
                                 </div>
 
-                                {/* Bottom Brand Name - Scaled and Clipped (Top-half visible) */}
-                                <div className="mt-auto overflow-hidden flex-shrink-0 relative">
-                                    <motion.h2
-                                        initial={{ opacity: 0, y: "100%" }}
-                                        animate={isAboutExpanded ? { opacity: 0, y: "120%" } : { opacity: 1, y: "38%" }}
-                                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                                        className="text-[18vw] font-black leading-none text-zinc-900 dark:text-white tracking-tighter select-none text-center"
-                                    >
-                                        ARFAZRLL
-                                    </motion.h2>
-                                </div>
                             </div>
                         </motion.div>
                     )}
