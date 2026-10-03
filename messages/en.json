@@ -24,7 +24,7 @@
             "blogDesc": "Thoughts and technical explorations",
             "gallery": "Gallery",
             "galleryDesc": "Visual archive of media and projects",
-            "research": "Research & Ideas",
+            "research": "Studies & Ideas",
             "researchDesc": "Studies and hackathon submissions",
             "projectShort": "Projects",
             "projectDesc2": "Discover my latest builds",
@@ -46,7 +46,7 @@
             "preview": "Preview Mode",
             "idRef": "ID_REF"
         },
-        "research": "Research"
+        "research": "Studies & Ideas"
     },
     "hero": {
         "greeting": "Welcome to my digital space",
@@ -556,10 +556,10 @@
     "research": {
         "inProgress": "In progress",
         "label": "Studies",
-        "title": "Research & Hackathon Work",
+        "title": "Studies & Ideas",
         "subtitle": "Full write-ups behind the platforms I have designed and prototyped — accessibility, marketplace integrity, education, and opportunity discovery.",
         "viewAll": "All studies",
-        "pageTitle": "Research",
+        "pageTitle": "Studies & Ideas",
         "pageSubtitle": "Studies and hackathon submissions exploring AI-powered platforms across accessibility, marketplace trust, education, and opportunity discovery."
     },
     "credentials": {
@@ -915,7 +915,7 @@
         "skills": "Skills",
         "achievements": "Achievements",
         "gallery": "Gallery",
-        "research": "Research",
+        "research": "Studies & Ideas",
         "contact": "Contact",
         "resume": "Resume",
         "loading": "Loading"
@@ -933,7 +933,7 @@
         "contactDesc": "Get in touch with me for collaborations and opportunities.",
         "galleryTitle": "Gallery",
         "galleryDesc": "Photos from hackathons, workshops, and university events.",
-        "researchTitle": "Research",
+        "researchTitle": "Studies & Ideas",
         "researchDesc": "Studies and hackathon submissions exploring AI-powered platforms.",
         "resumeTitle": "Resume",
         "resumeDesc": "View or download my CV."
