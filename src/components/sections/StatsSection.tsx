@@ -25,7 +25,7 @@ export default function StatsSection({ scrollYProgress, showOnly }: { scrollYPro
             {/* Header for the Gallery Section */}
             {(showOnly === 'top' || !showOnly) && (
                 <>
-                    <div className="max-w-6xl mx-auto px-6 w-full pt-32 pb-16 text-center space-y-4">
+                    <div className="max-w-6xl mx-auto px-6 w-full pt-12 pb-6 sm:pt-32 sm:pb-16 text-center space-y-4">
                         <motion.h2
                             initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}

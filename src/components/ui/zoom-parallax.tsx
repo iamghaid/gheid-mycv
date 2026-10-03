@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useScroll, useTransform, motion, MotionValue } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -104,7 +105,24 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 	const used = assignSlots(images);
 
 	return (
-		<div ref={container} className="relative h-[300vh] z-[1]">
+		<>
+			<div className="w-full sm:hidden">
+				<div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:thin]">
+					{images.map((image, i) => (
+						<Link key={image.src + i} href="/gallery" className="w-[86%] shrink-0 snap-center overflow-hidden rounded-2xl border border-border bg-card">
+							<div className="relative aspect-[4/3] bg-muted/20">
+								<Image src={image.src} alt={image.alt || ''} fill sizes="86vw" className="object-contain" />
+							</div>
+							<div className="flex items-start justify-between gap-3 px-4 py-3">
+								<p className="text-sm font-medium leading-relaxed">{image.alt}</p>
+								<span className="shrink-0 text-xs tabular-nums text-muted-foreground">{i + 1} / {images.length}</span>
+							</div>
+						</Link>
+					))}
+				</div>
+				{children && <div className="flex justify-center px-5 pt-4 pb-8">{children}</div>}
+			</div>
+		<div ref={container} className="relative hidden h-[300vh] z-[1] sm:block">
 			<div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
 				{/*
 				  Stage aspect and tile scale are the only things that change between
@@ -175,5 +193,6 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 				)}
 			</div>
 		</div>
+		</>
 	);
 }
