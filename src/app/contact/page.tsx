@@ -151,8 +151,6 @@ function ContactForm() {
         } catch (error) {
             console.error('Error submitting form:', error);
             setStatus('error');
-        } finally {
-            setTimeout(() => setStatus('idle'), 3000);
         }
     };
 
@@ -185,6 +183,9 @@ function ContactForm() {
                     required
                 />
 
+                {status === 'error' && (
+                    <p role="alert" className="my-4 text-sm text-red-600 dark:text-red-400">{t('form.error')}</p>
+                )}
                 {/* Creative Large Button */}
                 <motion.button
                     type="submit"

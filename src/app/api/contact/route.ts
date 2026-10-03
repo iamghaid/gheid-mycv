@@ -14,6 +14,12 @@ function escapeHtml(str: string) {
 export async function POST(req: Request) {
     try {
         const { name, email, subject, message } = await req.json();
+        if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string' || (subject !== undefined && typeof subject !== 'string') || name.length > 200 || email.length > 254 || message.length > 10000 || (subject?.length ?? 0) > 300 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return NextResponse.json({ error: 'Invalid contact details' }, { status: 400 });
+        }
+        if (!process.env.EMAIL_USER || !process.env.EMAIL_APP_PASSWORD) {
+            return NextResponse.json({ error: 'Contact email is not configured' }, { status: 503 });
+        }
 
         // Basic validation
         if (!name || !email || !message) {
@@ -24,6 +30,8 @@ export async function POST(req: Request) {
             host: 'smtp.gmail.com',
             port: 465,
             secure: true,
+            connectionTimeout: 10000,
+            socketTimeout: 15000,
             auth: {
                 user: process.env.EMAIL_USER || '',
                 pass: process.env.EMAIL_APP_PASSWORD || ''
@@ -38,7 +46,9 @@ export async function POST(req: Request) {
         // Email options
         const mailOptions = {
             from: process.env.EMAIL_USER || '',
-            to: process.env.EMAIL_USER || '', // Where you want to receive the messages
+            to: process.env.CONTACT_EMAIL || process.env.EMAIL_USER,
+            replyTo: email.trim(),
+            text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
             subject: `New Message: ${safeSubject}`,
             html: `
                 <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
@@ -57,7 +67,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ message: 'Email sent successfully!' }, { status: 200 });
     } catch (error) {
-        console.error('Error sending email:', error);
+        console.error('Contact email delivery failed');
         return NextResponse.json({ error: 'Failed to send email. Ensure Gmail App Password is set.' }, { status: 500 });
     }
 }
