@@ -677,7 +677,6 @@ function ChatWindow({ onClose, origin }: { onClose: () => void, origin?: { x: nu
 // ─── Main ChatBot component ───────────────────────────────────────────────────
 export function ChatBot({ headless = false }: { headless?: boolean }) {
     const tA11y = useTranslations('a11y');
-    const isArabic = useLocale() === 'ar';
     const [isOpen, setIsOpen] = useState(false);
     const [hasNewMsg, setHasNewMsg] = useState(false);
     const [origin, setOrigin] = useState<{ x: number, y: number } | null>(null);
@@ -726,7 +725,7 @@ export function ChatBot({ headless = false }: { headless?: boolean }) {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     className={cn(
-                        "fixed right-4 md:right-8 bottom-[calc(6rem+env(safe-area-inset-bottom))] z-[104] flex items-center gap-2 px-4 py-3 rounded-full transition-colors group shadow-lg bg-background text-foreground",
+                        "fixed right-4 md:right-8 bottom-[calc(6rem+env(safe-area-inset-bottom))] z-[104] flex h-11 w-11 items-center justify-center rounded-full transition-colors group shadow-lg bg-background text-foreground",
                         "border border-foreground/10",
                         isOpen
                             ? "bg-primary/20 border-primary/40"
@@ -735,15 +734,10 @@ export function ChatBot({ headless = false }: { headless?: boolean }) {
                     aria-label={tA11y('openChatbot')}
                     aria-expanded={isOpen}
                 >
-                    <MessageSquare
-                        className={cn(
-                            "w-5 h-5 transition-colors",
-                            isOpen
-                                ? "text-primary"
-                                : "text-foreground/80 group-hover:text-foreground"
-                        )}
+                    <Bot
+                        aria-hidden="true"
+                        className="w-6 h-6 text-yellow-500 fill-yellow-500/10 group-hover:text-yellow-400 group-hover:fill-yellow-400/20 transition-colors"
                     />
-                    <span className="text-xs font-semibold">{isArabic ? 'اسأل عن غيد' : 'Ask about Gheid'}</span>
                     {/* Notification dot */}
                     {hasNewMsg && !isOpen && (
                         <motion.span
