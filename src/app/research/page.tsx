@@ -82,6 +82,16 @@ export default function ResearchPage() {
                                     {item.summary}
                                 </p>
 
+                                {item.links.filter((link) => /\.(mp4|webm)(\?|$)/i.test(link.url)).map((link) => (
+                                    <figure key={link.url} className="mt-5 w-full overflow-hidden rounded-xl border border-neutral-200 bg-black dark:border-neutral-800">
+                                        <video controls playsInline preload="none" poster={item.id === 'bayan' ? '/research/bayan-video-poster.png' : undefined} aria-label={link.label} className="aspect-video w-full object-contain">
+                                            <source src={link.url} type={/\.webm(\?|$)/i.test(link.url) ? 'video/webm' : 'video/mp4'} />
+                                            <a href={link.url}>{link.label}</a>
+                                        </video>
+                                        <figcaption className="bg-background px-3 py-2 text-xs text-muted-foreground">{link.label}</figcaption>
+                                    </figure>
+                                ))}
+
                                 {item.fileUrl && <Link
                                     href={item.fileUrl}
                                     target="_blank"
