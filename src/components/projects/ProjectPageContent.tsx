@@ -320,6 +320,15 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
                     {/* LEFT COLUMN: Main Content (8 cols) */}
                     <div className="lg:col-span-8 space-y-20">
 
+                        {project.slug === 'bayan' && (
+                            <section aria-label={locale === 'ar' ? 'الفيديو التجريبي لبيان' : 'Bayan demo video'}>
+                                <h2 className="mb-6 text-2xl font-bold">{locale === 'ar' ? 'بيان في تجربة عملية' : 'Bayan in action'}</h2>
+                                <video controls playsInline preload="none" poster="/research/bayan-video-poster.png" className="aspect-video w-full rounded-2xl border border-border bg-black object-contain">
+                                    <source src="/videos/bayan-demo.mp4" type="video/mp4" />
+                                </video>
+                            </section>
+                        )}
+
                         {/* MISSION OVERVIEW */}
                         <section id="mission">
                             <div className="flex items-center gap-3 mb-6">
@@ -490,10 +499,16 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
                                             <span>{locale === 'ar' ? 'العرض التقديمي الأصلي' : 'Original presentation'}</span>
                                         </a>
                                     )}
+                                    {project.slug === 'bayan' && (
+                                        <a href="/videos/bayan-demo.mp4" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-medium text-sm bg-black/10 dark:bg-secondary/10 hover:bg-black/20 dark:hover:bg-secondary/20 text-foreground transition-colors">
+                                            <ExternalLink className="w-4 h-4" />
+                                            <span>{locale === 'ar' ? 'الفيديو التجريبي' : 'Demo video'}</span>
+                                        </a>
+                                    )}
                                     {project.repoUrl && (
                                         <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-medium text-sm bg-black/10 dark:bg-secondary/10 hover:bg-black/20 dark:hover:bg-secondary/20 text-foreground transition-all border border-black/5 dark:border-transparent hover:border-black/10 dark:hover:border-white/5">
                                             <Github className="w-4 h-4" />
-                                            <span>{t('sections.sourceCode')}</span>
+                                            <span>{project.slug === 'bayan' ? (locale === 'ar' ? 'GitHub · مستودع خاص' : 'GitHub · Private repository') : t('sections.sourceCode')}</span>
                                         </a>
                                     )}
                                     {project.documentUrl && (
