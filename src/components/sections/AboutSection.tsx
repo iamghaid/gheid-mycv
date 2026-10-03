@@ -154,6 +154,8 @@ const SlideReveal = ({ children, delay = 0, y = 30 }: { children: React.ReactNod
 const AboutLeadIn = () => {
     const tShowcase = useTranslations('about.showcase');
     const t = useTranslations('about');
+    const isMobile = useIsMobile();
+    const locale = useLocale();
 
     return (
         <div className="w-full max-w-[1650px] mx-auto px-6 py-3 md:py-6 flex justify-center items-center">
@@ -161,15 +163,15 @@ const AboutLeadIn = () => {
             <motion.div
                 initial="hidden"
                 whileInView="show"
-                whileHover="hover"
-                viewport={{ once: false, amount: 0.2 }}
+                whileHover={isMobile ? undefined : "hover"}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={{
-                    hidden: { opacity: 0, y: 80, scale: 0.96 },
+                    hidden: { opacity: 0, y: isMobile ? 12 : 80, scale: isMobile ? 1 : 0.96 },
                     show: { 
                         opacity: 1, 
                         y: 0, 
                         scale: 1, 
-                        transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } 
+                        transition: { duration: isMobile ? 0.25 : 1.2, ease: [0.16, 1, 0.3, 1] } 
                     }
                 }}
                 className="relative w-full bg-background md:bg-white md:dark:bg-black border border-red-600/20 dark:border-red-600/40 p-6 md:p-12 lg:p-16 overflow-hidden md:shadow-xl md:dark:shadow-2xl transition-colors duration-500 group"
@@ -185,7 +187,7 @@ const AboutLeadIn = () => {
                 <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-red-600 translate-x-1 translate-y-[50%] z-10" />
 
                 {/* 3. Glare Sweep Effect (Premium Hover Shine via Framer Motion) */}
-                <div className="absolute inset-0 z-30 pointer-events-none overflow-hidden">
+                <div className="hidden md:block absolute inset-0 z-30 pointer-events-none overflow-hidden">
                     <motion.div
                         variants={{
                             hidden: { left: "-150%" },
@@ -242,9 +244,9 @@ const AboutLeadIn = () => {
                                 <p className="text-zinc-500 leading-relaxed">
                                     {t('leadIn.integration')}
                                 </p>
-                                <div className="mt-6 md:mt-auto pt-4">
+                                {locale !== 'ar' && <div className="mt-6 md:mt-auto pt-4">
                                     <span className="text-3xl lg:text-4xl font-signature text-zinc-900 dark:text-white/90">{t('leadIn.signature')}</span>
-                                </div>
+                                </div>}
                             </div>
                         </div>
                     </div>
