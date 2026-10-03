@@ -1,6 +1,7 @@
 export type ProjectPresentation = { language: 'en' | 'ar'; theme: 'light' | 'dark' };
 export const PRESENTATION_MESSAGE = 'portfolio:presentation';
 const supportedHosts = new Set([
+  'echo-growth-dashboard.vercel.app',
   'go-mission.vercel.app', 'go-mission-gheid.vercel.app',
   'irth-vr.vercel.app', 'irth-vr-gheid.vercel.app',
   'mizan-kernel.vercel.app', 'mizan-gheid.vercel.app',

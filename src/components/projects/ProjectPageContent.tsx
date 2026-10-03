@@ -484,6 +484,12 @@ export function ProjectPageContent({ project: initialProject, isLowPowerMode }: 
                                             <ExternalLink className="w-4 h-4" />
                                         </motion.a>
                                     )}
+                                    {project.slug === 'social-media-growth-analysis' && (
+                                        <a href="https://github.com/iamghaid/Social-Media-Growth-Analysis-Threads-and-TikTok-/blob/main/docs/echo-presentation-original.pptx" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-medium text-sm bg-black/10 dark:bg-secondary/10 hover:bg-black/20 dark:hover:bg-secondary/20 text-foreground transition-colors border border-black/5 dark:border-transparent">
+                                            <ExternalLink className="w-4 h-4" />
+                                            <span>{locale === 'ar' ? 'العرض التقديمي الأصلي' : 'Original presentation'}</span>
+                                        </a>
+                                    )}
                                     {project.repoUrl && (
                                         <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-medium text-sm bg-black/10 dark:bg-secondary/10 hover:bg-black/20 dark:hover:bg-secondary/20 text-foreground transition-all border border-black/5 dark:border-transparent hover:border-black/10 dark:hover:border-white/5">
                                             <Github className="w-4 h-4" />
