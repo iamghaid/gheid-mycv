@@ -1206,7 +1206,7 @@ export default function ProjectsPage() {
                             <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-6 xl:gap-4">
 
                                 {/* Categories - Horizontal Scroll */}
-                                <div className="w-full xl:w-auto overflow-x-auto pb-2 xl:pb-0 no-scrollbar">
+                                <div className="w-full min-w-0 xl:flex-1 overflow-x-auto pb-3 [scrollbar-width:thin] [scrollbar-color:var(--muted-foreground)_transparent] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-foreground/20">
                                     <div className="flex items-center gap-1.5 min-w-max px-2">
                                         {categories.map((cat) => {
                                             const Icon = cat.icon;
@@ -1232,7 +1232,7 @@ export default function ProjectsPage() {
                                 </div>
 
                                 {/* Filters & View Toggle */}
-                                <div className="flex items-center gap-3 px-2 self-end xl:self-auto">
+                                <div className="flex shrink-0 items-center gap-3 px-2 self-end xl:self-auto">
                                     {/* Status Filters */}
                                     <div className="flex items-center p-1 bg-foreground/5 dark:bg-white/5 rounded-xl border border-foreground/10 dark:border-white/10">
                                         {filters.map((f) => (
