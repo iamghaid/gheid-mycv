@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { Navbar, Footer } from '@/components/layout';
+import { PageBackButton } from './PageBackButton';
 import { BackToTop } from '@/components/ui/BackToTop';
 
 export function ConditionalNavigation({ children }: { children: React.ReactNode }) {
@@ -37,6 +38,7 @@ export function ConditionalNavigation({ children }: { children: React.ReactNode 
             </div>
             {useFullLayout && <Footer />}
             {useFullLayout && <BackToTop />}
+            <PageBackButton />
         </div>
     );
 }
