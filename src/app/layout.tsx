@@ -132,7 +132,7 @@ export default async function RootLayout({
                                         {children}
                                     </ConditionalNavigation>
                                 </ArcPreloaderWrapper>
-                                <ChatBot headless />
+                                <ChatBot />
                             </ThemeAwareClickSpark>
                         </SmoothScrollProvider>
                         </ContentProvider>

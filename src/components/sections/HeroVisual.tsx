@@ -295,6 +295,9 @@ export function HeroVisual({ isExiting = false }: { isExiting?: boolean }) {
                 onMouseLeave={() => setTooltip(prev => ({ ...prev, show: false }))}
               >
                 <Bot className="w-[0.85em] h-[0.85em] text-yellow-500 fill-yellow-500/10 group-hover:text-yellow-400 group-hover:fill-yellow-400/20 transition-colors" />
+                <span className="absolute top-full mt-1 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] md:text-xs font-semibold leading-normal tracking-normal text-muted-foreground">
+                  {isArabic ? 'بوت · اسأل عنّي' : 'AI chat · Ask about me'}
+                </span>
               </button>
               <span>{t('headline.line3b')}</span>
             </motion.h1>

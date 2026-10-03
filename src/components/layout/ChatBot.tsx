@@ -497,7 +497,7 @@ function ChatWindow({ onClose, origin }: { onClose: () => void, origin?: { x: nu
         <>
             {/* Invisible backdrop for click-outside to close */}
             <div
-                className="fixed inset-0 z-40"
+                className="fixed inset-0 z-[105]"
                 onClick={onClose}
                 aria-hidden="true"
             />
@@ -507,7 +507,7 @@ function ChatWindow({ onClose, origin }: { onClose: () => void, origin?: { x: nu
                 exit={origin ? { opacity: 0, scale: 0, x: "-50%", y: "-50%" } : { opacity: 0, scale: 0.92, y: 16 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
                 className={cn(
-                    "fixed z-50 flex flex-col",
+                    "fixed z-[110] flex flex-col",
                     origin
                         ? "top-1/2 left-1/2"
                         : (isExpanded ? "bottom-4 sm:bottom-12 right-4 sm:right-12" : "bottom-24 right-4 md:right-16"),
@@ -677,6 +677,7 @@ function ChatWindow({ onClose, origin }: { onClose: () => void, origin?: { x: nu
 // ─── Main ChatBot component ───────────────────────────────────────────────────
 export function ChatBot({ headless = false }: { headless?: boolean }) {
     const tA11y = useTranslations('a11y');
+    const isArabic = useLocale() === 'ar';
     const [isOpen, setIsOpen] = useState(false);
     const [hasNewMsg, setHasNewMsg] = useState(false);
     const [origin, setOrigin] = useState<{ x: number, y: number } | null>(null);
@@ -725,7 +726,7 @@ export function ChatBot({ headless = false }: { headless?: boolean }) {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     className={cn(
-                        "relative p-3 rounded-full transition-all group",
+                        "fixed right-4 md:right-8 bottom-[calc(6rem+env(safe-area-inset-bottom))] z-[104] flex items-center gap-2 px-4 py-3 rounded-full transition-colors group shadow-lg bg-background text-foreground",
                         "border border-foreground/10",
                         isOpen
                             ? "bg-primary/20 border-primary/40"
@@ -739,9 +740,10 @@ export function ChatBot({ headless = false }: { headless?: boolean }) {
                             "w-5 h-5 transition-colors",
                             isOpen
                                 ? "text-primary"
-                                : "text-foreground/60 group-hover:text-foreground"
+                                : "text-foreground/80 group-hover:text-foreground"
                         )}
                     />
+                    <span className="text-xs font-semibold">{isArabic ? 'اسأل عن غيد' : 'Ask about Gheid'}</span>
                     {/* Notification dot */}
                     {hasNewMsg && !isOpen && (
                         <motion.span
