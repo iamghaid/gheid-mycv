@@ -33,8 +33,8 @@ export async function POST(req: Request) {
             connectionTimeout: 10000,
             socketTimeout: 15000,
             auth: {
-                user: process.env.EMAIL_USER || '',
-                pass: process.env.EMAIL_APP_PASSWORD || ''
+                user: (process.env.EMAIL_USER || '').trim(),
+                pass: (process.env.EMAIL_APP_PASSWORD || '').replace(/\s/g, '')
             },
         });
 
@@ -67,7 +67,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ message: 'Email sent successfully!' }, { status: 200 });
     } catch (error) {
-        console.error('Contact email delivery failed');
+        console.error('Contact email delivery failed', { code: (error as { code?: string }).code, responseCode: (error as { responseCode?: number }).responseCode });
         return NextResponse.json({ error: 'Failed to send email. Ensure Gmail App Password is set.' }, { status: 500 });
     }
 }
