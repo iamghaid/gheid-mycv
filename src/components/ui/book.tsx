@@ -84,9 +84,9 @@ export const Book = ({
             {cover && (
               <>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={cover} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                <img src={cover} alt="" className={clsx("absolute inset-0 h-full w-full object-cover", cover.endsWith("-cover.png") && "object-top")} />
                 {/* Tint with the book colour so covers stay in the series' style */}
-                <div className="absolute inset-0 mix-blend-multiply opacity-60" style={{ background: _color }} />
+                <div className={clsx("absolute inset-0 mix-blend-multiply", cover.endsWith("-cover.png") ? "opacity-15" : "opacity-60")} style={{ background: _color }} />
               </>
             )}
             {eyebrow && (
