@@ -166,7 +166,7 @@ function SidebarLink({ href, icon: Icon, title, desc, theme, pathname }: any) {
     const isActive = pathname === href || (href !== '#' && pathname?.startsWith(`${href}/`));
     
     const className = cn(
-        "group flex items-center gap-4 rounded-2xl border p-4 transition-all duration-500 overflow-hidden relative",
+        "group flex-1 flex items-center gap-4 rounded-2xl border p-4 transition-all duration-500 overflow-hidden relative",
         theme === 'dark'
             ? cn("bg-[#161616] hover:bg-[#1f1f1f]", isActive ? "border-[#D1FF4D]/50 shadow-[0_0_15px_rgba(209,255,77,0.05)]" : "border-white/10 hover:border-white/20")
             : cn("hover:bg-white", isActive ? "bg-white border-[#D1FF4D]/80 shadow-sm shadow-[#D1FF4D]/10" : "bg-black/[0.02] border-black/10 hover:border-black/20"),
@@ -301,6 +301,7 @@ export default function CardNav({
                                 <div className="grid grid-cols-3 gap-4">
                                     <MegaBoxSmall href="/skills" icon={Navigation} title={tMenu('skillShort')} desc={tMenu('skillDesc2')} theme={theme} pathname={pathname} />
                                     <MegaBoxSmall href="/achievements" icon={Trophy} title={tMenu('achievements')} desc={tMenu('achievementsDesc2')} theme={theme} pathname={pathname} />
+                                    <MegaBoxSmall href="/research" icon={BookOpen} title={tMenu('research')} desc={tMenu('researchDesc2')} theme={theme} pathname={pathname} />
                                 </div>
                             </div>
 
@@ -309,7 +310,6 @@ export default function CardNav({
                                 "w-[280px] p-4 flex flex-col justify-center gap-4 border-l",
                                 theme === 'dark' ? "border-white/5" : "border-black/5"
                             )}>
-                                <SidebarLink href="/research" icon={BookOpen} title={tMenu('research')} desc={tMenu('researchDesc2')} theme={theme} pathname={pathname} />
                                 <SidebarLink href="/resume" icon={FileText} title={tMenu('resume')} desc={tMenu('resumeDesc')} theme={theme} pathname={pathname} />
                                 <SidebarLink href="/contact" icon={MessageCircle} title={tMenu('contact')} desc={tMenu('contactDesc')} theme={theme} pathname={pathname} />
                             </div>
