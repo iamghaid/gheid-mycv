@@ -103,19 +103,20 @@ export function ZoomParallax({ images, children }: ZoomParallaxProps) {
 	const ctaOpacity = useTransform(scrollYProgress, [0, 0.55, 0.8], [1, 1, 0]);
 
 	const used = assignSlots(images);
+	const mobileImages = images.filter((image) => image.src);
 
 	return (
 		<>
 			<div className="w-full sm:hidden">
 				<div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:thin]">
-					{images.map((image, i) => (
+					{mobileImages.map((image, i) => (
 						<Link key={image.src + i} href="/gallery" className="w-[86%] shrink-0 snap-center overflow-hidden rounded-2xl border border-border bg-card">
 							<div className="relative aspect-[4/3] bg-muted/20">
 								<Image src={image.src} alt={image.alt || ''} fill sizes="86vw" className="object-contain" />
 							</div>
 							<div className="flex items-start justify-between gap-3 px-4 py-3">
 								<p className="text-sm font-medium leading-relaxed">{image.alt}</p>
-								<span className="shrink-0 text-xs tabular-nums text-muted-foreground">{i + 1} / {images.length}</span>
+								<span dir="ltr" className="shrink-0 text-xs tabular-nums text-muted-foreground">{i + 1} / {mobileImages.length}</span>
 							</div>
 						</Link>
 					))}
