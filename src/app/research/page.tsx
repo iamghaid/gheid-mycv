@@ -37,8 +37,8 @@ export default function ResearchPage() {
                             transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                             className="group flex flex-col items-center text-center"
                         >
-                            <Link
-                                href={item.fileUrl}
+                            <a
+                                href={item.fileUrl || undefined}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={`${item.title} — ${item.fileLabel}`}
@@ -58,7 +58,7 @@ export default function ResearchPage() {
                                     aria-hidden
                                     className="pointer-events-none absolute -bottom-5 left-1/2 h-3 w-[80%] -translate-x-1/2 rounded-[100%] bg-black/25 blur-md transition-all duration-500 group-hover:w-[65%] group-hover:opacity-60 dark:bg-black/70"
                                 />
-                            </Link>
+                            </a>
 
                             <div className="flex w-full max-w-xs flex-col items-center">
                                 <h3 className="text-xl font-black leading-tight">{item.title}</h3>
@@ -82,7 +82,7 @@ export default function ResearchPage() {
                                     {item.summary}
                                 </p>
 
-                                <Link
+                                {item.fileUrl && <Link
                                     href={item.fileUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -90,7 +90,7 @@ export default function ResearchPage() {
                                 >
                                     {item.fileLabel}
                                     <ArrowUpRight className="h-3.5 w-3.5 rtl:-scale-x-100" />
-                                </Link>
+                                </Link>}
                                 {item.links.length > 0 && (
                                     <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1">
                                         {item.links.map((l) => (
